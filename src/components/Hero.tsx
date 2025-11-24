@@ -140,7 +140,7 @@ const Hero = () => {
                 <ArrowRight className="ml-3 w-5 h-5" />
               </Button>
 
-              <button className="flex items-center gap-3 bg-white/10 hover:bg-white/20 text-white rounded-full px-4 py-3 backdrop-blur-sm border border-white/20">
+              <button className="flex items-center gap-3 bg-white/10 hover:bg-white/20 text-white rounded-full px-3 py-1 backdrop-blur-sm border border-white/20">
                 <span className="w-9 h-9 rounded-full bg-white flex items-center justify-center shadow-sm">
                   <Play className="w-4 h-4 text-[#FF5A2D]" />
                 </span>
@@ -240,7 +240,7 @@ const Hero = () => {
                             </p>
                           </div>
 
-                          <Button className="bg-[#7C3AED] hover:bg-[#6D28D9] text-white rounded-full px-3 py-2 text-sm font-semibold shadow-md">
+                          <Button className="bg-gradient-to-r from-[#8482FF] to-[#7723FE] hover:opacity-90 text-white rounded-full px-4 py-2 text-sm font-semibold shadow-md transition-opacity">
                             View More
                           </Button>
                         </div>

@@ -7,8 +7,8 @@ interface DestinationCardProps {
   rating: number;
   location: string;
   price: string;
-  duration: string;
-  travelers: string;
+  travelers?: string;
+  tags?: string[];
 }
 
 const DestinationCard = ({ 
@@ -17,8 +17,8 @@ const DestinationCard = ({
   rating, 
   location, 
   price, 
-  duration, 
-  travelers 
+  travelers,
+  tags = [] 
 }: DestinationCardProps) => {
   return (
     <div className="bg-card rounded-2xl overflow-hidden shadow-md hover-lift">
@@ -39,20 +39,33 @@ const DestinationCard = ({
       </div>
       <div className="p-5">
         <h3 className="font-display font-bold text-xl text-foreground mb-4">{title}</h3>
-        <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
-          <span>{duration}</span>
-          <span className="flex items-center gap-1">
-            <Users className="w-4 h-4" />
-            {travelers}
-          </span>
-        </div>
+        {travelers && (
+          <div className="flex items-center justify-end text-sm text-muted-foreground mb-4">
+            <span className="flex items-center gap-1">
+              <Users className="w-4 h-4" />
+              {travelers}
+            </span>
+          </div>
+        )}
+        {tags.length > 0 && (
+          <div className="flex flex-wrap gap-2 mb-4">
+            {tags.map((tag, index) => (
+              <span 
+                key={index}
+                className="bg-muted text-muted-foreground text-xs px-2 py-1 rounded-full"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
         <div className="flex items-center justify-between">
           <div>
             <p className="text-sm text-muted-foreground">Starting from</p>
             <p className="font-display font-bold text-2xl text-foreground">{price}</p>
           </div>
-          <Button className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-full">
-            Book Now
+          <Button className="rounded-full text-white bg-gradient-to-r from-[#8482FF] to-[#7723FE] hover:opacity-90 transition-opacity">
+            View Plan
           </Button>
         </div>
       </div>

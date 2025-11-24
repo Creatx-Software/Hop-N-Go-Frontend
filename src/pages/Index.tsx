@@ -13,13 +13,27 @@ const Index = () => {
     <div className="min-h-screen">
       <Navigation />
       <main>
-        <Hero />
-        <TripPlanning />
-        <EVisa />
-        <Itinerary />
-        <TravelerQuiz />
-        <PopularItineraries />
-        <Testimonials />
+        <section id="destination">
+          <Hero />
+        </section>
+        <section id="trip-planning">
+          <TripPlanning />
+        </section>
+        <section id="evisa">
+          <EVisa />
+        </section>
+        <section id="itinerary">
+          <Itinerary />
+        </section>
+        <section id="quiz">
+          <TravelerQuiz />
+        </section>
+        <section id="popular">
+          <PopularItineraries />
+        </section>
+        <section id="testimonials">
+          <Testimonials />
+        </section>
       </main>
       <Footer />
     </div>

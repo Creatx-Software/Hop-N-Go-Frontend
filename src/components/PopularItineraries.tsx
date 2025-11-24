@@ -13,8 +13,7 @@ const PopularItineraries = () => {
       rating: 4.8,
       location: "Australia",
       price: "$ 1,799,000",
-      duration: "7 Days",
-      travelers: "Couple Sightseeing"
+      tags: ["Hiking", "Surfing", "Coastal Paragliding"]
     },
     {
       image: vietnamImage,
@@ -22,8 +21,7 @@ const PopularItineraries = () => {
       rating: 4.9,
       location: "Vietnam",
       price: "$ 1,799,000",
-      duration: "10 Days",
-      travelers: "Couple Sightseeing"
+      tags: ["Beach", "Cultural", "Food Tour"]
     },
     {
       image: japanImage,
@@ -31,8 +29,7 @@ const PopularItineraries = () => {
       rating: 4.7,
       location: "Japan",
       price: "$ 1,799,000",
-      duration: "9 Days",
-      travelers: "Couple Sightseeing"
+      tags: ["Temples", "Shopping", "Hot Springs"]
     }
   ];
 
@@ -42,10 +39,10 @@ const PopularItineraries = () => {
         <div className="flex items-center justify-between mb-12">
           <div>
             <h2 className="font-display font-bold text-4xl md:text-5xl text-foreground mb-2">
-              Popular Itineraries.
+              Popular Itineraries
             </h2>
             <p className="text-muted-foreground text-lg">
-              Explore our top curated itineraries for your next adventure
+              Explore our top itineraries designed to inspire your next adventure
             </p>
           </div>
         </div>

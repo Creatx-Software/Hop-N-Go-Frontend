@@ -1,10 +1,36 @@
 import { Button } from "@/components/ui/button";
 import { Menu, User } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+const scrollToSection = (id: string) => {
+  const element = document.getElementById(id);
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth' });
+  }
+};
 
 const Navigation = () => {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Show background as soon as user starts scrolling
+      const isScrolled = window.scrollY > 0;
+      if (isScrolled !== scrolled) {
+        setScrolled(isScrolled);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [scrolled]);
   return (
-    <nav className="fixed top-4 left-0 right-0 z-50">
-      <div className="container mx-auto px-6 py-4">
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white/90 backdrop-blur-md shadow-sm py-0' : 'py-4'}`}>
+      <div className={`container mx-auto px-6 ${scrolled ? 'py-3' : 'py-0'}`}>
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <a href="/" aria-label="Hop N Go home" className="flex items-center">
@@ -13,28 +39,40 @@ const Navigation = () => {
           </div>
           
           <div className="hidden md:flex items-center gap-8 ml-[-540px]">
-            <a href="#destination" className="text-white hover:text-primary transition-colors font-medium">
+            <button 
+              onClick={() => scrollToSection('destination')} 
+              className={`${scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90'} transition-colors font-medium`}
+            >
               Destination
-            </a>
-            <a href="#deals" className="text-white hover:text-primary transition-colors font-medium">
-              Deals
-            </a>
-            <a href="#about" className="text-white hover:text-primary transition-colors font-medium">
+            </button>
+            <button 
+              onClick={() => scrollToSection('evisa')} 
+              className={`${scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90'} transition-colors font-medium`}
+            >
+              E Visa
+            </button>
+            <button 
+              onClick={() => scrollToSection('testimonials')} 
+              className={`${scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90'} transition-colors font-medium`}
+            >
               About Us
-            </a>
-            <a href="#contact" className="text-white hover:text-primary transition-colors font-medium">
+            </button>
+            <button 
+              onClick={() => scrollToSection('contact')} 
+              className={`${scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90'} transition-colors font-medium`}
+            >
               Contact
-            </a>
+            </button>
           </div>
 
           <div className="flex items-center gap-4">
-            <a href="#login" className="hidden md:flex items-center gap-2 bg-[#575A64] hover:bg-white/30 text-white px-6 py-2 rounded-lg font-medium transition-colors">
+            <a href="#login" className={`hidden md:flex items-center gap-2 ${scrolled ? 'bg-gray-100 hover:bg-gray-200 text-foreground' : 'bg-white/10 hover:bg-white/20 text-white'} px-6 py-2 rounded-lg font-medium transition-colors duration-300`}>
               Login
                 <div className="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center">
                 <User className="w-3 h-3 text-[#FF5A2D]" />
               </div>
             </a>
-            <Button variant="ghost" size="icon" className="md:hidden text-white">
+            <Button variant="ghost" size="icon" className={`md:hidden ${scrolled ? 'text-foreground' : 'text-white'}`}>
               <Menu className="w-5 h-5" />
             </Button>
           </div>

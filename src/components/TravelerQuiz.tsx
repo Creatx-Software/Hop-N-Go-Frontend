@@ -17,7 +17,6 @@ const TravelerQuiz = () => {
             </div>
           </div>
           <div>
-            <p className="text-primary font-semibold mb-2">Discover Your Style</p>
             <h2 className="font-display font-bold text-4xl md:text-5xl text-foreground mb-6">
               What Kind of traveler are you?
             </h2>

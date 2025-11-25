@@ -50,7 +50,7 @@ const DestinationCard = ({
       <div className="p-0">
   {/* Top: Solid white section with title and tags */}
   <div className="bg-white px-5 pt-5 rounded-b-2xl">
-    <h3 className="font-display font-bold text-xl text-foreground mb-3">{title}</h3>
+    <h3 className="font-Montserrat font-bold text-xl text-foreground mb-3">{title}</h3>
     {tags.length > 0 && (
       <div className="flex flex-wrap gap-2 mb-3">
         {tags.map((tag, index) => (
@@ -68,7 +68,10 @@ const DestinationCard = ({
   <div className="relative flex items-center justify-between px-5 pb-5 pt-2 z-0">
     <div>
       <p className="text-sm text-muted-foreground mb-0">Price</p>
-      <p className="font-display font-bold text-xl text-foreground">From {price}</p>
+      <p className="text-xl text-foreground">
+        <span className="text-sm text-muted-foreground mr-1">From</span>
+        <span className="font-Montserrat font-bold">{price}</span>
+      </p>
     </div>
     <Button className="rounded-full text-white bg-gradient-to-r from-[#8482FF] to-[#7723FE] px-6 py-2 shadow-lg hover:opacity-90 transition-opacity">
       View Plan

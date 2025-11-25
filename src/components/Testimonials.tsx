@@ -1,75 +1,141 @@
-import { Star, ChevronUp, ChevronDown } from "lucide-react";
-import ellipse1 from "@/assets/Ellipse 1.png";
-import ellipse2 from "@/assets/Ellipse 2.png";
-import ellipse3 from "@/assets/Ellipse 3.png";
-import ellipse4 from "@/assets/Ellipse 4.png";
+import { useState } from 'react';
+import { Star, ArrowUp, ArrowDown } from "lucide-react";
+import eclipse from "@/assets/Ellipse 4.png";
+import clientsImage from "@/assets/clients.png";
+
+interface Testimonial {
+  id: number;
+  name: string;
+  rating: number;
+  text: string;
+  image: string;
+}
+
+const sampleTestimonials: Testimonial[] = [
+  {
+    id: 1,
+    name: 'John Smith',
+    rating: 4,
+    text: 'This was an unforgettable experience from start to finish. The views were absolutely stunning and the ride felt incredibly smooth. I would definitely recommend this to anyone looking for a memorable adventure.',
+    image: eclipse
+  },
+  {
+    id: 2,
+    name: 'Sarah Johnson',
+    rating: 5,
+    text: 'Absolutely amazing service! The tour guides were knowledgeable and made the whole experience enjoyable. The views were breathtaking and worth every penny. Will definitely come back again!',
+    image: eclipse
+  },
+  {
+    id: 3,
+    name: 'Michael Chen',
+    rating: 5,
+    text: 'One of the best travel experiences I\'ve ever had. The organization was flawless, and the sights were incredible. The team went above and beyond to make our trip special.',
+    image: eclipse
+  },
+  {
+    id: 4,
+    name: 'Emma Wilson',
+    rating: 4,
+    text: 'Lovely experience with great attention to detail. The itinerary was well-planned, and we got to see so many beautiful places. The guides were friendly and professional.',
+    image: eclipse
+  }
+];
 
 const Testimonials = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const currentTestimonial = sampleTestimonials[currentIndex];
+
+  const handlePrev = () => {
+    setCurrentIndex((prev) => (prev === 0 ? sampleTestimonials.length - 1 : prev - 1));
+  };
+
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev === sampleTestimonials.length - 1 ? 0 : prev + 1));
+  };
   return (
     <section className="relative py-24 bg-white">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Left side - Testimonial Card */}
-          <div className="relative">
-            <div className="bg-[#F8F9FC] rounded-3xl p-8 shadow-sm border border-gray-100">
-              <div className="flex items-start gap-6">
-                <div className="flex flex-col items-center gap-2">
-                  <button className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-md hover:bg-gray-50 transition-colors">
-                    <ChevronUp className="w-5 h-5 text-gray-600" />
-                  </button>
-                  <div className="w-16 h-16 rounded-full overflow-hidden border-4 border-white shadow-md">
-                    <img 
-                      src={ellipse1} 
-                      alt="John Smith" 
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <button className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-md hover:bg-gray-50 transition-colors">
-                    <ChevronDown className="w-5 h-5 text-gray-600" />
-                  </button>
+          {/* Left side - Testimonial Card and Navigation */}
+          <div className="relative max-w-2xl mx-auto lg:mx-0 flex items-start gap-6">
+            {/* Navigation Buttons */}
+            <div className="flex flex-col gap-4 mt-8">
+              <button 
+                onClick={handlePrev}
+                className="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center shadow-sm hover:bg-gray-50 transition-colors"
+                aria-label="Previous testimonial"
+              >
+                <ArrowUp className="w-5 h-5 text-black" />
+              </button>
+              <button 
+                onClick={handleNext}
+                className="w-10 h-10 rounded-full bg-black border border-gray-200 flex items-center justify-center shadow-sm hover:bg-gray-800 transition-colors"
+                aria-label="Next testimonial"
+              >
+                <ArrowDown className="w-5 h-5 text-white" />
+              </button>
+            </div>
+            
+            {/* Testimonial Card */}
+            <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 flex-1">
+              
+              {/* Profile Picture */}
+              <div className="flex items-center gap-4 mb-1">
+                <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-white shadow-md transform -translate-y-14">
+                  <img 
+                    src={currentTestimonial.image} 
+                    alt={currentTestimonial.name} 
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 
-                <div className="flex-1">
-                  <div className="flex items-center gap-2 mb-3">
-                    <h4 className="font-display font-bold text-lg text-gray-900">John Smith</h4>
-                    <div className="flex gap-1">
-                      {[1, 2, 3, 4, 5].map((star) => (
-                        <Star key={star} className="w-4 h-4 fill-[#FFD700] text-[#FFD700]" />
-                      ))}
-                    </div>
+                {/* Name and Rating */}
+                <div className="transform -translate-x-16">
+                  <h4 className="font-bold text-gray-900">{currentTestimonial.name}</h4>
+                  <div className="flex gap-1">
+                    {[...Array(5)].map((_, i) => (
+                      <Star 
+                        key={i} 
+                        className={`w-4 h-4 ${i < currentTestimonial.rating ? 'fill-[#F6973F] text-[#F6973F]' : 'fill-gray-300 text-gray-300'}`} 
+                      />
+                    ))}
                   </div>
-                  <p className="text-gray-600 leading-relaxed mb-4 text-sm">
-                    "I had an absolutely amazing experience with Hop N Go! From the moment I booked my trip till I came back home was filled with joy and amazing memories. Highly recommend for anyone looking for a seamless, stress-free vacation experience."
-                  </p>
                 </div>
               </div>
+              
+              {/* Testimonial Text */}
+              <p className="text-gray-600 text-sm leading-relaxed">
+                "{currentTestimonial.text}"
+              </p>
             </div>
           </div>
 
-          {/* Right side - Title and Avatars */}
-          <div className="text-center lg:text-left">
-            <h2 className="font-display font-bold text-4xl md:text-5xl text-gray-900 mb-6">
-              What our clients are saying about us?
-            </h2>
-            
-            <div className="flex justify-center lg:justify-start items-center gap-4 mb-8">
-              <div className="w-16 h-16 rounded-full overflow-hidden border-4 border-white shadow-md">
-                <img src={ellipse2} alt="Client" className="w-full h-full object-cover" />
-              </div>
-              <div className="w-16 h-16 rounded-full overflow-hidden border-4 border-white shadow-md -ml-4">
-                <img src={ellipse3} alt="Client" className="w-full h-full object-cover" />
-              </div>
-              <div className="w-16 h-16 rounded-full overflow-hidden border-4 border-white shadow-md -ml-4">
-                <img src={ellipse4} alt="Client" className="w-full h-full object-cover" />
-              </div>
-              <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center text-gray-400 font-medium -ml-4">
-                +5k
-              </div>
+          {/* Right side - Title and Image */}
+          <div className="relative">
+            <div className="lg:absolute right-0 w-full lg:w-[10vw] max-w-md transform translate-x-16 -translate-y-16">
+              <img 
+                src={clientsImage} 
+                alt="Happy clients" 
+                className="w-full h-auto"
+              />
             </div>
             
-            <p className="text-gray-600 text-lg max-w-lg mx-auto lg:mx-0">
-              Join thousands of satisfied customers who have experienced the best travel with us.
-            </p>
+            <div className="relative z-10 max-w-2xl lg:pr-12">
+              <h4 className="font-inter font-semibold text-lg text-gray-900 mb-2">
+                What others think
+              </h4>
+
+              <br/>
+
+              <h2 className="font-inter font-bold text-4xl md:text-5xl text-black mb-6">
+                What our clients are saying about us?
+              </h2>
+              
+              <p className="text-gray-600 text-lg">
+                See what our customers say about their experience with Hop N Go—check it out on the side!
+              </p>
+            </div>
           </div>
         </div>
       </div>

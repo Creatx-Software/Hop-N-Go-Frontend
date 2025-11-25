@@ -1,16 +1,19 @@
 import { Button } from "@/components/ui/button";
-import { HelpCircle } from "lucide-react";
-import forestImage from "@/assets/nature-forest.jpg";
+import travel from "@/assets/travel.jpg";
 
 const TravelerQuiz = () => {
   return (
-    <section className="py-20 bg-muted/30">
-      <div className="container mx-auto px-6">
+    <section className="relative py-20 overflow-hidden">
+  {/* Pink blending background */}
+  <div className="absolute inset-0 z-0">
+    <div className="w-full h-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#FFE4E1] via-[#FFF5F3] to-transparent opacity-80"></div>
+  </div>
+      <div className="container mx-auto px-6 relative z-10">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="relative">
             <div className="rounded-3xl overflow-hidden shadow-2xl">
               <img 
-                src={forestImage} 
+                src={travel} 
                 alt="Nature destination" 
                 className="w-full h-96 object-cover"
               />
@@ -23,9 +26,10 @@ const TravelerQuiz = () => {
             <p className="text-muted-foreground text-lg leading-relaxed mb-8">
               Take our quick travel quiz. We'll reveal your travel style and help set personal preferences for presents you with recommendations you'll love. Now let's explore your ideal destinations!
             </p>
-            <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-8">
-              <HelpCircle className="mr-2 w-5 h-5" />
-              Take Quiz
+            <Button size="lg"
+              className="bg-gradient-to-r from-[#F9AC7D] to-[#F53B00] text-white rounded-full px-10 py-3 h-[56px] text-lg font-semibold shadow-lg border-none focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#F9AC7D]"
+>
+              Take Our Quiz
             </Button>
           </div>
         </div>

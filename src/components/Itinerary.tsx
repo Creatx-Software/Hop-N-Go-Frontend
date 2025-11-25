@@ -1,12 +1,10 @@
-import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles, Send } from "lucide-react";
-import phuketImage from "@/assets/phuket.jpg";
-import greeceImage from "@/assets/greece.jpg";
-import japanImage from "@/assets/japan.jpg";
+import { Send, AudioLines, Smile } from "lucide-react";
+// Removed unused rotating collage images
+import itineraryImage from "@/assets/itinerary.png";
 
 const Itinerary = () => {
   return (
-    <section className="py-20 bg-background">
+    <section className="py-6 bg-background">
       <div className="container mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
@@ -19,48 +17,46 @@ const Itinerary = () => {
           </div>
           
           <div className="relative">
-            <div className="bg-card rounded-3xl p-6 shadow-2xl">
-              {/* Image Collage */}
-              <div className="grid grid-cols-3 gap-3 mb-4">
-                <div className="rounded-2xl overflow-hidden aspect-[3/4]">
-                  <img src={phuketImage} alt="Phuket" className="w-full h-full object-cover" />
-                </div>
-                <div className="rounded-2xl overflow-hidden aspect-[3/4]">
-                  <img src={greeceImage} alt="Greece" className="w-full h-full object-cover" />
-                </div>
-                <div className="rounded-2xl overflow-hidden aspect-[3/4]">
-                  <img src={japanImage} alt="Japan" className="w-full h-full object-cover" />
-                </div>
+            <div className="">
+              {/* Static Itinerary Image */}
+              <div className="w-full mb-4 flex items-center justify-center">
+                {/* Show the full image (no cropping). Use object-contain and a fixed max size to avoid cropping */}
+                <img src={itineraryImage} alt="itinerary" className="w-[360px] h-[360px] md:w-[420px] md:h-[420px] object-contain" />
               </div>
-              
-              {/* Chat bubbles */}
-              <div className="space-y-3 mb-4">
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-full bg-primary/20 flex-shrink-0 flex items-center justify-center">
-                    <Sparkles className="h-4 w-4 text-primary" />
-                  </div>
-                  <div className="bg-muted/50 rounded-2xl px-4 py-2 max-w-[80%]">
-                    <p className="text-sm">Your 7-day trip to Bali is ready!</p>
+
+              {/* Big Chat Input bar with icons inside the field */}
+              <div className="mt-4 flex justify-center">
+                <div className="w-full md:max-w-[560px] rounded-[20px] border-2 border-black/80 bg-transparent px-4 py-3 flex flex-col gap-2">
+
+                  {/* Text input at the top */}
+                  <input
+                    type="text"
+                    placeholder="Ask anything ..."
+                    className="w-full text-xl placeholder:text-gray-400 bg-transparent outline-none"
+                  />
+
+                  {/* Icons row inside the input field */}
+                  <div className="flex justify-between items-center">
+                    {/* Left icons */}
+                    <div className="flex items-center gap-2">
+                      <button className="w-8 h-8 rounded-full flex items-center justify-center text-gray-500 text-sm">+</button>
+                      <button className="w-8 h-8 rounded-full flex items-center justify-center text-gray-500 text-sm">
+                        <Smile className="w-4 h-4" />
+                      </button>
+                      <button className="w-8 h-8 rounded-full flex items-center justify-center text-gray-500 text-sm">@</button>
+                    </div>
+
+                    {/* Right icons */}
+                    <div className="flex items-center gap-5">
+                      <button className="flex items-center justify-center text-black">
+                        <AudioLines className="w-5 h-5" />
+                      </button>
+                      <button className="flex items-center justify-center">
+                        <Send className="w-6 h-6 fill-black stroke-white" />
+                      </button>
+                    </div>
                   </div>
                 </div>
-                
-                <div className="flex items-start gap-3 justify-end">
-                  <div className="bg-primary/10 rounded-2xl px-4 py-2 max-w-[80%]">
-                    <p className="text-sm">Can you add more beach activities?</p>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Input field */}
-              <div className="relative mt-4">
-                <input 
-                  type="text" 
-                  placeholder="Ask anything..." 
-                  className="w-full bg-muted/50 border border-border rounded-full py-3 pl-4 pr-12 focus:outline-none focus:ring-2 focus:ring-primary/50 text-sm"
-                />
-                <button className="absolute right-2 top-1/2 -translate-y-1/2 bg-primary text-white p-2 rounded-full">
-                  <Send className="h-4 w-4" />
-                </button>
               </div>
             </div>
           </div>

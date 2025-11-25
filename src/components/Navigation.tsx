@@ -41,25 +41,25 @@ const Navigation = () => {
           <div className="hidden md:flex items-center gap-8 ml-[-540px]">
             <button 
               onClick={() => scrollToSection('destination')} 
-              className={`${scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90'} transition-colors font-medium`}
+              className={`${scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90'} transition-colors font-inter font-medium`}
             >
               Destination
             </button>
             <button 
               onClick={() => scrollToSection('evisa')} 
-              className={`${scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90'} transition-colors font-medium`}
+              className={`${scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90'} transition-colors font-inter font-medium`}
             >
               E Visa
             </button>
             <button 
               onClick={() => scrollToSection('testimonials')} 
-              className={`${scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90'} transition-colors font-medium`}
+              className={`${scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90'} transition-colors font-inter font-medium`}
             >
               About Us
             </button>
             <button 
               onClick={() => scrollToSection('contact')} 
-              className={`${scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90'} transition-colors font-medium`}
+              className={`${scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90'} transition-colors font-inter font-medium`}
             >
               Contact
             </button>
@@ -68,7 +68,7 @@ const Navigation = () => {
           <div className="flex items-center gap-4">
             <a 
               href="#login" 
-              className={`hidden md:flex items-center justify-center gap-2 ${scrolled ? 'text-foreground' : 'text-white'} px-6 py-2 rounded-full font-medium transition-all duration-300`}
+              className={`hidden md:flex items-center justify-center gap-2 ${scrolled ? 'text-foreground' : 'text-white'} px-6 py-2 rounded-full font-inter font-medium transition-all duration-300`}
               style={{
                 width: '104px',
                 height: '38px',

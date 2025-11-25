@@ -13,7 +13,7 @@ const PopularItineraries = () => {
       rating: 4.8,
       location: "Australia",
       price: "$ 1,799,000",
-      tags: ["Hiking", "Surfing", "Coastal Paragliding"]
+      tags: ["Hiking", "Surfing", "Coastal Paragliding", "Rafting Excursion", "Kayaking"]
     },
     {
       image: vietnamImage,
@@ -21,7 +21,7 @@ const PopularItineraries = () => {
       rating: 4.9,
       location: "Vietnam",
       price: "$ 1,799,000",
-      tags: ["Beach", "Cultural", "Food Tour"]
+      tags: ["Beach", "Cultural", "Food Tour", "Rafting Excursion", "Kayaking"]
     },
     {
       image: japanImage,
@@ -29,12 +29,12 @@ const PopularItineraries = () => {
       rating: 4.7,
       location: "Japan",
       price: "$ 1,799,000",
-      tags: ["Temples", "Shopping", "Hot Springs"]
+      tags: ["Temples", "Shopping", "Hot Springs", "Rafting Excursion", "Kayaking"]
     }
   ];
 
   return (
-    <section className="py-20 bg-background">
+    <section className="py-20 bg-white">
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between mb-12">
           <div>
@@ -52,9 +52,9 @@ const PopularItineraries = () => {
           ))}
         </div>
         <div className="text-center">
-          <Button variant="link" className="text-primary font-semibold text-lg">
+          <Button variant="link" className="font-semibold text-lg text-[#8442FF] inline-flex items-center">
             View More
-            <ArrowRight className="ml-2 w-5 h-5" />
+            <ArrowRight className="ml-2 w-5 h-5 stroke-[#8442FF]" />
           </Button>
         </div>
       </div>

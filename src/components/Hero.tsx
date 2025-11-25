@@ -49,6 +49,7 @@ const Hero = () => {
 
   return (
     <section className="relative min-h-screen pt-20 overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(255,255,255,0.2),transparent_60%)] z-10 pointer-events-none"></div>
       {/* Split Background */}
       <div className="absolute inset-0 z-0 grid lg:grid-cols-[55%_45%]">
         {/* Left Side (with Grid) */}
@@ -76,15 +77,14 @@ const Hero = () => {
       <div className="container mx-auto px-0 relative z-20">
         <div className="grid lg:grid-cols-[55%_45%] gap-8 items-center min-h-[calc(100vh-5rem)]">
           <div className="py-12 md:py-24">
-            <h1 className="font-display font-bold text-5xl md:text-6xl lg:text-7xl text-white mb-8 leading-tight">
-              Enjoy Your
-              <br />
-              Vacation With
-              <br />
-              <span className="text-[#FF5A2D]">Hop N Go</span> Travel
-              <br />
+            <h1 className="font-inter font-bold text-5xl md:text-6xl lg:text-7xl text-white mb-8 leading-normal">
+              <div className="mb-4">Enjoy Your</div>
+              <div className="mb-4">Vacation With</div>
+              <div>
+                <span className="text-[#FF5A2D]">Hop N Go</span> Travel
+              </div>
             </h1>
-            <p className="text-white/80 text-lg mb-8 max-w-lg">
+            <p className="font-inter text-white/80 text-lg mb-8 max-w-lg">
               With Hop N Go, you can explore incredible places with effortless
               planning and breathtaking views that make every moment unforgettable.
             </p>

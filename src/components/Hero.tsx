@@ -239,13 +239,17 @@ const Hero = () => {
               ))}
             </CarouselContent>
 
-            {/* Fixed Previous Arrow */}
             {selectedIndex !== 0 && (
-              <CarouselPrevious
-                className="absolute left-[-28px] top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white hover:bg-gray-50 flex items-center justify-center shadow-2xl z-40"
-                style={{ color: "#000000" }}
-              />
+              <div className="absolute left-[-28px] top-1/2 -translate-y-1/2 w-16 h-16 flex items-center justify-center">
+    
+                {/* Glass border layer */}
+                <div className="absolute inset-0 rounded-full bg-white/50 backdrop-blur-sm pointer-events-none"></div>
+
+                {/* Previous Button */}
+                <CarouselPrevious className="relative w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-2xl z-40 text-black translate-x-12 -mt-6 hover:bg-white hover:text-black focus:bg-white focus:text-black active:bg-white active:text-black"/>
+              </div>
             )}
+
           </Carousel>
         </div>
       </div>

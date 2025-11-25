@@ -66,10 +66,21 @@ const Navigation = () => {
           </div>
 
           <div className="flex items-center gap-4">
-            <a href="#login" className={`hidden md:flex items-center gap-2 ${scrolled ? 'bg-gray-100 hover:bg-gray-200 text-foreground' : 'bg-white/10 hover:bg-white/20 text-white'} px-6 py-2 rounded-lg font-medium transition-colors duration-300`}>
-              Login
-                <div className="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center">
-                <User className="w-3 h-3 text-[#FF5A2D]" />
+            <a 
+              href="#login" 
+              className={`hidden md:flex items-center justify-center gap-2 ${scrolled ? 'text-foreground' : 'text-white'} px-6 py-2 rounded-full font-medium transition-all duration-300`}
+              style={{
+                width: '104px',
+                height: '38px',
+                backgroundColor: scrolled ? 'rgba(87, 90, 100, 0.46)' : 'rgba(87, 90, 100, 0.46)',
+                border: '1px solid rgba(87, 90, 100, 0.48)',
+                boxSizing: 'border-box',
+                borderRadius: '100px',
+              }}
+            >
+              <span>Login</span>
+              <div className="w-6 h-6 rounded-full bg-white flex-shrink-0 flex items-center justify-center">
+                <User className="w-3 h-3 text-[#FF5A2D] flex-shrink-0" />
               </div>
             </a>
             <Button variant="ghost" size="icon" className={`md:hidden ${scrolled ? 'text-foreground' : 'text-white'}`}>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Play, MapPin, Star, ChevronDown, ChevronRight } from "lucide-react";
+import { ArrowRight, Play, MapPin, Star, ArrowDown, ChevronRight } from "lucide-react";
 import grid from "@/assets/grid.png";
 import phuketImage from "@/assets/phuket.jpg";
 import greeceImage from "@/assets/greece.jpg";
@@ -56,7 +56,7 @@ const Hero = () => {
           <img
             src={grid}
             alt="Grid Background"
-            className="absolute inset-0 w-full h-full object-cover opacity-40 z-0 pointer-events-none"
+            className="absolute inset-0 w-full h-full object-cover opacity-100 z-0 pointer-events-none"
           />
           <div className="absolute inset-0 bg-black/20 z-10" />
         </div>
@@ -95,8 +95,8 @@ const Hero = () => {
                 className="bg-gradient-to-r from-[#FF5A2D] to-[#FF7A3D] text-[#0C111F] font-semibold pr-20 pl-12 px-4 py-4 rounded-full shadow-[0_20px_40px_rgba(255,90,45,0.18)] flex items-center relative w-56"
               >
                 <span className="mr-10 ml-3 flex-shrink-0">Create Itineraries</span>
-                <span className="w-9 h-9 rounded-full bg-[#0C111F] flex items-center justify-center absolute right-4 top-1/2 -translate-y-1/2">
-                  <ChevronRight className="w-5 h-5 text-white p-0.5" />
+                <span className="w-8 h-8 rounded-full bg-[#0C111F] flex items-center justify-center absolute right-4 top-1/2 -translate-y-1/2">
+                  <ChevronRight className="w-7 h-7 text-white p-0.5" />
                 </span>
               </Button>
 
@@ -115,18 +115,40 @@ const Hero = () => {
         {/* Scroll Down Button */}
         <button
           onClick={() => window.scrollTo({ top: window.innerHeight, behavior: "smooth" })}
-          className="absolute bottom-8 left-[53.7%] -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce cursor-pointer focus:outline-none"
+          className="absolute bottom-8 left-[55.5%] -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer focus:outline-none"
           aria-label="Scroll down"
         >
-          <div className="w-12 h-12 rounded-full border-2 border-primary bg-primary/20 backdrop-blur-sm flex items-center justify-center hover:bg-primary/30 transition-colors">
-            <ChevronDown className="w-6 h-6 text-primary" />
+          {/* Rotating ring with text and inner orange button */}
+          <div className="relative w-[96px] h-[96px] flex items-center justify-center">
+            {/* Outer rotating SVG ring with circular text */}
+            <svg viewBox="0 0 106 106" className="absolute inset-0 w-full h-full z-10 pointer-events-none">
+              <defs>
+                  {/* Reduce the path radius more (36 instead of 40) so 'see more' sits slightly more inward away from the border */}
+                  <path id="seeMorePath" d="M53 17a36 36 0 1 1 0 72 36 36 0 1 1 0-72" />
+              </defs>
+              {/* Border ring */}
+              <circle cx="53" cy="53" r="50" className="stroke-white/20 fill-[#0C111F]" strokeWidth="1.6" />
+              {/* Rotating group contains only text to rotate around the ring */}
+              <g className="animate-[spin_8s_linear_infinite]" style={{ transformOrigin: '53px 53px' }}>
+                <text fill="#ffffff" opacity="0.95" fontSize="12" fontWeight={500} className="tracking-widest">
+                  <textPath href="#seeMorePath" startOffset="0">
+                    • see more • see more • see more
+                  </textPath>
+                </text>
+              </g>
+            </svg>
+
+            {/* Inner orange button (stationary) */}
+            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#FF7A3D] to-[#FF5A2D] flex items-center justify-center shadow-2xl z-20">
+              <ArrowDown className="w-6 h-6 text-[#0C111F]" />
+            </div>
           </div>
         </button>
       </div>
 
       {/* Carousel */}
       <div className="absolute inset-y-0 right-0 mr-[-100px] flex items-center z-20 pointer-events-auto">
-        <div className="w-[65vw] max-w-[520px] overflow-visible relative">
+        <div className="w-[68vw] max-w-[560px] overflow-visible relative">
           <Carousel
             setApi={(api) => setCarouselApi(api)}
             className="w-full"
@@ -140,38 +162,40 @@ const Hero = () => {
                     transition-all duration-300
                     ${selectedIndex === idx ? "scale-100 opacity-100" : "scale-95 opacity-90"}
                     ${idx === destinations.length - 1 ? "" : "mr-4"}
-                    basis-[70%] sm:basis-[60%]
+                    basis-[75%] sm:basis-[65%]
                     ${selectedIndex === 0 && idx < selectedIndex ? "hidden" : ""}
                   `}
                 >
                   <div className="relative">
-                    <div className="bg-white rounded-2xl overflow-hidden shadow-lg w-full h-[400px] flex flex-col transition-all">
+                    <div className="bg-white rounded-[28px] overflow-hidden shadow-lg w-full h-[440px] flex flex-col transition-all">
                       {/* Card Image and Info */}
-                      <div className="relative h-56 overflow-hidden group">
+                      <div className="relative h-64 overflow-hidden group rounded-t-[28px]">
                         <img
                           src={destination.image}
                           alt={destination.title}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                         />
-                        <div className="absolute top-4 left-4 bg-primary text-white px-3 py-1.5 rounded-full text-sm font-bold flex items-center gap-1.5 shadow-xl">
-                          <Star className="w-4 h-4 fill-white" />
-                          {destination.rating}
+                        <div className="absolute top-5 left-5 px-3 py-1.5 rounded-full text-sm font-semibold flex items-center gap-2 shadow-lg bg-white/20 backdrop-blur-sm">
+                          <span className="w-6 h-6 rounded-full bg-[#FF7A3D] flex items-center justify-center">
+                            <Star className="w-3 h-3 text-white fill-white" />
+                          </span>
+                          <span className="text-white">{destination.rating}</span>
                         </div>
-                        <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full text-sm font-semibold flex items-center gap-1.5 shadow-lg">
-                          <MapPin className="w-4 h-4 text-primary" />
+                        <div className="absolute top-5 right-5 bg-white/20 backdrop-blur-sm px-3 py-1.5 rounded-full text-sm font-semibold text-white flex items-center gap-2 shadow-lg">
+                          <MapPin className="w-4 h-4 text-primary text-white" />
                           {destination.location}
                         </div>
                         <div className="absolute inset-0 flex items-center justify-center">
-                        {/* Glass circle behind */}
-                          <div className="absolute w-20 h-20 rounded-full border-2 border-white/50 bg-white/10 shadow-[0_0_15px_5px_rgba(255,255,255,0.2)] -z-10"></div>
+                        {/* Glass ring around button */}
+                          <div className="absolute w-16 h-16 rounded-full bg-white/30 backdrop-blur-sm shadow-[0_0_18px_8px_rgba(255,255,255,0.06)]"></div>
                           {/* White button on top */}
-                            <button className="relative w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform">
-                              <Play className="w-6 h-6 text-primary fill-[#FF5A2D]" />
+                            <button className="relative w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform z-10">
+                              <Play className="w-6 h-6 text-[#FF5A2D] fill-[#FF5A2D]" />
                             </button>
                           </div>
                       </div>
 
-                      <div className="p-5 flex-1 flex flex-col bg-white">
+                      <div className="p-5 flex-1 flex flex-col bg-white rounded-b-[28px]">
                         <h3 className="font-display font-bold text-2xl text-gray-900 mb-1">
                           {destination.title}
                         </h3>

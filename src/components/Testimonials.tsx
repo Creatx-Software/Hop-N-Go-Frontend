@@ -56,7 +56,7 @@ const Testimonials = () => {
   return (
     <section className="relative py-24 bg-white">
       <div className="container mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 items-start">
           {/* Left side - Testimonial Card and Navigation */}
           <div className="relative max-w-2xl mx-auto lg:mx-0 flex items-start gap-6">
             {/* Navigation Buttons */}
@@ -112,8 +112,8 @@ const Testimonials = () => {
           </div>
 
           {/* Right side - Title and Image */}
-          <div className="relative">
-            <div className="lg:absolute right-0 w-full lg:w-[10vw] max-w-md transform translate-x-16 -translate-y-16">
+          <div className="relative w-full flex flex-row-reverse lg:block">
+            <div className="lg:absolute right-0 w-2/5 lg:w-[10vw] max-w-md transform lg:translate-x-16 lg:-translate-y-16 ml-4 lg:ml-0">
               <img 
                 src={clientsImage} 
                 alt="Happy clients" 

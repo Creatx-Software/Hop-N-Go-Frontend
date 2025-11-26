@@ -35,7 +35,7 @@ const PopularItineraries = () => {
 
   return (
     <section className="py-20 bg-white">
-      <div className="container mx-auto px-6">
+      <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div className="flex items-center justify-between mb-12">
           <div>
             <h2 className="font-display font-bold text-4xl md:text-5xl text-foreground mb-2">
@@ -46,10 +46,14 @@ const PopularItineraries = () => {
             </p>
           </div>
         </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {itineraries.map((itinerary, index) => (
-            <DestinationCard key={index} {...itinerary} />
-          ))}
+        <div className="flex justify-center">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-12 mb-12 w-full max-w-7xl">
+            {itineraries.map((itinerary, index) => (
+              <div key={index} className="flex justify-center">
+                <DestinationCard {...itinerary} />
+              </div>
+            ))}
+          </div>
         </div>
         <div className="text-center">
           <Button variant="link" className="font-semibold text-lg text-[#8442FF] inline-flex items-center">

@@ -21,7 +21,7 @@ const DestinationCard = ({
   tags = [] 
 }: DestinationCardProps) => {
   return (
-    <div className="relative bg-[#F7F7F7] backdrop-blur-xl rounded-2xl overflow-hidden shadow-sm hover-lift w-[400px] h-[496px]">
+    <div className="relative bg-[#F7F7F7] backdrop-blur-xl rounded-3xl overflow-hidden shadow-sm hover-lift w-[400px] h-[496px]">
       <div className="relative h-[284px] overflow-hidden">
         <img 
           src={image} 
@@ -49,7 +49,7 @@ const DestinationCard = ({
       </div>
       <div className="p-0">
   {/* Top: Solid white section with title and tags */}
-  <div className="bg-white px-5 pt-5 rounded-b-2xl">
+  <div className="bg-white px-5 pt-5 rounded-b-3xl">
     <h3 className="font-Montserrat font-bold text-xl text-foreground mb-3">{title}</h3>
     {tags.length > 0 && (
       <div className="flex flex-wrap gap-2 mb-3">

@@ -19,10 +19,10 @@ const Index = () => {
         <section id="trip-planning">
           <TripPlanning />
         </section>
-        <section id="evisa">
+        <section id="evisa" className="md:-mt-40">
           <EVisa />
         </section>
-        <section id="itinerary">
+        <section id="itinerary" className="md:-mt-32">
           <Itinerary />
         </section>
         <section id="quiz">

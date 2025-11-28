@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import travel from "@/assets/travel.jpg";
+import quiz from "@/assets/quiz.png";
 
 const TravelerQuiz = () => {
   return (
@@ -13,7 +13,7 @@ const TravelerQuiz = () => {
           <div className="relative">
             <div className="rounded-3xl overflow-hidden shadow-2xl">
               <img 
-                src={travel} 
+                src={quiz} 
                 alt="Nature destination" 
                 className="w-full h-96 object-cover"
               />

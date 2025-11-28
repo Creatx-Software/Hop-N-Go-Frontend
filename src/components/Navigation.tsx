@@ -61,12 +61,12 @@ const Navigation = () => {
           
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8 ml-[-540px]">
-            <button 
-              onClick={() => scrollToSection('destination')} 
+            <Link 
+              to="/destinations"
               className={`${scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90'} transition-colors font-inter font-medium`}
             >
               Destination
-            </button>
+            </Link>
             <button 
               onClick={() => scrollToSection('evisa')} 
               className={`${scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90'} transition-colors font-inter font-medium`}
@@ -131,12 +131,13 @@ const Navigation = () => {
           }}
         >
           <div className="flex flex-col space-y-3 items-end">
-            <button 
-              onClick={() => handleNavClick('destination')} 
+            <Link 
+              to="/destinations"
               className={`text-lg py-2 transition-colors ${scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90'} font-medium`}
+              onClick={closeMobileMenu}
             >
               Destination
-            </button>
+            </Link>
             <button 
               onClick={() => handleNavClick('evisa')} 
               className={`text-lg py-2 transition-colors ${scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90'} font-medium`}

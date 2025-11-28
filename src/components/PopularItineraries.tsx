@@ -56,7 +56,7 @@ const PopularItineraries = () => {
           </div>
         </div>
         <div className="text-center">
-          <Button variant="link" className="font-semibold text-lg text-[#8442FF] inline-flex items-center">
+          <Button variant="link" className="font-normal text-lg text-[#8442FF] inline-flex items-center">
             View More
             <ArrowRight className="ml-2 w-5 h-5 stroke-[#8442FF]" />
           </Button>

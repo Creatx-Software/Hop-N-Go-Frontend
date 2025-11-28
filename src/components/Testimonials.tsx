@@ -44,14 +44,21 @@ const sampleTestimonials: Testimonial[] = [
 
 const Testimonials = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const currentTestimonial = sampleTestimonials[currentIndex];
 
   const handlePrev = () => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
     setCurrentIndex((prev) => (prev === 0 ? sampleTestimonials.length - 1 : prev - 1));
+    setTimeout(() => setIsTransitioning(false), 500);
   };
 
   const handleNext = () => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
     setCurrentIndex((prev) => (prev === sampleTestimonials.length - 1 ? 0 : prev + 1));
+    setTimeout(() => setIsTransitioning(false), 500);
   };
   return (
     <section className="relative py-24 bg-white">
@@ -78,11 +85,11 @@ const Testimonials = () => {
             </div>
             
             {/* Testimonial Card */}
-            <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 flex-1">
+            <div className="bg-white rounded-2xl pt-6 px-8 pb-8 shadow-lg border border-gray-100 flex-1">
               
               {/* Profile Picture */}
-              <div className="flex items-center gap-4 mb-1">
-                <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-white shadow-md transform -translate-y-14">
+              <div className={`flex flex-col items-start mb-4 -mt-12 transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] ${isTransitioning ? 'opacity-0 translate-y-2' : 'opacity-100 translate-y-0'}`}>
+                <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-white shadow-md mb-3">
                   <img 
                     src={currentTestimonial.image} 
                     alt={currentTestimonial.name} 
@@ -91,9 +98,9 @@ const Testimonials = () => {
                 </div>
                 
                 {/* Name and Rating */}
-                <div className="transform -translate-x-16">
-                  <h4 className="font-bold text-gray-900">{currentTestimonial.name}</h4>
-                  <div className="flex gap-1">
+                <div className="w-full">
+                  <h4 className="font-bold text-gray-900 text-left">{currentTestimonial.name}</h4>
+                  <div className="flex gap-1 justify-start">
                     {[...Array(5)].map((_, i) => (
                       <Star 
                         key={i} 
@@ -105,7 +112,7 @@ const Testimonials = () => {
               </div>
               
               {/* Testimonial Text */}
-              <p className="text-gray-600 text-sm leading-relaxed">
+              <p className={`text-gray-600 text-sm leading-relaxed transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] ${isTransitioning ? 'opacity-0 -translate-y-2' : 'opacity-100 translate-y-0'}`}>
                 "{currentTestimonial.text}"
               </p>
             </div>

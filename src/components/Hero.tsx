@@ -92,7 +92,7 @@ const Hero = () => {
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-[#FF5A2D] to-[#FF7A3D] text-[#0C111F] font-semibold pr-20 pl-12 px-4 py-4 rounded-full shadow-[0_20px_40px_rgba(255,90,45,0.18)] flex items-center relative w-56"
+                className="bg-gradient-to-r from-[#FF5A2D] to-[#FF7A3D] hover:opacity-90 text-[#0C111F] font-semibold pr-20 pl-12 px-4 py-4 rounded-full shadow-[0_20px_40px_rgba(255,90,45,0.18)] flex items-center relative w-56"
               >
                 <span className="mr-10 ml-3 flex-shrink-0">Create Itineraries</span>
                 <span className="w-8 h-8 rounded-full bg-[#0C111F] flex items-center justify-center absolute right-4 top-1/2 -translate-y-1/2">
@@ -100,7 +100,7 @@ const Hero = () => {
                 </span>
               </Button>
 
-              <button className="flex items-center gap-3 text-white rounded-full px-3 py-1 backdrop-blur-sm">
+              <button className="group flex items-center gap-3 text-white rounded-full px-3 py-1 backdrop-blur-sm hover:bg-white/10">
                 <span className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
                   <span className="w-7 h-7 rounded-full bg-white flex items-center justify-center shadow-sm">
                     <Play className="w-4 h-4 text-[#FF5A2D] fill-[#FF5A2D]" />
@@ -207,10 +207,10 @@ const Hero = () => {
                         <h3 className="font-display font-bold text-2xl text-gray-900 mb-1">
                           {destination.title}
                         </h3>
-                        <p className="text-gray-600 text-sm leading-relaxed flex-1 line-clamp-2">
+                        <p className="text-gray-600 text-sm leading-relaxed flex-1 line-clamp-2 font-normal">
                           {destination.description}
                         </p>
-                        <span className="text-[#7C3AED] font-semibold cursor-pointer text-sm mb-3">
+                        <span className="text-[#FF5A2D] font-normal cursor-pointer text-sm mb-3">
                           Explore More
                         </span>
 
@@ -222,7 +222,7 @@ const Hero = () => {
                               <span className="text-sm text-gray-500 font-normal">/Person</span>
                             </p>
                           </div>
-                          <Button className="bg-gradient-to-r from-[#8482FF] to-[#7723FE] hover:opacity-90 text-white rounded-full px-4 py-2 text-sm font-semibold shadow-md transition-opacity">
+                          <Button className="bg-gradient-to-r from-[#FF5A2D] to-[#FF7A3D] hover:opacity-90 text-white rounded-full px-4 py-2 text-sm font-medium shadow-md transition-opacity">
                             View More
                           </Button>
                         </div>

@@ -49,7 +49,7 @@ const DestinationCard = ({
       </div>
       <div className="p-0">
   {/* Top: Solid white section with title and tags */}
-  <div className="bg-white px-5 pt-5 rounded-b-3xl">
+  <div className="bg-white px-5 pt-5 pb-[0.1px] rounded-b-3xl">
     <h3 className="font-Montserrat font-bold text-xl text-foreground mb-3">{title}</h3>
     {tags.length > 0 && (
       <div className="flex flex-wrap gap-2 mb-3">

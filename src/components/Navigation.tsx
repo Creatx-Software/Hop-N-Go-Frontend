@@ -3,6 +3,7 @@ import { Menu, User } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import LanguageDropdown from "@/components/LanguageDropdown";
 
 const scrollToSection = (id: string) => {
   const element = document.getElementById(id);
@@ -14,6 +15,8 @@ const scrollToSection = (id: string) => {
 const Navigation = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const isDestinationPage = location.pathname === '/destinations';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -50,8 +53,8 @@ const Navigation = () => {
   };
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white/90 backdrop-blur-md shadow-sm py-0' : 'py-4'}`}>
-      <div className={`container mx-auto px-6 ${scrolled ? 'py-3' : 'py-0'}`}>
+    <header className={`fixed w-full z-50 pointer-events-auto transition-all duration-300 ${scrolled ? 'bg-white/50 backdrop-blur-md shadow-sm' : 'bg-transparent'}`}>
+      <div className={`container mx-auto px-6 ${scrolled ? 'pt-10 pb-4' : 'pt-10 pb-4'}`}>
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <a href="/" aria-label="Hop N Go home" className="flex items-center" onClick={closeMobileMenu}>
@@ -63,25 +66,25 @@ const Navigation = () => {
           <div className="hidden md:flex items-center gap-8 ml-[-540px]">
             <Link 
               to="/destinations"
-              className={`${scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90'} transition-colors font-inter font-medium`}
+              className={`${isDestinationPage ? 'text-black hover:text-primary' : (scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90')} transition-colors font-inter font-medium`}
             >
               Destination
             </Link>
             <button 
               onClick={() => scrollToSection('evisa')} 
-              className={`${scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90'} transition-colors font-inter font-medium`}
+              className={`${isDestinationPage ? 'text-black hover:text-primary' : (scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90')} transition-colors font-inter font-medium`}
             >
               E Visa
             </button>
             <button 
               onClick={() => scrollToSection('testimonials')} 
-              className={`${scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90'} transition-colors font-inter font-medium`}
+              className={`${isDestinationPage ? 'text-black hover:text-primary' : (scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90')} transition-colors font-inter font-medium`}
             >
               About Us
             </button>
             <button 
               onClick={() => scrollToSection('contact')} 
-              className={`${scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90'} transition-colors font-inter font-medium`}
+              className={`${isDestinationPage ? 'text-black hover:text-primary' : (scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90')} transition-colors font-inter font-medium`}
             >
               Contact
             </button>
@@ -180,7 +183,7 @@ const Navigation = () => {
           </div>
         </div>
       </div>
-    </nav>
+    </header>
   );
 };
 

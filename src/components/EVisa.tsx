@@ -6,13 +6,18 @@ const EVisa = () => {
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="flex flex-col md:flex-row-reverse items-center gap-12">
           {/* Content - Right side on desktop, top on mobile */}
-          <div className="md:w-1/2 space-y-6 text-center md:text-right">
+          <div className="md:w-1/2 text-left">
             <h2 className="font-display font-bold text-4xl md:text-5xl leading-tight text-foreground">
               Your eVisa, made easy
             </h2>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              We guide you through a simple, secure process to help you submit your eVisa accurately and on time. Just follow the steps, upload your documents, and track your application with real-time updates — no stress, no confusion.
-            </p>
+            <div className="space-y-2 mt-4">
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                We guide you through a simple, secure process to help you submit your eVisa accurately and on time.
+              </p>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                Just follow the steps, upload your documents, and track your application with real-time updates — no stress, no confusion.
+              </p>
+            </div>
           </div>
           
           {/* Image - Left side on desktop, bottom on mobile */}

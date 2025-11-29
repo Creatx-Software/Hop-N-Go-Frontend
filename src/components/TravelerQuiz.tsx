@@ -27,7 +27,7 @@ const TravelerQuiz = () => {
               Take our quick travel quiz. We'll reveal your travel style and help set personal preferences for presents you with recommendations you'll love. Now let's explore your ideal destinations!
             </p>
             <Button size="lg"
-              className="bg-gradient-to-r from-[#F9AC7D] to-[#F53B00] text-white rounded-full px-10 py-3 h-[56px] text-lg font-semibold shadow-lg border-none focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#F9AC7D]"
+              className="bg-gradient-to-r from-[#F9AC7D] to-[#F53B00] text-white rounded-full px-10 py-3 h-[56px] text-lg font-medium shadow-lg border-none focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#F9AC7D]"
 >
               Take Our Quiz
             </Button>

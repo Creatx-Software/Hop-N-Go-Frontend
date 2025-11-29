@@ -56,9 +56,19 @@ const PopularItineraries = () => {
           </div>
         </div>
         <div className="text-center">
-          <Button variant="link" className="font-normal text-lg text-[#8442FF] inline-flex items-center">
+          <Button variant="link" className="font-normal text-lg bg-gradient-to-r from-[#F9AC7D] to-[#F53B00] bg-clip-text text-transparent hover:opacity-80 transition-opacity inline-flex items-center">
             View More
-            <ArrowRight className="ml-2 w-5 h-5 stroke-[#8442FF]" />
+            <div className="ml-2 w-5 h-5 flex items-center justify-center">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="url(#arrow-gradient)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <defs>
+                  <linearGradient id="arrow-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#F9AC7D" />
+                    <stop offset="100%" stopColor="#F53B00" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
           </Button>
         </div>
       </div>

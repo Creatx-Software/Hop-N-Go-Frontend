@@ -49,7 +49,14 @@ const DestinationCard = ({
       </div>
       <div className="p-0">
   {/* Top: Solid white section with title and tags */}
-  <div className="bg-white px-5 pt-5 pb-[0.1px] rounded-b-3xl">
+  <div className="relative bg-white px-5 pt-5 pb-0 rounded-b-3xl overflow-hidden">
+    <div 
+      className="absolute top-0 left-0 right-0 h-8 bg-gradient-to-r from-[#3B82F6] via-[#8B5CF6] to-[#EC4899] opacity-30"
+      style={{
+        maskImage: 'linear-gradient(to bottom, black 0%, transparent 100%)',
+        WebkitMaskImage: 'linear-gradient(to bottom, black 0%, transparent 100%)',
+      }}
+    ></div>
     <h3 className="font-Montserrat font-bold text-xl text-foreground mb-3">{title}</h3>
     {tags.length > 0 && (
       <div className="flex flex-wrap gap-2 mb-3">
@@ -73,8 +80,9 @@ const DestinationCard = ({
         <span className="font-Montserrat font-bold">{price}</span>
       </p>
     </div>
-    <Button className="rounded-full text-white bg-gradient-to-r from-[#8482FF] to-[#7723FE] px-6 py-2 shadow-lg hover:opacity-90 transition-opacity">
-      View Plan
+    <Button className="rounded-full text-white bg-gradient-to-r from-[#F9AC7D] to-[#F53B00] px-6 py-2 hover:opacity-90 transition-opacity relative overflow-hidden group">
+      <span className="relative z-10 font-medium">View Plan</span>
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-4 bg-gradient-to-r from-[#F9AC7D]/40 to-[#F53B00]/40 blur-md rounded-full"></div>
     </Button>
   </div>
 </div>

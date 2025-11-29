@@ -127,35 +127,48 @@ const DestinationPage = () => {
       minHeight: '640px',
       display: 'flex',
       flexDirection: 'column',
-      justifyContent: 'center',
-      paddingLeft: '1rem',
-      paddingRight: '1rem',
+      justifyContent: 'flex-start',
+      paddingTop: '100px',
+      boxSizing: 'border-box'
     }}
   >
     {/* Hero Content */}
-    <div className="relative z-10 flex flex-col items-center justify-center text-center text-white max-w-6xl mx-auto">
+    <div className="relative z-10 flex flex-col items-center justify-center text-center text-white max-w-6xl mx-auto -mt-16">
+      <div className="bg-transparent border border-white text-[#F74A1F] text-sm font-inter font-medium px-4 py-2 rounded-full mb-6 inline-flex items-center">
+        AI Powered Travel Planning
+      </div>
       <h1 className="text-7xl font-bold mb-4 bg-gradient-to-r from-white via-white to-[#FF481A] bg-clip-text text-transparent">
         Create Your Perfect Travel Itinerary
       </h1>
-      <p className="text-xl mb-8 max-w-2xl mx-auto text-white/90">
-        Discover amazing destinations and plan your next adventure with us
+      <p className="text-xl mb-6 max-w-lg mx-auto text-white">
+        Transform travel inspiration into detailed itineraries with AI assistance and your creative vision
       </p>
 
       {/* Search Bar */}
-      <div className="bg-white p-1.5 rounded-full shadow-xl flex flex-col md:flex-row gap-2 max-w-4xl mx-auto">
-        <div className="flex-1 flex items-center bg-white rounded-full px-6 py-3">
+      <div 
+        className="bg-white rounded-md shadow-xl flex flex-col md:flex-row gap-2 overflow-hidden"
+        style={{
+          width: '1226px',
+          height: '140px',
+          border: '1px solid #E1E1E1',
+          padding: '24px',
+          boxSizing: 'border-box',
+          margin: '0 0 0 -24px'  /* top right bottom left */
+        }}
+      >
+        <div className="flex-1 flex items-center bg-white rounded-full px-6 py-4 border border-[#E1E1E1]">
           <MapPin className="w-5 h-5 text-gray-400 mr-3" />
           <input
             type="text"
             placeholder="Where do you want to go?"
-            className="w-full border-0 bg-transparent focus:outline-none text-gray-700 placeholder-gray-400"
+            className="w-full border-0 bg-transparent focus:outline-none text-gray-700 placeholder-gray-400 text-base"
           />
         </div>
-        <div className="flex items-center bg-white rounded-full px-6 py-3">
+        <div className="flex items-center bg-white rounded-full px-6 py-4 border border-[#E1E1E1]">
           <Calendar className="w-5 h-5 text-gray-400 mr-3" />
           <input
             type="date"
-            className="border-0 bg-transparent focus:outline-none text-gray-700 w-40"
+            className="border-0 bg-transparent focus:outline-none text-gray-700 w-40 text-base"
           />
         </div>
         <div className="flex items-center bg-white rounded-full px-6 py-3">

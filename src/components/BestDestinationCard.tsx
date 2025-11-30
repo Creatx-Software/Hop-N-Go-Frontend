@@ -65,9 +65,12 @@ const BestDestinationCard = ({
             }}
           ></div>
 
-          <h3 className="font-display font-bold text-2xl text-gray-900 mb-1">
-            {title}
-          </h3>
+          <div className="flex items-center gap-2 mb-1">
+            <h3 className="font-display font-bold text-2xl text-gray-900">
+              {title}
+            </h3>
+            <span className="text-sm font-normal text-gray-500">3 Days 4 Nights</span>
+          </div>
 
           <p className="text-gray-600 text-sm leading-relaxed flex-1 line-clamp-2 font-normal">
             {description}

@@ -16,6 +16,9 @@ import osakaCastle from "@/assets/p4.png";
 import dubai from "@/assets/best1.png";
 import bangkok from "@/assets/best2.png";
 import tokyo from "@/assets/best3.png";
+import package1 from "@/assets/package1.png";
+import package2 from "@/assets/package2.png";
+import package3 from "@/assets/package3.png";
 
 const DestinationPage = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -84,23 +87,26 @@ const DestinationPage = () => {
     {
       id: 1,
       name: "Serene Shikara Rides on Dal Lake",
-      image: "/dal-lake.jpg",
-      duration: "3 Days",
-      price: "$450",
+      image: package1,
+      duration: "5 Days, 4 Nights",
+      price: "$350/Night",
+      description: "Mesmerizing experience on the tranquil waters of Dal Lake, exploring Srinagar’s floating gardens, houseboats, and majestic mountain views."
     },
     {
       id: 2,
       name: "Trekking the Great Lakes",
-      image: "/great-lakes.jpg",
-      duration: "5 Days",
-      price: "$750",
+      image: package2,
+      duration: "5 Days, 4 Nights",
+      price: "$350/Night",
+      description: "An adventurous trek through the breathtaking Great Lakes region, witnessing pristine alpine lakes, lush meadows, and panoramic Himalayan vistas."
     },
     {
       id: 3,
-      name: "Cultural Heritage Tour",
-      image: "/cultural-heritage.jpg",
-      duration: "4 Days",
-      price: "$600",
+      name: "Snow-Capped Gulmarg Getaway",
+      image: package3,
+      duration: "5 Days, 4 Nights",
+      price: "$350/Night",
+      description: "A winter wonderland experience in Gulmarg, indulging in skiing, snowboarding, and cozying up in charming mountain lodges."
     },
   ];
 
@@ -130,7 +136,7 @@ const DestinationPage = () => {
       </div>
       
       {/* Hero Section */}
-<section className="relative mt-16">
+<section className="relative mt-16 bg-white">
   {/* Hero Image Wrapper */}
   <div
     className="relative w-full mx-auto bg-no-repeat bg-center bg-contain"
@@ -214,12 +220,28 @@ const DestinationPage = () => {
 </section>
 
       {/* Animated Destination Cards */}
-      <section className="py-12 bg-white overflow-hidden">
-        <AnimatedDestinationCards />
+      <section className="relative py-12 bg-white overflow-visible">
+        {/* Background container for the section - extended vertically */}
+        <div className="absolute inset-0 -top-24 -bottom-24 overflow-hidden pointer-events-none">
+          {/* Left soft pink half-circle - more transparent and blurred */}
+          <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[600px] h-[400px] -translate-x-1/3 z-0">
+            <div className="w-full h-full bg-gradient-to-r from-pink-300/40 via-pink-500/20 to-transparent rounded-full blur-3xl"></div>
+          </div>
+          
+          {/* Right soft pink half-circle - more transparent and blurred */}
+          <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[600px] h-[400px] translate-x-1/3 z-0">
+            <div className="w-full h-full bg-gradient-to-l from-pink-300/40 via-pink-500/20 to-transparent rounded-full blur-3xl"></div>
+          </div>
+        </div>
+        
+        {/* Content with higher z-index */}
+        <div className="relative z-10">
+          <AnimatedDestinationCards />
+        </div>
       </section>
 
       {/* Popular Destinations */}
-<section className="py-20 bg-gray-50 -mt-28">
+<section className="pt-0 pb-16 bg-white">
   <div className="container mx-auto px-5">
     <div className="flex flex-col md:flex-row justify-between items-start mb-16 gap-4">
       <div className="md:w-1/2">
@@ -229,7 +251,7 @@ const DestinationPage = () => {
         </p>
       </div>
       <div className="md:w-1/2 flex justify-end mt-0">
-        <p className="font-inter font-regular text-lg text-[#98A2B3] max-w-md text-left mt-14">
+        <p className="font-inter font-regular text-md text-[#98A2B3] max-w-md text-left mt-16">
           Discover a fussion of adventure, culture and scenic beauty across our diverse destinations, offering unforgettanble experince at every turn.
         </p>
       </div>
@@ -326,8 +348,18 @@ const DestinationPage = () => {
 </section>
 
       {/* Best Destinations */}
-      <section className="py-20 bg-white">
-  <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <section className="relative pt-4 pb-12 bg-white overflow-visible">
+        {/* Extended pink gradient for left */}
+        <div className="absolute -top-8 -left-64 w-[800px] h-[700px] z-0">
+          <div className="w-full h-full bg-gradient-to-br from-pink-400/50 via-pink-300/20 to-transparent rounded-full blur-3xl"></div>
+        </div>
+
+        {/* Extended pink gradient for right */}
+        <div className="absolute top-1/2 -right-80 w-[700px] h-[350px] z-0 -translate-y-1/5">
+          <div className="w-full h-full bg-gradient-to-br from-pink-400/50 via-pink-300/20 to-transparent rounded-full blur-3xl"></div>
+        </div>
+        
+        <div className="relative z-10 mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
 
     {/* Section Header */}
     <div className="mb-12">
@@ -407,40 +439,104 @@ const DestinationPage = () => {
 </section>
 
       {/* Packages */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">Packages</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Choose our range of expertly crafted packages
-            </p>
-          </div>
+      <section className="relative py-0 overflow-visible bg-white">
+        {/* Pink gradient for top left */}
+        <div className="absolute -top-20 -left-64 w-[800px] h-[700px] z-0">
+          <div className="w-full h-full bg-gradient-to-br from-pink-400/40 via-pink-300/10 to-transparent rounded-full blur-3xl"></div>
+        </div>
+        <div className="relative z-10 pb-16">
+        <div className="mx-auto max-w-[1920px] pl-[5%] pr-0">
+          <div className="flex flex-col md:flex-row justify-between items-start mb-16 gap-0">
+      <div className="md:w-1/2">
+        <h2 className="font-inter text-md text-[#0C111F] font-normal mb-4">[Packages]</h2>
+        <p className="font-inter text-5xl font-semibold text-[#0C111F] text-left">
+          Choose our range of expertly crafted packages
+        </p>
+      </div>
+      <div className="md:w-1/2 flex justify-start mt-0">
+        <p className="font-inter font-regular text-md text-[#98A2B3] max-w-md text-left mt-16 ml-48">
+          Whether you’re seeking awe-inspiring landscapes, thrilling outdoor adventures, or Immerice cultural experiences, Snaeland has the perfect itinerary for you.
+        </p>
+      </div>
+    </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {packages.map((pkg) => (
-              <Card key={pkg.id} className="overflow-hidden group">
-                <div className="relative h-64">
+          <div 
+            style={{ cursor: 'default' }}
+            className="flex flex-nowrap items-center gap-8 overflow-x-auto pb-4 px-0 select-none [&_*]:cursor-default"
+            onMouseDown={(e) => {
+              e.preventDefault();
+              const container = e.currentTarget;
+              const startX = e.pageX;
+              const startScrollLeft = container.scrollLeft;
+              
+              const mouseMoveHandler = (e: MouseEvent) => {
+                e.preventDefault();
+                const x = e.pageX;
+                const walk = (x - startX) * 2; // Scroll speed
+                container.scrollLeft = startScrollLeft - walk;
+                // Force cursor style on body and html during drag
+                document.documentElement.style.cursor = 'default';
+                document.body.style.cursor = 'default';
+              };
+
+              const mouseUpHandler = () => {
+                document.removeEventListener('mousemove', mouseMoveHandler);
+                document.removeEventListener('mouseup', mouseUpHandler);
+                document.documentElement.style.cursor = '';
+                document.body.style.cursor = '';
+              };
+
+              // Set cursor on both html and body to be extra sure
+              document.documentElement.style.cursor = 'default';
+              document.body.style.cursor = 'default';
+              
+              document.addEventListener('mousemove', mouseMoveHandler);
+              document.addEventListener('mouseup', mouseUpHandler, { once: true });
+            }}
+          >
+            {packages.map((pkg, index) => (
+              <div 
+                key={pkg.id}
+                className={`relative flex-shrink-0 transition-all duration-500 ease-in-out ${index === 0 ? 'w-[562px] h-[593px]' : 'w-[480px] h-[499px] hover:w-[562px] hover:h-[593px]'} rounded-3xl overflow-hidden`}
+              >
+                <div className="relative w-full h-full group overflow-hidden">
                   <img
                     src={pkg.image}
                     alt={pkg.name}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="w-full h-full object-cover transition-transform duration-700"
                   />
-                  <div className="absolute top-4 right-4 bg-primary text-white text-sm font-medium px-3 py-1 rounded-full">
-                    {pkg.duration}
+                  
+                  {/* Content Container */}
+                  <div className={`absolute left-0 right-0 bottom-0 px-8 pb-4 pt-8 transition-all duration-500 ${index !== 0 && 'group-hover:translate-y-0'}`}>
+                    <div className="flex flex-col gap-4">
+                      <div className="flex flex-wrap gap-2">
+                      {/* Duration */}
+                      <div className="bg-gray/40 backdrop-blur-sm text-[#FCFCFD] text-sm font-medium px-4 py-2 rounded-full border border-white/20 inline-flex items-center">
+                        {pkg.duration}
+                      </div>
+                      
+                      {/* Price */}
+                      <div className="bg-[#F8FAFC] backdrop-blur-sm text-[#1D2939] text-sm font-medium px-4 py-2 rounded-full border border-white/20 inline-flex items-center">
+                        {pkg.price}
+                        </div>
+                      
+                      {/* Title */}
+                      <h3 className="text-3xl text-white font-['Inter'] font-normal">
+                        {pkg.name}
+                      </h3>
+                      
+                      {/* Description - shown only on first card or on hover */}
+                      <div className={`text-white/70 text-base leading-relaxed transition-all duration-500 overflow-hidden font-['Inter'] font-normal ${index === 0 ? 'max-h-32' : 'max-h-0 group-hover:max-h-32'}`}>
+                        {pkg.description}
+                      </div>
+                    </div>
+                    </div>
                   </div>
-                </div>
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-semibold mb-2">{pkg.name}</h3>
-                  <div className="flex justify-between items-center mt-4">
-                    <div className="text-2xl font-bold text-primary">{pkg.price}</div>
-                    <Button variant="outline" className="border-primary text-primary hover:bg-primary/10">
-                      View Details
-                    </Button>
                   </div>
-                </CardContent>
-              </Card>
+              </div>
             ))}
           </div>
+        </div>
         </div>
       </section>
       

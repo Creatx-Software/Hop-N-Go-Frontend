@@ -76,10 +76,10 @@ const Footer = () => {
                 </a>
               </li>
               <li className="group">
-                <a href="#" className="flex items-center text-secondary-foreground/60 hover:text-primary transition-colors">
+                <Link to="/about-us" className="flex items-center text-secondary-foreground/60 hover:text-primary transition-colors">
                   <ChevronRight className="w-4 h-4 mr-1 text-secondary-foreground/60 group-hover:text-primary transition-colors group-hover:translate-x-1 transition-transform" />
                   About Us
-                </a>
+                </Link>
               </li>
               <li className="group">
                 <a href="#" className="flex items-center text-secondary-foreground/60 hover:text-primary transition-colors">

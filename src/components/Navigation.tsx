@@ -16,7 +16,7 @@ const Navigation = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
-  const isDestinationPage = location.pathname === '/destinations';
+  const isDestinationPage = location.pathname === '/destinations' || location.pathname === '/about-us';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -54,7 +54,7 @@ const Navigation = () => {
 
   return (
     <header className={`fixed w-full z-50 pointer-events-auto transition-all duration-300 ${scrolled ? 'bg-white/50 backdrop-blur-md shadow-sm' : 'bg-transparent'}`}>
-      <div className={`container mx-auto px-6 ${scrolled ? 'pt-10 pb-4' : 'pt-10 pb-4'}`}>
+      <div className={`container mx-auto px-6 ${scrolled ? 'pt-4 pb-4' : 'pt-10 pb-4'}`}>
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <a href="/" aria-label="Hop N Go home" className="flex items-center" onClick={closeMobileMenu}>
@@ -66,25 +66,25 @@ const Navigation = () => {
           <div className="hidden md:flex items-center gap-8 ml-[-540px]">
             <Link 
               to="/destinations"
-              className={`${isDestinationPage ? 'text-black hover:text-primary' : (scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90')} transition-colors font-inter font-medium`}
+              className={`${isDestinationPage || location.pathname === '/about-us' ? 'text-black hover:text-primary' : (scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90')} transition-colors font-inter font-medium`}
             >
               Destination
             </Link>
             <button 
               onClick={() => scrollToSection('evisa')} 
-              className={`${isDestinationPage ? 'text-black hover:text-primary' : (scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90')} transition-colors font-inter font-medium`}
+              className={`${isDestinationPage || location.pathname === '/about-us' ? 'text-black hover:text-primary' : (scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90')} transition-colors font-inter font-medium`}
             >
               E Visa
             </button>
-            <button 
-              onClick={() => scrollToSection('testimonials')} 
-              className={`${isDestinationPage ? 'text-black hover:text-primary' : (scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90')} transition-colors font-inter font-medium`}
+            <Link 
+              to="/about-us"
+              className={`${isDestinationPage || location.pathname === '/about-us' ? 'text-black hover:text-primary' : (scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90')} transition-colors font-inter font-medium`}
             >
               About Us
-            </button>
+            </Link>
             <button 
               onClick={() => scrollToSection('contact')} 
-              className={`${isDestinationPage ? 'text-black hover:text-primary' : (scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90')} transition-colors font-inter font-medium`}
+              className={`${isDestinationPage || location.pathname === '/about-us' ? 'text-black hover:text-primary' : (scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90')} transition-colors font-inter font-medium`}
             >
               Contact
             </button>
@@ -147,12 +147,13 @@ const Navigation = () => {
             >
               E Visa
             </button>
-            <button 
-              onClick={() => handleNavClick('testimonials')} 
+            <Link 
+              to="/about-us"
               className={`text-lg py-2 transition-colors ${scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90'} font-medium`}
+              onClick={closeMobileMenu}
             >
               About Us
-            </button>
+            </Link>
             <button 
               onClick={() => handleNavClick('contact')} 
               className={`text-lg py-2 transition-colors ${scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90'} font-medium`}

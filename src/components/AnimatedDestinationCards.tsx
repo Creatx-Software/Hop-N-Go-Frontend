@@ -92,12 +92,12 @@ const AnimatedDestinationCards = () => {
           const isSmall = index % 2 === 0;
           const cardClass = isSmall 
             ? 'w-[162px] h-[198px]'     // Small card
-            : 'w-[291px] h-[233.93px]';  // Large card
+            : 'w-[291px] h-[233.1px]';  // Large card
             
           return (
             <div 
               key={`${item.id}-${index}`}
-              className={`flex-shrink-0 rounded-2xl overflow-hidden shadow-lg relative group ${cardClass}`}
+              className={`flex-shrink-0 rounded-3xl overflow-hidden shadow-lg relative group ${cardClass}`}
             >
               <img 
                 src={item.src} 

@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { Star, ArrowUp, ArrowDown } from "lucide-react";
-import eclipse from "@/assets/Ellipse 4.png";
+import eclipse1 from "@/assets/Ellipse 1.png";
+import eclipse2 from "@/assets/Ellipse 2.png";
+import eclipse3 from "@/assets/Ellipse 3.png";
+import eclipse4 from "@/assets/Ellipse 4.png";
 import clientsImage from "@/assets/clients.png";
 
 interface Testimonial {
@@ -17,28 +20,28 @@ const sampleTestimonials: Testimonial[] = [
     name: 'John Smith',
     rating: 4,
     text: 'This was an unforgettable experience from start to finish. The views were absolutely stunning and the ride felt incredibly smooth. I would definitely recommend this to anyone looking for a memorable adventure.',
-    image: eclipse
+    image: eclipse1
   },
   {
     id: 2,
     name: 'Sarah Johnson',
     rating: 5,
     text: 'Absolutely amazing service! The tour guides were knowledgeable and made the whole experience enjoyable. The views were breathtaking and worth every penny. Will definitely come back again!',
-    image: eclipse
+    image: eclipse2
   },
   {
     id: 3,
     name: 'Michael Chen',
     rating: 5,
     text: 'One of the best travel experiences I\'ve ever had. The organization was flawless, and the sights were incredible. The team went above and beyond to make our trip special.',
-    image: eclipse
+    image: eclipse3
   },
   {
     id: 4,
     name: 'Emma Wilson',
     rating: 4,
     text: 'Lovely experience with great attention to detail. The itinerary was well-planned, and we got to see so many beautiful places. The guides were friendly and professional.',
-    image: eclipse
+    image: eclipse4
   }
 ];
 
@@ -61,7 +64,7 @@ const Testimonials = () => {
     setTimeout(() => setIsTransitioning(false), 500);
   };
   return (
-    <section className="relative py-24 bg-white">
+    <section className="relative py-24 bg-background">
       <div className="container mx-auto px-6">
         <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 items-start">
           {/* Left side - Testimonial Card and Navigation */}
@@ -91,9 +94,10 @@ const Testimonials = () => {
               <div className={`flex flex-col items-start mb-4 -mt-12 transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] ${isTransitioning ? 'opacity-0 translate-y-2' : 'opacity-100 translate-y-0'}`}>
                 <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-white shadow-md mb-3">
                   <img 
+                    key={currentTestimonial.id}
                     src={currentTestimonial.image} 
                     alt={currentTestimonial.name} 
-                    className="w-full h-full object-cover"
+                    className={`w-full h-full object-cover transition-opacity duration-500 ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}
                   />
                 </div>
                 

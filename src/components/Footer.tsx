@@ -1,7 +1,11 @@
 import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import greeceImage from "@/assets/greece.jpg";
-import phuketImage from "@/assets/phuket.jpg";
+import insta1 from "@/assets/i1.png";
+import insta2 from "@/assets/i2.png";
+import insta3 from "@/assets/i3.png";
+import insta4 from "@/assets/i4.png";
+import insta5 from "@/assets/i5.png";
+import insta6 from "@/assets/i6.png";
 import grid from "@/assets/grid.png";
 import footersec from "@/assets/footersec.png";
 import cards from "@/assets/cards.png";
@@ -117,22 +121,22 @@ const Footer = () => {
             <h4 className="font-Manrope font-semibold text-lg mb-6">Instagram Post</h4>
             <div className="grid grid-cols-3 gap-2 mb-4">
               <div className="aspect-square rounded-lg overflow-hidden">
-                <img src={greeceImage} alt="Instagram post" className="w-full h-full object-cover hover:scale-110 transition-transform" />
+                <img src={insta1} alt="Instagram post" className="w-full h-full object-cover hover:scale-110 transition-transform" />
               </div>
               <div className="aspect-square rounded-lg overflow-hidden">
-                <img src={phuketImage} alt="Instagram post" className="w-full h-full object-cover hover:scale-110 transition-transform" />
+                <img src={insta2} alt="Instagram post" className="w-full h-full object-cover hover:scale-110 transition-transform" />
               </div>
               <div className="aspect-square rounded-lg overflow-hidden">
-                <img src={greeceImage} alt="Instagram post" className="w-full h-full object-cover hover:scale-110 transition-transform" />
+                <img src={insta3} alt="Instagram post" className="w-full h-full object-cover hover:scale-110 transition-transform" />
               </div>
               <div className="aspect-square rounded-lg overflow-hidden">
-                <img src={phuketImage} alt="Instagram post" className="w-full h-full object-cover hover:scale-110 transition-transform" />
+                <img src={insta4} alt="Instagram post" className="w-full h-full object-cover hover:scale-110 transition-transform" />
               </div>
               <div className="aspect-square rounded-lg overflow-hidden">
-                <img src={greeceImage} alt="Instagram post" className="w-full h-full object-cover hover:scale-110 transition-transform" />
+                <img src={insta5} alt="Instagram post" className="w-full h-full object-cover hover:scale-110 transition-transform" />
               </div>
               <div className="aspect-square rounded-lg overflow-hidden">
-                <img src={phuketImage} alt="Instagram post" className="w-full h-full object-cover hover:scale-110 transition-transform" />
+                <img src={insta6} alt="Instagram post" className="w-full h-full object-cover hover:scale-110 transition-transform" />
               </div>
             </div>
             <div className="flex gap-5">

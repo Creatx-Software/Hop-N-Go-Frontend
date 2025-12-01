@@ -112,11 +112,11 @@ const DestinationPage = () => {
 
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col overflow-x-hidden">
       <Navigation />
-      <div className="w-full h-9 bg-[#FFC8BB]/30 relative z-10">
-        <div className="container mx-auto h-full flex items-center justify-center px-6 text-xs md:text-sm text-[#170F49] font-normal">
-          <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center space-x-20">
+      <div className="w-screen h-9 bg-[#FFC8BB]/30 relative z-10 overflow-x-hidden">
+        <div className="w-full max-w-[1440px] mx-auto h-full flex items-center justify-between px-4 md:px-6 text-xs md:text-sm text-[#170F49] font-normal">
+          <div className="flex-1 flex items-center justify-center space-x-4 md:space-x-20">
             <span className="text-[#6F6C8F]">🚀 Black Friday Sale</span>
             <a href="#" className="flex items-center hover:underline">
               Learn more

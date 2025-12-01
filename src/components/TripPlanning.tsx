@@ -1,10 +1,37 @@
 import { MapPin, Plane, ArrowRight, Users, Star } from "lucide-react";
 import travelImage from "@/assets/travel.png";
 import tripImage from "@/assets/Trip.png";
+import travel1 from "@/assets/travel1.png";
+import travel2 from "@/assets/travel2.png";
+import travel3 from "@/assets/travel3.png";
+import h1 from "@/assets/h1.png";
+import h2 from "@/assets/h2.png";
+import h3 from "@/assets/h3.png";
+
+// Animation keyframes
+const styles = `
+  @keyframes float1 {
+    0% { transform: translateY(0px) translateX(0px); }
+    50% { transform: translateY(-8px) translateX(3px); }
+    100% { transform: translateY(0px) translateX(0px); }
+  }
+  @keyframes float2 {
+    0% { transform: translateY(0px) translateX(0px); }
+    50% { transform: translateY(6px) translateX(-2px); }
+    100% { transform: translateY(0px) translateX(0px); }
+  }
+  @keyframes float3 {
+    0% { transform: translateY(0px) translateX(0px); }
+    50% { transform: translateY(-6px) translateX(4px); }
+    100% { transform: translateY(0px) translateX(0px); }
+  }
+`;
 
 const TripPlanning = () => {
   return (
-    <section className="py-20 relative overflow-hidden">
+    <>
+      <style>{styles}</style>
+    <section className="py-20 relative overflow-hidden bg-white">
       {/* Decorative background elements */}
       <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-[#F8F0FF] to-transparent -z-10"></div>
       
@@ -15,8 +42,13 @@ const TripPlanning = () => {
             <div className="flex items-center gap-4 mb-6">
               <div className="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-sm">
                 <div className="flex -space-x-2">
-                  {[1, 2, 3].map((i) => (
-                    <div key={i} className="w-8 h-8 rounded-full bg-primary/10 border-2 border-white"></div>
+                  {[h1, h2, h3].map((img, index) => (
+                    <img 
+                      key={index}
+                      src={img}
+                      alt={`Traveler ${index + 1}`}
+                      className="w-8 h-8 rounded-full border-2 border-white object-cover"
+                    />
                   ))}
                 </div>
                 <div>
@@ -58,10 +90,39 @@ const TripPlanning = () => {
             <div className="relative z-10">
               <img 
                 src={tripImage} 
-                alt="Trip planning" 
-                
+                alt="Trip planning"
+                className="relative z-0"
               />
               
+              {/* Bottom Card */}
+              <div className="absolute -bottom-0 -left-0 w-[185.82px] h-[174.76px] rounded-2xl shadow-lg overflow-hidden z-20 bg-transparent" style={{ animation: 'float1 6s ease-in-out infinite' }}>
+                <img 
+                  src={travel1} 
+                  alt="Travel 1" 
+                  className="min-w-full min-h-full w-auto h-auto object-cover"
+                  style={{ transform: 'scale(1.2) translateY(7px)' }}
+                />
+              </div>
+              
+              {/* Right Side Small Card */}
+              <div className="absolute top-1/2 right-28 w-[109.84px] h-[103.31px] rounded-2xl shadow-lg overflow-hidden z-20 bg-transparent" style={{ animation: 'float2 5s ease-in-out infinite' }}>
+                <img 
+                  src={travel2} 
+                  alt="Travel 2" 
+                  className="min-w-full min-h-full w-auto h-auto object-cover"
+                  style={{ transform: 'scale(1.2) translateY(10px)' }}
+                />
+              </div>
+              
+              {/* Upper Badge */}
+              <div className="absolute top-24 right-28 w-[166px] h-10 rounded-full shadow-md overflow-hidden z-20 bg-transparent" style={{ animation: 'float3 5s ease-in-out infinite' }}>
+                <img 
+                  src={travel3} 
+                  alt="Travel 3" 
+                  className="min-w-full min-h-full w-auto h-auto object-cover"
+                  style={{ transform: 'scale(1.3)' }}
+                />
+              </div>
             </div>
             {/* Decorative Elements */}
             <div className="absolute -right-20 -top-20 w-64 h-64 rounded-full bg-purple-100/30 blur-3xl -z-10"></div>
@@ -70,6 +131,7 @@ const TripPlanning = () => {
         </div>
       </div>
     </section>
+    </>
   );
 };
 

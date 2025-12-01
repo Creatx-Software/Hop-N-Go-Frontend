@@ -2,7 +2,7 @@ import evisaImage from "@/assets/evisa.png";
 
 const EVisa = () => {
   return (
-    <section className="pt-16 pb-8 md:py-18 relative overflow-hidden">
+    <section className="pt-10 pb-8 md:py-18 relative overflow-hidden bg-white">
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="flex flex-col md:flex-row-reverse items-center gap-12">
           {/* Content - Right side on desktop, top on mobile */}
@@ -21,12 +21,12 @@ const EVisa = () => {
           </div>
           
           {/* Image - Left side on desktop, bottom on mobile */}
-          <div className="w-full md:w-1/2">
-            <div className="relative w-full max-w-xl mx-auto">
+          <div className="w-full md:w-[60%] -ml-32">
+            <div className="relative w-full max-w-3xl mx-auto">
               <img
                 src={evisaImage}
                 alt="eVisa"
-                className="w-full h-auto max-h-[600px] object-cover rounded-3xl"
+                className="w-full h-auto max-h-[700px] object-cover rounded-3xl"
               />
             </div>
           </div>

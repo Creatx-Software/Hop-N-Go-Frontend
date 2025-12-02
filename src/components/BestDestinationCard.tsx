@@ -72,7 +72,7 @@ const BestDestinationCard = ({
             <span className="text-sm font-normal text-gray-500">3 Days 4 Nights</span>
           </div>
 
-          <p className="text-gray-600 text-sm leading-relaxed flex-1 line-clamp-2 font-normal">
+          <p className="text-gray-600 text-sm leading-relaxed flex-1 line-clamp-2 font-inter font-normal">
             {description}
           </p>
 

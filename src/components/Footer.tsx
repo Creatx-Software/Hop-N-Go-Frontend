@@ -120,22 +120,22 @@ const Footer = () => {
           <div>
             <h4 className="font-Manrope font-semibold text-lg mb-6">Instagram Post</h4>
             <div className="grid grid-cols-3 gap-2 mb-4">
-              <div className="aspect-square rounded-lg overflow-hidden">
+              <div className="aspect-square overflow-hidden">
                 <img src={insta1} alt="Instagram post" className="w-full h-full object-cover hover:scale-110 transition-transform" />
               </div>
-              <div className="aspect-square rounded-lg overflow-hidden">
+              <div className="aspect-square overflow-hidden">
                 <img src={insta2} alt="Instagram post" className="w-full h-full object-cover hover:scale-110 transition-transform" />
               </div>
-              <div className="aspect-square rounded-lg overflow-hidden">
+              <div className="aspect-square overflow-hidden">
                 <img src={insta3} alt="Instagram post" className="w-full h-full object-cover hover:scale-110 transition-transform" />
               </div>
-              <div className="aspect-square rounded-lg overflow-hidden">
+              <div className="aspect-square overflow-hidden">
                 <img src={insta4} alt="Instagram post" className="w-full h-full object-cover hover:scale-110 transition-transform" />
               </div>
-              <div className="aspect-square rounded-lg overflow-hidden">
+              <div className="aspect-square overflow-hidden">
                 <img src={insta5} alt="Instagram post" className="w-full h-full object-cover hover:scale-110 transition-transform" />
               </div>
-              <div className="aspect-square rounded-lg overflow-hidden">
+              <div className="aspect-square overflow-hidden">
                 <img src={insta6} alt="Instagram post" className="w-full h-full object-cover hover:scale-110 transition-transform" />
               </div>
             </div>

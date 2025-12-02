@@ -144,54 +144,53 @@ const DestinationPage = () => {
         >
         {/* Hero Content */}
         <div className="relative z-10 flex flex-col items-center justify-center text-center text-white max-w-6xl mx-auto -mt-16">
-          <div className="bg-transparent border border-white text-[#F74A1F] text-sm font-inter font-medium px-4 py-2 rounded-full mb-6 inline-flex items-center">
+          <div className="bg-transparent border border-white text-[#F74A1F] text-sm font-inter font-semibold px-4 py-2 rounded-full mb-6 inline-flex items-center">
             AI Powered Travel Planning
           </div>
-          <h1 className="text-7xl font-bold mb-4 bg-gradient-to-r from-white via-white to-[#FF481A] bg-clip-text text-transparent">
+          <h1 className="text-7xl font-inter font-semibold mb-4 bg-gradient-to-r from-white via-white to-[#FF481A] bg-clip-text text-transparent">
             Create Your Perfect Travel Itinerary
           </h1>
-          <p className="text-xl mb-6 max-w-lg mx-auto text-white">
+          <p className="text-xl mb-6 max-w-lg mx-auto text-white font-inter font-medium">
             Transform travel inspiration into detailed itineraries with AI assistance and your creative vision
           </p>
 
           {/* Search Bar */}
-          <div className="bg-white rounded-2xl shadow-xl flex flex-row items-center justify-between overflow-hidden p-10 border border-gray-200">
-        
+          <div className="bg-white rounded-2xl shadow-xl flex flex-col lg:flex-row items-start lg:items-center justify-between overflow-hidden p-8 border border-gray-200 w-full max-w-6xl mx-auto">
             {/* Destinations */}
-            <div className="flex-1 flex flex-col items-start justify-center pr-6">
-              <label className="text-sm font-medium text-gray-500 mb-1 ml-[0.5rem]">
+            <div className="w-full lg:w-1/4 flex flex-col items-start mb-4 lg:mb-0 lg:pr-4">
+              <label className="text-sm font-inter font-medium text-gray-500 mb-1 ml-2">
                 Destinations
               </label>
-              <div className="flex items-center bg-[#F3F3F4] rounded-[7px] p-3 pl-4 w-full">
-                <input type="text" placeholder="Japan" className="w-full border-0 bg-transparent focus:outline-none text-gray-700 placeholder-gray-500 text-base pl-0"/>
-                <MapPin className="w-5 h-5 text-gray-500 mr-3" />
+              <div className="flex items-center bg-[#F3F3F4] rounded-[7px] p-3 w-full">
+                <input type="text" placeholder="Japan" className="w-full border-0 bg-transparent focus:outline-none text-gray-700 placeholder-gray-500 text-base font-inter font-normal"/>
+                <MapPin className="w-5 h-5 text-gray-500 ml-2" />
               </div>
             </div>
         
             {/* Check In */}
-            <div className="flex-1 flex flex-col items-start justify-center px-6">
-              <label className="text-sm font-medium text-gray-500 mb-1 ml-[0.5rem]">Check In</label>
-              <div className="flex items-center bg-[#F3F3F4] rounded-[7px] p-3 pl-4 w-full">
-                <input type="date" className="w-full border-0 bg-transparent focus:outline-none text-gray-700 text-base pl-0"/>
+            <div className="w-full lg:w-1/4 flex flex-col items-start mb-4 lg:mb-0 lg:px-2">
+              <label className="text-sm font-inter font-medium text-gray-500 mb-1 ml-2">Check In</label>
+              <div className="flex items-center bg-[#F3F3F4] rounded-[7px] p-3 w-full">
+                <input type="date" className="w-full border-0 bg-transparent focus:outline-none text-gray-700 text-base font-inter font-normal"/>
               </div>
             </div>
         
             {/* Guest */}
-            <div className="flex-1 flex flex-col items-start justify-center px-6">
-              <label className="text-sm font-medium text-gray-500 mb-1 ml-[0.5rem]">Guest</label>
-              <div className="flex items-center bg-[#F3F4F6] rounded-[7px] p-3 pl-4 w-full">
-                <input type="text" placeholder="+ Add Guest" className="w-full border-0 bg-transparent focus:outline-none text-gray-700 placeholder-gray-500 text-base pl-0"/>
-                  <UserRound className="w-5 h-5 text-gray-500 mr-3" />
-                </div>
+            <div className="w-full lg:w-1/4 flex flex-col items-start mb-6 lg:mb-0 lg:px-2">
+              <label className="text-sm font-inter font-medium text-gray-500 mb-1 ml-2">Guest</label>
+              <div className="flex items-center bg-[#F3F4F6] rounded-[7px] p-3 w-full">
+                <input type="text" placeholder="+ Add Guest" className="w-full border-0 bg-transparent focus:outline-none text-gray-700 placeholder-gray-500 text-base font-inter font-normal"/>
+                <UserRound className="w-5 h-5 text-gray-500 ml-2" />
               </div>
+            </div>
 
-              {/* Buttons */}
-              <div className="flex gap-6 ml-12 mt-6">
-                <Button variant="outline" className="bg-[#F74A1F] hover:bg-[#F74A1F]/90 px-6 py-6 rounded-[7px] font-medium h-[28px] flex items-center justify-center text-white">
+            {/* Buttons */}
+            <div className="w-full lg:w-auto flex flex-col lg:flex-row gap-4 lg:gap-6 lg:ml-4 lg:mt-6">
+                <Button variant="outline" className="bg-[#F74A1F] hover:bg-[#F74A1F]/90 px-6 py-6 rounded-[7px] font-inter font-semibold h-[28px] flex items-center justify-center text-white">
                   Search
                   <Search className="w-5 h-5 ml-4" />
                 </Button>
-                <Button className="bg-gradient-to-r from-[#F9AC7D] to-[#F53900] hover:opacity-90 text-white px-6 py-6 rounded-[7px] font-medium h-[28px] flex items-center justify-center border-0">
+                <Button className="bg-gradient-to-r from-[#F9AC7D] to-[#F53900] hover:opacity-90 text-white px-6 py-6 rounded-[7px] font-inter font-normal h-[28px] flex items-center justify-center border-0">
                   Create Itineraries
                   <ChevronRight className="w-5 h-5 ml-4" />
                 </Button>
@@ -202,8 +201,8 @@ const DestinationPage = () => {
           <div className="flex flex-wrap justify-start gap-10 mt-20 ml-6">
             {stats.map((stat, index) => (
               <div key={index} className="flex items-baseline gap-2">
-                <span className="text-3xl font-bold text-black">{stat.value}</span>
-                <span className="text-base text-gray-700">{stat.label}</span>
+                <span className="text-3xl font-Plus Jakarta Sans font-semibold text-black">{stat.value}</span>
+                <span className="text-base text-black font-Plus Jakarta Sans font-normal">{stat.label}</span>
               </div>
             ))}
           </div>
@@ -320,7 +319,7 @@ const DestinationPage = () => {
                 <h3 className="text-5xl font-inter font-medium text-white mb-4">
                   {destination.name}
                 </h3>
-                <p className="text-white/90 text-lg leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                <p className="text-white/90 text-lg font-inter font-normal leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                   {destination.description}
                 </p>
               </div>
@@ -355,10 +354,10 @@ const DestinationPage = () => {
     {/* Section Header */}
     <div className="mb-12">
       <div className="mb-8">
-        <h2 className="font-inter font-bold text-4xl md:text-5xl text-foreground mb-2">
+        <h2 className="font-inter font-bold text-4xl text[#0C111F] md:text-5xl text-foreground mb-2">
           Best Destinations
         </h2>
-        <p className="text-muted-foreground text-lg text-left max-w-2xl">
+        <p className="text-muted-foreground text-lg text-left max-w-2xl font-inter font-regular">
           We've selected some of the top spots around the world to<br/>
           inspire your next adventure.
         </p>
@@ -378,7 +377,7 @@ const DestinationPage = () => {
         ].map((tab) => (
           <span
             key={tab}
-            className={`text-sm font-Roboto font-medium cursor-pointer transition-colors ${
+            className={`text-sm font-Roboto font-semibold cursor-pointer transition-colors ${
               tab === "Recommended"
                 ? 'text-black relative after:content-[""] after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:bg-black after:w-1/2'
                 : "text-[#717171] hover:text-black"
@@ -437,24 +436,25 @@ const DestinationPage = () => {
           <div className="w-full h-full bg-gradient-to-br from-pink-400/40 via-pink-300/10 to-transparent rounded-full blur-3xl"></div>
         </div>
         <div className="relative z-10 pb-16">
-        <div className="mx-auto max-w-[1920px] pl-[5%] pr-0">
-          <div className="flex flex-col md:flex-row justify-between items-start mb-16 gap-0">
-      <div className="md:w-1/2">
-        <h2 className="font-inter text-md text-[#0C111F] font-normal mb-4">[Packages]</h2>
-        <p className="font-inter text-5xl font-semibold text-[#0C111F] text-left">
-          Choose our range of expertly crafted packages
-        </p>
-      </div>
-      <div className="md:w-1/2 flex justify-start mt-0">
-        <p className="font-inter font-regular text-md text-[#98A2B3] max-w-md text-left mt-16 ml-48">
-          Whether you’re seeking awe-inspiring landscapes, thrilling outdoor adventures, or Immerice cultural experiences, Snaeland has the perfect itinerary for you.
-        </p>
-      </div>
-    </div>
+          <div className="container mx-auto px-4">
+            <div className="flex flex-col md:flex-row justify-between items-start mb-16">
+              <div className="md:w-1/2">
+                <h2 className="font-inter text-md text-[#0C111F] font-normal mb-4">[Packages]</h2>
+                <p className="font-inter text-5xl font-semibold text-[#0C111F] text-left">
+                  Choose our range of expertly crafted packages
+                </p>
+              </div>
+              <div className="md:w-1/2 pt-16">
+                <p className="font-inter font-light text-md text-[#98A2B3] max-w-md ml-48">
+                  Whether you're seeking awe-inspiring landscapes, thrilling outdoor adventures, or Immerice cultural experiences, Snaeland has the perfect itinerary for you.
+                </p>
+              </div>
+            </div>
+          </div>
           
           <div 
             style={{ cursor: 'default' }}
-            className="flex flex-nowrap items-center gap-8 overflow-x-auto pb-4 px-0 select-none [&_*]:cursor-default"
+            className="w-full flex flex-nowrap items-center gap-8 overflow-x-auto pb-4 pl-12 pr-12 select-none [&_*]:cursor-default [&>div:first-child]:ml-4 [&>div:last-child]:mr-4"
             onMouseDown={(e) => {
               e.preventDefault();
               const container = e.currentTarget;
@@ -528,7 +528,6 @@ const DestinationPage = () => {
               </div>
             ))}
           </div>
-        </div>
         </div>
       </section>
       

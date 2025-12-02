@@ -16,7 +16,7 @@ const Navigation = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
-  const isDestinationPage = location.pathname === '/destinations' || location.pathname === '/about-us';
+  const isColoredNav = location.pathname === '/destinations' || location.pathname === '/about-us' || location.pathname === '/contact';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -66,28 +66,28 @@ const Navigation = () => {
           <div className="hidden md:flex items-center gap-8 ml-[-540px]">
             <Link 
               to="/destinations"
-              className={`${isDestinationPage || location.pathname === '/about-us' ? 'text-black hover:text-primary' : (scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90')} transition-colors font-inter font-medium`}
+              className={`${isColoredNav ? 'text-[#170F49] hover:text-primary' : (scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90')} transition-colors font-inter font-medium`}
             >
               Destination
             </Link>
             <button 
               onClick={() => scrollToSection('evisa')} 
-              className={`${isDestinationPage || location.pathname === '/about-us' ? 'text-black hover:text-primary' : (scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90')} transition-colors font-inter font-medium`}
+              className={`${isColoredNav ? 'text-[#170F49] hover:text-primary' : (scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90')} transition-colors font-inter font-medium`}
             >
               E Visa
             </button>
             <Link 
               to="/about-us"
-              className={`${isDestinationPage || location.pathname === '/about-us' ? 'text-black hover:text-primary' : (scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90')} transition-colors font-inter font-medium`}
+              className={`${isColoredNav ? 'text-[#170F49] hover:text-primary' : (scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90')} transition-colors font-inter font-medium`}
             >
               About Us
             </Link>
-            <button 
-              onClick={() => scrollToSection('contact')} 
-              className={`${isDestinationPage || location.pathname === '/about-us' ? 'text-black hover:text-primary' : (scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90')} transition-colors font-inter font-medium`}
+            <Link 
+              to="/contact"
+              className={`${isColoredNav ? 'text-[#170F49] hover:text-primary' : (scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90')} transition-colors font-inter font-medium`}
             >
               Contact
-            </button>
+            </Link>
           </div>
 
           <div className="flex items-center gap-4">

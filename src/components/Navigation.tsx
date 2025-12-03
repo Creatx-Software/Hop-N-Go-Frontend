@@ -16,7 +16,7 @@ const Navigation = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
-  const isColoredNav = location.pathname === '/destinations' || location.pathname === '/about-us' || location.pathname === '/contact';
+  const isColoredNav = location.pathname === '/destinations' || location.pathname === '/about-us' || location.pathname === '/contact' || location.pathname === '/e-visa';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -70,12 +70,12 @@ const Navigation = () => {
             >
               Destination
             </Link>
-            <button 
-              onClick={() => scrollToSection('evisa')} 
+            <Link 
+              to="/e-visa"
               className={`${isColoredNav ? 'text-[#170F49] hover:text-primary' : (scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90')} transition-colors font-inter font-medium`}
             >
               E Visa
-            </button>
+            </Link>
             <Link 
               to="/about-us"
               className={`${isColoredNav ? 'text-[#170F49] hover:text-primary' : (scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90')} transition-colors font-inter font-medium`}
@@ -141,12 +141,13 @@ const Navigation = () => {
             >
               Destination
             </Link>
-            <button 
-              onClick={() => handleNavClick('evisa')} 
+            <Link 
+              to="/e-visa"
               className={`text-lg py-2 transition-colors ${scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90'} font-medium`}
+              onClick={closeMobileMenu}
             >
               E Visa
-            </button>
+            </Link>
             <Link 
               to="/about-us"
               className={`text-lg py-2 transition-colors ${scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90'} font-medium`}

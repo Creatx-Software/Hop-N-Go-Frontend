@@ -6,6 +6,8 @@ import { Textarea } from '@/components/ui/textarea';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import LanguageDropdown from '@/components/LanguageDropdown';
+import contact from '@/assets/contact.png';
+import question from '@/assets/question.png';
 
 const ContactUsPage = () => {
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
@@ -250,7 +252,7 @@ const ContactUsPage = () => {
                       id="message" 
                       rows={5} 
                       placeholder="Message" 
-                      className="w-[110%] max-w-[120%] px-4 py-3 bg-[#E9E9E9] rounded-[10px] text-[#5D5D5D] text-inter text-regular border-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none focus:ring-0 focus:ring-offset-0 focus:outline-none resize-none"
+                      className="w-[110%] max-w-[120%] px-4 py-3 bg-[#E9E9E9]/50 rounded-[10px] text-[#5D5D5D] text-inter text-regular border-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none focus:ring-0 focus:ring-offset-0 focus:outline-none resize-none"
                     />
                   </div>
                 </div>
@@ -269,7 +271,7 @@ const ContactUsPage = () => {
             {/* Right Side - Image */}
             <div className="hidden lg:block ml-24 w-[120%] max-w-[660px]">
               <img 
-                src="/src/assets/contact.png" 
+                src={contact} 
                 alt="Contact Us" 
                 className="w-full h-auto rounded-2xl object-cover"
               />
@@ -360,8 +362,8 @@ const ContactUsPage = () => {
             <div className="relative hidden lg:block -mt-24">
               <div className="w-[140%]">
                 <img 
-                  src="/src/assets/question.png" 
-                  alt="People hiking" 
+                  src={question}
+                  alt="" 
                   className="w-full h-auto object-contain max-h-[700px]"
                 />
               </div>

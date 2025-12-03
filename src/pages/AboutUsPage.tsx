@@ -7,6 +7,15 @@ import Footer from '@/components/Footer';
 import LanguageDropdown from "@/components/LanguageDropdown";
 import { Button } from "@/components/ui/button";
 import VideoImage from "@/assets/Video.png";
+import sup1 from '@/assets/sup1.png';
+import sup2 from '@/assets/sup2.png';
+import sup3 from '@/assets/sup3.png';
+import sup4 from '@/assets/sup4.png';
+import sup5 from '@/assets/sup5.png';
+import sup6 from '@/assets/sup6.png';
+import why from '@/assets/why.png';
+import journey from '@/assets/journey.png';
+import adventure from '@/assets/adventure.png';
 
 type TeamMember = {
   id: number;
@@ -213,12 +222,12 @@ const AboutUsPage = () => {
                     </div>
                     <div className="w-full overflow-x-auto">
                       <div className="flex justify-start items-center space-x-12 md:space-x-16 w-max">
-                        <img src="/src/assets/sup1.png" alt="Supporter 1" className="h-8 object-contain flex-shrink-0" />
-                        <img src="/src/assets/sup2.png" alt="Supporter 2" className="h-8 object-contain flex-shrink-0" />
-                        <img src="/src/assets/sup3.png" alt="Supporter 3" className="h-8 object-contain flex-shrink-0" />
-                        <img src="/src/assets/sup4.png" alt="Supporter 4" className="h-8 object-contain flex-shrink-0" />
-                        <img src="/src/assets/sup5.png" alt="Supporter 5" className="h-8 object-contain flex-shrink-0" />
-                        <img src="/src/assets/sup6.png" alt="Supporter 6" className="h-8 object-contain flex-shrink-0 pr-4" />
+                        <img src={sup1} alt="Supporter 1" className="h-8 object-contain flex-shrink-0" />
+                        <img src={sup2} alt="Supporter 2" className="h-8 object-contain flex-shrink-0" />
+                        <img src={sup3} alt="Supporter 3" className="h-8 object-contain flex-shrink-0" />
+                        <img src={sup4} alt="Supporter 4" className="h-8 object-contain flex-shrink-0" />
+                        <img src={sup5} alt="Supporter 5" className="h-8 object-contain flex-shrink-0" />
+                        <img src={sup6} alt="Supporter 6" className="h-8 object-contain flex-shrink-0 pr-4" />
                       </div>
                     </div>
                   </div>
@@ -260,7 +269,7 @@ const AboutUsPage = () => {
             {/* Left Side - Image */}
             <div className="w-full lg:w-1/2 bg transparent">
               <img 
-                src="/src/assets/why.png" 
+                src={why} 
                 alt="Why Choose Hop N Go" 
                 className="w-full h-auto rounded-2xl"
               />
@@ -375,7 +384,7 @@ const AboutUsPage = () => {
               <div className="w-full lg:w-[45%] flex items-center justify-end pr-12">
                 <div className="w-[90%] h-auto">
                   <img 
-                    src="/src/assets/journey.png" 
+                    src={journey} 
                     alt="Our Journey" 
                     className="w-full h-auto object-contain rounded-lg"
                   />
@@ -390,8 +399,8 @@ const AboutUsPage = () => {
       <section className="relative px-12 py-16 bg-gradient-to-r from-[#F74A1F]/10 to-white">
         <div className="absolute bottom-0 left-0 right-0 w-full h-44 overflow-hidden">
           <img 
-            src="/src/assets/adventure.png" 
-            alt="World Map" 
+            src={adventure} 
+            alt="" 
             className="w-full h-full object-cover"
           />
         </div>

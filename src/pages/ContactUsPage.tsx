@@ -303,6 +303,73 @@ const ContactUsPage = () => {
         </div>
       </section>
 
+      {/* FAQ Section */}
+      <section className="pt-24 pb-8 bg-[#040F15] text-white w-full relative overflow-hidden">
+        {/* Gradient circle background */}
+        <div 
+          className="absolute left-[150px] top-[70px] w-[500px] h-[500px] rounded-full -z-0"
+          style={{
+            background: 'radial-gradient(circle, rgba(247, 74, 31, 0.15) 0%, rgba(4, 15, 21, 0) 70%)',
+            filter: 'blur(8px)'
+          }}
+        ></div>
+        
+        <div className="container mx-auto px-4 w-full max-w-[80rem] px-8 relative z-10">
+          <div className="text-left mb-12">
+            <h2 className="text-3xl md:text-5xl font-inter font-bold mb-4">
+              <div className="mb-2">FREQUENTLY</div>
+              <div>ASK <span className="text-[#F74A1F]">QUESTIONS</span></div>
+            </h2>
+          </div>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 items-start w-full">
+            {/* FAQ List */}
+            <div className="space-y-6 w-full">
+              {faqs.map((faq, index) => (
+                <div key={index} className="bg-transparent border border-white/50 rounded-sm overflow-hidden hover:border-[#F74A1F]/50 transition-colors duration-200">
+                  <button
+                    className="w-full px-4 py-4 text-left flex items-center gap-0 focus:outline-none h-full relative"
+                    onClick={() => toggleFaq(index)}
+                  >
+                    <div className="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-white font-inter font-medium text-sm">
+                      {(index + 1).toString().padStart(2, '0')}
+                    </div>
+                    <span className="font-inter font-regular text-white/80 text-base text-md flex-grow pr-2 my-auto">{faq.question}</span>
+                    <div className="absolute right-0 top-0 bottom-0 flex items-center h-full">
+                      {activeFaq === index ? (
+                        <div className="w-14 h-full flex items-center justify-center bg-[#F74A1F] rounded-r-sm">
+                          <span className="text-2xl leading-none text-white/70">-</span>
+                        </div>
+                      ) : (
+                        <div className="w-14 h-full flex items-center justify-center bg-[#152329] rounded-r-sm">
+                          <span className="text-2xl leading-none text-white/70">+</span>
+                        </div>
+                      )}
+                    </div>
+                  </button>
+                  {activeFaq === index && (
+                    <div className="px-4 pb-3 pt-0 font-inter font-regular text-white/70 text-sm">
+                      {faq.answer}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+            
+            {/* Image Section */}
+            <div className="relative hidden lg:block -mt-24">
+              <div className="w-[140%]">
+                <img 
+                  src="/src/assets/question.png" 
+                  alt="People hiking" 
+                  className="w-full h-auto object-contain max-h-[700px]"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <Footer />
     </div>
   );

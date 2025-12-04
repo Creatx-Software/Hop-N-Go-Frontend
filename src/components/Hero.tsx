@@ -89,14 +89,14 @@ const Hero = () => {
               planning and breathtaking views that make every moment unforgettable.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+            <div className="flex flex-row items-center gap-4">
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-[#FF5A2D] to-[#FF7A3D] hover:opacity-90 text-[#0C111F] font-semibold pr-20 pl-12 px-4 py-4 rounded-full shadow-[0_20px_40px_rgba(255,90,45,0.18)] flex items-center relative w-56"
+                className="bg-gradient-to-r from-[#FF5A2D] to-[#FF7A3D] hover:opacity-90 text-[#0C111F] font-semibold pr-16 sm:pr-20 pl-8 sm:pl-12 py-4 rounded-full shadow-[0_20px_40px_rgba(255,90,45,0.18)] flex items-center relative w-48 sm:w-56"
               >
-                <span className="mr-10 ml-3 flex-shrink-0">Create Itineraries</span>
-                <span className="w-8 h-8 rounded-full bg-[#0C111F] flex items-center justify-center absolute right-4 top-1/2 -translate-y-1/2">
-                  <ChevronRight className="w-7 h-7 text-white p-0.5" />
+                <span className="mr-0 sm:mr-10 ml-1 sm:ml-3 flex-shrink-0">Create Itineraries</span>
+                <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#0C111F] flex items-center justify-center absolute right-3 sm:right-4 top-1/2 -translate-y-1/2">
+                  <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-white p-0.5" />
                 </span>
               </Button>
 

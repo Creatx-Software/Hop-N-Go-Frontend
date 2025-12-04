@@ -136,83 +136,106 @@ const DestinationPage = () => {
       </div>
       
       {/* Hero Section */}
-      <section className="relative mt-16 bg-white">
-        {/* Hero Image Wrapper */}
-        <div className="relative w-full mx-auto bg-no-repeat bg-center bg-contain"
-             style={{backgroundImage: `url(${destiHero})`, minHeight: '640px', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', paddingTop: '100px', boxSizing: 'border-box'
-             }}
-        >
-        {/* Hero Content */}
-        <div className="relative z-10 flex flex-col items-center justify-center text-center text-white max-w-6xl mx-auto -mt-16">
-          <div className="bg-transparent border border-white text-[#F74A1F] text-sm font-inter font-semibold px-4 py-2 rounded-full mb-6 inline-flex items-center">
+      <section className="relative mt-10 md:mt-16 bg-white">
+        <div className="relative w-full">
+          {/* Hero Image Wrapper */}
+          <div 
+            className="relative w-full mx-auto -mt-12 md:mt-0"
+            style={{
+              backgroundImage: `url(${destiHero})`,
+              backgroundSize: 'contain',
+              backgroundPosition: 'center 25%',
+              backgroundRepeat: 'no-repeat',
+              minHeight: '60vh',
+              maxHeight: '600px',
+              aspectRatio: '16/9',
+              position: 'relative',
+              zIndex: 1
+            }}
+          >
+            {/* Overlay for better text readability */}
+            <div className="absolute inset-0 bg-transparent z-0"></div>
+            
+            {/* Hero Content */}
+            <div className="relative z-10 flex flex-col items-center justify-center md:justify-start md:pt-12 text-center text-white w-full h-full px-4">
+          <div className="bg-transparent border border-white text-[#F74A1F] text-xs md:text-sm font-inter font-semibold px-3 py-1.5 md:px-4 md:py-2 rounded-full mb-0 md:mb-6 mt-24 md:mt-0 inline-flex items-center">
             AI Powered Travel Planning
           </div>
-          <h1 className="text-7xl font-inter font-semibold mb-4 bg-gradient-to-r from-white via-white to-[#FF481A] bg-clip-text text-transparent">
-            Create Your Perfect Travel Itinerary
+          <h1 className="font-inter font-semibold mb-0 md:mb-4">
+            <div className="text-xl md:text-7xl bg-gradient-to-r from-white via-white to-[#FF481A] bg-clip-text text-transparent">
+              Create Your Perfect Travel
+            </div>
+            <div className="text-xl md:text-7xl bg-gradient-to-r from-white via-white to-[#FF481A] bg-clip-text text-transparent">
+              Itinerary
+            </div>
           </h1>
-          <p className="text-xl mb-6 max-w-lg mx-auto text-white font-inter font-medium">
+          <p className="text-sm md:text-xl mb-6 max-w-lg mx-auto text-white font-inter font-medium">
             Transform travel inspiration into detailed itineraries with AI assistance and your creative vision
           </p>
 
           {/* Search Bar */}
-          <div className="bg-white rounded-2xl shadow-xl flex flex-col lg:flex-row items-start lg:items-center justify-between overflow-hidden p-8 border border-gray-200 w-full max-w-6xl mx-auto">
+          <div className="bg-white rounded-2xl flex flex-col lg:flex-row items-start lg:items-center justify-between overflow-hidden p-4 sm:p-6 md:p-8 border border-gray-200 w-full max-w-5xl lg:max-w-6xl mx-auto min-h-[200px] sm:min-h-0 mt-8 sm:mt-0">
             {/* Destinations */}
-            <div className="w-full lg:w-1/4 flex flex-col items-start mb-4 lg:mb-0 lg:pr-4">
-              <label className="text-sm font-inter font-medium text-gray-500 mb-1 ml-2">
+            <div className="w-[50%] sm:w-full lg:w-1/4 flex flex-col items-start mb-3 sm:mb-4 lg:mb-0 lg:pr-4 ml-0 sm:mx-auto">
+              <label className="text-xs sm:text-sm font-inter font-medium text-gray-500 mb-1 ml-2">
                 Destinations
               </label>
-              <div className="flex items-center bg-[#F3F3F4] rounded-[7px] p-3 w-full">
-                <input type="text" placeholder="Japan" className="w-full border-0 bg-transparent focus:outline-none text-gray-700 placeholder-gray-500 text-base font-inter font-normal"/>
-                <MapPin className="w-5 h-5 text-gray-500 ml-2" />
+              <div className="flex items-center bg-[#F3F3F4] rounded-[7px] p-2 sm:p-3 w-full">
+                <input type="text" placeholder="Japan" className="w-full border-0 bg-transparent focus:outline-none text-gray-700 placeholder-gray-500 text-sm sm:text-base font-inter font-normal"/>
+                <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-gray-500 ml-2" />
               </div>
             </div>
         
             {/* Check In */}
-            <div className="w-full lg:w-1/4 flex flex-col items-start mb-4 lg:mb-0 lg:px-2">
-              <label className="text-sm font-inter font-medium text-gray-500 mb-1 ml-2">Check In</label>
-              <div className="flex items-center bg-[#F3F3F4] rounded-[7px] p-3 w-full">
-                <input type="date" className="w-full border-0 bg-transparent focus:outline-none text-gray-700 text-base font-inter font-normal"/>
+            <div className="w-[50%] sm:w-full lg:w-1/4 flex flex-col items-start mb-3 sm:mb-4 lg:mb-0 lg:px-2 ml-0 sm:mx-auto">
+              <label className="text-xs sm:text-sm font-inter font-medium text-gray-500 mb-1 ml-2">Check In</label>
+              <div className="flex items-center bg-[#F3F3F4] rounded-[7px] p-2 sm:p-3 w-full">
+                <input type="date" className="w-full border-0 bg-transparent focus:outline-none text-gray-700 text-sm sm:text-base font-inter font-normal"/>
               </div>
             </div>
         
             {/* Guest */}
-            <div className="w-full lg:w-1/4 flex flex-col items-start mb-6 lg:mb-0 lg:px-2">
-              <label className="text-sm font-inter font-medium text-gray-500 mb-1 ml-2">Guest</label>
-              <div className="flex items-center bg-[#F3F4F6] rounded-[7px] p-3 w-full">
+            <div className="w-[50%] sm:w-full lg:w-1/4 flex flex-col items-start mb-4 sm:mb-6 lg:mb-0 lg:px-2 ml-0 sm:mx-auto">
+              <label className="text-xs sm:text-sm font-inter font-medium text-gray-500 mb-1 ml-2">Guest</label>
+              <div className="flex items-center bg-[#F3F4F6] rounded-[7px] p-2 sm:p-3 w-full">
                 <input type="text" placeholder="+ Add Guest" className="w-full border-0 bg-transparent focus:outline-none text-gray-700 placeholder-gray-500 text-base font-inter font-normal"/>
                 <UserRound className="w-5 h-5 text-gray-500 ml-2" />
               </div>
             </div>
 
             {/* Buttons */}
-            <div className="w-full lg:w-auto flex flex-col lg:flex-row gap-4 lg:gap-6 lg:ml-4 lg:mt-6">
-                <Button variant="outline" className="bg-[#F74A1F] hover:bg-[#F74A1F]/90 px-6 py-6 rounded-[7px] font-inter font-semibold h-[28px] flex items-center justify-center text-white">
+            <div className="w-full lg:w-auto flex flex-col items-end lg:items-start lg:flex-row gap-8 sm:gap-4 lg:gap-6 lg:ml-4 -mt-40 lg:mt-6">
+                <Button variant="outline" className="w-[45%] sm:w-auto bg-[#F74A1F] hover:bg-[#F74A1F]/90 px-3 sm:px-6 py-6 rounded-[7px] font-inter font-semibold h-[28px] flex items-center justify-center text-white">
                   Search
-                  <Search className="w-5 h-5 ml-4" />
+                  <Search className="w-5 h-5 ml-2 sm:ml-4" />
                 </Button>
-                <Button className="bg-gradient-to-r from-[#F9AC7D] to-[#F53900] hover:opacity-90 text-white px-6 py-6 rounded-[7px] font-inter font-normal h-[28px] flex items-center justify-center border-0">
-                  Create Itineraries
-                  <ChevronRight className="w-5 h-5 ml-4" />
+                <Button className="w-[45%] sm:w-auto bg-gradient-to-r from-[#F9AC7D] to-[#F53900] hover:opacity-90 text-white px-3 sm:px-6 py-3 sm:py-6 rounded-[7px] font-inter font-normal h-auto sm:h-[28px] flex items-center justify-center border-0">
+                  <div className="flex flex-col sm:flex-row items-center">
+                    <span className="text-sm sm:text-base">Create</span>
+                    <span className="text-sm sm:text-base sm:ml-1">Itineraries</span>
+                  </div>
+                  <ChevronRight className="w-5 h-5 ml-2 sm:ml-4" />
                 </Button>
               </div>
             </div>
           </div>
           {/* Stats */}
-          <div className="flex flex-wrap justify-start gap-10 mt-20 ml-6">
+          <div className="flex flex-nowrap overflow-x-auto gap-6 sm:gap-10 -mt-0 sm:-mt-16 ml-4 sm:ml-16 pb-2 sm:pb-0 hide-scrollbar">
             {stats.map((stat, index) => (
-              <div key={index} className="flex items-baseline gap-2">
-                <span className="text-3xl font-Plus Jakarta Sans font-semibold text-black">{stat.value}</span>
-                <span className="text-base text-black font-Plus Jakarta Sans font-normal">{stat.label}</span>
+              <div key={index} className="flex-shrink-0 flex flex-col sm:flex-row sm:items-baseline gap-0 sm:gap-2">
+                <span className="text-sm sm:text-2xl font-Plus Jakarta Sans font-semibold text-black text-center sm:text-left">{stat.value}</span>
+                <span className="text-xs sm:text-base text-black font-Plus Jakarta Sans font-normal text-center sm:text-left">{stat.label}</span>
               </div>
             ))}
           </div>
         </div>
+        </div>
       </section>
 
       {/* Animated Destination Cards */}
-      <section className="relative py-12 bg-white overflow-visible">
+      <section className="relative py-12 bg-white overflow-visible mt-16 md:mt-0">
         {/* Background container for the section - extended vertically */}
-        <div className="absolute inset-0 -top-24 -bottom-24 overflow-hidden pointer-events-none">
+        <div className="absolute inset-0 -top-24 -bottom-24 overflow-hidden pointer-events-none mt-16 md:mt-0">
           {/* Left soft pink half-circle - more transparent and blurred */}
           <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[600px] h-[400px] -translate-x-1/3 z-0">
             <div className="w-full h-full bg-gradient-to-r from-pink-300/40 via-pink-500/20 to-transparent rounded-full blur-3xl"></div>

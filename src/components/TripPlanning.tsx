@@ -95,7 +95,7 @@ const TripPlanning = () => {
               />
               
               {/* Bottom Card */}
-              <div className="absolute -bottom-0 -left-0 w-[185.82px] h-[174.76px] rounded-2xl shadow-lg overflow-hidden z-20 bg-transparent" style={{ animation: 'float1 6s ease-in-out infinite' }}>
+              <div className="absolute -bottom-16 md:bottom-0 -left-0 w-[185.82px] h-[174.76px] rounded-2xl shadow-lg overflow-hidden z-20 bg-transparent" style={{ animation: 'float1 6s ease-in-out infinite' }}>
                 <img 
                   src={travel1} 
                   alt="Travel 1" 
@@ -105,7 +105,7 @@ const TripPlanning = () => {
               </div>
               
               {/* Right Side Small Card */}
-              <div className="absolute top-1/2 right-28 w-[109.84px] h-[103.31px] rounded-2xl shadow-lg overflow-hidden z-20 bg-transparent" style={{ animation: 'float2 5s ease-in-out infinite' }}>
+              <div className="absolute top-[39%] md:top-1/2 right-2 md:right-28 w-[109.84px] h-[103.31px] rounded-2xl shadow-lg overflow-hidden z-20 bg-transparent" style={{ animation: 'float2 5s ease-in-out infinite' }}>
                 <img 
                   src={travel2} 
                   alt="Travel 2" 
@@ -115,7 +115,7 @@ const TripPlanning = () => {
               </div>
               
               {/* Upper Badge */}
-              <div className="absolute top-24 right-28 w-[166px] h-10 rounded-full shadow-md overflow-hidden z-20 bg-transparent" style={{ animation: 'float3 5s ease-in-out infinite' }}>
+              <div className="absolute top-10 md:top-24 -right-6 md:right-28 w-[166px] h-10 rounded-full shadow-md overflow-hidden z-20 bg-transparent" style={{ animation: 'float3 5s ease-in-out infinite' }}>
                 <img 
                   src={travel3} 
                   alt="Travel 3" 

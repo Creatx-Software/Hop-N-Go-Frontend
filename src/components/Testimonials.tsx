@@ -67,8 +67,33 @@ const Testimonials = () => {
     <section className="relative py-24 bg-background">
       <div className="container mx-auto px-6">
         <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 items-start">
-          {/* Left side - Testimonial Card and Navigation */}
-          <div className="relative max-w-2xl mx-auto lg:mx-0 flex items-start gap-6">
+          {/* Right side - Title and Image - Moved to top on mobile */}
+          <div className="relative w-full flex flex-row-reverse lg:block order-1 lg:order-2">
+            <div className="lg:absolute right-0 w-1/2 lg:w-[10vw] max-w-md transform lg:translate-x-16 lg:-translate-y-16 ml-4 lg:ml-0">
+              <img 
+                src={clientsImage} 
+                alt="Happy clients" 
+                className="w-full h-auto"
+              />
+            </div>
+            
+            <div className="relative z-10 max-w-2xl lg:pr-12">
+              <h4 className="font-inter font-semibold text-lg text-gray-900 mb-2">
+                What others think
+              </h4>
+
+              <h2 className="font-inter font-bold text-4xl md:text-5xl text-black mb-6">
+                What our clients are saying about us?
+              </h2>
+              
+              <p className="text-gray-600 text-lg">
+                See what our customers say about their experience with Hop N Go—check it out on the side!
+              </p>
+            </div>
+          </div>
+
+          {/* Left side - Testimonial Card and Navigation - Moved to bottom on mobile */}
+          <div className="relative max-w-2xl mx-auto lg:mx-0 flex items-start gap-6 order-2 lg:order-1 mt-8 lg:mt-0">
             {/* Navigation Buttons */}
             <div className="flex flex-col gap-4 mt-8">
               <button 
@@ -89,7 +114,6 @@ const Testimonials = () => {
             
             {/* Testimonial Card */}
             <div className="bg-white rounded-2xl pt-6 px-8 pb-8 shadow-lg border border-gray-100 flex-1">
-              
               {/* Profile Picture */}
               <div className={`flex flex-col items-start mb-4 -mt-12 transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] ${isTransitioning ? 'opacity-0 translate-y-2' : 'opacity-100 translate-y-0'}`}>
                 <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-white shadow-md mb-3">
@@ -118,33 +142,6 @@ const Testimonials = () => {
               {/* Testimonial Text */}
               <p className={`text-gray-600 text-sm leading-relaxed transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] ${isTransitioning ? 'opacity-0 -translate-y-2' : 'opacity-100 translate-y-0'}`}>
                 "{currentTestimonial.text}"
-              </p>
-            </div>
-          </div>
-
-          {/* Right side - Title and Image */}
-          <div className="relative w-full flex flex-row-reverse lg:block">
-            <div className="lg:absolute right-0 w-2/5 lg:w-[10vw] max-w-md transform lg:translate-x-16 lg:-translate-y-16 ml-4 lg:ml-0">
-              <img 
-                src={clientsImage} 
-                alt="Happy clients" 
-                className="w-full h-auto"
-              />
-            </div>
-            
-            <div className="relative z-10 max-w-2xl lg:pr-12">
-              <h4 className="font-inter font-semibold text-lg text-gray-900 mb-2">
-                What others think
-              </h4>
-
-              <br/>
-
-              <h2 className="font-inter font-bold text-4xl md:text-5xl text-black mb-6">
-                What our clients are saying about us?
-              </h2>
-              
-              <p className="text-gray-600 text-lg">
-                See what our customers say about their experience with Hop N Go—check it out on the side!
               </p>
             </div>
           </div>

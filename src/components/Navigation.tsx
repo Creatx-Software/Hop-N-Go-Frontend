@@ -111,7 +111,7 @@ const Navigation = () => {
             
             {/* Mobile Menu Button */}
             <button 
-              className={`md:hidden p-2 rounded-full focus:outline-none focus:ring-0 ${scrolled ? 'text-foreground' : 'text-white'}`}
+              className={`md:hidden p-3 rounded-sm focus:outline-none focus:ring-0 ${scrolled ? 'text-foreground' : 'text-white'} bg-white/10 backdrop-blur-sm`}
               onClick={handleMenuButtonClick}
               aria-label="Toggle menu"
               aria-expanded={mobileMenuOpen}
@@ -123,9 +123,9 @@ const Navigation = () => {
 
         {/* Mobile Menu */}
         <div 
-          className={`mobile-menu-container md:hidden fixed top-16 right-4 transition-all duration-300 ease-in-out transform ${
+          className={`mobile-menu-container md:hidden fixed top-24 right-4 transition-all duration-300 ease-in-out transform ${
             mobileMenuOpen ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0 pointer-events-none'
-          } z-40 bg-white/10 backdrop-blur-md rounded-lg shadow-lg border border-white/10`}
+          } z-40 bg-white/10 backdrop-blur-md rounded-lg shadow-lg border border-white/10 pt-4`}
           style={{
             width: 'auto',
             minWidth: '200px',

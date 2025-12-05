@@ -1,7 +1,10 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { FiArrowRight, FiChevronRight, FiMapPin, FiGlobe, FiAward, FiUsers } from 'react-icons/fi';
+import { FiArrowRight, FiChevronRight, FiMapPin, FiGlobe, FiAward, FiUsers, FiChevronLeft, FiChevronRight as FiChevronRightIcon } from 'react-icons/fi';
 import { Mail, Play } from 'lucide-react';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import LanguageDropdown from "@/components/LanguageDropdown";
@@ -29,8 +32,75 @@ type TeamMember = {
   };
 };
 
+// Custom Arrow Components
+const NextArrow = (props: any) => {
+  const { onClick } = props;
+  return (
+    <button
+      onClick={onClick}
+      className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/20 hover:bg-white/30 rounded-full p-2 transition-all duration-300 focus:outline-none"
+    >
+      <FiChevronRightIcon className="w-5 h-5 text-white" />
+    </button>
+  );
+};
+
+const PrevArrow = (props: any) => {
+  const { onClick } = props;
+  return (
+    <button
+      onClick={onClick}
+      className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/20 hover:bg-white/30 rounded-full p-2 transition-all duration-300 focus:outline-none"
+    >
+      <FiChevronLeft className="w-5 h-5 text-white" />
+    </button>
+  );
+};
+
 const AboutUsPage = () => {
   const [activeTab, setActiveTab] = useState('mission');
+  
+  // Carousel settings
+  const sliderSettings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 6,
+    centerMode: true,
+    variableWidth: false,
+    centerPadding: '0',
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    pauseOnHover: true,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 1,
+        }
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          arrows: false,
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          arrows: false,
+        }
+      }
+    ]
+  };
   
   const teamMembers: TeamMember[] = [
     {
@@ -172,10 +242,10 @@ const AboutUsPage = () => {
             </div>
 
             {/* Bottom Row - Video with Orange Section */}
-            <div className="relative w-full -mt-8">
+            <div className="relative w-full mt-2 md:-mt-8">
               {/* Orange Section - Full width */}
               <div 
-                className="absolute top-1/3 left-1/2 -translate-x-1/2 w-screen h-[820px] pt-32 pb-16" 
+                className="absolute top-1/3 left-1/2 -translate-x-1/2 w-screen h-[820px] pt-32 pb-16 -mt-16 md:-mt-0" 
                 style={{ 
                   width: '100vw',
                   background: 'linear-gradient(180deg, #F9AC7D 0%, #F53900 100%)'
@@ -184,50 +254,57 @@ const AboutUsPage = () => {
                 <div className="max-w-7xl mx-auto px-4 sm:px-8">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                     {/* Mission Section */}
-                    <div className="bg-transparent backdrop-blur-sm p-8 rounded-2xl mt-36">
+                    <div className="bg-transparent backdrop-blur-sm p-8 rounded-2xl mt-4 md:mt-36">
                       <div className="text-left mb-2">
-                        <h2 className="text-lg font-inter font-bold text-white leading-tight">
+                        <h2 className="text-md md:text-lg font-inter font-bold text-white leading-tight">
                           OUR <br />
-                          <span className="text-lg font-inter font-bold text-white">MISSION</span>
+                          <span className="text-md md:text-lg font-inter font-bold text-white">MISSION</span>
                         </h2>
                       </div>
-                      <h1 className="font-inter font-bold text-4xl md:text-4xl text-white mb-4">We make travel accessible, enjoyable, and worry-free</h1>
-                      <p className="font-inter font-regular text-white/60 text-md">
+                      <h1 className="font-inter font-bold text-2xl md:text-4xl text-white mb-4">We make travel accessible, enjoyable, and worry-free</h1>
+                      <p className="font-inter font-regular text-white/60 text-sm md:text-md">
                         We aim to empower travelers with simple tools, personalised recommendations, and reliable support — ensuring everyone can explore the world confidently.
                       </p>
                     </div>
 
                     {/* Vision Section */}
-                    <div className="bg-transparent backdrop-blur-sm p-8 rounded-2xl mt-36">
+                    <div className="bg-transparent backdrop-blur-sm p-8 rounded-2xl -mt-16 md:mt-36">
                       <div className="text-left mb-2">
-                        <h2 className="text-lg font-inter font-bold text-white leading-tight">
+                        <h2 className="text-md md:text-lg font-inter font-bold text-white leading-tight">
                           OUR <br />
-                          <span className="text-lg font-inter font-bold text-white">VISION</span>
+                          <span className="text-md md:text-lg font-inter font-bold text-white">VISION</span>
                         </h2>
                       </div>
-                      <h1 className="font-inter font-bold text-4xl md:text-4xl text-white mb-4">To inspire meaningful travel experiences across the globe</h1>
-                      <p className="font-inter font-regular text-white/60 text-md">
+                      <h1 className="font-inter font-bold text-2xl md:text-4xl text-white mb-4">To inspire meaningful travel experiences across the globe</h1>
+                      <p className="font-inter font-regular text-white/60 text-sm md:text-md">
                         We envision a world where travel is smoother, smarter, and more enriching. Hop N Go strives to bring people closer to cultures, landscapes, and unforgettable moments.
                       </p>
                     </div>
                   </div>
 
                   {/* Trusted By Section */}
-                  <div className="mt-16 w-full ml-4">
-                    <div className="text-left mb-6">
-                      <h2 className="text-xl font-inter font-medium text-white leading-tight">
-                        OUR <br />
-                        <span className="text-xl font-inter font-medium text-white">SUPPORTERS</span>
-                      </h2>
-                    </div>
-                    <div className="w-full overflow-x-auto">
-                      <div className="flex justify-start items-center space-x-12 md:space-x-16 w-max">
-                        <img src={sup1} alt="Supporter 1" className="h-8 object-contain flex-shrink-0" />
-                        <img src={sup2} alt="Supporter 2" className="h-8 object-contain flex-shrink-0" />
-                        <img src={sup3} alt="Supporter 3" className="h-8 object-contain flex-shrink-0" />
-                        <img src={sup4} alt="Supporter 4" className="h-8 object-contain flex-shrink-0" />
-                        <img src={sup5} alt="Supporter 5" className="h-8 object-contain flex-shrink-0" />
-                        <img src={sup6} alt="Supporter 6" className="h-8 object-contain flex-shrink-0 pr-4" />
+                  <div className="w-full relative overflow-hidden">
+                    <div className="container mx-auto px-4 md:mt-16">
+                      <div className="text-left mb-6">
+                        <h2 className="text-lg md:text-xl font-inter font-medium text-white leading-tight">
+                          OUR <br />
+                          <span className="text-xl font-inter font-medium text-white">SUPPORTERS</span>
+                        </h2>
+                      </div>
+                      <div className="relative px-4 sm:px-6 -mt-6 md:mt-0">
+                        <Slider {...sliderSettings}>
+                          {[sup1, sup2, sup3, sup4, sup5, sup6].map((img, index) => (
+                            <div key={index} className="px-2">
+                              <div className="flex items-center justify-center h-16">
+                                <img 
+                                  src={img} 
+                                  alt={`Supporter ${index + 1}`} 
+                                  className="h-6 md:h-8 object-contain filter brightness-0 invert opacity-80 hover:opacity-100 transition-opacity duration-300"
+                                />
+                              </div>
+                            </div>
+                          ))}
+                        </Slider>
                       </div>
                     </div>
                   </div>
@@ -239,7 +316,7 @@ const AboutUsPage = () => {
                 <div className="absolute top-1/2 left-0 w-full h-[200px] bg-transparent rounded-b-2xl"></div>
               
                 {/* Video */}
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1265px] h-[448px] rounded-3xl overflow-hidden shadow-xl z-10">
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[90%] sm:w-[80%] md:w-[90%] lg:w-[1265px] h-[300px] sm:h-[350px] md:h-[400px] lg:h-[448px] rounded-3xl overflow-hidden shadow-xl z-10">
                   {/* Video Thumbnail */}
                   <div className="w-full h-full bg-gray-100 flex items-center justify-center">
                     <img 
@@ -267,7 +344,7 @@ const AboutUsPage = () => {
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row items-center gap-12">
             {/* Left Side - Image */}
-            <div className="w-full lg:w-1/2 bg transparent">
+            <div className="w-full lg:w-1/2 bg transparent -mt-12 md:mt-0">
               <img 
                 src={why} 
                 alt="Why Choose Hop N Go" 
@@ -276,7 +353,7 @@ const AboutUsPage = () => {
             </div>
             
             {/* Right Side - Content */}
-            <div className="w-full lg:w-1/2">
+            <div className="w-full lg:w-1/2 -mt-8 md:mt-0">
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-14 h-[2px] bg-[#1D2130]"></div>
                 <span className="text-[#1D2130] text-sm font-inter font-bold tracking-widest">WHY US</span>
@@ -350,16 +427,16 @@ const AboutUsPage = () => {
 
       {/* Our Journey Section */}
       <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 -mt-16 md:-mt-16">
           <div className="bg-[#F53900] rounded-3xl overflow-hidden py-12">
             <div className="flex flex-col lg:flex-row">
               {/* Left Side - Content */}
-              <div className="w-full lg:w-[55%] p-12 pt-20 text-white">
+              <div className="w-full lg:w-[55%] p-12 pt-20 text-white -mt-12 md:mt-0">
                 <div className="flex items-center gap-4 mb-6">
                   <span className="text-sm font-inter font-bold tracking-widest">OUR JOURNEY</span>
                 </div>
-                <h2 className="text-5xl font-inter font-bold mb-6">How We Help Travelers Explore More</h2>
-                <p className="text-white/60 font-inter font-regular mb-10 text-lg">
+                <h2 className="text-3xl md:text-5xl font-inter font-bold mb-6">How We Help Travelers Explore More</h2>
+                <p className="text-white/60 font-inter font-regular mb-10 text-md md:text-lg">
                   Since our beginning, we have helped thousands of travelers plan meaningful adventures with confidence.
                 </p>
                 
@@ -367,15 +444,15 @@ const AboutUsPage = () => {
                 <div className="grid grid-cols-3 gap-2">
                   <div>
                     <h3 className="text-xl font-inter font-medium mb-2">34K+</h3>
-                    <p className="text-white/60 text-sm font-inter font-medium">Destinations Searched</p>
+                    <p className="text-white/60 text-xs md:text-sm font-inter font-medium">Destinations Searched</p>
                   </div>
                   <div>
                     <h3 className="text-xl font-inter font-medium mb-2">400+</h3>
-                    <p className="text-white/60 text-sm font-inter font-medium">Successful Trips</p>
+                    <p className="text-white/60 text-xs md:text-sm font-inter font-medium">Successful Trips</p>
                   </div>
                   <div>
                     <h3 className="text-xl font-inter font-medium mb-2">20+</h3>
-                    <p className="text-white/60 text-sm font-inter font-medium">Travel Experts</p>
+                    <p className="text-white/60 text-xs md:text-sm font-inter font-medium">Travel Experts</p>
                   </div>
                 </div>
               </div>
@@ -409,7 +486,7 @@ const AboutUsPage = () => {
             <div className="flex flex-col lg:flex-row">
               {/* Left Side - Title */}
               <div className="w-full lg:w-2/5 mb-10 lg:mb-0 lg:pr-0">
-                <h2 className="text-5xl font-inter font-semibold text-black">
+                <h2 className="text-3xl md:text-5xl font-inter font-semibold text-black">
                   Ready for Your Next Adventure?
                 </h2>
                 <div className="w-36 h-2 bg-black my-6"></div>
@@ -417,10 +494,10 @@ const AboutUsPage = () => {
               
               {/* Right Side - Content */}
               <div className="w-full lg:w-3/5 lg:pl-48">
-                <h3 className="text-2xl font-inter font-bold text-black mb-4">
+                <h3 className="text-xl md:text-2xl font-inter font-bold text-black mb-4">
                   Your dream destination is just a click away.
                 </h3>
-                <p className="text-[#4C4C4C] text-lg font-inter font-semibold mb-8">
+                <p className="text-[#4C4C4C] text-md md:text-lg font-inter font-semibold mb-8">
                   Start exploring breathtaking landscapes, vibrant cultures, and unforgettable experiences today. With Hop N Go, you’re not just booking a trip — you’re creating lifelong memories
                 </p>
                 <button 

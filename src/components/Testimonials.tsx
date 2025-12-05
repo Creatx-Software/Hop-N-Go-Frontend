@@ -64,7 +64,7 @@ const Testimonials = () => {
     setTimeout(() => setIsTransitioning(false), 500);
   };
   return (
-    <section className="relative py-24 bg-background">
+    <section className="relative py-24 bg-background -mt-24 md:-mt-10">
       <div className="container mx-auto px-6">
         <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 items-start">
           {/* Right side - Title and Image - Moved to top on mobile */}

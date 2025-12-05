@@ -126,7 +126,7 @@ const Navigation = () => {
         <div 
           className={`mobile-menu-container md:hidden fixed top-24 right-4 transition-all duration-300 ease-in-out transform ${
             mobileMenuOpen ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0 pointer-events-none'
-          } z-40 bg-white/10 backdrop-blur-md rounded-lg shadow-lg border border-white/10 pt-4`}
+          } z-40 bg-white/40 backdrop-blur-md rounded-lg shadow-lg border border-white/20 pt-4`}
           style={{
             width: 'auto',
             minWidth: '200px',
@@ -137,31 +137,32 @@ const Navigation = () => {
           <div className="flex flex-col space-y-3 items-end">
             <Link 
               to="/destinations"
-              className={`text-lg py-2 transition-colors ${scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90'} font-medium`}
+              className="text-lg py-2 transition-colors text-foreground hover:text-primary font-medium"
               onClick={closeMobileMenu}
             >
               Destination
             </Link>
             <Link 
               to="/e-visa"
-              className={`text-lg py-2 transition-colors ${scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90'} font-medium`}
+              className="text-lg py-2 transition-colors text-foreground hover:text-primary font-medium"
               onClick={closeMobileMenu}
             >
               E Visa
             </Link>
             <Link 
               to="/about-us"
-              className={`text-lg py-2 transition-colors ${scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90'} font-medium`}
+              className="text-lg py-2 transition-colors text-foreground hover:text-primary font-medium"
               onClick={closeMobileMenu}
             >
               About Us
             </Link>
-            <button 
-              onClick={() => handleNavClick('contact')} 
-              className={`text-lg py-2 transition-colors ${scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90'} font-medium`}
+            <Link 
+              to="/contact"
+              className="text-lg py-2 transition-colors text-foreground hover:text-primary font-medium"
+              onClick={closeMobileMenu}
             >
               Contact
-            </button>
+            </Link>
             
             <div className="pt-4 mt-4">
               <a 

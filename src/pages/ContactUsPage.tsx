@@ -77,18 +77,18 @@ const ContactUsPage = () => {
                 </div>
                 <div className="text-white text-sm font-roboto font-bold tracking-widest ml-16">US</div>
               </div>
-              <div className="relative">
+              <div className="relative -ml-16 md:ml-0">
                 <h1 className="text-4xl text-white md:text-7xl font-inter font-bold mb-6 ml-16 leading-tight">
                   We'd love to hear from you
                 </h1>
-                <p className="text-white/60 font-inter font-regular text-lg mb-8 ml-16 max-w-lg">
+                <p className="text-white/60 font-inter font-regular text-md md:text-lg mb-8 ml-16 max-w-lg">
                   Have a question, planning a trip, or need assistance with your booking? Our team is always ready to help. Reach out through the form or contact details below.
                 </p>
               </div>
             </div>
             
             {/* Right Side */}
-            <div className="bg-transparent backdrop-blur-sm rounded-2xl p-8 max-w-md -mt-8 md:-mt-10">
+            <div className="bg-transparent backdrop-blur-sm rounded-2xl p-8 max-w-md -mt-16 md:-mt-10 -ml-10 md:ml-0 -mr-12 md:mr-0">
               <h3 className="text-2xl text-white font-inter font-bold mb-6">Let's talk!</h3>
               
               <div className="grid grid-cols-2 gap-4">
@@ -120,7 +120,7 @@ const ContactUsPage = () => {
                         <Linkedin className="w-5 h-5 text-[#F53900]/90 fill-[#F53900]/90 hover:text-white hover:fill-white transition-colors duration-200" />
                       </a>
                     </div>
-                    <div className="absolute -right-48 top-1/2 transform -translate-y-1/2 flex flex-col space-y-4 pr-4">
+                    <div className="absolute right-4 md:-right-48 top-1/2 transform -translate-y-1/2 flex flex-col space-y-4 pr-4 mt-52 md:mt-0">
                   <a href="#" className="w-10 h-10 rounded-full bg-transparent border border-white flex items-center justify-center hover:bg-[#F53900]/50 transition-colors duration-200">
                     <Facebook className="w-5 h-5 text-white/90 fill-white/90 hover:text-white hover:fill-white transition-colors duration-200" />
                   </a>
@@ -143,12 +143,12 @@ const ContactUsPage = () => {
       {/* Get in Touch */}
       <section className="bg-white py-12">
         <div className="container mx-auto px-0 max-w-7xl">
-          <div className="text-start mb-4">
+          <div className="text-start mb-4 ml-4 md:ml-0">
             <h2 className="text-4xl md:text-5xl font-inter font-bold text-black mb-4">Get in Touch</h2>
             <p className="text-lg text-[#747474] font-inter font-regular max-w-8xl mb-8">
               We are here to support your travel needs with quick, friendly, and reliable assistance. Whether you need itinerary suggestions, booking guidance, or destination information — just reach out! <a href="#" className="text-[#F53900] hover:underline">Read More</a>
             </p>
-            <div className="flex flex-wrap gap-60 mt-6">
+            <div className="flex flex-wrap gap-4 md:gap-60 mt-6">
               <div className="flex items-start space-x-3">
                 <div className="bg-transparent p-3 rounded-full">
                   <Phone className="w-5 h-5 text-[#8D8D8D]" />
@@ -184,22 +184,22 @@ const ContactUsPage = () => {
       {/* Contact Us Form */}
       <section className="py-0 bg-gradient-to-r from-[#F74A1F]/10 to-white">
         <div className="container mx-auto px-4 max-w-10xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Side - Form */}
-            <div className="bg-transparent p-8 md:p-12">
-              <h2 className="text-4xl md:text-5xl font-inter font-bold text-black mb-4">Contact Us</h2>
-            <p className="text-lg text-[#747474] font-inter font-regular max-w-8xl mb-8">
+            <div className="bg-transparent p-4 sm:p-6 md:p-12">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-inter font-bold text-black mb-3 sm:mb-4">Contact Us</h2>
+            <p className="text-base sm:text-lg text-[#747474] font-inter font-regular max-w-8xl mb-6 sm:mb-8">
               Your journey matters to us. Connect with our travel experts for personalized assistance and smooth travel planning.
             </p>
-              <form className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
+              <form className="space-y-4 sm:space-y-6">
+                <div className="grid grid-cols-1 gap-4 sm:gap-6">
                   <div className="space-y-2">
                     <div className="relative">
                       <Input 
                         id="first-name" 
                         type="text" 
                         placeholder="First Name" 
-                        className="w-full h-12 px-4 bg-[#E9E9E9]/50 rounded-[10px] text-[#5D5D5D] text-inter text-regular border-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none focus:ring-0 focus:ring-offset-0 focus:outline-none"
+                        className="w-full h-10 sm:h-12 px-4 bg-[#E9E9E9]/50 rounded-[10px] text-[#5D5D5D] text-inter text-regular border-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none focus:ring-0 focus:ring-offset-0 focus:outline-none text-sm sm:text-base"
                         required
                       />
                       <span className="absolute left-24 top-1/2 transform -translate-y-1/2 text-red-500">*</span>
@@ -212,7 +212,7 @@ const ContactUsPage = () => {
                         id="last-name" 
                         type="text" 
                         placeholder="Last Name" 
-                        className="w-full h-12 px-4 bg-[#E9E9E9]/50 rounded-[10px] text-[#5D5D5D] text-inter text-regular border-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none focus:ring-0 focus:ring-offset-0 focus:outline-none"
+                        className="w-full h-10 sm:h-12 px-4 bg-[#E9E9E9]/50 rounded-[10px] text-[#5D5D5D] text-inter text-regular border-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none focus:ring-0 focus:ring-offset-0 focus:outline-none text-sm sm:text-base"
                         required
                       />
                       <span className="absolute left-24 top-1/2 transform -translate-y-1/2 text-red-500">*</span>
@@ -225,7 +225,7 @@ const ContactUsPage = () => {
                         id="email" 
                         type="email" 
                         placeholder="Email Id" 
-                        className="w-full h-12 px-4 bg-[#E9E9E9]/50 rounded-[10px] text-[#5D5D5D] text-inter text-regular border-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none focus:ring-0 focus:ring-offset-0 focus:outline-none"
+                        className="w-full h-10 sm:h-12 px-4 bg-[#E9E9E9]/50 rounded-[10px] text-[#5D5D5D] text-inter text-regular border-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none focus:ring-0 focus:ring-offset-0 focus:outline-none text-sm sm:text-base"
                         required
                       />
                       <span className="absolute left-20 top-1/2 transform -translate-y-1/2 text-red-500">*</span>
@@ -238,7 +238,7 @@ const ContactUsPage = () => {
                         id="phone" 
                         type="tel" 
                         placeholder="Phone Number" 
-                        className="w-full h-12 px-4 bg-[#E9E9E9]/50 rounded-[10px] text-[#5D5D5D] text-inter text-regular border-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none focus:ring-0 focus:ring-offset-0 focus:outline-none"
+                        className="w-full h-10 sm:h-12 px-4 bg-[#E9E9E9]/50 rounded-[10px] text-[#5D5D5D] text-inter text-regular border-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none focus:ring-0 focus:ring-offset-0 focus:outline-none text-sm sm:text-base"
                         required
                       />
                       <span className="absolute left-32 top-1/2 transform -translate-y-1/2 text-red-500">*</span>
@@ -252,7 +252,7 @@ const ContactUsPage = () => {
                       id="message" 
                       rows={5} 
                       placeholder="Message" 
-                      className="w-[110%] max-w-[120%] px-4 py-3 bg-[#E9E9E9]/50 rounded-[10px] text-[#5D5D5D] text-inter text-regular border-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none focus:ring-0 focus:ring-offset-0 focus:outline-none resize-none"
+                      className="w-full max-w-full sm:w-[110%] sm:max-w-[120%] px-4 py-3 bg-[#E9E9E9]/50 rounded-[10px] text-[#5D5D5D] text-inter text-regular border-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none focus:ring-0 focus:ring-offset-0 focus:outline-none resize-none text-sm sm:text-base"
                     />
                   </div>
                 </div>
@@ -260,7 +260,7 @@ const ContactUsPage = () => {
                 <div className="pt-2">
                   <Button 
                     type="submit" 
-                    className="w-full md:w-auto px-72 py-6 text-base font-medium text-white bg-gradient-to-r from-[#F9AC7D] to-[#F53900] hover:opacity-90 transition-opacity duration-200 rounded-[10px] shadow-md"
+                    className="w-full px-4 py-4 sm:py-6 text-sm sm:text-base font-medium text-white bg-gradient-to-r from-[#F9AC7D] to-[#F53900] hover:opacity-90 transition-opacity duration-200 rounded-[10px] shadow-md"
                   >
                     SEND
                   </Button>
@@ -269,26 +269,26 @@ const ContactUsPage = () => {
             </div>
 
             {/* Right Side - Image */}
-            <div className="hidden lg:block ml-24 w-[120%] max-w-[660px]">
+            <div className="lg:ml-24 w-full lg:w-[120%] max-w-[660px] order-2 lg:order-none -mt-10 md:mt-0 ml-20 md:ml-0 pb-6 md:pb-0">
               <img 
                 src={contact} 
                 alt="Contact Us" 
                 className="w-full h-auto rounded-2xl object-cover"
               />
               {/* Rating Card */}
-              <div className="bg-white p-4 rounded-2xl shadow-lg -mt-20 ml-12 max-w-[200px]">
-                <div className="flex items-center justify-center mb-2">
+              <div className="bg-white p-2 sm:p-3 md:p-4 rounded-xl sm:rounded-2xl shadow-lg -mt-12 sm:-mt-16 md:-mt-20 ml-2 sm:ml-10 md:ml-12 max-w-[150px] sm:max-w-[180px] md:max-w-[200px]">
+                <div className="flex items-center justify-center mb-1 sm:mb-2">
                   <div className="flex items-center">
                     {[1, 2, 3, 4, 5].map((star) => (
-                      <svg key={star} className="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                      <svg key={star} className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                       </svg>
                     ))}
                   </div>
-                  <span className="ml-1 text-xs font-medium text-gray-700">5.0 (1.2k)</span>
+                  <span className="ml-1 text-[10px] sm:text-xs font-medium text-gray-700">5.0 (1.2k)</span>
                 </div>
-                <p className="text-sm text-gray-700 text-center mb-2">"Outstanding service!"</p>
-                <div className="flex justify-center space-x-1">
+                <p className="text-[11px] sm:text-xs md:text-sm text-gray-700 text-center mb-1 sm:mb-2">"Outstanding service!"</p>
+                <div className="flex justify-center space-x-0.5 sm:space-x-1">
                   {['😊', '😍', '😎', '😢', '😡'].map((emoji, index) => (
                     <button 
                       key={index}
@@ -316,17 +316,17 @@ const ContactUsPage = () => {
           }}
         ></div>
         
-        <div className="container mx-auto px-4 w-full max-w-[80rem] px-8 relative z-10">
-          <div className="text-left mb-12">
+        <div className="container mx-auto px-4 w-full max-w-[80rem] relative z-10">
+          <div className="text-left mb-12 px-4 sm:px-8">
             <h2 className="text-3xl md:text-5xl font-inter font-bold mb-4">
               <div className="mb-2">FREQUENTLY</div>
               <div>ASK <span className="text-[#F74A1F]">QUESTIONS</span></div>
             </h2>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 items-start w-full">
+          <div className="flex flex-col lg:grid lg:grid-cols-[1fr_auto] gap-8 items-start w-full">
             {/* FAQ List */}
-            <div className="space-y-6 w-full">
+            <div className="space-y-6 w-full px-4 sm:px-8">
               {faqs.map((faq, index) => (
                 <div key={index} className="bg-transparent border border-white/50 rounded-sm overflow-hidden hover:border-[#F74A1F]/50 transition-colors duration-200">
                   <button
@@ -358,13 +358,13 @@ const ContactUsPage = () => {
               ))}
             </div>
             
-            {/* Image Section */}
-            <div className="relative hidden lg:block -mt-24">
-              <div className="w-[140%]">
+            {/* Image Section - Shown below FAQ on mobile, to the right on desktop */}
+            <div className="relative w-full lg:w-auto -mt-0 lg:-mt-24 order-2 lg:order-none px-4 sm:px-8 lg:px-0">
+              <div className="w-full lg:w-[140%] max-w-[500px] mx-auto lg:mx-0">
                 <img 
                   src={question}
-                  alt="" 
-                  className="w-full h-auto object-contain max-h-[700px]"
+                  alt="Frequently asked questions" 
+                  className="w-full h-auto object-contain max-h-[400px] lg:max-h-[700px]"
                 />
               </div>
             </div>

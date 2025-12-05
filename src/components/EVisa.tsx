@@ -21,7 +21,7 @@ const EVisa = () => {
           </div>
           
           {/* Image - Left side on desktop, bottom on mobile */}
-          <div className="w-full md:w-[60%] -ml-32 -mt-16 md:mt-0">
+          <div className="w-full md:w-[60%] md:-ml-32 -mt-16 md:mt-0">
             <div className="relative w-full max-w-3xl mx-auto">
               <img
                 src={evisaImage}

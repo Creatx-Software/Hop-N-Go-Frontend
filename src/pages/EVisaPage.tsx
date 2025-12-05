@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -26,6 +26,7 @@ const EVisaPage = () => {
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
   const [activeFaqId, setActiveFaqId] = useState<number | null>(1);
   const testimonials = [
     {
@@ -62,18 +63,32 @@ const EVisaPage = () => {
     }
   ];
 
+  useEffect(() => {
+    const handleResize = () => {
+      const mobile = window.innerWidth < 768;
+      setIsMobile(mobile);
+      // Reset slide position when switching between mobile and desktop
+      if (mobile && currentSlide > 0) {
+        setCurrentSlide(0);
+      }
+    };
+    
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [currentSlide]);
+
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev >= testimonials.length - 3 ? 0 : prev + 1));
+    setCurrentSlide(prev => (prev >= testimonials.length - 1 ? 0 : prev + 1));
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev <= 0 ? testimonials.length - 3 : prev - 1));
+    setCurrentSlide(prev => (prev <= 0 ? testimonials.length - 1 : prev - 1));
   };
   
-  // Calculate the width for 3 cards with proper spacing
-  const cardWidth = 31; // Percentage width for each card
-  const gapWidth = 3; // Gap between cards in percentage (slightly increased)
-  const totalWidth = (cardWidth * 3) + (gapWidth * 2); // Total width for 3 cards and 2 gaps
+  const cardWidth = isMobile ? 90 : 32;
+  const gapWidth = isMobile ? 10 : 2;
+  const totalWidth = isMobile ? 100 : (32 * 3) + (2 * 2);
 
   const leftFaqs = [
     {
@@ -187,21 +202,21 @@ const EVisaPage = () => {
         </div>
         
         {/* Hero Content */}
-        <div className="relative z-10 flex flex-col items-center justify-center text-center text-white max-w-6xl mx-auto mt-32">
-          <div className="bg-transparent border border-white text-white/90 text-xs font-inter font-semibold px-4 py-2 rounded-full mb-6 inline-flex items-center">
+        <div className="relative z-10 flex flex-col items-center justify-center text-center text-white max-w-6xl mx-auto mt-16 md:mt-32">
+          <div className="bg-transparent border border-white text-white/90 text-xs md:text-xs font-inter font-semibold px-4 py-2 rounded-full mb-6 inline-flex items-center">
             Easy way , Apply Your Evisa Support
             <ArrowRight className="w-5 h-5 ml-4" />
           </div>
           <div className="max-w-4xl mx-auto text-center text-white">
-            <h1 className="text-4xl md:text-5xl lg:text-5xl font-inter font-semibold mb-6">
+            <h1 className="text-2xl md:text-5xl lg:text-5xl font-inter font-semibold mb-6">
               Start your journey with eVisa Express  Choose your next destination
             </h1>
-            <p className="text-md md:text-lg mb-8 max-w-5xl mx-auto font-inter font-medium">
+            <p className="text-xs md:text-lg mb-8 max-w-5xl mx-auto font-inter font-medium px-4 md:px-8 lg:px-0 lg:-mx-8">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4 mt-10">
+            <div className="flex flex-col sm:flex-row justify-center items-center sm:items-start gap-4 mt-10">
               <Button 
-                className="bg-gradient-to-r from-[#F9AC7D] to-[#F53900] hover:opacity-90 transition-opacity duration-200 text-white px-8 py-6 text-lg font-roboto font-semibold rounded-full"
+                className="bg-gradient-to-r from-[#F9AC7D] to-[#F53900] hover:opacity-90 transition-opacity duration-200 text-white px-6 sm:px-8 py-6 text-md md:text-lg font-roboto font-semibold rounded-full w-44 sm:w-auto"
                 onClick={() => {
                   const formSection = document.getElementById('visa-form');
                   formSection?.scrollIntoView({ behavior: 'smooth' });
@@ -280,7 +295,7 @@ const EVisaPage = () => {
             </div>
 
             {/* Right Side - Image */}
-            <div className="lg:w-1/2 -mt-32 flex justify-end">
+            <div className="lg:w-1/2 md:-mt-32 flex justify-center md:justify-end">
               <div className="w-4/5">
                 <img 
                   src= {apply}
@@ -298,7 +313,7 @@ const EVisaPage = () => {
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row items-center gap-12">
             {/* Left Side - Mobile Image */}
-            <div className="lg:w-1/2 -mt-64">
+            <div className="lg:w-1/2 -mt-40 md:-mt-64">
               <img 
                 src={mobile} 
                 alt="EVisa Mobile App" 
@@ -358,28 +373,34 @@ const EVisaPage = () => {
               </button>
             </div>
           </div>
-
           <div className="relative overflow-hidden">
             <div className="w-full overflow-hidden">
               <div 
                 className="relative transition-transform duration-300 ease-in-out"
                 style={{
-                  transform: `translateX(calc(-${currentSlide} * (${cardWidth}% + ${gapWidth}%)))`,
-                  width: '100%',
-                  padding: '0 1%'
+                  transform: isMobile 
+                    ? `translateX(calc(-${currentSlide} * 100%))`
+                    : `translateX(calc(-${currentSlide} * (${cardWidth}% + ${gapWidth}%)))`,
+                  width: isMobile ? '100%' : '100%',
+                  padding: isMobile ? '0 16px' : '0 1%',
+                  boxSizing: 'border-box'
                 }}
               >
                 <div 
-                  className="grid grid-cols-1 md:grid-cols-3 gap-4"
+                  className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full"
                   style={{
                     display: 'grid',
-                    gridTemplateColumns: `repeat(${testimonials.length}, ${cardWidth}%)`,
-                    gap: `${gapWidth}%`,
-                    width: '100%'
+                    gridTemplateColumns: isMobile 
+                      ? `repeat(${testimonials.length}, 1fr)` 
+                      : `repeat(${testimonials.length}, ${cardWidth}%)`,
+                    gap: isMobile ? '0' : `${gapWidth}%`,
+                    width: isMobile ? '100%' : '100%',
+                    boxSizing: 'border-box',
+                    padding: isMobile ? '0 0' : '0 1px'
                   }}
                 >
                       {testimonials.map((testimonial) => (
-                    <div key={testimonial.id} className="bg-white p-5 rounded-xl shadow-sm border border-[#9E9E9E] w-full">
+                    <div key={testimonial.id} className="bg-white p-5 rounded-xl shadow-sm border border-[#9E9E9E] w-[calc(100%-32px)] mx-4 h-full">
                       <div className="flex items-start mb-4">
                         <img 
                           src={testimonial.avatar} 
@@ -410,7 +431,7 @@ const EVisaPage = () => {
                           <span className="text-sm text-black font-inter font-regular">{testimonial.country}</span>
                         </div>
                       </div>
-                      <p className="text-black text-sm font-inter font-regular leading-relaxed mb-4">
+                      <p className="text-black text-sm text-justify font-inter font-regular leading-relaxed mb-4">
                         {testimonial.text}
                       </p>
                       <p className="text-black text-xs font-inter font-regular">Date of experience: {testimonial.date}</p>
@@ -429,24 +450,24 @@ const EVisaPage = () => {
           <div className="flex flex-col lg:flex-row rounded-none overflow-hidden">
             <div className="bg-[#F53900] text-white w-full lg:w-1/2 px-8 md:px-16 pt-0 pb-3 md:pt-0 md:pb-0 flex items-center">
               <div className="space-y-8 max-w-sm">
-                <h2 className="text-3xl md:text-4xl text-[#F4F7F2] font-inter font-medium -mt-20 md:-mt-20 mb-16">
+                <h2 className="text-3xl md:text-4xl text-[#F4F7F2] font-inter font-medium mt-10 md:-mt-20 md:mb-16">
                   Evisa Express Today
                 </h2>
                 <div className="space-y-6 text-left">
                   <div>
-                    <p className="text-3xl md:text-4xl font-inter font-semibold mb-1">99%</p>
+                    <p className="text-2xl md:text-4xl font-inter font-semibold mb-1">99%</p>
                     <p className="text-sm md:text-base text-white/80 font-inter font-medium leading-relaxed">
                       Effectiveness in positively processed applications
                     </p>
                   </div>
                   <div>
-                    <p className="text-3xl md:text-4xl font-inter font-bold mb-1">85%</p>
+                    <p className="text-2xl md:text-4xl font-inter font-bold mb-1">85%</p>
                     <p className="text-sm md:text-base text-white/80 font-inter font-medium leading-relaxed">
                       Time saved by using our service, we’ll just do it for you
                     </p>
                   </div>
                   <div>
-                    <p className="text-3xl md:text-4xl font-inter font-bold mb-1">100%</p>
+                    <p className="text-2xl md:text-4xl font-inter font-bold mb-1">100%</p>
                     <p className="text-sm md:text-base text-white/80 font-inter font-regular leading-relaxed">
                       evisa.express utilizes top-tier data security standards, leveraging SSL certificate protection to guarantee a high level of data security. This ensures that all personal data provided by users is appropriately safeguarded
                     </p>
@@ -454,7 +475,7 @@ const EVisaPage = () => {
                 </div>
               </div>
             </div>
-            <div className="w-full lg:w-1/2 h-[60px] md:h-[160px] lg:h-auto">
+            <div className="w-full lg:w-1/2 h-[300px] md:h-[160px] lg:h-auto">
               <img
                 src={expressImg}
                 alt="Evisa Express team"

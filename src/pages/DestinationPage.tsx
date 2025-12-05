@@ -259,12 +259,12 @@ const DestinationPage = () => {
     <div className="flex flex-col md:flex-row justify-between items-start mb-16 gap-4">
       <div className="md:w-1/2">
         <h2 className="font-inter text-md text-[#0C111F] font-normal mb-4">[Popular Destinations]</h2>
-        <p className="font-inter text-5xl font-semibold text-[#0C111F] text-left">
+        <p className="font-inter text-4xl md:text-5xl font-semibold text-[#0C111F] text-left">
           A unique blend of adventure, culture and natural wonders
         </p>
       </div>
-      <div className="md:w-1/2 flex justify-end mt-0">
-        <p className="font-inter font-regular text-md text-[#98A2B3] max-w-md text-left mt-16">
+      <div className="w-full md:w-1/2 flex justify-end mt-6 md:mt-0">
+        <p className="font-inter font-regular text-md text-[#98A2B3] max-w-md text-left md:mt-16">
           Discover a fussion of adventure, culture and scenic beauty across our diverse destinations, offering unforgettanble experince at every turn.
         </p>
       </div>
@@ -272,9 +272,9 @@ const DestinationPage = () => {
 
     <div className="flex flex-col gap-6">
       {/* First Row */}
-      <div className="flex gap-6">
+      <div className="flex flex-col md:flex-row gap-6">
         {popularDestinations.slice(0, 2).map((destination, index) => (
-          <Card key={destination.id} className={`relative overflow-hidden group rounded-3xl cursor-pointer bg-transparent ${index === 0 ? 'w-[805px] h-[371px]' : 'w-[525px] h-[371px]'}`}>
+          <Card key={destination.id} className={`relative overflow-hidden group rounded-3xl cursor-pointer bg-transparent ${index === 0 ? 'w-full md:w-[805px] h-[250px] md:h-[371px]' : 'w-full md:w-[525px] h-[250px] md:h-[371px]'}`}>
             <img
               src={destination.image}
               alt={destination.name}
@@ -287,11 +287,11 @@ const DestinationPage = () => {
                   <ArrowRight className="w-6 h-6" />
                 </div>
                 <div className="absolute bottom-0 left-0 w-full px-3 pb-3">
-                  <div className="w-full p-8 rounded-3xl bg-white/20 backdrop-blur-xl">
-                    <h3 className="text-5xl font-inter font-medium text-white mb-4">
+                  <div className="w-full p-4 md:p-8 rounded-3xl bg-white/20 backdrop-blur-xl">
+                    <h3 className="text-3xl md:text-5xl font-inter font-medium text-white mb-2 md:mb-4">
                       {destination.name}
                     </h3>
-                    <p className="text-white/90 text-lg leading-relaxed font-inter font-normal">
+                    <p className="text-white/90 text-sm md:text-lg leading-relaxed font-inter font-normal">
                       {destination.description}
                     </p>
                   </div>
@@ -304,18 +304,18 @@ const DestinationPage = () => {
                   <ArrowRight className="w-6 h-6 text-white group-hover:text-black" />
                 </div>
                 <div className="absolute bottom-0 left-0 w-full px-3 pb-3">
-                  <div className="w-full p-8 rounded-3xl bg-white/20 backdrop-blur-xl transition-all duration-500 translate-y-64 group-hover:translate-y-0">
-                    <h3 className="text-5xl font-inter font-medium text-white mb-4">
+                  <div className="w-full p-4 md:p-8 rounded-3xl bg-white/20 backdrop-blur-xl transition-all duration-500 translate-y-64 group-hover:translate-y-0">
+                    <h3 className="text-3xl md:text-5xl font-inter font-medium text-white mb-2 md:mb-4">
                       {destination.name}
                     </h3>
-                    <p className="text-white/90 text-lg leading-relaxed font-inter font-normal opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <p className="text-white/90 text-sm md:text-lg leading-relaxed font-inter font-normal opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                       {destination.description}
                     </p>
                   </div>
                 </div>
                 {/* Title only overlay */}
                 <div className="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black/60 to-transparent group-hover:opacity-0 transition-opacity duration-300">
-                  <h3 className="text-5xl font-inter font-medium text-white">
+                  <h3 className="text-3xl md:text-5xl font-inter font-medium text-white">
                     {destination.name}
                   </h3>
                 </div>
@@ -326,9 +326,9 @@ const DestinationPage = () => {
       </div>
       
       {/* Second Row */}
-      <div className="flex gap-6">
+      <div className="flex flex-col md:flex-row gap-6">
         {popularDestinations.slice(2).map((destination, index) => (
-          <Card key={destination.id} className={`relative overflow-hidden group rounded-3xl cursor-pointer bg-transparent ${index === 0 ? 'w-[558px] h-[371px]' : 'w-[772px] h-[371px]'}`}>
+          <Card key={destination.id} className={`relative overflow-hidden group rounded-3xl cursor-pointer bg-transparent ${index === 0 ? 'w-full md:w-[558px] h-[250px] md:h-[371px]' : 'w-full md:w-[772px] h-[250px] md:h-[371px]'}`}>
             <img
               src={destination.image}
               alt={destination.name}
@@ -338,18 +338,18 @@ const DestinationPage = () => {
               <ArrowRight className="w-6 h-6 text-white group-hover:text-black" />
             </div>
             <div className="absolute bottom-0 left-0 w-full px-3 pb-3">
-              <div className="w-full p-8 rounded-3xl bg-white/20 backdrop-blur-xl transition-all duration-500 translate-y-64 group-hover:translate-y-0">
-                <h3 className="text-5xl font-inter font-medium text-white mb-4">
+              <div className="w-full p-4 md:p-8 rounded-3xl bg-white/20 backdrop-blur-xl transition-all duration-500 translate-y-64 group-hover:translate-y-0">
+                <h3 className="text-3xl md:text-5xl font-inter font-medium text-white mb-2 md:mb-4">
                   {destination.name}
                 </h3>
-                <p className="text-white/90 text-lg font-inter font-normal leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                <p className="text-white/90 text-sm md:text-lg font-inter font-normal leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                   {destination.description}
                 </p>
               </div>
             </div>
             {/* Title only overlay */}
             <div className="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black/60 to-transparent group-hover:opacity-0 transition-opacity duration-300">
-              <h3 className="text-5xl font-inter font-medium text-white">
+              <h3 className="text-2xl md:text-5xl font-inter font-medium text-white">
                 {destination.name}
               </h3>
             </div>
@@ -377,12 +377,12 @@ const DestinationPage = () => {
     {/* Section Header */}
     <div className="mb-12">
       <div className="mb-8">
-        <h2 className="font-inter font-bold text-4xl text[#0C111F] md:text-5xl text-foreground mb-2">
+        <h2 className="font-inter font-bold text-4xl text[#0C111F] md:text-5xl text-foreground mb-6">
           Best Destinations
         </h2>
-        <p className="text-muted-foreground text-lg text-left max-w-2xl font-inter font-regular">
-          We've selected some of the top spots around the world to<br/>
-          inspire your next adventure.
+        <p className="text-muted-foreground text-md text-left max-w-2xl font-inter font-regular">
+          <span className="hidden md:block">We've selected some of the top spots around the world to<br/>inspire your next adventure.</span>
+          <span className="md:hidden">We've selected some of the top spots around the world to inspire your next adventure.</span>
         </p>
       </div>
 
@@ -463,12 +463,12 @@ const DestinationPage = () => {
             <div className="flex flex-col md:flex-row justify-between items-start mb-16">
               <div className="md:w-1/2">
                 <h2 className="font-inter text-md text-[#0C111F] font-normal mb-4">[Packages]</h2>
-                <p className="font-inter text-5xl font-semibold text-[#0C111F] text-left">
+                <p className="font-inter text-4xl md:text-5xl font-semibold text-[#0C111F] text-left mb-6 md:mb-0">
                   Choose our range of expertly crafted packages
                 </p>
               </div>
-              <div className="md:w-1/2 pt-16">
-                <p className="font-inter font-light text-md text-[#98A2B3] max-w-md ml-48">
+              <div className="md:w-1/2 pt-0 md:pt-16">
+                <p className="font-inter font-light text-md text-[#98A2B3] max-w-md md:ml-48">
                   Whether you're seeking awe-inspiring landscapes, thrilling outdoor adventures, or Immerice cultural experiences, Snaeland has the perfect itinerary for you.
                 </p>
               </div>
@@ -512,7 +512,11 @@ const DestinationPage = () => {
             {packages.map((pkg, index) => (
               <div 
                 key={pkg.id}
-                className={`relative flex-shrink-0 transition-all duration-500 ease-in-out ${index === 0 ? 'w-[562px] h-[593px]' : 'w-[480px] h-[499px] hover:w-[562px] hover:h-[593px]'} rounded-3xl overflow-hidden`}
+                className={`relative flex-shrink-0 transition-all duration-500 ease-in-out ${
+                  index === 0 
+                    ? 'w-[300px] h-[350px] md:w-[562px] md:h-[593px]' 
+                    : 'w-[260px] h-[320px] hover:w-[300px] hover:h-[350px] md:w-[480px] md:h-[499px] md:hover:w-[562px] md:hover:h-[593px]'
+                } rounded-3xl overflow-hidden`}
               >
                 <div className="relative w-full h-full group overflow-hidden">
                   <img
@@ -522,26 +526,26 @@ const DestinationPage = () => {
                   />
                   
                   {/* Content Container */}
-                  <div className={`absolute left-0 right-0 bottom-0 px-8 pb-4 pt-8 transition-all duration-500 ${index !== 0 && 'group-hover:translate-y-0'}`}>
+                  <div className={`absolute left-0 right-0 bottom-0 px-8 pb-4 pt-8 transition-all duration-500 ${index !== 0 ? 'md:group-hover:translate-y-0' : ''}`}>
                     <div className="flex flex-col gap-4">
                       <div className="flex flex-wrap gap-2">
                       {/* Duration */}
-                      <div className="bg-gray/40 backdrop-blur-sm text-[#FCFCFD] text-sm font-medium px-4 py-2 rounded-full border border-white/20 inline-flex items-center">
+                      <div className="bg-gray/40 backdrop-blur-sm text-[#FCFCFD] text-xs md:text-sm font-medium px-4 py-2 rounded-full border border-white/20 inline-flex items-center">
                         {pkg.duration}
                       </div>
                       
                       {/* Price */}
-                      <div className="bg-[#F8FAFC] backdrop-blur-sm text-[#1D2939] text-sm font-medium px-4 py-2 rounded-full border border-white/20 inline-flex items-center">
+                      <div className="bg-[#F8FAFC] backdrop-blur-sm text-[#1D2939] text-xs md:text-sm font-medium px-4 py-2 rounded-full border border-white/20 inline-flex items-center">
                         {pkg.price}
                         </div>
                       
                       {/* Title */}
-                      <h3 className="text-3xl text-white font-['Inter'] font-normal">
+                      <h3 className="text-xl md:text-3xl text-white font-['Inter'] font-normal">
                         {pkg.name}
                       </h3>
                       
                       {/* Description - shown only on first card or on hover */}
-                      <div className={`text-white/70 text-base leading-relaxed transition-all duration-500 overflow-hidden font-['Inter'] font-normal ${index === 0 ? 'max-h-32' : 'max-h-0 group-hover:max-h-32'}`}>
+                      <div className={`text-white/70 text-xs md:text-base leading-relaxed transition-all duration-500 overflow-hidden font-['Inter'] font-normal ${index === 0 ? 'max-h-32' : 'max-h-0 group-hover:max-h-32'}`}>
                         {pkg.description}
                       </div>
                     </div>

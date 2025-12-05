@@ -17,6 +17,7 @@ const Navigation = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
   const isColoredNav = location.pathname === '/destinations' || location.pathname === '/about-us' || location.pathname === '/contact' || location.pathname === '/e-visa';
+  const isHeroPage = location.pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -111,12 +112,12 @@ const Navigation = () => {
             
             {/* Mobile Menu Button */}
             <button 
-              className={`md:hidden p-3 rounded-sm focus:outline-none focus:ring-0 ${scrolled ? 'text-foreground' : 'text-white'} bg-white/10 backdrop-blur-sm`}
+              className="md:hidden p-3 rounded-sm focus:outline-none focus:ring-0 text-foreground bg-white/10 backdrop-blur-sm"
               onClick={handleMenuButtonClick}
               aria-label="Toggle menu"
               aria-expanded={mobileMenuOpen}
             >
-              <Menu className={`w-5 h-5 transition-transform ${mobileMenuOpen ? 'rotate-90' : ''}`} />
+              <Menu className={`w-5 h-5 transition-transform ${mobileMenuOpen ? 'rotate-90' : ''} ${isHeroPage ? 'text-white' : 'text-black'}`} />
             </button>
           </div>
         </div>

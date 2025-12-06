@@ -8,6 +8,7 @@ import DestinationPage from "./pages/DestinationPage";
 import AboutUsPage from "./pages/AboutUsPage";
 import ContactUsPage from "./pages/ContactUsPage";
 import EVisaPage from "./pages/EVisaPage";
+import DestinationList from "./pages/DestinationList";
 
 const queryClient = new QueryClient();
 
@@ -20,6 +21,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/destinations" element={<DestinationPage />} />
+          <Route path="/destination-search" element={<DestinationList />} />
           <Route path="/e-visa" element={<EVisaPage />} />
           <Route path="/about-us" element={<AboutUsPage />} />
           <Route path="/contact" element={<ContactUsPage />} />

@@ -2,6 +2,7 @@ import { Search, MapPin, Calendar, Plane, Clock, Star, Play, Mail, UserRound, Ch
 import AnimatedDestinationCards from "@/components/AnimatedDestinationCards";
 import LanguageDropdown from "@/components/LanguageDropdown";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import destiHero from "@/assets/destiHero.png";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -21,7 +22,12 @@ import package2 from "@/assets/package2.png";
 import package3 from "@/assets/package3.png";
 
 const DestinationPage = () => {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
+  
+  const handleSearch = () => {
+    navigate('/destination-search');
+  };
   const stats = [
     { value: "100K+", label: "Happy Customers" },
     { value: "150+", label: "Best Destinations" },
@@ -205,7 +211,11 @@ const DestinationPage = () => {
 
             {/* Buttons */}
             <div className="w-full lg:w-auto flex flex-col items-end lg:items-start lg:flex-row gap-8 sm:gap-4 lg:gap-6 lg:ml-4 -mt-40 lg:mt-6">
-                <Button variant="outline" className="w-[45%] sm:w-auto bg-[#F74A1F] hover:bg-[#F74A1F]/90 px-3 sm:px-6 py-6 rounded-[7px] font-inter font-semibold h-[28px] flex items-center justify-center text-white">
+                <Button 
+                  onClick={handleSearch}
+                  variant="outline" 
+                  className="w-[45%] sm:w-auto bg-[#F74A1F] hover:bg-[#F74A1F]/90 px-3 sm:px-6 py-6 rounded-[7px] font-inter font-semibold h-[28px] flex items-center justify-center text-white"
+                >
                   Search
                   <Search className="w-5 h-5 ml-2 sm:ml-4" />
                 </Button>

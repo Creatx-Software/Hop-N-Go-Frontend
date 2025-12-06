@@ -16,7 +16,7 @@ const Navigation = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
-  const isColoredNav = location.pathname === '/destinations' || location.pathname === '/about-us' || location.pathname === '/contact' || location.pathname === '/e-visa';
+  const isColoredNav = location.pathname === '/destinations' || location.pathname === '/about-us' || location.pathname === '/contact' || location.pathname === '/e-visa' || location.pathname.startsWith('/destination-');
   const isHeroPage = location.pathname === '/';
 
   useEffect(() => {

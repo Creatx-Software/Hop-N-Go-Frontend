@@ -147,7 +147,7 @@ const DestinationPage = () => {
               backgroundPosition: 'center 25%',
               backgroundRepeat: 'no-repeat',
               minHeight: '60vh',
-              maxHeight: '600px',
+              maxHeight: '640px',
               aspectRatio: '16/9',
               position: 'relative',
               zIndex: 1
@@ -220,10 +220,10 @@ const DestinationPage = () => {
             </div>
           </div>
           {/* Stats */}
-          <div className="flex flex-nowrap overflow-x-auto gap-6 sm:gap-10 -mt-0 sm:-mt-16 ml-4 sm:ml-16 pb-2 sm:pb-0 hide-scrollbar">
+          <div className="flex flex-nowrap overflow-x-auto gap-6 sm:gap-10 -mt-0 sm:-mt-16 ml-4 sm:ml-8 pb-2 sm:pb-0 hide-scrollbar">
             {stats.map((stat, index) => (
               <div key={index} className="flex-shrink-0 flex flex-col sm:flex-row sm:items-baseline gap-0 sm:gap-2">
-                <span className="text-sm sm:text-2xl font-Plus Jakarta Sans font-semibold text-black text-center sm:text-left">{stat.value}</span>
+                <span className="text-sm sm:text-3xl font-Plus Jakarta Sans font-semibold text-black text-center sm:text-left">{stat.value}</span>
                 <span className="text-xs sm:text-base text-black font-Plus Jakarta Sans font-normal text-center sm:text-left">{stat.label}</span>
               </div>
             ))}

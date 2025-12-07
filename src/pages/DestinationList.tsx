@@ -1,9 +1,11 @@
-﻿import { Search, MapPin, Star, ChevronDown, ChevronRight, Mail, ChevronUp, X, Clock, UserRound, Globe } from "lucide-react";
+﻿import { Search, MapPin, MapPinned, Star, ChevronDown, ChevronRight, Mail, ChevronUp, X, Clock, UserRound, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import listHero from "@/assets/ListHero.png";
+import MapModal from "@/components/MapModal";
+import map from "@/assets/map.png";
 
 const DestinationList = () => {
   const navigate = useNavigate();
@@ -15,6 +17,14 @@ const DestinationList = () => {
     language: [],
   });
   const [isFilterOpen, setIsFilterOpen] = useState(true);
+  const [isMapOpen, setIsMapOpen] = useState(false);
+  const [priceFilter, setPriceFilter] = useState<'person' | 'day'>('person');
+  const [searchCity, setSearchCity] = useState('');
+  const [selectedLocation, setSelectedLocation] = useState({
+    lat: -8.4095, // Default to Bali, Indonesia
+    lng: 115.1889,
+    name: 'Bali, Indonesia'
+  });
 
   const handleSearch = () => {
     navigate('/destination-search');
@@ -84,7 +94,7 @@ const DestinationList = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col overflow-x-hidden">
+    <div className="min-h-screen flex flex-col overflow-x-hidden bg-white">
       <Navigation />
       {/* Hero Section */}
       <section className="relative w-full h-[340px] md:h-[220px] overflow-visible px-4 mt-4 md:mt-4">
@@ -154,88 +164,288 @@ const DestinationList = () => {
       </section>
       
       {/* List Section */}
-      <section className="mt-6">
+      <section className="mt-2">
       {/* Add padding to push content below the overlapping search bar */}
-      <div className="pt-16">
-        {/* Header */}
-        <header className="bg-white shadow-sm">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-            <div className="flex justify-between items-center">
-              <h1 className="text-2xl font-bold text-gray-900">Discover Destinations</h1>
-              <div className="relative w-1/3">
-                <input
-                  type="text"
-                  placeholder="Search destinations..."
-                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F74A1F] focus:border-transparent"
-                />
-                <Search className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
-              </div>
+      <div className="pt-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <div className="flex justify-between items-center">
             </div>
           </div>
-        </header>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="max-w-7xl mx-auto px-10 md:px-0 py-8">
           <div className="flex flex-col md:flex-row gap-8">
             {/* Filters Sidebar */}
-            <div className="w-full md:w-1/4">
-              <div className="bg-white p-6 rounded-lg shadow-sm">
-                <div className="flex justify-between items-center mb-6">
-                  <h2 className="text-lg font-semibold">Filters</h2>
-                  <button 
-                    onClick={() => setIsFilterOpen(!isFilterOpen)}
-                    className="text-sm text-[#F74A1F] hover:underline"
-                  >
-                    {isFilterOpen ? 'Hide' : 'Show'} Filters
-                  </button>
+            <div className="w-full md:w-[320px] lg:pl-0 -ml-4">
+              <div className="bg-white rounded-lg shadow-sm">
+                {/* Map Section */}
+                <div className="relative h-48 rounded-sm overflow-hidden">
+                  <img 
+                    src={map} 
+                    alt="Map preview" 
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/4 to-black/10">
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <Button 
+                        onClick={() => {
+                          setSelectedLocation({
+                            lat: -8.4095, // Bali, Indonesia coordinates
+                            lng: 115.1889,
+                            name: 'Bali, Indonesia'
+                          });
+                          setIsMapOpen(true);
+                        }}
+                        className="bg-white text-[#EB662B] border-2 border-[#EB662B] rounded-sm hover:bg-white/90 font-inter font-medium flex items-center gap-2"
+                      >
+                        <MapPinned className="w-4 h-4" />
+                        Show on Map
+                      </Button>
+                    </div>
+                  </div>
                 </div>
-              
-                {isFilterOpen && (
-                  <div className="space-y-6">
-                    {Object.entries(filterOptions).map(([category, options]) => (
-                      <div key={category} className="border-b border-gray-100 pb-4">
-                        <button 
-                          className="flex justify-between items-center w-full text-left font-medium text-gray-700 mb-2"
-                          onClick={() => {
-                            const updatedFilters = { ...filters };
-                            updatedFilters[category] = [];
-                            setFilters(updatedFilters);
-                          }}
-                        >
-                          <span className="capitalize">{category}</span>
-                          <ChevronDown className="h-4 w-4 text-gray-400" />
-                        </button>
-                        <div className="space-y-2">
-                          {options.map((option) => (
-                            <div key={option} className="flex items-center">
-                              <input
-                                id={`${category}-${option}`}
-                                type="checkbox"
-                                className="h-4 w-4 text-[#F74A1F] focus:ring-[#F74A1F] border-gray-300 rounded"
-                                checked={filters[category].includes(option)}
-                                onChange={() => toggleFilter(category, option)}
-                              />
-                              <label htmlFor={`${category}-${option}`} className="ml-2 text-sm text-gray-600">
-                                {option}
-                              </label>
-                            </div>
-                          ))}
+
+                {/* Filter Header */}
+                <div className="p-4 border-b border-gray-200">
+                  <div className="flex justify-between items-center">
+                    <h2 className="text-[#383E48] font-roboto font-medium">Filter by:</h2>
+                    <button className="text-sm font-inter font-medium text-[#2B3037] underline underline-offset-2 hover:no-underline">
+                      Clear
+                    </button>
+                  </div>
+                </div>
+
+                <div className="divide-y divide-gray-200">
+                  {/* Length Filter */}
+                  <div className="p-4">
+                    <div className="flex justify-between items-center mb-3">
+                      <h3 className="text-sm text-[#383E48] font-roboto font-medium">Length</h3>
+                      <ChevronUp className="h-4 w-4 text-[#383E48]" />
+                    </div>
+                    <div className="space-y-3">
+                      <div className="relative pt-1">
+                        <div className="flex justify-between text-xs text-gray-500 mb-1">
+                          <span>- 2 Day</span>
+                          <span>21+ Day</span>
+                        </div>
+                        <div className="relative h-1 bg-gray-200 rounded-full mt-3">
+                          {/* Black line from start to first dot */}
+                          <div className="absolute left-0 w-1/6 h-1/3 bg-black rounded-full">
+                            {/* First dot (at the end of black line) */}
+                            <div className="absolute right-0 w-5 h-5 -translate-y-1/2 translate-x-1/2 bg-black rounded-full border-4 border-white"></div>
+                          </div>
+                          {/* Second dot (on the gray line) */}
+                          <div className="absolute top-1/2 right-0 w-5 h-5 -translate-y-1/2 translate-x-1/2 bg-black rounded-full border-4 border-white"></div>
                         </div>
                       </div>
-                    ))}
-                    <Button 
-                      onClick={clearFilters}
-                      variant="outline" 
-                      className="w-full mt-4 border-[#F74A1F] text-[#F74A1F] hover:bg-[#F74A1F]/10"
-                    >
-                      Clear All Filters
-                    </Button>
+                    </div>
                   </div>
-                )}
+
+                  {/* Price Filter */}
+                  <div className="p-4">
+                    <div className="flex justify-between items-center mb-3">
+                      <h3 className="text-sm text-[#383E48] font-roboto font-medium">Price</h3>
+                      <ChevronUp className="h-4 w-4 text-[#383E48]" />
+                    </div>
+                    <div className="flex border border-gray-300 rounded-md overflow-hidden">
+                      <button 
+                        onClick={() => setPriceFilter('person')}
+                        className={`flex-1 py-2 px-3 text-sm font-roboto font-medium hover:bg-gray-50 text-center ${
+                          priceFilter === 'person' ? 'text-[#1F2226]' : 'text-[#8B94A4]'
+                        }`}
+                      >
+                        Per Person
+                      </button>
+                      <div className="w-px bg-gray-300 my-2"></div>
+                      <button 
+                        onClick={() => setPriceFilter('day')}
+                        className={`flex-1 py-2 px-3 text-sm font-roboto font-medium hover:bg-gray-50 text-center ${
+                          priceFilter === 'day' ? 'text-[#1F2226]' : 'text-[#8B94A4]'
+                        }`}
+                      >
+                        Per Day
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Price Range Filter */}
+                  <div className="p-4">
+                    <div className="flex justify-between items-center mb-3">
+                      <h3 className="text-sm text-[#383E48] font-roboto font-medium">Price Range</h3>
+                      <ChevronDown className="h-4 w-4 text-gray-400" />
+                    </div>
+                    <p className="text-xs text-[#656F81] font-roboto font-semibold mb-3">
+                      {priceFilter === 'day' 
+                        ? 'Nightly prices including fees and taxes' 
+                        : 'Nightly prices including fees and taxes'}
+                    </p>
+                    
+                    {/* Histogram */}
+                    <div className="h-16 mb-0 flex items-end space-x-[2px] justify-center">
+                      {[8, 12, 16, 24, 32, 40, 32, 24, 16, 24, 32, 40, 48, 40, 32, 24, 16, 12, 8].map((h, i) => {
+                        // First 5 bars are #121316, the rest are gray
+                        const isDark = i < 14;
+                        return (
+                          <div 
+                            key={i} 
+                            className={`w-1.5 rounded-t-sm ${isDark ? 'bg-[#121316]' : 'bg-gray-200'}`}
+                            style={{ height: `${h}px` }}
+                          />
+                        );
+                      })}
+                    </div>
+                    
+                    <div className="space-y-3">
+                      <div className="relative pt-1">
+                        <div className="h-1/2 bg-121316 rounded-full">
+                          {/* First dot (left) - Start of orange section (bar 4) */}
+                          <div className="absolute top-1/2 left-0 w-4 h-4 -translate-x-1/2 -translate-y-1/2 bg-white border-2 border-gray-200 rounded-full"></div>
+                          {/* Second dot (right) - End of orange section (bar 13) */}
+                          <div className="absolute top-1/2 left-[calc(12/19*100%)] w-4 h-4 -translate-x-1/2 -translate-y-1/2 bg-white border-2 border-gray-200 rounded-full"></div>
+                        </div>
+                      </div>
+                      
+                      <div className="flex justify-between space-x-4">
+                        <div className="w-20">
+                          <label className="block text-xs text-gray-500 mb-1 text-center">Minimum</label>
+                          <div className="relative">
+                            <span className="absolute left-2 top-1/2 -translate-y-1/2 text-[#383E48]">$</span>
+                            <input 
+                              type="text" 
+                              value="200" 
+                              className="w-full pl-6 pr-2 py-1 border border-gray-300 rounded-sm text-sm text-center text-[#383E48] font-inter font medium"
+                            />
+                          </div>
+                        </div>
+                        <div className="w-20">
+                          <label className="block text-xs text-gray-500 mb-1 text-center">Maximum</label>
+                          <div className="relative">
+                            <span className="absolute left-2 top-1/2 -translate-y-1/2 text-[#383E48]">$</span>
+                            <input 
+                              type="text" 
+                              value="1,500+" 
+                              className="w-full pl-6 pr-2 py-1 border border-gray-300 rounded-sm text-sm text-center text-[#383E48] font-inter font medium"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Departure Date Filter */}
+                  <div className="p-4">
+                    <div className="flex justify-between items-center mb-4">
+                      <h3 className="text-sm text-[#383E48] font-roboto font-medium">Departure Date</h3>
+                      <ChevronUp className="h-4 w-4 text-[#383E48]" />
+                    </div>
+                    <div className="relative mb-4">
+                      <div className="relative">
+                        <input 
+                          type="text" 
+                          defaultValue="29 November 2025" 
+                          className="w-full px-3 py-3 border border-gray-300 rounded-sm text-sm bg-white text-[#232323] font-inter font-regular focus:outline-none focus:ring-1 focus:ring-orange-500 focus:border-orange-500"
+                        />
+                        <div className="absolute -top-2 left-3 px-1 bg-white text-xs text-[#9A9A9A] font-inter font-medium">
+                          Specific Departure Date
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="space-y-2">
+                      {[
+                        { month: 'December 2025', count: 12 },
+                        { month: 'January 2026', count: 200 },
+                        { month: 'February 2026', count: 10 },
+                        { month: 'March 2026', count: 35 },
+                        { month: 'April 2026', count: 35 },
+                        { month: 'May 2026', count: 35 },
+                        { month: 'June 2026', count: 35 },
+                        { month: 'July 2026', count: 35 },
+                      ].map((item, index) => (
+                        <div key={index} className="flex items-center justify-between">
+                          <div className="flex items-center mb-2">
+                            <input
+                              id={`month-${index}`}
+                              type="checkbox"
+                              className="h-4 w-4 text-orange-500 border-gray-300 rounded"
+                            />
+                            <label htmlFor={`month-${index}`} className="ml-2 text-sm text-[#4F4F4F] font-inter font-medium">
+                              {item.month}
+                            </label>
+                          </div>
+                          <span className="text-xs text-[#4F4F4F] font-inter font-medium">{item.count}</span>
+                        </div>
+                      ))}
+                      
+                      <button className="text-sm text-[#4F4F4F] font-inter font-semibold hover:underline mt-2 underline underline-offset-2 hover:no-underline">
+                        See More
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Start & Ending City Filter */}
+                  <div className="p-4 border-t border-gray-200">
+                    <div className="flex justify-between items-center mb-6">
+                      <h3 className="text-sm text-[#383E48] font-roboto font-medium">Start & Ending City</h3>
+                      <ChevronUp className="h-4 w-4 text-[#383E48]" />
+                    </div>
+                    <div className="relative mb-4">
+                      <div className="relative">
+                        <input 
+                          type="text" 
+                          defaultValue="Search for a city" 
+                          onFocus={(e) => e.target.value = ''}
+                          onBlur={(e) => !e.target.value && (e.target.value = 'Search for a city')}
+                          className="w-full px-3 py-3 border border-gray-300 rounded-sm text-sm bg-white text-[#232323] font-inter font-regular focus:outline-none focus:ring-1 focus:ring-orange-500 focus:border-orange-500"
+                        />
+                        <div className="absolute -top-2 left-3 px-1 bg-white text-xs text-[#9A9A9A] font-inter font-medium">
+                          Start City
+                        </div>
+                      </div>
+                    </div>
+                    <div className="relative mb-2">
+                      <div className="relative">
+                        <input 
+                          type="text" 
+                          defaultValue="Search for a city" 
+                          onFocus={(e) => e.target.value = ''}
+                          onBlur={(e) => !e.target.value && (e.target.value = 'Search for a city')}
+                          className="w-full px-3 py-3 border border-gray-300 rounded-sm text-sm bg-white text-[#232323] font-inter font-regular focus:outline-none focus:ring-1 focus:ring-orange-500 focus:border-orange-500"
+                        />
+                        <div className="absolute -top-2 left-3 px-1 bg-white text-xs text-[#9A9A9A] font-inter font-medium">
+                          End City
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Must See Cities Filter */}
+                  <div className="p-4 border-t border-gray-200">
+                    <div className="flex justify-between items-center mb-6">
+                      <h3 className="text-sm text-[#383E48] font-roboto font-medium">Must See Cities</h3>
+                      <ChevronUp className="h-4 w-4 text-[#383E48]" />
+                    </div>
+                    <div className="relative mb-4">
+                      <div className="relative">
+                        <input 
+                          type="text"
+                          defaultValue="Type to search"
+                          onFocus={(e) => e.target.value = ''}
+                          onBlur={(e) => !e.target.value && (e.target.value = 'Type to search')}
+                          onChange={(e) => setSearchCity(e.target.value)} 
+                          className="w-full px-3 py-3 border border-gray-300 rounded-sm text-sm bg-white text-[#232323] font-inter font-regular focus:outline-none focus:ring-1 focus:ring-orange-500 focus:border-orange-500"
+                        />
+                        <div className="absolute -top-2 left-3 px-1 bg-white text-xs text-[#9A9A9A] font-inter font-medium">
+                          Search City
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
             {/* Destinations List */}
-            <div className="w-full md:w-3/4">
+            <div className="w-full md:w-[80%]">
               <div className="flex justify-between items-center mb-6">
                 <h2 className="text-xl font-semibold text-gray-800">
                   {destinations.length} Destinations Found
@@ -338,6 +548,13 @@ const DestinationList = () => {
         </div>
     </div>
     </section>
+    
+    {/* Map Modal */}
+    <MapModal 
+      isOpen={isMapOpen} 
+      onClose={() => setIsMapOpen(false)}
+      location={selectedLocation}
+    />
   </div>
   );
 };

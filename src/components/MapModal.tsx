@@ -9,6 +9,7 @@ type MapModalProps = {
     lat: number;
     lng: number;
     name: string;
+    reviews: number;
   };
 };
 

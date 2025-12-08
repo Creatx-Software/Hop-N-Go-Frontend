@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import listHero from "@/assets/ListHero.png";
 import MapModal from "@/components/MapModal";
+import Footer from "@/components/Footer";
 import map from "@/assets/map.png";
 import list1 from "@/assets/list1.png";
 import list2 from "@/assets/list2.png";
@@ -37,7 +38,7 @@ const DestinationList = () => {
   const [selectedLocation, setSelectedLocation] = useState({
     lat: -8.4095, // Default to Bali, Indonesia
     lng: 115.1889,
-    name: 'Bali, Indonesia',
+    name: 'Japan',
     reviews: 1248 // Default number of reviews for Bali
   });
   const [openAccommodation, setOpenAccommodation] = useState(true);
@@ -1088,7 +1089,7 @@ const DestinationList = () => {
                             <h3 className="text-xl font-inter font-semibold text-black mr-3">
                               {destination.name}
                             </h3>
-                            <div className="flex items-center bg-[#F8F9FC] px-3 py-1.5 rounded-full">
+                            <div className="flex items-center bg-transparent px-3 py-1.5 rounded-full">
                               <Star className="h-4 w-4 text-[#F74A1F] fill-[#F74A1F] mr-1.5" />
                               <span className="text-sm font-medium text-[#1F2226]">
                                 {destination.rating}
@@ -1147,7 +1148,7 @@ const DestinationList = () => {
                             </div>
                             <div className="mt-2 md:mt-0">
                               <Button 
-                                onClick={() => {}}
+                                onClick={() => navigate(`/tours/${destination.id}`, { state: { destination } })}
                                 className="w-full md:w-auto bg-gradient-to-r from-[#F9AC7D] to-[#F53900] hover:opacity-90 text-white px-6 py-2.5 rounded-full font-inter font-medium text-sm"
                               >
                                 View Tour Details 
@@ -1204,6 +1205,8 @@ const DestinationList = () => {
         </div>
       </div>
     </section>
+
+    <Footer />
     
     {/* Map Modal */}
     <MapModal 

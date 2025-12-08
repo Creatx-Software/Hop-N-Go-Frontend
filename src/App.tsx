@@ -9,6 +9,7 @@ import AboutUsPage from "./pages/AboutUsPage";
 import ContactUsPage from "./pages/ContactUsPage";
 import EVisaPage from "./pages/EVisaPage";
 import DestinationList from "./pages/DestinationList";
+import DestinationDetails from "./pages/DestinationDetails";
 
 const queryClient = new QueryClient();
 
@@ -25,6 +26,7 @@ const App = () => (
           <Route path="/e-visa" element={<EVisaPage />} />
           <Route path="/about-us" element={<AboutUsPage />} />
           <Route path="/contact" element={<ContactUsPage />} />
+          <Route path="/tours/:id" element={<DestinationDetails />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>

@@ -10,7 +10,7 @@ import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen overflow-x-hidden">
       <Navigation />
       <main>
         <section id="destination">
@@ -19,10 +19,10 @@ const Index = () => {
         <section id="trip-planning">
           <TripPlanning />
         </section>
-        <section id="evisa" className="md:-mt-40">
+        <section id="evisa">
           <EVisa />
         </section>
-        <section id="itinerary" className="md:-mt-32">
+        <section id="itinerary">
           <Itinerary />
         </section>
         <section id="quiz">

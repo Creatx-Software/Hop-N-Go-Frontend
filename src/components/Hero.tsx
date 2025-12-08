@@ -48,12 +48,12 @@ const Hero = () => {
   }, [carouselApi]);
 
   return (
-    <section className="relative min-h-[160vh] sm:min-h-screen pt-20 overflow-hidden">
+    <section className="relative min-h-[150vh] sm:min-h-screen pt-20 overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(255,255,255,0.2),transparent_60%)] z-10 pointer-events-none"></div>
       {/* Split Background */}
-      <div className="absolute inset-0 z-0 grid lg:grid-cols-[55%_45%] h-[160vh] sm:h-auto">
+      <div className="absolute inset-0 z-0 flex flex-col lg:grid lg:grid-cols-[55%_45%] h-auto min-h-[200vh] sm:min-h-screen">
         {/* Left Side (with Grid) */}
-        <div className="relative overflow-hidden bg-gradient-to-br from-[#07111a] via-[#0b1622] to-[#09121a]">
+        <div className="relative overflow-hidden bg-gradient-to-br from-[#07111a] via-[#0b1622] to-[#09121a] h-[70vh] lg:h-full w-full">
           <img
             src={grid}
             alt="Grid Background"
@@ -63,7 +63,7 @@ const Hero = () => {
         </div>
 
         {/* Right Side (dynamic background image) */}
-        <div className="relative overflow-hidden">
+        <div className="relative overflow-hidden h-[80vh] sm:h-[60vh] lg:h-full w-full">
           <img
             src={currentBg}
             alt="Travel"
@@ -74,39 +74,39 @@ const Hero = () => {
       </div>
 
       {/* Hero Content */}
-      <div className="container mx-auto px-4 sm:px-6 relative z-20">
-        <div className="flex flex-col lg:grid lg:grid-cols-[55%_45%] gap-8 items-center min-h-[calc(100vh-3rem)] sm:min-h-[calc(100vh-4rem)] lg:min-h-[calc(100vh-5rem)] pt-6 sm:pt-12 lg:pt-0">
-          <div className="pt-12 sm:pt-16 pb-8 lg:py-24 w-full">
-            <h1 className="font-inter font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white mb-6 sm:mb-8 leading-tight">
+      <div className="w-full pl-[5%] md:pl-[4%] lg:pl-[5%] xl:pl-[6%] relative z-20">
+        <div className="flex flex-col lg:grid lg:grid-cols-[55%_45%] gap-8 items-center min-h-[95vh] sm:min-h-[95vh] lg:min-h-[calc(100vh-5rem)] pt-6 sm:pt-12 lg:pt-0">
+          <div className="pt-12 sm:pt-16 pb-8 lg:py-24 w-[100%] lg:w-[95%] xl:w-[90%] max-w-[600px] 2xl:max-w-[700px]">
+            <h1 className="font-inter font-bold text-4xl sm:text-5xl md:text-[3.5vw] lg:text-[3.2vw] xl:text-[4vw] text-white mb-6 sm:mb-8 leading-tight">
               <div className="mb-2 sm:mb-4">Enjoy Your</div>
               <div className="mb-2 sm:mb-4">Vacation With</div>
               <div>
                 <span className="text-[#FF5A2D]">Hop N Go</span> Travel
               </div>
             </h1>
-            <p className="font-inter text-white/80 text-base sm:text-lg mb-6 sm:mb-8 max-w-lg">
+            <p className="font-inter text-white/80 text-xs sm:text-[1.1vw] lg:text-[1vw] xl:text-[1.2vw] mb-6 sm:mb-8 w-full max-w-[90%] md:max-w-[80%] lg:max-w-[90%] xl:max-w-[80%] leading-relaxed">
               With Hop N Go, you can explore incredible places with effortless
               planning and breathtaking views that make every moment unforgettable.
             </p>
 
-            <div className="flex flex-row items-center gap-4">
+            <div className="flex flex-row items-center gap-4 sm:gap-[0.5vw] w-full max-w-[90%] flex-nowrap">
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-[#FF5A2D] to-[#FF7A3D] hover:opacity-90 text-[#0C111F] font-semibold pr-16 sm:pr-20 pl-8 sm:pl-12 py-4 rounded-full shadow-[0_20px_40px_rgba(255,90,45,0.18)] flex items-center relative w-48 sm:w-56"
+                className="bg-gradient-to-r from-[#FF5A2D] to-[#FF7A3D] hover:opacity-90 text-[#0C111F] font-semibold pr-[2.5vw] sm:pr-[2.5vw] pl-[1.2vw] py-[0.8vw] rounded-full shadow-[0_20px_40px_rgba(255,90,45,0.18)] flex items-center relative w-auto min-w-[140px] sm:min-w-[160px] lg:min-w-[12vw] text-xs sm:text-sm lg:text-[0.9vw] xl:text-[0.9vw] min-h-[40px] sm:min-h-[44px]"
               >
-                <span className="mr-0 sm:mr-10 ml-1 sm:ml-3 flex-shrink-0">Create Itineraries</span>
-                <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#0C111F] flex items-center justify-center absolute right-3 sm:right-4 top-1/2 -translate-y-1/2">
-                  <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-white p-0.5" />
+                <span className="mr-[1.5vw] ml-0.5 flex-shrink-0">Create Itineraries</span>
+                <span className="w-[1.2vw] h-[1.2vw] min-w-[16px] min-h-[16px] sm:min-w-[20px] sm:min-h-[20px] rounded-full bg-[#0C111F] flex items-center justify-center absolute right-[1vw] top-1/2 -translate-y-1/2">
+                  <ChevronRight className="w-[0.8vw] h-[0.8vw] min-w-[12px] min-h-[12px] text-white" />
                 </span>
               </Button>
 
-              <button className="group flex items-center gap-3 text-white rounded-full px-3 py-1 backdrop-blur-sm hover:bg-white/10">
-                <span className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
-                  <span className="w-7 h-7 rounded-full bg-white flex items-center justify-center shadow-sm">
-                    <Play className="w-4 h-4 text-[#FF5A2D] fill-[#FF5A2D]" />
+              <button className="group flex items-center gap-[0.5vw] text-white rounded-full px-[0.8vw] py-[0.5vw] backdrop-blur-sm hover:bg-white/10 text-xs sm:text-sm lg:text-[0.9vw] xl:text-[0.9vw] whitespace-nowrap">
+                <span className="w-[2.5vw] h-[2.5vw] min-w-[32px] min-h-[32px] sm:min-w-[40px] sm:min-h-[40px] rounded-full bg-white/20 flex items-center justify-center">
+                  <span className="w-[1.8vw] h-[1.8vw] min-w-[24px] min-h-[24px] sm:min-w-[28px] sm:min-h-[28px] rounded-full bg-white flex items-center justify-center shadow-sm">
+                    <Play className="w-[0.8vw] h-[0.8vw] min-w-[12px] min-h-[12px] text-[#FF5A2D] fill-[#FF5A2D]" />
                   </span>
                 </span>
-                <span className="text-sm">Play Video</span>
+                <span>Play Video</span>
               </button>
             </div>
           </div>
@@ -115,7 +115,7 @@ const Hero = () => {
         {/* Scroll Down Button */}
         <button
           onClick={() => window.scrollTo({ top: window.innerHeight, behavior: "smooth" })}
-          className="absolute bottom-80 lg:bottom-8 left-1/2 lg:left-[55.5%] -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer focus:outline-none z-30"
+          className="absolute bottom-64 md:bottom-8 left-1/2 -translate-x-1/2 lg:left-[calc(55%_-_48px)] -translate-x-1/2 lg:translate-x-0 flex flex-col items-center gap-2 cursor-pointer focus:outline-none z-30"
           aria-label="Scroll down"
         >
           {/* Rotating ring with text and inner orange button */}
@@ -147,14 +147,14 @@ const Hero = () => {
       </div>
 
       {/* Carousel */}
-      <div className="lg:absolute inset-y-0 right-0 lg:mr-[-100px] flex items-start z-20 pointer-events-auto w-full lg:w-auto -mt-28 sm:mt-0 lg:mt-32 pl-10 lg:pl-0">
-        <div className="w-full max-w-full lg:w-[68vw] lg:max-w-[560px] overflow-visible relative">
+      <div className="lg:absolute inset-y-0 right-0 lg:mr-[-100px] flex items-start sm:items-center justify-center z-20 pointer-events-auto w-full lg:w-auto h-[40vh] sm:h-[45vh] lg:h-full -mt-36 sm:-mt-0 lg:mt-0 pl-5 sm:pl-10 lg:pl-0">
+        <div className="w-full h-auto max-w-full lg:w-[68vw] lg:max-w-[560px] overflow-visible relative">
           <Carousel
             setApi={(api) => setCarouselApi(api)}
             className="w-full"
             opts={{ loop: false, align: "start", dragFree: false, containScroll: "keepSnaps" }}
           >
-            <CarouselContent className="py-4">
+            <CarouselContent className="py-2 sm:py-4 h-full flex items-center">
               {destinations.map((destination, idx) => (
                 <CarouselItem
                   key={destination.id}

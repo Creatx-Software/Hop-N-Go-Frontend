@@ -55,58 +55,70 @@ const Navigation = () => {
 
   return (
     <header className={`fixed w-full z-50 pointer-events-auto transition-all duration-300 ${scrolled ? 'bg-white/50 backdrop-blur-md shadow-sm' : 'bg-transparent'}`}>
-      <div className={`container mx-auto px-6 ${scrolled ? 'pt-4 pb-4' : 'pt-10 pb-4'}`}>
-        <div className="flex items-center justify-between">
-          <div className="flex items-center">
-            <a href="/" aria-label="Hop N Go home" className="flex items-center" onClick={closeMobileMenu}>
-              <img src="/favicon.png" alt="Hop N Go logo" className="w-30 h-10" />
+      <div className={`w-full px-[5%] md:px-[4%] lg:px-[5%] xl:px-[6%] ${scrolled ? 'pt-4 pb-4' : 'pt-10 pb-4'}`}>
+        <div className="flex items-center justify-between w-full">
+          {/* Logo aligned with hero content */}
+          <div className="flex items-center w-[20%] min-w-[120px] max-w-[180px]">
+            <a href="/" aria-label="Hop N Go home" className="flex items-center w-full" onClick={closeMobileMenu}>
+              <img 
+                src="/Logo 23917.svg" 
+                alt="Hop N Go logo" 
+                className="w-full h-auto" 
+              />
             </a>
           </div>
           
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8 ml-[-540px]">
-            <Link 
-              to="/destinations"
-              className={`${isColoredNav ? 'text-[#170F49] hover:text-primary' : (scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90')} transition-colors font-inter font-medium`}
-            >
-              Destination
-            </Link>
-            <Link 
-              to="/e-visa"
-              className={`${isColoredNav ? 'text-[#170F49] hover:text-primary' : (scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90')} transition-colors font-inter font-medium`}
-            >
-              E Visa
-            </Link>
-            <Link 
-              to="/about-us"
-              className={`${isColoredNav ? 'text-[#170F49] hover:text-primary' : (scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90')} transition-colors font-inter font-medium`}
-            >
-              About Us
-            </Link>
-            <Link 
-              to="/contact"
-              className={`${isColoredNav ? 'text-[#170F49] hover:text-primary' : (scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90')} transition-colors font-inter font-medium`}
-            >
-              Contact
-            </Link>
+          {/* Desktop Navigation - Left Aligned */}
+          <div className="hidden md:flex items-center flex-1 pl-[10%]">
+            <div className="flex items-center gap-[1.5vw] lg:gap-[2vw] xl:gap-[2.5vw]">
+              <Link 
+                to="/destinations"
+                className={`${isColoredNav ? 'text-[#170F49] hover:text-primary' : (scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90')} transition-colors font-inter font-medium text-[1.1vw]`}
+              >
+                Destination
+              </Link>
+              <Link 
+                to="/e-visa"
+                className={`${isColoredNav ? 'text-[#170F49] hover:text-primary' : (scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90')} transition-colors font-inter font-medium text-[1.1vw]`}
+              >
+                E Visa
+              </Link>
+              <Link 
+                to="/about-us"
+                className={`${isColoredNav ? 'text-[#170F49] hover:text-primary' : (scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90')} transition-colors font-inter font-medium text-[1.1vw]`}
+              >
+                About Us
+              </Link>
+              <Link 
+                to="/contact"
+                className={`${isColoredNav ? 'text-[#170F49] hover:text-primary' : (scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90')} transition-colors font-inter font-medium text-[1.1vw]`}
+              >
+                Contact
+              </Link>
+            </div>
           </div>
 
-          <div className="flex items-center gap-4">
+          {/* Login button aligned with carousel right edge */}
+          <div className="flex items-center justify-end w-[20%] min-w-[120px] max-w-[180px] gap-4">
             <a 
               href="#login" 
               className={`hidden md:flex items-center justify-center gap-2 ${scrolled ? 'text-foreground' : 'text-white'} px-6 py-2 rounded-full font-inter font-medium transition-all duration-300`}
               style={{
-                width: '104px',
-                height: '38px',
+                width: '7.5vw',
+                minWidth: '104px',
+                height: '2.8vw',
+                minHeight: '38px',
                 backgroundColor: scrolled ? 'rgba(87, 90, 100, 0.46)' : 'rgba(87, 90, 100, 0.46)',
                 border: '1px solid rgba(87, 90, 100, 0.48)',
                 boxSizing: 'border-box',
                 borderRadius: '100px',
+                fontSize: '0.9vw',
+                lineHeight: '1.2',
               }}
             >
               <span>Login</span>
-              <div className="w-6 h-6 rounded-full bg-white flex-shrink-0 flex items-center justify-center">
-                <User className="w-3 h-3 text-[#FF5A2D] flex-shrink-0" />
+              <div className="w-[1.5vw] h-[1.5vw] min-w-[24px] min-h-[24px] rounded-full bg-white flex-shrink-0 flex items-center justify-center">
+                <User className="w-[0.8vw] h-[0.8vw] min-w-[12px] min-h-[12px] text-[#FF5A2D] flex-shrink-0" />
               </div>
             </a>
             

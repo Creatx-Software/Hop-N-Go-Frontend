@@ -31,23 +31,23 @@ const TripPlanning = () => {
   return (
     <>
       <style>{styles}</style>
-    <section className="py-20 relative overflow-hidden bg-white">
+    <section className="py-16 md:py-[5vw] lg:py-[6vw] overflow-hidden md:-mt-20 lg:-mt-32 bg-white">
       {/* Decorative background elements */}
       <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-[#F8F0FF] to-transparent -z-10"></div>
       
-      <div className="container mx-auto px-6">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+      <div className="w-full px-[5%] md:px-[4%] lg:px-[5%] xl:px-[6%] mx-auto">
+        <div className="grid md:grid-cols-2 gap-[3vw] items-center">
           <div className="relative z-10">
             {/* Happy Travellers Button with Travel Image */}
-            <div className="flex items-center gap-4 mb-6">
-              <div className="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-sm">
+            <div className="flex items-center gap-[1vw] mb-6">
+              <div className="inline-flex items-center gap-[0.5vw] bg-white px-[1vw] py-[0.5vw] rounded-full shadow-sm">
                 <div className="flex -space-x-2">
                   {[h1, h2, h3].map((img, index) => (
                     <img 
                       key={index}
                       src={img}
                       alt={`Traveler ${index + 1}`}
-                      className="w-8 h-8 rounded-full border-2 border-white object-cover"
+                      className="w-[2.2vw] h-[2.2vw] min-w-[32px] min-h-[32px] rounded-full border-2 border-white object-cover"
                     />
                   ))}
                 </div>
@@ -59,7 +59,7 @@ const TripPlanning = () => {
                         <Star key={i} className="w-3 h-3 fill-yellow-400 text-yellow-400" />
                       ))}
                     </div>
-                    <span className="text-xs text-muted-foreground ml-1">(1.5k Reviews)</span>
+                    <span className="text-sm sm:text-[0.9vw] font-medium text-foreground ml-1">(1.5k Reviews)</span>
                   </div>
                 </div>
               </div>
@@ -74,10 +74,10 @@ const TripPlanning = () => {
               </div>
             </div>
 
-            <h2 className="font-display font-bold text-4xl md:text-5xl text-foreground mb-6">
+            <h2 className="font-display font-bold text-4xl md:text-[3.5vw] lg:text-[3.2vw] xl:text-[3vw] text-foreground mb-8">
               Ready to plan your next trip?
             </h2>
-            <p className="text-muted-foreground text-lg leading-relaxed mb-8">
+            <p className="text-muted-foreground text-lg sm:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.3vw] leading-relaxed mb-8">
               Tell us about your travel style and what excites you most - and we'll create a personalized trip designed just for you. Your purpose, interests, travel group, budget, and overall budget all help shape the perfect itinerary
             </p>
             
@@ -87,15 +87,15 @@ const TripPlanning = () => {
           
           <div className="relative">
             {/* Main Trip Image */}
-            <div className="relative z-10">
+            <div className="relative z-10 md:scale-75 lg:scale-80 xl:scale-75 origin-center">
               <img 
                 src={tripImage} 
                 alt="Trip planning"
-                className="relative z-0"
+                className="relative z-0 w-full h-auto"
               />
               
               {/* Bottom Card */}
-              <div className="absolute -bottom-16 md:bottom-0 -left-0 w-[185.82px] h-[174.76px] rounded-2xl shadow-lg overflow-hidden z-20 bg-transparent" style={{ animation: 'float1 6s ease-in-out infinite' }}>
+              <div className="absolute -bottom-16 md:bottom-0 -left-0 w-[185.82px] h-[174.76px] md:w-[20vw] md:h-[18vw] lg:w-[18vw] lg:h-[16vw] xl:w-[16vw] xl:h-[15vw] rounded-2xl shadow-lg overflow-hidden z-20 bg-transparent" style={{ animation: 'float1 6s ease-in-out infinite' }}>
                 <img 
                   src={travel1} 
                   alt="Travel 1" 
@@ -105,7 +105,7 @@ const TripPlanning = () => {
               </div>
               
               {/* Right Side Small Card */}
-              <div className="absolute top-[39%] md:top-1/2 right-2 md:right-28 w-[109.84px] h-[103.31px] rounded-2xl shadow-lg overflow-hidden z-20 bg-transparent" style={{ animation: 'float2 5s ease-in-out infinite' }}>
+              <div className="absolute top-[39%] md:top-1/2 right-2 md:right-[5%] lg:right-[5%] xl:right-[5%] w-[109.84px] h-[103.31px] md:w-[14vw] md:h-[12vw] lg:w-[12vw] lg:h-[10vw] xl:w-[11vw] xl:h-[9vw] rounded-2xl shadow-lg overflow-hidden z-20 bg-transparent" style={{ animation: 'float2 5s ease-in-out infinite' }}>
                 <img 
                   src={travel2} 
                   alt="Travel 2" 
@@ -115,7 +115,7 @@ const TripPlanning = () => {
               </div>
               
               {/* Upper Badge */}
-              <div className="absolute top-10 md:top-24 -right-6 md:right-28 w-[166px] h-10 rounded-full shadow-md overflow-hidden z-20 bg-transparent" style={{ animation: 'float3 5s ease-in-out infinite' }}>
+              <div className="absolute top-10 md:top-[15%] lg:top-[20%] -right-6 md:right-[4%] lg:right-[4%] w-[166px] h-10 md:w-[18vw] md:h-[4vw] lg:w-[16vw] lg:h-[3.5vw] xl:w-[14vw] xl:h-[3vw] rounded-full shadow-md overflow-hidden z-20 bg-transparent" style={{ animation: 'float3 5s ease-in-out infinite' }}>
                 <img 
                   src={travel3} 
                   alt="Travel 3" 

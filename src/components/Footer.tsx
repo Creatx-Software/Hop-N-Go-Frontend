@@ -10,9 +10,13 @@ import grid from "@/assets/grid.png";
 import footersec from "@/assets/footersec.png";
 import cards from "@/assets/cards.png";
 
-const Footer = () => {
+interface FooterProps {
+  className?: string;
+}
+
+const Footer = ({ className = '' }: FooterProps) => {
   return (
-    <footer className="relative bg-secondary text-secondary-foreground pt-[5vw] pb-0 overflow-hidden">
+    <footer className={`relative bg-secondary text-secondary-foreground pt-[5vw] pb-0 overflow-hidden ${className}`}>
       {/* White Gradient Overlay */}
       <div className="absolute top-0 left-0 w-1/2 h-full bg-gradient-to-r from-white/10 via-white/5 to-transparent z-10 pointer-events-none"></div>
       

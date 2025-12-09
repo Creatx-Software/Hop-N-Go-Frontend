@@ -489,7 +489,7 @@ const DestinationPage = () => {
           </div>
           
           {/* Fixed height container to prevent layout shift */}
-          <div className="h-[593px] w-full relative flex items-center -mt-28 md:mt-0">
+          <div className="h-[593px] w-full relative flex items-center -mt-28 md:-mt-16">
             <div 
               style={{ cursor: 'default' }}
               className="w-full flex flex-nowrap items-center justify-start md:justify-center gap-3 md:gap-6 overflow-x-auto pb-4 px-3 md:px-0 select-none [&_*]:cursor-default [&>div:first-child]:ml-3 md:[&>div:first-child]:ml-0 [&>div:last-child]:mr-3 md:[&>div:last-child]:mr-0 absolute top-1/2 left-0 md:left-1/2 -translate-y-1/2 md:-translate-x-1/2"
@@ -570,7 +570,7 @@ const DestinationPage = () => {
       </div>
     </section>
       
-      <Footer className="-mt-24 md:mt-12" />
+      <Footer className="-mt-24 md:mt-0" />
     </div>
   );
 };

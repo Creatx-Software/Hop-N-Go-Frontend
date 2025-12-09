@@ -1,5 +1,5 @@
 import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin, ChevronRight } from "lucide-react";
-import { Link } from "react-router-dom";
+import { NavLink } from "./NavLink";
 import insta1 from "@/assets/i1.png";
 import insta2 from "@/assets/i2.png";
 import insta3 from "@/assets/i3.png";
@@ -68,28 +68,29 @@ const Footer = ({ className = '' }: FooterProps) => {
             <h4 className="font-Manrope font-semibold text-lg md:text-[1.1vw] lg:text-[1vw] xl:text-[1.1vw] mb-6">Quick Links</h4>
             <ul className="space-y-3 font-[400]">
               <li className="group">
-                <Link to="/destinations" className="flex items-center text-secondary-foreground/60 hover:text-primary transition-colors text-sm md:text-[0.9vw] lg:text-[0.8vw] xl:text-[0.9vw]">
-                  <ChevronRight className="w-[0.8vw] h-[0.8vw] min-w-[16px] min-h-[16px] mr-1 text-secondary-foreground/60 group-hover:text-primary transition-colors group-hover:translate-x-1 transition-transform" />
-                  Destinations
-                </Link>
+                <NavLink to="/" className="flex items-center gap-2 text-secondary-foreground/60 hover:text-primary transition-colors duration-200 mb-2">
+                  <ChevronRight className="w-3 h-3" /> Home
+                </NavLink>
               </li>
               <li className="group">
-                <a href="#" className="flex items-center text-secondary-foreground/60 hover:text-primary transition-colors text-sm md:text-[0.9vw] lg:text-[0.8vw] xl:text-[0.9vw]">
-                  <ChevronRight className="w-[0.8vw] h-[0.8vw] min-w-[16px] min-h-[16px] mr-1 text-secondary-foreground/60 group-hover:text-primary transition-colors group-hover:translate-x-1 transition-transform" />
-                  Services
-                </a>
+                <NavLink to="/destinations" className="flex items-center gap-2 text-secondary-foreground/60 hover:text-primary transition-colors duration-200 mb-2">
+                  <ChevronRight className="w-3 h-3" /> Destinations
+                </NavLink>
               </li>
               <li className="group">
-                <Link to="/about-us" className="flex items-center text-secondary-foreground/60 hover:text-primary transition-colors text-sm md:text-[0.9vw] lg:text-[0.8vw] xl:text-[0.9vw]">
-                  <ChevronRight className="w-[0.8vw] h-[0.8vw] min-w-[16px] min-h-[16px] mr-1 text-secondary-foreground/60 group-hover:text-primary transition-colors group-hover:translate-x-1 transition-transform" />
-                  About Us
-                </Link>
+                <NavLink to="/e-visa" className="flex items-center gap-2 text-secondary-foreground/60 hover:text-primary transition-colors duration-200 mb-2">
+                  <ChevronRight className="w-3 h-3" /> E-Visa
+                </NavLink>
               </li>
               <li className="group">
-                <a href="#" className="flex items-center text-secondary-foreground/60 hover:text-primary transition-colors text-sm md:text-[0.9vw] lg:text-[0.8vw] xl:text-[0.9vw]">
-                  <ChevronRight className="w-[0.8vw] h-[0.8vw] min-w-[16px] min-h-[16px] mr-1 text-secondary-foreground/60 group-hover:text-primary transition-colors group-hover:translate-x-1 transition-transform" />
-                  Blog
-                </a>
+                <NavLink to="/about-us" className="flex items-center gap-2 text-secondary-foreground/60 hover:text-primary transition-colors duration-200 mb-2">
+                  <ChevronRight className="w-3 h-3" /> About Us
+                </NavLink>
+              </li>
+              <li className="group">
+                <NavLink to="/contact" className="flex items-center gap-2 text-secondary-foreground/60 hover:text-primary transition-colors duration-200 mb-2">
+                  <ChevronRight className="w-3 h-3" /> Contact Us
+                </NavLink>
               </li>
             </ul>
           </div>

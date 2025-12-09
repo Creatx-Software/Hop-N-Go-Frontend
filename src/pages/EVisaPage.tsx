@@ -100,23 +100,23 @@ const EVisaPage = () => {
     {
       id: 2,
       question: 'What documents are required for a visa application?',
-      answer: '',
+      answer: "Lorem Ipsum is simply dummy text the printing and typese Lorem Ipsum has been the industry's standard dummy text ever",
     },
     {
       id: 3,
       question:
         'Is the e-visa service compliant with data protection regulations like GDPR?',
-      answer: '',
+      answer: "Lorem Ipsum is simply dummy text the printing and typese Lorem Ipsum has been the industry's standard dummy text ever",
     },
     {
       id: 4,
       question: 'What is the difference between an evisa and a regular visa?',
-      answer: '',
+      answer: "Lorem Ipsum is simply dummy text the printing and typese Lorem Ipsum has been the industry's standard dummy text ever",
     },
     {
       id: 5,
       question: 'How does the Evisa Express service work?',
-      answer: '',
+      answer: "Lorem Ipsum is simply dummy text the printing and typese Lorem Ipsum has been the industry's standard dummy text ever",
     },
   ];
 
@@ -124,27 +124,27 @@ const EVisaPage = () => {
     {
       id: 6,
       question: 'How long does it take to process a Evisa',
-      answer: '',
+      answer: "Lorem Ipsum is simply dummy text the printing and typese Lorem Ipsum has been the industry's standard dummy text ever",
     },
     {
       id: 7,
       question: 'Is there an age limit for applying for a Evisa?',
-      answer: '',
+      answer: "Lorem Ipsum is simply dummy text the printing and typese Lorem Ipsum has been the industry's standard dummy text ever",
     },
     {
       id: 8,
       question: 'Is the e-visa service safe for submitting my personal info',
-      answer: '',
+      answer: "Lorem Ipsum is simply dummy text the printing and typese Lorem Ipsum has been the industry's standard dummy text ever",
     },
     {
       id: 9,
       question: 'What happens if my visa application is denied?',
-      answer: '',
+      answer: "Lorem Ipsum is simply dummy text the printing and typese Lorem Ipsum has been the industry's standard dummy text ever",
     },
     {
       id: 10,
       question: 'Can I safely check the status of my e-visa online?',
-      answer: '',
+      answer: "Lorem Ipsum is simply dummy text the printing and typese Lorem Ipsum has been the industry's standard dummy text ever",
     },
   ];
 
@@ -332,7 +332,7 @@ const EVisaPage = () => {
                   Why Evisa Express ?
                 </h2>
               </div>
-              <div className="space-y-4 mt-16 ml-8">
+              <div className="space-y-4 mt-8 ml-8">
                 <p className="text-white/80 text-base md:text-lg font-inter font-regular max-w-3xl">
                   Our service provides assistance with electronic visas to numerous countries worldwide.
                 </p>
@@ -511,16 +511,25 @@ const EVisaPage = () => {
                       isActive ? 'bg-[#FFF0E9]' : 'bg-white'
                     }`}
                   >
-                    <div className="flex items-center justify-between px-5 md:px-6 py-4 md:py-5">
-                      <div>
-                        <p className="text-sm md:text-base font-inter font-semibold text-black">
+                    <div className="flex items-start justify-between px-5 md:px-6 py-4 md:py-5">
+                      <div className="flex-1">
+                        <p className="text-sm md:text-base font-inter font-semibold text-black mb-0">
                           {item.question}
                         </p>
-                        {isActive && item.answer && (
-                          <p className="mt-2 text-xs md:text-sm font-inter font-regular text-[#9D9D9D] leading-relaxed">
-                            {item.answer}
-                          </p>
-                        )}
+                        <div 
+                          className="overflow-hidden transition-all duration-300 ease-in-out"
+                          style={{
+                            maxHeight: isActive ? '200px' : '0',
+                            opacity: isActive ? 1 : 0,
+                            marginTop: isActive ? '0.5rem' : '0'
+                          }}
+                        >
+                          {item.answer && (
+                            <p className="text-xs md:text-sm font-inter font-regular text-[#9D9D9D] leading-relaxed">
+                              {item.answer}
+                            </p>
+                          )}
+                        </div>
                       </div>
                       <span
                         className={`ml-4 flex h-7 w-7 min-h-[28px] min-w-[28px] flex-shrink-0 items-center justify-center rounded-full text-white ${
@@ -551,16 +560,25 @@ const EVisaPage = () => {
                       isActive ? 'bg-[#FFF0E9]' : 'bg-white'
                     }`}
                   >
-                    <div className="flex items-center justify-between px-5 md:px-6 py-4 md:py-5">
-                      <div>
-                        <p className="text-sm md:text-base font-inter font-semibold text-black">
+                    <div className="flex items-start justify-between px-5 md:px-6 py-4 md:py-5">
+                      <div className="flex-1">
+                        <p className="text-sm md:text-base font-inter font-semibold text-black mb-0">
                           {item.question}
                         </p>
-                        {isActive && item.answer && (
-                          <p className="mt-2 text-xs md:text-sm font-inter font-regular text-[#9D9D9D] leading-relaxed">
-                            {item.answer}
-                          </p>
-                        )}
+                        <div 
+                          className="overflow-hidden transition-all duration-300 ease-in-out"
+                          style={{
+                            maxHeight: isActive ? '200px' : '0',
+                            opacity: isActive ? 1 : 0,
+                            marginTop: isActive ? '0.5rem' : '0'
+                          }}
+                        >
+                          {item.answer && (
+                            <p className="text-xs md:text-sm font-inter font-regular text-[#9D9D9D] leading-relaxed">
+                              {item.answer}
+                            </p>
+                          )}
+                        </div>
                       </div>
                       <span
                         className={`ml-4 flex h-7 w-7 min-h-[28px] min-w-[28px] flex-shrink-0 items-center justify-center rounded-full text-white ${
@@ -600,26 +618,26 @@ const EVisaPage = () => {
 
               <div className="space-y-6 text-sm md:text-base font-inter font-medium">
                 <div className="flex items-center gap-4">
-                  <div className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center">
-                    <Phone className="w-4 h-4" />
+                  <div className="w-9 h-9 rounded-full bg-white flex items-center justify-center">
+                    <Phone className="w-4 h-4 text-[#EB662B] fill-[#EB662B]" />
                   </div>
                   <span>+91 98765 43210</span>
                 </div>
                 <div className="flex items-center gap-4">
-                  <div className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center">
-                    <Mail className="w-4 h-4" />
+                  <div className="w-9 h-9 rounded-full bg-white flex items-center justify-center">
+                    <Mail className="w-5 h-5 text-white fill-[#EB662B]" />
                   </div>
                   <span>domain@paypal.com</span>
                 </div>
                 <div className="flex items-center gap-4">
-                  <div className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center">
-                    <Globe2 className="w-4 h-4" />
+                  <div className="w-9 h-9 rounded-full bg-white flex items-center justify-center">
+                    <Globe2 className="w-4 h-4 text-[#EB662B]" />
                   </div>
                   <span>https://paypal.com</span>
                 </div>
                 <div className="flex items-center gap-4">
-                  <div className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center">
-                    <MapPin className="w-4 h-4" />
+                  <div className="w-9 h-9 rounded-full bg-white flex items-center justify-center">
+                    <MapPin className="w-5 h-5 text-white fill-[#EB662B]" />
                   </div>
                   <span>Location</span>
                 </div>

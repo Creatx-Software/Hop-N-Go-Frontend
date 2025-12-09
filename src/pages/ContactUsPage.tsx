@@ -71,11 +71,10 @@ const ContactUsPage = () => {
             {/* Left Side */}
             <div className="text-left -mt-8 md:-mt-42">
               <div className="mb-4">
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 md:ml-16">
                   <div className="w-14 h-[2px] bg-white"></div>
-                  <span className="text-white text-sm font-roboto font-bold tracking-widest">CONTACT</span>
+                  <span className="text-white text-sm font-roboto font-bold tracking-widest">CONTACT US</span>
                 </div>
-                <div className="text-white text-sm font-roboto font-bold tracking-widest ml-16">US</div>
               </div>
               <div className="relative -ml-16 md:ml-0">
                 <h1 className="text-4xl text-white md:text-7xl font-inter font-bold mb-6 ml-16 leading-tight">
@@ -199,7 +198,7 @@ const ContactUsPage = () => {
                         id="first-name" 
                         type="text" 
                         placeholder="First Name" 
-                        className="w-full h-10 sm:h-12 px-4 bg-[#E9E9E9]/50 rounded-[10px] text-[#5D5D5D] text-inter text-regular border-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none focus:ring-0 focus:ring-offset-0 focus:outline-none text-sm sm:text-base"
+                        className="w-full h-10 sm:h-12 px-4 bg-white rounded-[10px] text-[#5D5D5D] text-inter text-regular border-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none focus:ring-0 focus:ring-offset-0 focus:outline-none text-sm sm:text-base"
                         required
                       />
                       <span className="absolute left-24 top-1/2 transform -translate-y-1/2 text-red-500">*</span>
@@ -212,7 +211,7 @@ const ContactUsPage = () => {
                         id="last-name" 
                         type="text" 
                         placeholder="Last Name" 
-                        className="w-full h-10 sm:h-12 px-4 bg-[#E9E9E9]/50 rounded-[10px] text-[#5D5D5D] text-inter text-regular border-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none focus:ring-0 focus:ring-offset-0 focus:outline-none text-sm sm:text-base"
+                        className="w-full h-10 sm:h-12 px-4 bg-white rounded-[10px] text-[#5D5D5D] text-inter text-regular border-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none focus:ring-0 focus:ring-offset-0 focus:outline-none text-sm sm:text-base"
                         required
                       />
                       <span className="absolute left-24 top-1/2 transform -translate-y-1/2 text-red-500">*</span>
@@ -225,7 +224,7 @@ const ContactUsPage = () => {
                         id="email" 
                         type="email" 
                         placeholder="Email Id" 
-                        className="w-full h-10 sm:h-12 px-4 bg-[#E9E9E9]/50 rounded-[10px] text-[#5D5D5D] text-inter text-regular border-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none focus:ring-0 focus:ring-offset-0 focus:outline-none text-sm sm:text-base"
+                        className="w-full h-10 sm:h-12 px-4 bg-white rounded-[10px] text-[#5D5D5D] text-inter text-regular border-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none focus:ring-0 focus:ring-offset-0 focus:outline-none text-sm sm:text-base"
                         required
                       />
                       <span className="absolute left-20 top-1/2 transform -translate-y-1/2 text-red-500">*</span>
@@ -238,7 +237,7 @@ const ContactUsPage = () => {
                         id="phone" 
                         type="tel" 
                         placeholder="Phone Number" 
-                        className="w-full h-10 sm:h-12 px-4 bg-[#E9E9E9]/50 rounded-[10px] text-[#5D5D5D] text-inter text-regular border-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none focus:ring-0 focus:ring-offset-0 focus:outline-none text-sm sm:text-base"
+                        className="w-full h-10 sm:h-12 px-4 bg-white rounded-[10px] text-[#5D5D5D] text-inter text-regular border-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none focus:ring-0 focus:ring-offset-0 focus:outline-none text-sm sm:text-base"
                         required
                       />
                       <span className="absolute left-32 top-1/2 transform -translate-y-1/2 text-red-500">*</span>
@@ -252,7 +251,7 @@ const ContactUsPage = () => {
                       id="message" 
                       rows={5} 
                       placeholder="Message" 
-                      className="w-full max-w-full sm:w-[110%] sm:max-w-[120%] px-4 py-3 bg-[#E9E9E9]/50 rounded-[10px] text-[#5D5D5D] text-inter text-regular border-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none focus:ring-0 focus:ring-offset-0 focus:outline-none resize-none text-sm sm:text-base"
+                      className="w-full px-4 py-3 bg-white rounded-[10px] text-[#5D5D5D] text-inter text-regular border-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none focus:ring-0 focus:ring-offset-0 focus:outline-none resize-none text-sm sm:text-base"
                     />
                   </div>
                 </div>
@@ -328,7 +327,10 @@ const ContactUsPage = () => {
             {/* FAQ List */}
             <div className="space-y-6 w-full px-4 sm:px-8">
               {faqs.map((faq, index) => (
-                <div key={index} className="bg-transparent border border-white/50 rounded-sm overflow-hidden hover:border-[#F74A1F]/50 transition-colors duration-200">
+                <div 
+                  key={index} 
+                  className={`group bg-transparent border ${activeFaq === index ? 'border-[#F74A1F]/50' : 'border-white/30 hover:border-[#F74A1F]/50'} rounded-sm overflow-hidden transition-colors duration-200`}
+                >
                   <button
                     className="w-full px-4 py-4 text-left flex items-center gap-0 focus:outline-none h-full relative"
                     onClick={() => toggleFaq(index)}
@@ -343,7 +345,7 @@ const ContactUsPage = () => {
                           <span className="text-2xl leading-none text-white/70">-</span>
                         </div>
                       ) : (
-                        <div className="w-14 h-full flex items-center justify-center bg-[#152329] rounded-r-sm">
+                        <div className="w-14 h-full flex items-center justify-center bg-[#152329] rounded-r-sm group-hover:bg-[#F74A1F]/50 transition-colors duration-200">
                           <span className="text-2xl leading-none text-white/70">+</span>
                         </div>
                       )}

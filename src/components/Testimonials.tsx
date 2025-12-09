@@ -1,10 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Star, ArrowUp, ArrowDown } from "lucide-react";
 import eclipse1 from "@/assets/Ellipse 1.png";
 import eclipse2 from "@/assets/Ellipse 2.png";
 import eclipse3 from "@/assets/Ellipse 3.png";
 import eclipse4 from "@/assets/Ellipse 4.png";
-import clientsImage from "@/assets/clients.png";
 
 interface Testimonial {
   id: number;
@@ -69,12 +68,77 @@ const Testimonials = () => {
         <div className="flex flex-col lg:grid lg:grid-cols-2 gap-[3vw] items-start">
           {/* Right side - Title and Image - Moved to top on mobile */}
           <div className="relative w-full flex flex-row-reverse lg:block order-1 lg:order-2">
-            <div className="lg:absolute right-0 w-1/2 lg:w-[10vw] xl:w-[9vw] 2xl:w-[8vw] max-w-md transform lg:translate-x-[3vw] lg:-translate-y-[3vw] ml-4 lg:ml-0">
-              <img 
-                src={clientsImage} 
-                alt="Happy clients" 
-                className="w-full h-auto"
-              />
+            <div className="lg:absolute right-0 w-full h-[250px] lg:h-[30vw] xl:h-[25vw] 2xl:h-[22vw] overflow-hidden transform lg:translate-x-[3vw] lg:-translate-y-[5vw] ml-4 lg:ml-0" style={{ marginTop: 0, paddingTop: 0 }}>
+              <div className="relative w-full h-full">
+                {[eclipse1, eclipse2, eclipse3, eclipse4].map((img, index) => {
+                  // Different sizes for each circle
+                  const sizes = [
+                    'w-[30px] h-[30px] md:w-[40px] md:h-[40px] lg:w-[50px] lg:h-[50px]',
+                    'w-[60px] h-[60px] md:w-[70px] md:h-[70px] lg:w-[90px] lg:h-[90px]',
+                    'w-[50px] h-[50px] md:w-[60px] md:h-[60px] lg:w-[80px] lg:h-[80px]',
+                    'w-[40px] h-[40px] md:w-[50px] md:h-[50px] lg:w-[60px] lg:h-[60px]'
+                  ];
+                  
+                  // Different horizontal positions (more to the right)
+                  const positions = ['right-20', 'right-0', 'right-12', 'right-0'];
+                  
+                  return (
+                    <div 
+                      key={index}
+                      className={`absolute ${positions[index]} ${sizes[index]} rounded-full overflow-hidden`}
+                      style={{
+                        animation: `floatUp 8s cubic-bezier(0.2, 0.8, 0.2, 1) infinite ${index * 1.8}s`,
+                        bottom: '-100px',
+                        zIndex: 4 - index,
+                        margin: 0,
+                        padding: 0,
+                        willChange: 'transform, opacity, bottom',
+                        position: 'absolute',
+                        animationFillMode: 'both',
+                        animationTimingFunction: 'linear'
+                      }}
+                    >
+                      <img 
+                        src={img} 
+                        alt={`Client ${index + 1}`} 
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  );
+                })}
+              </div>
+              <style dangerouslySetInnerHTML={{
+                __html: `
+                  @keyframes floatUp {
+                    0% {
+                      transform: translateY(0) scale(0.95);
+                      opacity: 0;
+                      bottom: -100px;
+                    }
+                    5% {
+                      opacity: 0.9;
+                    }
+                    10% {
+                      opacity: 1;
+                    }
+                    80% {
+                      opacity: 1;
+                      transform: translateY(0) scale(1);
+                    }
+                    90% {
+                      opacity: 0.8;
+                      transform: translateY(-5px) scale(1.02);
+                    }
+                    100% {
+                      transform: translateY(-10px) scale(1.05);
+                      bottom: 100%;
+                      opacity: 0;
+                      margin: 0;
+                      padding: 0;
+                    }
+                  }
+                `
+              }} />
             </div>
             
             <div className="relative z-10 max-w-2xl lg:pr-12">

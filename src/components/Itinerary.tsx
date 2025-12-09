@@ -1,8 +1,47 @@
 import { Send, AudioLines, Smile } from "lucide-react";
+import { useState, useEffect } from 'react';
 // Removed unused rotating collage images
 import itineraryImage from "@/assets/itinerary.png";
 
 const Itinerary = () => {
+  const [placeholder, setPlaceholder] = useState('');
+  const [placeholderIndex, setPlaceholderIndex] = useState(0);
+  const [charIndex, setCharIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [typingSpeed, setTypingSpeed] = useState(150);
+
+  const placeholders = [
+    'Ask about places to visit...',
+    'Where to eat in Paris?',
+    'Best time to visit Japan?',
+    'Weekend getaway ideas...'
+  ];
+
+  useEffect(() => {
+    const currentText = placeholders[placeholderIndex];
+    
+    const type = () => {
+      if (isDeleting) {
+        setPlaceholder(currentText.substring(0, charIndex - 1));
+        setCharIndex(charIndex - 1);
+        setTypingSpeed(50);
+      } else {
+        setPlaceholder(currentText.substring(0, charIndex + 1));
+        setCharIndex(charIndex + 1);
+        setTypingSpeed(150);
+      }
+
+      if (!isDeleting && charIndex === currentText.length) {
+        setTimeout(() => setIsDeleting(true), 2000);
+      } else if (isDeleting && charIndex === 0) {
+        setIsDeleting(false);
+        setPlaceholderIndex((placeholderIndex + 1) % placeholders.length);
+      }
+    };
+
+    const timer = setTimeout(type, typingSpeed);
+    return () => clearTimeout(timer);
+  }, [placeholderIndex, charIndex, isDeleting, placeholder, typingSpeed]);
   return (
     <section className="pt-0 py-6 bg-white -mt-2 md:-mt-12">
       <div className="w-full px-[5%] md:px-[4%] lg:px-[5%] xl:px-[6%] mx-auto">
@@ -34,7 +73,7 @@ const Itinerary = () => {
                   {/* Text input at the top */}
                   <input
                     type="text"
-                    placeholder="Ask anything ..."
+                    placeholder={placeholder}
                     className="w-full text-xl placeholder:text-gray-400 bg-transparent outline-none"
                   />
 

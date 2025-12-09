@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FiArrowRight, FiChevronRight, FiMapPin, FiGlobe, FiAward, FiUsers, FiChevronLeft, FiChevronRight as FiChevronRightIcon } from 'react-icons/fi';
 import { Mail, Play } from 'lucide-react';
@@ -60,35 +60,61 @@ const PrevArrow = (props: any) => {
 const AboutUsPage = () => {
   const [activeTab, setActiveTab] = useState('mission');
   
+  // Animation for continuous scroll
+  const [isClient, setIsClient] = useState(false);
+  const sliderRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setIsClient(true);
+    
+    const scrollContainer = sliderRef.current;
+    if (!scrollContainer) return;
+    
+    const scrollWidth = scrollContainer.scrollWidth;
+    let scrollPosition = 0;
+    const speed = 1; // Adjust speed here (lower = faster)
+    
+    const scroll = () => {
+      if (scrollContainer) {
+        scrollPosition += speed;
+        if (scrollPosition >= scrollWidth / 2) {
+          scrollPosition = 0;
+        }
+        scrollContainer.scrollLeft = scrollPosition;
+      }
+      requestAnimationFrame(scroll);
+    };
+    
+    const animationFrame = requestAnimationFrame(scroll);
+    
+    return () => {
+      cancelAnimationFrame(animationFrame);
+    };
+  }, [isClient]);
+
   // Carousel settings
   const sliderSettings = {
     dots: false,
     infinite: true,
-    speed: 500,
+    speed: 5000,
     slidesToShow: 6,
-    centerMode: true,
-    variableWidth: false,
-    centerPadding: '0',
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 0,
+    cssEase: 'linear',
     pauseOnHover: true,
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
+    arrows: false,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
           slidesToShow: 4,
-          slidesToScroll: 1,
         }
       },
       {
         breakpoint: 768,
         settings: {
           slidesToShow: 3,
-          slidesToScroll: 1,
-          arrows: false,
         }
       },
       {
@@ -183,10 +209,9 @@ const AboutUsPage = () => {
               <div className="lg:w-1/2">
                 <div className="mb-4">
                   <div className="flex items-center gap-2">
-                    <div className="w-14 h-[2px] bg-[#1D2130]"></div>
-                    <span className="text-[#1D2130] text-sm font-inter font-bold tracking-widest">KNOW ABOUT</span>
+                    <div className="w-14 h-[2px] bg-[#1D2130] ml-10"></div>
+                    <span className="text-[#1D2130] text-sm font-inter font-bold tracking-widest ml-2">KNOW ABOUT US</span>
                   </div>
-                  <div className="text-[#1D2130] text-sm font-inter font-bold tracking-widest ml-16">US</div>
                 </div>
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-inter font-bold text-[#1D2130] mb-6 ml-10 leading-tight">
                   We are your trusted travel companion
@@ -245,7 +270,7 @@ const AboutUsPage = () => {
             <div className="relative w-full mt-2 md:-mt-8">
               {/* Orange Section - Full width */}
               <div 
-                className="absolute top-1/3 left-1/2 -translate-x-1/2 w-screen h-[820px] pt-32 pb-16 -mt-16 md:-mt-0" 
+                className="absolute top-1/3 left-1/2 -translate-x-1/2 w-screen h-[920px] md:h-[820px] pt-32 pb-16 -mt-16 md:-mt-0" 
                 style={{ 
                   width: '100vw',
                   background: 'linear-gradient(180deg, #F9AC7D 0%, #F53900 100%)'
@@ -283,30 +308,52 @@ const AboutUsPage = () => {
                   </div>
 
                   {/* Trusted By Section */}
-                  <div className="w-full relative overflow-hidden">
-                    <div className="container mx-auto px-4 md:mt-16">
-                      <div className="text-left mb-6">
+                  <div className="w-full relative overflow-hidden bg-transparent py-8">
+                    <div className="container mx-auto px-4">
+                      <div className="text-left mb-8 pl-4 md:pl-0">
                         <h2 className="text-lg md:text-xl font-inter font-medium text-white leading-tight">
                           OUR <br />
                           <span className="text-xl font-inter font-medium text-white">SUPPORTERS</span>
                         </h2>
                       </div>
-                      <div className="relative px-4 sm:px-6 -mt-6 md:mt-0">
-                        <Slider {...sliderSettings}>
-                          {[sup1, sup2, sup3, sup4, sup5, sup6].map((img, index) => (
-                            <div key={index} className="px-2">
-                              <div className="flex items-center justify-center h-16">
-                                <img 
-                                  src={img} 
-                                  alt={`Supporter ${index + 1}`} 
-                                  className="h-6 md:h-8 object-contain filter brightness-0 invert opacity-80 hover:opacity-100 transition-opacity duration-300"
-                                />
+                      <div className="relative">
+                        <div 
+                          ref={sliderRef}
+                          className="relative w-full overflow-x-auto no-scrollbar"
+                          style={{
+                            WebkitOverflowScrolling: 'touch',
+                            scrollbarWidth: 'none',
+                            msOverflowStyle: 'none',
+                          }}
+                        >
+                          <div className="flex items-center" style={{ width: 'max-content' }}>
+                            {[...Array(4)].map((_, loopIndex) => (
+                              <div key={loopIndex} className="flex">
+                                {[sup1, sup2, sup3, sup4, sup5, sup6].map((img, index) => (
+                                  <div key={`${loopIndex}-${index}`} className="flex-shrink-0 px-6">
+                                    <div className="flex items-center justify-center h-16 w-32">
+                                      <img 
+                                        src={img} 
+                                        alt={`Supporter ${index + 1}`} 
+                                        className="h-6 md:h-8 object-contain filter brightness-0 invert opacity-80 hover:opacity-100 transition-opacity duration-300"
+                                        loading="lazy"
+                                      />
+                                    </div>
+                                  </div>
+                                ))}
                               </div>
-                            </div>
-                          ))}
-                        </Slider>
+                            ))}
+                          </div>
+                        </div>
                       </div>
                     </div>
+                    <style dangerouslySetInnerHTML={{
+                      __html: `
+                        .no-scrollbar::-webkit-scrollbar {
+                          display: none;
+                        }
+                      `
+                    }} />
                   </div>
                 </div>
               </div>

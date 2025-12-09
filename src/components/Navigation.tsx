@@ -73,25 +73,25 @@ const Navigation = () => {
             <div className="flex items-center gap-[1.5vw] lg:gap-[2vw] xl:gap-[2.5vw]">
               <Link 
                 to="/destinations"
-                className={`${isColoredNav ? 'text-[#170F49] hover:text-primary' : (scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90')} transition-colors font-inter font-medium text-[1.1vw]`}
+                className={`${location.pathname === '/destinations' ? 'text-primary' : (isColoredNav ? 'text-[#170F49] hover:text-primary' : (scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90'))} transition-colors font-inter font-medium text-[1.1vw]`}
               >
                 Destination
               </Link>
               <Link 
                 to="/e-visa"
-                className={`${isColoredNav ? 'text-[#170F49] hover:text-primary' : (scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90')} transition-colors font-inter font-medium text-[1.1vw]`}
+                className={`${location.pathname === '/e-visa' ? 'text-primary' : (isColoredNav ? 'text-[#170F49] hover:text-primary' : (scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90'))} transition-colors font-inter font-medium text-[1.1vw]`}
               >
                 E Visa
               </Link>
               <Link 
                 to="/about-us"
-                className={`${isColoredNav ? 'text-[#170F49] hover:text-primary' : (scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90')} transition-colors font-inter font-medium text-[1.1vw]`}
+                className={`${location.pathname === '/about-us' ? 'text-primary' : (isColoredNav ? 'text-[#170F49] hover:text-primary' : (scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90'))} transition-colors font-inter font-medium text-[1.1vw]`}
               >
                 About Us
               </Link>
               <Link 
                 to="/contact"
-                className={`${isColoredNav ? 'text-[#170F49] hover:text-primary' : (scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90')} transition-colors font-inter font-medium text-[1.1vw]`}
+                className={`${location.pathname === '/contact' ? 'text-primary' : (isColoredNav ? 'text-[#170F49] hover:text-primary' : (scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90'))} transition-colors font-inter font-medium text-[1.1vw]`}
               >
                 Contact
               </Link>

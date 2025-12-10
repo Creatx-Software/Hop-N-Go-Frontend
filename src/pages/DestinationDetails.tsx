@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Star, ChevronDown, ChevronRight, MapPin, Clock, Users, Calendar, Globe, ChevronLeft, Mail, Heart, Share2 } from "lucide-react";
+import { Star, ChevronDown, ChevronRight, MapPin, Clock, Users, Calendar, Globe, ChevronLeft, Mail, Heart, Share2, Images, CalendarDays, CircleDollarSign, CheckCircle, BadgeCheck, UsersRound, ArrowBigDownDash, Image, UserCheck, GlobeLock, PersonStanding, ParkingCircle } from "lucide-react";
 import { useNavigate, useParams, useLocation, useLoaderData } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
@@ -11,6 +11,7 @@ import japan2 from "@/assets/japan2.png";
 import japan3 from "@/assets/japan3.png";
 import japan4 from "@/assets/japan4.png";
 import japan5 from "@/assets/japan5.png";
+import locationIcon from "@/assets/locationIcon.png";
 
 // Array of all images for easy mapping
 const galleryImages = [
@@ -26,6 +27,12 @@ const DestinationDetails = () => {
   const { id } = useParams();
   const location = useLocation();
   const [isLoading, setIsLoading] = useState(true);
+
+  const handleBackClick = () => {
+    console.log('Back button clicked');
+    console.log('Current path:', window.location.pathname);
+    navigate('/destination-search');
+  };
 
   // Get the destination data from the location state or use a default if coming directly to the URL
   const [destination, setDestination] = useState(() => {
@@ -120,21 +127,21 @@ const DestinationDetails = () => {
       
       {/* Main Content */}
       <section className="flex-1">
-        <div className="container mx-auto px-4 py-6">
+        <div className="container mx-auto px-4 py-8">
         {/* Back Button */}
-        <div className="container mx-auto px-0 py-6 mt-10">
-          <Button 
-            variant="ghost" 
-            className="flex items-center gap-2 text-black/80 hover:text-gray-300 hover:bg-transparent"
-            onClick={() => navigate(-1)}
+        <div className="w-full px-0 py-8">
+          <button 
+            onClick={() => navigate('/destination-search')}
+            className="group relative inline-flex items-center gap-2 px-6 py-3 text-sm font-medium rounded-lg text-gray-700 bg-transparent overflow-hidden"
           >
-            <ChevronLeft className="w-5 h-5" />
-            <span>Back to results</span>
-          </Button>
+            <div className="absolute inset-0 bg-gray-50 opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
+            <ChevronLeft className="relative z-10 w-5 h-5" />
+            <span className="relative z-10">Back to results</span>
+          </button>
         </div>
 
-        {/* Tour Header */}
-        <div className="container mx-auto px-4 mb-8">
+          {/* Tour Header */}
+          <div className="container mx-auto px-4 mb-8">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
             <div className="flex flex-col">
               <div className="flex flex-wrap items-center gap-3">
@@ -178,11 +185,20 @@ const DestinationDetails = () => {
         
         {/* Image Gallery */}
         <div className="container mx-auto px-4 mt-8">
+          {/* Left soft pink half-circle - more transparent and blurred */}
+          <div className="absolute left-0 top-3/4 -translate-y-1/2 w-[600px] h-[800px] -translate-x-1/3 z-0">
+            <div className="w-full h-full bg-gradient-to-r from-pink-300/40 via-pink-500/20 to-transparent rounded-full blur-3xl"></div>
+          </div>
+          
+          {/* Right soft pink half-circle - more transparent and blurred */}
+          <div className="absolute right-0 top-3/4 -translate-y-1/2 w-[600px] h-[800px] translate-x-1/3 z-0">
+            <div className="w-full h-full bg-gradient-to-l from-pink-300/40 via-pink-500/20 to-transparent rounded-full blur-3xl"></div>
+          </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 h-[400px] md:h-[500px]">
             {galleryImages.map((img, index) => (
               <div 
                 key={img.id}
-                className={`rounded-2xl overflow-hidden h-full ${
+                className={`rounded-2xl overflow-hidden h-full relative ${
                   index === 0 ? 'md:row-span-2 md:col-span-2' : ''
                 }`}
               >
@@ -191,11 +207,178 @@ const DestinationDetails = () => {
                   alt={img.alt}
                   className="w-full h-full object-cover"
                 />
+                {index === 0 && (
+                  <div className="absolute bottom-4 left-4">
+                    <div className="bg-white rounded-3xl px-4 py-3 flex flex-col shadow-md">
+                      <div className="flex items-center">
+                        <img 
+                          src={locationIcon} 
+                          alt="Location" 
+                          className="w-12 h-12 mr-2"
+                        />
+                        <div className="flex flex-col mr-2">
+                          <span className="text-xs text-[#1F2226] font-roboto font-regular">{selectedLocation.name}</span>
+                          <span className="text-sm text-[#1F2226] font-roboto font-medium">Best Locations</span>
+                        </div>
+                        <ChevronDown className="w-4 h-4 text-black" />
+                      </div>
+                    </div>
+                  </div>
+                )}
+                {index === 4 && (
+                  <div className="absolute bottom-4 right-4 bg-black/60 rounded-sm px-3 py-1.5 flex items-center space-x-1 shadow-md">
+                    <Images className="w-3.5 h-3.5 text-white" />
+                    <span className="text-sm font-medium text-white">10+</span>
+                  </div>
+                )}
               </div>
             ))}
           </div>
         </div>
         
+        </div>
+      </section>
+
+      {/* Description & Reservation */}
+      <section className="relative z-10">
+        <div className="container max-w-8xl mx-auto px-4 py-8">
+          {/* Tabs */}
+          <div className="flex gap-6 overflow-x-auto pb-2 mb-6">
+            {[
+              "Overview",
+              "Amenities",
+              "Places",
+              "Location",
+              "Itinerary",
+              "Stay",
+              "Reviews",
+            ].map((tab) => (
+              <div key={tab} className="relative pb-3">
+                <span
+                  className={`text-sm font-roboto font-medium whitespace-nowrap cursor-pointer transition-colors ${
+                    tab === "Overview"
+                      ? 'text-[#1F2226] font-semibold'
+                      : "text-[#717171] hover:text-[#1F2226]"
+                  }`}
+                >
+                  {tab}
+                </span>
+                {tab === "Overview" && (
+                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#1F2226]"></div>
+                )}
+              </div>
+            ))}
+          </div>
+          <div className="flex flex-col lg:flex-row gap-20">
+            {/* Left Column - Description & Amenities */}
+            <div className="lg:w-2/3">
+              <div className="bg-transparent rounded-2xl p-0 -mt-2">
+                <h2 className="text-2xl font-inter font-semibold text-[#1F2226] mb-4">Description</h2>
+                <h3 className="text-lg font-inter font-bold text-[#1F2226] mb-4">Discover Japan’s highlights with comfort and ease</h3>
+                <p className="text-[#1F2226] text-base font-inter font-regular mb-6">
+                  The Best of Japan: Tokyo to Osaka – 9 Days tour takes you on a memorable journey through Japan’s most iconic destinations. Starting in Tokyo, you’ll explore a perfect mix of modern attractions, cultural landmarks, and beautiful scenery before travelling through Kyoto’s historic temples and traditional streets. The trip ends in Osaka, known for its vibrant city life and amazing food.
+                </p>
+                <p className="text-[#1F2226] text-base font-inter font-regular mb-6">
+                  Throughout the 9 days, you’ll enjoy comfortable stays, seamless travel arrangements, authentic Japanese cuisine, and a well-planned itinerary that balances sightseeing, relaxation, and cultural experiences. This tour is ideal for anyone looking to discover the true essence of Japan in one smooth and unforgettable adventure.
+                </p>
+                
+                <h2 className="text-2xl font-inter font-semibold text-[#1F2226] mb-4">Amenities</h2>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-0 mb-4 -ml-3">
+                  <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
+                    <BadgeCheck className="w-5 h-5 text-gray-600" />
+                    <span className="text-[#010101] font-inter font-medium">Gold Operators</span>
+                  </div>
+                  <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
+                    <UsersRound className="w-5 h-5 text-gray-600" />
+                    <span className="text-[#010101] font-inter font-medium">Group Tour</span>
+                  </div>
+                  <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
+                    <ArrowBigDownDash className="w-5 h-5 text-gray-600" />
+                    <span className="text-[#010101] font-inter font-medium">Low Intensity</span>
+                  </div>
+                  <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
+                    <Users className="w-5 h-5 text-gray-600" />
+                    <span className="text-[#010101] font-inter font-medium">Group Size 10 - 30</span>
+                  </div>
+                  <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
+                    <Image className="w-5 h-5 text-gray-600" />
+                    <span className="text-[#010101] font-inter font-medium">In-depth Cultural</span>
+                  </div>
+                  <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
+                    <UserCheck className="w-5 h-5 text-gray-600" />
+                    <span className="text-[#010101] font-inter font-medium">Fully Guided</span>
+                  </div>
+                  <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
+                    <GlobeLock className="w-5 h-5 text-gray-600" />
+                    <span className="text-[#010101] font-inter font-medium">Guided in English</span>
+                  </div>
+                  <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
+                    <PersonStanding className="w-5 h-5 text-gray-600" />
+                    <span className="text-[#010101] font-inter font-medium">All Ages Welcome</span>
+                  </div>
+                
+                </div>
+                
+              </div>
+            </div>
+
+            {/* Right Column - Reservation Card */}
+            <div className="lg:w-1/3">
+              <div className="bg-white rounded-2xl p-6 shadow-lg sticky top-6">
+                <div className="space-y-4">
+                  <div className="border border-gray-200 rounded-xl overflow-hidden">
+                    <div className="grid grid-cols-2 divide-x divide-gray-200">
+                      <div className="p-4">
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Check In</label>
+                        <div className="flex items-center text-gray-600">
+                          <CalendarDays className="w-5 h-5 mr-2 text-gray-400" />
+                          <span>Add date</span>
+                        </div>
+                      </div>
+                      <div className="p-4">
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Check Out</label>
+                        <div className="flex items-center text-gray-600">
+                          <CalendarDays className="w-5 h-5 mr-2 text-gray-400" />
+                          <span>Add date</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="border-t border-gray-200">
+                      <div className="p-4">
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Guests</label>
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center text-gray-600">
+                            <Users className="w-5 h-5 mr-2 text-gray-400" />
+                            <span>1 guest</span>
+                          </div>
+                          <ChevronDown className="w-4 h-4 text-gray-400" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-3 pt-4">
+                    <div className="flex justify-start text-sm">
+                      <span className="text-gray-600">For 5 persons (per night): </span>
+                      <span className="font-medium">${destination.price}</span>
+                    </div>
+                    <div className="flex justify-start text-sm">
+                      <span className="text-gray-600">For each additional person: </span>
+                      <span className="font-medium">$59</span>
+                    </div>
+                    <div className="flex justify-between text-sm font-semibold pt-2 border-t">
+                      <span>Total</span>
+                      <span>${destination.price + 59}</span>
+                    </div>
+                  </div>
+
+                  <button className="w-full bg-[#FF6B35] hover:bg-[#E65A2B] text-white font-medium py-3 px-4 rounded-lg transition-colors">
+                    Reserve
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
       <Footer />

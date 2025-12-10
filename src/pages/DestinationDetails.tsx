@@ -1,5 +1,7 @@
-import { useState, useEffect } from 'react';
-import { Star, ChevronDown, ChevronRight, MapPin, Clock, Users, Calendar, Globe, ChevronLeft, Mail, Heart, Share2, Images, CalendarDays, CircleDollarSign, CheckCircle, BadgeCheck, UsersRound, ArrowBigDownDash, Image, UserCheck, GlobeLock, PersonStanding, ParkingCircle } from "lucide-react";
+import { useState, useEffect, useRef } from 'react';
+import { Star, ChevronDown, ChevronRight, MapPin, Clock, Users, Calendar, Globe, ChevronLeft, Mail, Heart, Share2, Images, CalendarDays, CircleDollarSign, CheckCircle, BadgeCheck, UsersRound, ArrowBigDownDash, Image, UserCheck, GlobeLock, PersonStanding, ParkingCircle, ChevronUp } from "lucide-react";
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import { useNavigate, useParams, useLocation, useLoaderData } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
@@ -82,6 +84,50 @@ const DestinationDetails = () => {
     reviews: destination.reviews || 1248
   });
 
+  // State for date picker and guests
+  const [startDate, setStartDate] = useState<Date | null>(null);
+  const [endDate, setEndDate] = useState<Date | null>(null);
+  const [adults, setAdults] = useState(1);
+  const [children, setChildren] = useState(0);
+  const [showGuestDropdown, setShowGuestDropdown] = useState(false);
+  const guestDropdownRef = useRef<HTMLDivElement>(null);
+
+  // Calculate total guests based on adults and children
+  const totalGuests = adults + children;
+
+  // Handle adult/children selection
+  const handleGuestTypeChange = (type: 'adults' | 'children', value: number) => {
+    if (type === 'adults') {
+      const newAdults = Math.max(1, Math.min(10 - children, value)); // Ensure at least 1 adult and max 10 total
+      setAdults(newAdults);
+    } else {
+      const newChildren = Math.min(9, Math.max(0, value)); // Max 9 children (since we need at least 1 adult)
+      setChildren(newChildren);
+    }
+  };
+
+  // Handle horizontal scroll and click outside
+  useEffect(() => {
+    // Prevent horizontal scroll
+    document.documentElement.style.overflowX = 'hidden';
+    document.body.style.overflowX = 'hidden';
+    
+    // Close dropdown when clicking outside
+    const handleClickOutside = (event: MouseEvent) => {
+      if (guestDropdownRef.current && !guestDropdownRef.current.contains(event.target as Node)) {
+        setShowGuestDropdown(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      // Cleanup
+      document.documentElement.style.overflowX = '';
+      document.body.style.overflowX = '';
+    };
+  }, []);
+
   if (isLoading) {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center">
@@ -126,7 +172,7 @@ const DestinationDetails = () => {
       </div>
       
       {/* Main Content */}
-      <section className="flex-1">
+      <section className="flex-1 overflow-x-hidden">
         <div className="container mx-auto px-4 py-8">
         {/* Back Button */}
         <div className="w-full px-0 py-8">
@@ -199,7 +245,7 @@ const DestinationDetails = () => {
               <div 
                 key={img.id}
                 className={`rounded-2xl overflow-hidden h-full relative ${
-                  index === 0 ? 'md:row-span-2 md:col-span-2' : ''
+                  index === 0 ? 'md:row-span-2 md:col-span-2 row-span-2 col-span-2 h-[300px] md:h-full' : ''
                 }`}
               >
                 <img 
@@ -241,9 +287,9 @@ const DestinationDetails = () => {
 
       {/* Description & Reservation */}
       <section className="relative z-10">
-        <div className="container max-w-8xl mx-auto px-4 py-8">
+        <div className="container max-w-8xl mx-auto px-8 py-8">
           {/* Tabs */}
-          <div className="flex gap-6 overflow-x-auto pb-2 mb-6">
+          <div className="flex flex-wrap gap-y-2 gap-x-6 pb-2 mb-6">
             {[
               "Overview",
               "Amenities",
@@ -283,7 +329,7 @@ const DestinationDetails = () => {
                 </p>
                 
                 <h2 className="text-2xl font-inter font-semibold text-[#1F2226] mb-4">Amenities</h2>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-0 mb-4 -ml-3">
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-0 mb-0 -ml-3">
                   <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
                     <BadgeCheck className="w-5 h-5 text-gray-600" />
                     <span className="text-[#010101] font-inter font-medium">Gold Operators</span>
@@ -323,56 +369,193 @@ const DestinationDetails = () => {
             </div>
 
             {/* Right Column - Reservation Card */}
-            <div className="lg:w-1/3">
+            <div className="lg:w-[40%] max-w-[350px] -mt-12 lg:mt-0">
               <div className="bg-white rounded-2xl p-6 shadow-lg sticky top-6">
                 <div className="space-y-4">
-                  <div className="border border-gray-200 rounded-xl overflow-hidden">
-                    <div className="grid grid-cols-2 divide-x divide-gray-200">
+                  <div className="border border-gray-200 rounded-3xl overflow-visible">
+                    <div className="grid grid-cols-2">
+                      <div className="relative">
+                        <div className="absolute right-0 top-4 bottom-4 w-px bg-gray-200"></div>
                       <div className="p-4">
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Check In</label>
-                        <div className="flex items-center text-gray-600">
-                          <CalendarDays className="w-5 h-5 mr-2 text-gray-400" />
-                          <span>Add date</span>
-                        </div>
-                      </div>
-                      <div className="p-4">
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Check Out</label>
-                        <div className="flex items-center text-gray-600">
-                          <CalendarDays className="w-5 h-5 mr-2 text-gray-400" />
-                          <span>Add date</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="border-t border-gray-200">
-                      <div className="p-4">
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Guests</label>
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center text-gray-600">
-                            <Users className="w-5 h-5 mr-2 text-gray-400" />
-                            <span>1 guest</span>
+                        <label className="flex items-center text-sm font-inter font-regular text-[#2B3037] mb-1">
+                          <CalendarDays className="w-4 h-4 mr-1.5 text-[#2B3037]" />
+                          Check-in
+                        </label>
+                        <div className="relative">
+                          <div className="relative z-10">
+                            <DatePicker
+                              selected={startDate}
+                              onChange={(date: Date) => setStartDate(date)}
+                              selectsStart
+                              startDate={startDate}
+                              endDate={endDate}
+                              minDate={new Date()}
+                              placeholderText="Select date"
+                              className="w-full text-center py-2 text-sm rounded-md focus:outline-none focus:border-transparent"
+                              dateFormat="MMM d, yyyy"
+                              popperClassName="z-50 -ml-4"
+                              popperPlacement="bottom-start"
+                            />
                           </div>
-                          <ChevronDown className="w-4 h-4 text-gray-400" />
+                          <CalendarDays className="absolute left-2 top-2.5 w-4 h-4 text-[#2B3037]" />
+                        </div>
+                      </div>
+                      </div>
+                      <div className="p-4">
+                        <label className="flex items-center text-sm font-inter font-regular text-[#2B3037] mb-1">
+                          <CalendarDays className="w-4 h-4 mr-1.5 text-[#2B3037]" />
+                          Check-out
+                        </label>
+                        <div className="relative">
+                          <div className="relative z-10">
+                            <DatePicker
+                              selected={endDate}
+                              onChange={(date: Date) => setEndDate(date)}
+                              selectsEnd
+                              startDate={startDate}
+                              endDate={endDate}
+                              minDate={startDate || new Date()}
+                              placeholderText="Select date"
+                              className="w-full text-center py-2 text-sm rounded-md focus:outline-none focus:border-transparent"
+                              dateFormat="MMM d, yyyy"
+                              popperClassName="z-50 -ml-4"
+                              popperPlacement="bottom-start"
+                            />
+                          </div>
+                          <CalendarDays className="absolute left-2 top-2.5 w-4 h-4 text-[#2B3037]" />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="relative px-4">
+                      <div className="absolute left-8 right-8 top-0 h-px bg-gray-200"></div>
+                    </div>
+                    <div className="relative" ref={guestDropdownRef}>
+                      <div className="p-4">
+                        <label className="block text-sm font-inter font-regular text-[#2B3037] mb-1">Guests</label>
+                        <div className="relative">
+                          <div 
+                            className="flex items-center justify-between cursor-pointer"
+                            onClick={() => setShowGuestDropdown(!showGuestDropdown)}
+                          >
+                            <div className="flex items-center">
+                              <span className="text-sm">
+                                {totalGuests} {totalGuests === 1 ? 'guest' : 'guests'}
+                                {children > 0 && ` (${adults} ${adults === 1 ? 'adult' : 'adults'}, ${children} ${children === 1 ? 'child' : 'children'})`}
+                              </span>
+                            </div>
+                            {showGuestDropdown ? (
+                              <ChevronUp className="w-4 h-4 text-gray-400" />
+                            ) : (
+                              <ChevronDown className="w-4 h-4 text-gray-400" />
+                            )}
+                          </div>
+                          
+                          {showGuestDropdown && (
+                            <div className="fixed md:absolute left-4 right-4 md:left-0 md:right-0 -mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-50 p-4 space-y-4">
+                              <div className="font-inter font-regular text-sm text-[#383E48] mb-2">
+                                {totalGuests} {totalGuests === 1 ? 'guest' : 'guests'} total
+                              </div>
+                              
+                              <div className="space-y-4">
+                                <div className="flex justify-between items-center mb-2">
+                                  <div>
+                                    <div className="font-inter font-regular">Adults</div>
+                                    <div className="text-sm text-gray-500">Ages 18+</div>
+                                  </div>
+                                  <div className="flex items-center space-x-2">
+                                    <button 
+                                      type="button"
+                                      onClick={(e) => {
+                                        e.stopPropagation();
+                                        handleGuestTypeChange('adults', adults - 1);
+                                      }}
+                                      className="w-8 h-8 flex items-center justify-center rounded-full border border-gray-300 text-gray-600 hover:bg-gray-100"
+                                      disabled={adults <= 1 || (adults === 1 && children === 0 && totalGuests === 1)}
+                                    >
+                                      -
+                                    </button>
+                                    <span className="w-6 text-center">{adults}</span>
+                                    <button 
+                                      type="button"
+                                      onClick={(e) => {
+                                        e.stopPropagation();
+                                        if (totalGuests < 10) {
+                                          handleGuestTypeChange('adults', adults + 1);
+                                        }
+                                      }}
+                                      className="w-8 h-8 flex items-center justify-center rounded-full border border-gray-300 text-gray-600 hover:bg-gray-100"
+                                      disabled={totalGuests >= 10}
+                                    >
+                                      +
+                                    </button>
+                                  </div>
+                                </div>
+                                
+                                <div className="flex justify-between items-center">
+                                  <div>
+                                    <div className="font-inter font-regular">Children</div>
+                                    <div className="text-sm text-gray-500">Ages 0-18</div>
+                                  </div>
+                                  <div className="flex items-center space-x-2">
+                                    <button 
+                                      type="button"
+                                      onClick={(e) => {
+                                        e.stopPropagation();
+                                        handleGuestTypeChange('children', children - 1);
+                                      }}
+                                      className="w-8 h-8 flex items-center justify-center rounded-full border border-gray-300 text-gray-600 hover:bg-gray-100"
+                                      disabled={children <= 0}
+                                    >
+                                      -
+                                    </button>
+                                    <span className="w-6 text-center">{children}</span>
+                                    <button 
+                                      type="button"
+                                      onClick={(e) => {
+                                        e.stopPropagation();
+                                        if (totalGuests < 10) {
+                                          handleGuestTypeChange('children', children + 1);
+                                        }
+                                      }}
+                                      className="w-8 h-8 flex items-center justify-center rounded-full border border-gray-300 text-gray-600 hover:bg-gray-100"
+                                      disabled={totalGuests >= 10 || (adults + children) >= 10}
+                                    >
+                                      +
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          )}
                         </div>
                       </div>
                     </div>
                   </div>
 
-                  <div className="space-y-3 pt-4">
-                    <div className="flex justify-start text-sm">
-                      <span className="text-gray-600">For 5 persons (per night): </span>
-                      <span className="font-medium">${destination.price}</span>
+                  <div className="space-y-3 pt-0">
+                    <span className="font-inter font-regular text-[#1F2226] text-sm">Details:</span>
+                    <div className="flex justify-between text-sm">
+                      <span className="font-inter font-regular text-[#1F2226]">Capacity:</span>
+                      <span className="font-inter font-regular text-[#1F2226]">10 Persons</span>
                     </div>
-                    <div className="flex justify-start text-sm">
-                      <span className="text-gray-600">For each additional person: </span>
-                      <span className="font-medium">$59</span>
+                    <div className="flex justify-between text-sm">
+                      <span className="font-inter font-regular text-[#1F2226]">For 5 persons (per night):</span>
+                      <span className="font-inter font-regular text-[#1F2226]">${destination.price.toLocaleString()}</span>
                     </div>
-                    <div className="flex justify-between text-sm font-semibold pt-2 border-t">
+                    <div className="flex justify-between text-sm">
+                      <span className="font-inter font-regular text-[#1F2226]">For each additional person:</span>
+                      <span className="font-inter font-regular text-[#1F2226]">$59</span>
+                    </div>
+                    <div className="relative px-4 py-2">
+                      <div className="absolute left-16 right-16 top-0 h-px bg-gray-200 mt-4"></div>
+                    </div>
+                    <div className="flex justify-between text-sm font-inter font-regular text-[#1F2226] pt-2">
                       <span>Total</span>
-                      <span>${destination.price + 59}</span>
+                      <span>${(destination.price + (totalGuests > 5 ? (totalGuests - 5) * 59 : 0)).toLocaleString()}</span>
                     </div>
                   </div>
 
-                  <button className="w-full bg-[#FF6B35] hover:bg-[#E65A2B] text-white font-medium py-3 px-4 rounded-lg transition-colors">
+                  <button className="w-full bg-gradient-to-b from-[#F9AC7D] to-[#F53900] hover:opacity-90 text-white font-medium py-3 px-4 rounded-sm transition-all duration-300 shadow-md hover:shadow-lg">
                     Reserve
                   </button>
                 </div>

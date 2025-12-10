@@ -16,7 +16,8 @@ const Navigation = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
-  const isColoredNav = location.pathname === '/destinations' || location.pathname === '/about-us' || location.pathname === '/contact' || location.pathname === '/e-visa' || location.pathname.startsWith('/destination-');
+  const isDestinationPage = location.pathname === '/destinations' || location.pathname.startsWith('/destination-') || location.pathname === '/destination-list' || location.pathname.startsWith('/destination/');
+  const isColoredNav = isDestinationPage || location.pathname === '/about-us' || location.pathname === '/contact' || location.pathname === '/e-visa';
   const isHeroPage = location.pathname === '/';
 
   useEffect(() => {
@@ -73,25 +74,25 @@ const Navigation = () => {
             <div className="flex items-center gap-[1.5vw] lg:gap-[2vw] xl:gap-[2.5vw]">
               <Link 
                 to="/destinations"
-                className={`${location.pathname === '/destinations' ? 'text-primary' : (isColoredNav ? 'text-[#170F49] hover:text-primary' : (scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90'))} transition-colors font-inter font-medium text-[1.1vw]`}
+                className={`${isDestinationPage ? 'text-primary' : 'text-[#170F49] hover:text-primary'} transition-colors font-inter font-medium text-[1.1vw]`}
               >
                 Destination
               </Link>
               <Link 
                 to="/e-visa"
-                className={`${location.pathname === '/e-visa' ? 'text-primary' : (isColoredNav ? 'text-[#170F49] hover:text-primary' : (scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90'))} transition-colors font-inter font-medium text-[1.1vw]`}
+                className={`${location.pathname === '/e-visa' ? 'text-primary' : 'text-[#170F49] hover:text-primary'} transition-colors font-inter font-medium text-[1.1vw]`}
               >
                 E Visa
               </Link>
               <Link 
                 to="/about-us"
-                className={`${location.pathname === '/about-us' ? 'text-primary' : (isColoredNav ? 'text-[#170F49] hover:text-primary' : (scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90'))} transition-colors font-inter font-medium text-[1.1vw]`}
+                className={`${location.pathname === '/about-us' ? 'text-primary' : 'text-[#170F49] hover:text-primary'} transition-colors font-inter font-medium text-[1.1vw]`}
               >
                 About Us
               </Link>
               <Link 
                 to="/contact"
-                className={`${location.pathname === '/contact' ? 'text-primary' : (isColoredNav ? 'text-[#170F49] hover:text-primary' : (scrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary/90'))} transition-colors font-inter font-medium text-[1.1vw]`}
+                className={`${location.pathname === '/contact' ? 'text-primary' : 'text-[#170F49] hover:text-primary'} transition-colors font-inter font-medium text-[1.1vw]`}
               >
                 Contact
               </Link>
@@ -149,7 +150,7 @@ const Navigation = () => {
           <div className="flex flex-col space-y-3 items-end">
             <Link 
               to="/destinations"
-              className="text-lg py-2 transition-colors text-foreground hover:text-primary font-medium"
+              className={`text-lg py-2 transition-colors ${isDestinationPage ? 'text-primary' : 'text-foreground hover:text-primary'} font-medium`}
               onClick={closeMobileMenu}
             >
               Destination

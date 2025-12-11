@@ -1,8 +1,13 @@
 import { useState, useEffect, useRef } from 'react';
-import { Star, ChevronDown, ChevronRight, MapPin, Clock, Users, Calendar, Globe, ChevronLeft, Mail, Heart, Share2, Images, CalendarDays, CircleDollarSign, CheckCircle, BadgeCheck, UsersRound, ArrowBigDownDash, Image, UserCheck, GlobeLock, PersonStanding, ParkingCircle, ChevronUp } from "lucide-react";
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
+import { 
+  Star, ChevronDown, ChevronRight, MapPin, Clock, Users, Calendar, Globe, 
+  ChevronLeft, Mail, Heart, Share2, Images, CalendarDays, CircleDollarSign, 
+  CheckCircle, BadgeCheck, UsersRound, ArrowBigDownDash, Image, UserCheck, 
+  GlobeLock, PersonStanding, ParkingCircle, ChevronUp 
+} from 'lucide-react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { useNavigate, useParams, useLocation, useLoaderData } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -14,6 +19,13 @@ import japan3 from "@/assets/japan3.png";
 import japan4 from "@/assets/japan4.png";
 import japan5 from "@/assets/japan5.png";
 import locationIcon from "@/assets/locationIcon.png";
+import place1 from "@/assets/place1.png";
+import place2 from "@/assets/place2.png";
+import place3 from "@/assets/place3.png";
+import place4 from "@/assets/place4.png";
+import place5 from "@/assets/place5.png";
+import place6 from "@/assets/place6.png";
+import place7 from "@/assets/place7.png";
 
 // Array of all images for easy mapping
 const galleryImages = [
@@ -24,9 +36,127 @@ const galleryImages = [
   { id: 5, src: japan5, alt: "Japan tour preview 5" },
 ];
 
+// Places data for the "Places You'll See" section
+const placesToSee = [
+  {
+    id: 1,
+    image: place1,
+    category: "Beach",
+    distance: "600 m away",
+    name: "Osaka",
+    price: 50,
+    discountPrice: 42
+  },
+  {
+    id: 2,
+    image: place2,
+    category: "Show",
+    distance: "800 m away",
+    name: "Nara",
+    price: 35,
+    discountPrice: 29
+  },
+  {
+    id: 3,
+    image: place3,
+    category: "Museum",
+    distance: "1.3 km away",
+    name: "Kyoto",
+    price: 45,
+    discountPrice: 39
+  },
+  {
+    id: 4,
+    image: place4,
+    category: "Food",
+    distance: "500 m away",
+    name: "Nagoya",
+    price: 30,
+    discountPrice: 25
+  },
+  {
+    id: 5,
+    image: place5,
+    category: "Beach",
+    distance: "800 m away",
+    name: "Tokyo",
+    price: 30,
+    discountPrice: 25
+  },
+  {
+    id: 6,
+    image: place6,
+    category: "Castle",
+    distance: "800 m away",
+    name: "Tokyo",
+    price: 30,
+    discountPrice: 25
+  },
+  {
+    id: 7,
+    image: place7,
+    category: "Museum",
+    distance: "800 m away",
+    name: "Tokyo",
+    price: 30,
+    discountPrice: 25
+  }
+];
+
 const DestinationDetails = () => {
-  const navigate = useNavigate();
   const { id } = useParams();
+  const navigate = useNavigate();
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [showLeftArrow, setShowLeftArrow] = useState(false);
+  const [showRightArrow, setShowRightArrow] = useState(true);
+
+  const checkScrollPosition = () => {
+    if (scrollContainerRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
+      setShowLeftArrow(scrollLeft > 0);
+      setShowRightArrow(scrollLeft < scrollWidth - clientWidth - 1); // 1px buffer for rounding
+    }
+  };
+
+  const scrollLeft = () => {
+    if (scrollContainerRef.current) {
+      const cardWidth = 280; // Width of each card
+      const gap = 64; // Space between cards (4rem = 64px)
+      const scrollAmount = cardWidth + gap; // Total distance to scroll
+      
+      scrollContainerRef.current.scrollBy({
+        left: -scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  const scrollRight = () => {
+    if (scrollContainerRef.current) {
+      const cardWidth = 280; // Width of each card
+      const gap = 64; // Space between cards (4rem = 64px)
+      const scrollAmount = cardWidth + gap; // Total distance to scroll
+      
+      scrollContainerRef.current.scrollBy({
+        left: scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  const handleScroll = () => {
+    checkScrollPosition();
+  };
+
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (container) {
+      container.addEventListener('scroll', handleScroll);
+      // Initial check
+      checkScrollPosition();
+      return () => container.removeEventListener('scroll', handleScroll);
+    }
+  }, []);
   const location = useLocation();
   const [isLoading, setIsLoading] = useState(true);
 
@@ -561,6 +691,70 @@ const DestinationDetails = () => {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Places You’ll See */}
+      <section className="flex-1 relative overflow-hidden">
+        <div className="container mx-auto px-8 mt-12 relative">
+          <h2 className="text-2xl font-inter font-semibold text-[#121316] mb-6">Places You'll See</h2>
+          <div className="relative">
+            <div 
+              className="flex overflow-hidden pb-6"
+              ref={scrollContainerRef}
+              onScroll={handleScroll}
+            >
+              <div className="flex space-x-16 snap-x snap-mandatory pl-4">
+                {placesToSee.map((place) => (
+                  <div key={place.id} className="flex-shrink-0 w-[280px] bg-transparent rounded-2xl overflow-hidden snap-center">
+                    <div className="relative w-full pt-[75%] bg-gray-50">
+                      <div className="absolute inset-0">
+                        <img 
+                          src={place.image} 
+                          alt={place.name} 
+                          className="w-full h-full object-cover"
+                        />
+                        <div className="absolute top-3 right-3 bg-white/85 boarder boarder-[#DDDFE3] px-3 py-1 rounded-full text-xs font-roboto font-medium text-[#121316]">
+                          {place.distance}
+                        </div>
+                        <div className="absolute top-3 left-3 bg-white/75 text-[#EB662B] border border-[#EB662B] text-xs font-roboto font-medium px-3 py-1 rounded-full">
+                          {place.category}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="px-0 py-4 w-full">
+                      <h3 className="font-roboto font-semibold text-[#1F2226] mb-1">{place.name}</h3>
+                      <div className="flex items-center justify-between w-full">
+                        <div className="flex items-center text-sm text-gray-400">
+                          <span>Per Person</span>
+                        </div>
+                        <div className="flex items-center">
+                          <span className="text-sm text-gray-400 font-roboto font-semibold line-through mr-1">${place.price}</span>
+                          <span className="text-[#1F2226] font-roboto font-semibold">${place.discountPrice}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            {/* Navigation Arrows */}
+            <button 
+              onClick={scrollLeft}
+              className={`absolute left-0 top-1/3 -translate-y-1/2 -translate-x-1/4 w-10 h-10 rounded-full bg-white border-2 border-[#EB662B] shadow-md flex items-center justify-center text-[#EB662B] hover:bg-gray-100 transition-all duration-200 z-10 ${showLeftArrow ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+              aria-label="Scroll left"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+            <button 
+              onClick={scrollRight}
+              className={`absolute right-0 top-1/3 -translate-y-1/2 translate-x-1/4 w-10 h-10 rounded-full bg-white border-2 border-[#EB662B] shadow-md flex items-center justify-center text-[#EB662B] hover:bg-gray-100 transition-all duration-200 z-10 ${showRightArrow ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+              aria-label="Scroll right"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
           </div>
         </div>
       </section>

@@ -74,25 +74,25 @@ const Navigation = () => {
             <div className="flex items-center gap-[1.5vw] lg:gap-[2vw] xl:gap-[2.5vw]">
               <Link 
                 to="/destinations"
-                className={`${isDestinationPage ? 'text-primary' : 'text-[#170F49] hover:text-primary'} transition-colors font-inter font-medium text-[1.1vw]`}
+                className={`${isDestinationPage ? 'text-primary' : isHeroPage && !scrolled ? 'text-white hover:text-white/80' : 'text-[#170F49] hover:text-primary'} transition-colors font-inter font-medium text-[1.1vw]`}
               >
                 Destination
               </Link>
               <Link 
                 to="/e-visa"
-                className={`${location.pathname === '/e-visa' ? 'text-primary' : 'text-[#170F49] hover:text-primary'} transition-colors font-inter font-medium text-[1.1vw]`}
+                className={`${location.pathname === '/e-visa' ? 'text-primary' : isHeroPage && !scrolled ? 'text-white hover:text-white/80' : 'text-[#170F49] hover:text-primary'} transition-colors font-inter font-medium text-[1.1vw]`}
               >
                 E Visa
               </Link>
               <Link 
                 to="/about-us"
-                className={`${location.pathname === '/about-us' ? 'text-primary' : 'text-[#170F49] hover:text-primary'} transition-colors font-inter font-medium text-[1.1vw]`}
+                className={`${location.pathname === '/about-us' ? 'text-primary' : isHeroPage && !scrolled ? 'text-white hover:text-white/80' : 'text-[#170F49] hover:text-primary'} transition-colors font-inter font-medium text-[1.1vw]`}
               >
                 About Us
               </Link>
               <Link 
                 to="/contact"
-                className={`${location.pathname === '/contact' ? 'text-primary' : 'text-[#170F49] hover:text-primary'} transition-colors font-inter font-medium text-[1.1vw]`}
+                className={`${location.pathname === '/contact' ? 'text-primary' : isHeroPage && !scrolled ? 'text-white hover:text-white/80' : 'text-[#170F49] hover:text-primary'} transition-colors font-inter font-medium text-[1.1vw]`}
               >
                 Contact
               </Link>
@@ -103,7 +103,7 @@ const Navigation = () => {
           <div className="flex items-center justify-end w-[20%] min-w-[120px] max-w-[180px] gap-4">
             <a 
               href="#login" 
-              className={`hidden md:flex items-center justify-center gap-2 ${scrolled ? 'text-foreground' : 'text-white'} px-6 py-2 rounded-full font-inter font-medium transition-all duration-300`}
+              className={`hidden md:flex items-center justify-center gap-2 ${scrolled ? 'text-foreground' : isHeroPage ? 'text-white' : 'text-foreground'} px-6 py-2 rounded-full font-inter font-medium transition-all duration-300`}
               style={{
                 width: '7.5vw',
                 minWidth: '104px',

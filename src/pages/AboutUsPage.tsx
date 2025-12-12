@@ -201,7 +201,7 @@ const AboutUsPage = () => {
       
       {/* Hero Section */}
       <section className="relative py-12 md:py-20 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="w-full mx-auto px-4">
           <div className="flex flex-col">
             {/* Top Row - Title and Description */}
             <div className="flex flex-col lg:flex-row gap-30 mb-12">
@@ -388,7 +388,7 @@ const AboutUsPage = () => {
 
       {/* Why Us Section */}
       <section className="pt-96 pb-20 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="w-full mx-auto px-4">
           <div className="flex flex-col lg:flex-row items-center gap-12">
             {/* Left Side - Image */}
             <div className="w-full lg:w-1/2 bg transparent -mt-12 md:mt-0">

@@ -74,25 +74,25 @@ const Navigation = () => {
             <div className="flex items-center gap-[1.5vw] lg:gap-[2vw] xl:gap-[2.5vw]">
               <Link 
                 to="/destinations"
-                className={`${isDestinationPage ? 'text-primary' : isHeroPage && !scrolled ? 'text-white hover:text-white/80' : 'text-[#170F49] hover:text-primary'} transition-colors font-inter font-medium text-[1.1vw]`}
+                className={`${isDestinationPage ? 'text-primary' : isHeroPage && !scrolled ? 'text-white hover:text-[#EB662B]' : 'text-[#170F49] hover:text-primary'} transition-colors font-inter font-medium text-[1.1vw]`}
               >
                 Destination
               </Link>
               <Link 
                 to="/e-visa"
-                className={`${location.pathname === '/e-visa' ? 'text-primary' : isHeroPage && !scrolled ? 'text-white hover:text-white/80' : 'text-[#170F49] hover:text-primary'} transition-colors font-inter font-medium text-[1.1vw]`}
+                className={`${location.pathname === '/e-visa' ? 'text-primary' : isHeroPage && !scrolled ? 'text-white hover:text-[#EB662B]' : 'text-[#170F49] hover:text-primary'} transition-colors font-inter font-medium text-[1.1vw]`}
               >
                 E Visa
               </Link>
               <Link 
                 to="/about-us"
-                className={`${location.pathname === '/about-us' ? 'text-primary' : isHeroPage && !scrolled ? 'text-white hover:text-white/80' : 'text-[#170F49] hover:text-primary'} transition-colors font-inter font-medium text-[1.1vw]`}
+                className={`${location.pathname === '/about-us' ? 'text-primary' : isHeroPage && !scrolled ? 'text-white hover:text-[#EB662B]' : 'text-[#170F49] hover:text-primary'} transition-colors font-inter font-medium text-[1.1vw]`}
               >
                 About Us
               </Link>
               <Link 
                 to="/contact"
-                className={`${location.pathname === '/contact' ? 'text-primary' : isHeroPage && !scrolled ? 'text-white hover:text-white/80' : 'text-[#170F49] hover:text-primary'} transition-colors font-inter font-medium text-[1.1vw]`}
+                className={`${location.pathname === '/contact' ? 'text-primary' : isHeroPage && !scrolled ? 'text-white hover:text-[#EB662B]' : 'text-[#170F49] hover:text-primary'} transition-colors font-inter font-medium text-[1.1vw]`}
               >
                 Contact
               </Link>

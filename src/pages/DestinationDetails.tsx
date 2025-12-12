@@ -4,8 +4,11 @@ import {
   Star, ChevronDown, ChevronRight, MapPin, Clock, Users, Calendar, Globe, 
   ChevronLeft, Mail, Heart, Share2, Images, CalendarDays, CircleDollarSign, 
   CheckCircle, BadgeCheck, UsersRound, ArrowBigDownDash, Image, UserCheck, 
-  GlobeLock, PersonStanding, ParkingCircle, ChevronUp 
+  GlobeLock, PersonStanding, ParkingCircle, ChevronUp, MapPin as MapPinIcon, Maximize2, Minimize2
 } from 'lucide-react';
+import { MapContainer, TileLayer, Marker, Popup, useMap, ZoomControl } from 'react-leaflet';
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Button } from "@/components/ui/button";
@@ -26,6 +29,15 @@ import place4 from "@/assets/place4.png";
 import place5 from "@/assets/place5.png";
 import place6 from "@/assets/place6.png";
 import place7 from "@/assets/place7.png";
+import stay1 from "@/assets/stay1.png";
+import stay2 from "@/assets/stay2.png";
+import stay3 from "@/assets/stay3.png";
+import stay4 from "@/assets/stay4.png";
+import gallery1 from "@/assets/gallery1.png";
+import gallery2 from "@/assets/gallery2.png";
+import gallery3 from "@/assets/gallery3.png";
+import gallery4 from "@/assets/gallery4.png";
+import gallery5 from "@/assets/gallery5.png";
 
 // Array of all images for easy mapping
 const galleryImages = [
@@ -102,6 +114,91 @@ const placesToSee = [
     discountPrice: 25
   }
 ];
+
+const flow = [
+  {
+    day: 1,
+    title: 'Airport Pick Up',
+    description: ''
+  },
+  {
+    day: 2,
+    title: 'Temples & River Cruise',
+    description: ''
+  },
+  {
+    day: 3,
+    title: 'Massage & Overnight Train',
+    description: 'Like on all of our trips, we can collect you from the airport when you land and take you directly to your hotel. The first Day is just a check-in Day so you have this freedom to explore the city and get settled in.'
+  },
+  {
+    day: 4,
+    title: 'Khao Sok National Park',
+    description: ''
+  },
+  {
+    day: 5,
+    title: 'Travel to Koh Phangan',
+    description: ''
+  },
+  {
+    day: 6,
+    title: 'Morning Chill & Muay Thai Lesson',
+    description: ''
+  },
+  {
+    day: 7,
+    title: 'Island Boat Trip',
+    description: ''
+  }
+]
+
+const stays = [
+  {
+    id: 1,
+    name: 'The Grand Hotel',
+    location: 'Bangkok, Thailand',
+    rating: 4.8,
+    reviews: 1248,
+    price: 120,
+    discountPrice: 99,
+    image: stay1,
+    description: 'Luxury hotel with stunning city views and premium amenities'
+  },
+  {
+    id: 2,
+    name: 'Beachfront Resort',
+    location: 'Phuket, Thailand',
+    rating: 4.7,
+    reviews: 945,
+    price: 150,
+    discountPrice: 129,
+    image: stay2,
+    description: 'Beachfront paradise with direct access to white sandy beaches'
+  },
+  {
+    id: 3,
+    name: 'Mountain View Lodge',
+    location: 'Chiang Mai, Thailand',
+    rating: 4.6,
+    reviews: 832,
+    price: 110,
+    discountPrice: 89,
+    image: stay3,
+    description: 'Peaceful retreat with breathtaking mountain views'
+  },
+  {
+    id: 4,
+    name: 'City Center Hotel',
+    location: 'Bangkok, Thailand',
+    rating: 4.5,
+    reviews: 1103,
+    price: 95,
+    discountPrice: 79,
+    image: stay4,
+    description: 'Modern comfort in the heart of the city with easy access to attractions'
+  }
+]
 
 const DestinationDetails = () => {
   const { id } = useParams();
@@ -696,7 +793,7 @@ const DestinationDetails = () => {
       </section>
 
       {/* Places You’ll See */}
-      <section className="flex-1 relative overflow-hidden">
+      <section className="flex-1 relative overflow-hidden bg-[#F1F2F3]">
         <div className="container mx-auto px-8 mt-12 relative">
           <h2 className="text-2xl font-inter font-semibold text-[#121316] mb-6">Places You'll See</h2>
           <div className="relative">
@@ -707,23 +804,25 @@ const DestinationDetails = () => {
             >
               <div className="flex space-x-16 snap-x snap-mandatory pl-4">
                 {placesToSee.map((place) => (
-                  <div key={place.id} className="flex-shrink-0 w-[280px] bg-transparent rounded-2xl overflow-hidden snap-center">
-                    <div className="relative w-full pt-[75%] bg-gray-50">
-                      <div className="absolute inset-0">
-                        <img 
-                          src={place.image} 
-                          alt={place.name} 
-                          className="w-full h-full object-cover"
-                        />
-                        <div className="absolute top-3 right-3 bg-white/85 boarder boarder-[#DDDFE3] px-3 py-1 rounded-full text-xs font-roboto font-medium text-[#121316]">
+                  <div key={place.id} className="group flex-shrink-0 w-[280px] bg-transparent rounded-2xl overflow-hidden snap-center transition-all duration-300 ease-in-out hover:translate-y-2">
+                    <div className="relative w-full bg-gray-50 overflow-hidden">
+                      <div className="relative w-full pt-[75%] transition-all duration-500 ease-in-out group-hover:pt-[85%] overflow-hidden">
+                        <div className="absolute inset-0">
+                          <img 
+                            src={place.image} 
+                            alt={place.name} 
+                            className="w-full h-full object-cover transition-all duration-500 ease-in-out group-hover:scale-105"
+                          />
+                        </div>
+                        <div className="absolute top-3 right-3 bg-white/85 border border-[#DDDFE3] px-3 py-1 rounded-full text-xs font-roboto font-medium text-[#121316] z-10">
                           {place.distance}
                         </div>
-                        <div className="absolute top-3 left-3 bg-white/75 text-[#EB662B] border border-[#EB662B] text-xs font-roboto font-medium px-3 py-1 rounded-full">
+                        <div className="absolute top-3 left-3 bg-white/75 text-[#EB662B] border border-[#EB662B] text-xs font-roboto font-medium px-3 py-1 rounded-full z-10">
                           {place.category}
                         </div>
                       </div>
                     </div>
-                    <div className="px-0 py-4 w-full">
+                    <div className="px-0 py-4 w-full transition-all duration-300 ease-in-out group-hover:opacity-0 group-hover:h-0 group-hover:py-0 group-hover:overflow-hidden">
                       <h3 className="font-roboto font-semibold text-[#1F2226] mb-1">{place.name}</h3>
                       <div className="flex items-center justify-between w-full">
                         <div className="flex items-center text-sm text-gray-400">
@@ -735,11 +834,14 @@ const DestinationDetails = () => {
                         </div>
                       </div>
                     </div>
+                    <div className="absolute bottom-0 left-0 right-0 px-4 pb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
+                      <h3 className="font-roboto font-semibold text-[#1F2226]">{place.name}</h3>
+                    </div>
                   </div>
                 ))}
               </div>
             </div>
-            
+
             {/* Navigation Arrows */}
             <button 
               onClick={scrollLeft}
@@ -755,9 +857,246 @@ const DestinationDetails = () => {
             >
               <ChevronRight className="w-6 h-6" />
             </button>
+
           </div>
         </div>
       </section>
+
+      {/* Location */}
+      <section className="py-12 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-2xl font-inter font-semibold text-[#121316]">Location</h2>
+          </div>
+          
+          <div className="relative h-[400px] rounded-xl overflow-hidden border border-gray-200">
+            <MapContainer
+              center={[41.3874, 2.1686]} // Barcelona coordinates
+              zoom={13}
+              style={{ height: '100%', width: '100%' }}
+              zoomControl={false}
+            >
+              <TileLayer
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              />
+              <Marker position={[41.3874, 2.1686]}>
+                <Popup>
+                  <div className="flex items-center">
+                    <MapPinIcon size={16} className="text-red-500 mr-1" />
+                    <span>Barcelona, Spain</span>
+                  </div>
+                </Popup>
+              </Marker>
+              <div className="leaflet-top leaflet-right">
+                <div className="leaflet-control-container">
+                  <div className="leaflet-top leaflet-right">
+                    <div className="leaflet-control-zoom leaflet-bar leaflet-control bg-white">
+                      <button 
+                        className="leaflet-control-zoom-in" 
+                        title="Maximize map"
+                        onClick={() => {
+                          const mapContainer = document.querySelector('.leaflet-container')?.parentElement;
+                          if (mapContainer) {
+                            if (!document.fullscreenElement) {
+                              mapContainer.requestFullscreen().catch(err => {
+                                console.error(`Error attempting to enable fullscreen: ${err.message}`);
+                              });
+                            } else {
+                              document.exitFullscreen();
+                            }
+                          }
+                        }}
+                      >
+                        <Maximize2 size={16} className="w-6 h-5 m-auto" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <ZoomControl position="bottomright" />
+            </MapContainer>
+          </div>
+        </div>
+      </section>
+
+      {/* Itinerary Flow */}
+      <section className="py-12 bg-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-2xl font-inter font-semibold text-[#121316] mb-8">Itinerary</h2>
+          
+          <div className="relative pl-8">
+            {/* Timeline line - positioned to end at the last dot */}
+            <div 
+              className="absolute left-8 top-0 w-0.5 bg-[#EB662B]/30"
+              style={{ height: `calc(100% - 1.25rem)` }} // Adjust this value to match half the height of your last dot
+            ></div>
+            
+            {/* Timeline items */}
+            <div className="space-y-10">
+              {flow.map((item, index, array) => (
+                <div key={item.day} className="relative pl-8">
+                  <div 
+                    className={`absolute left-0 top-0 flex items-center justify-center ${index === 0 || index === array.length - 1 ? 'w-5 h-5' : 'w-3 h-3'} 
+                    rounded-full ${index === 0 || index === array.length - 1 ? 'bg-[#EB662B]' : 'bg-white'} 
+                    border-2 border-[#EB662B] -translate-x-1/2`}>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="font-inter font-medium text-[#05073C] leading-none">Day {item.day} :</div>
+                    <div className="font-inter font-medium text-[#05073C] leading-none">{item.title}</div>
+                  </div>
+                  {item.description && (
+                    <p className="mt-2 text-[#05073C] text-sm font-inter font-regular leading-relaxed">
+                      {item.description}
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Where You’ll Stay */}
+      <section className="py-12 bg-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-2xl font-inter font-semibold text-[#121316] mb-8">Where You'll Stay</h2>
+    
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {stays.map((stay) => (
+              <div key={stay.id} className="bg-white rounded-xl overflow-hidden border border-[#DDDFE3] hover:shadow-lg transition-shadow duration-300">
+                <div className="relative h-48">
+                  <img 
+                    src={stay.image} 
+                    alt={stay.name} 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+          
+                <div className="p-4">
+                  <h3 className="font-roboto font-semibold text-lg text-[#1F2226] mb-1">{stay.name}</h3>
+                  <div className="flex items-center text-sm text-[#505050] font-roboto font-medium mb-3">
+                    <MapPin className="w-4 h-4 mr-1" />
+                    {stay.location}
+                  </div>
+            
+                  <div className="bg-[#F3F3F3] p-3 rounded-lg mt-2 mb-1">
+                    <p className="text-sm text-[#626364] font-roboto font-regular">
+                      {stay.description}
+                    </p>
+                  </div>
+                  
+
+                  <div className="flex items-center text-sm text-[#EB662B]">
+                    <div className="bg-[#F3F3F3] px-2 py-1 rounded-md mt-2 mb-3 flex items-center text-sm">
+                      <span className="font-roboto font-medium">{stay.rating}</span>
+                    </div>
+                    <span className="ml-1 text-[#EB662B] text-xs font-roboto font-medium">
+                      {stay.rating >= 4.5 ? 'Excellent' : 
+                       stay.rating >= 4 ? 'Very Good' : 
+                       stay.rating >= 3.5 ? 'Good' : 
+                       stay.rating >= 3 ? 'Average' : 'Fair'}
+                    </span>
+                    <span className="text-[#8B94A4] text-xs font-roboto font-regular ml-2">{stay.reviews} reviews</span>
+                  </div>
+                  <div className="flex items-center justify-end mt-0">
+                    <Calendar className="w-4 h-4 text-black mr-1" />
+                    <span className="text-md text-[#1F2226] font-roboto font-semibold">
+                      {stay.id} Day{stay.id > 1 ? 's' : ''}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Traveler's Gallery */}
+      <section className="py-12 bg-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-2xl font-inter font-semibold text-[#121316] mb-8">Traveler's Gallery</h2>
+          
+          <div className="relative">
+            <div 
+              className="flex space-x-6 overflow-x-auto pb-6 scrollbar-hide cursor-grab active:cursor-grabbing pl-4"
+              style={{
+                scrollSnapType: 'x mandatory',
+                WebkitOverflowScrolling: 'touch',
+                scrollbarWidth: 'none',
+                msOverflowStyle: 'none',
+                touchAction: 'pan-y',
+                userSelect: 'none',
+                WebkitUserSelect: 'none',
+                msUserSelect: 'none',
+                MozUserSelect: 'none'
+              }}
+              onWheel={(e) => {
+                const container = e.currentTarget;
+                const scrollAmount = e.deltaY > 0 ? 100 : -100;
+                container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+              }}
+              onTouchStart={(e) => {
+                const container = e.currentTarget;
+                const startX = e.touches[0].clientX;
+                const scrollLeft = container.scrollLeft;
+                
+                const moveHandler = (moveEvent: TouchEvent) => {
+                  const x = moveEvent.touches[0].clientX;
+                  const walk = (x - startX) * 2;
+                  container.scrollLeft = scrollLeft - walk;
+                };
+                
+                const endHandler = () => {
+                  document.removeEventListener('touchmove', moveHandler);
+                  document.removeEventListener('touchend', endHandler);
+                };
+                
+                document.addEventListener('touchmove', moveHandler, { passive: false });
+                document.addEventListener('touchend', endHandler);
+              }}
+              onMouseDown={(e) => {
+                const container = e.currentTarget as HTMLElement;
+                const startX = e.pageX - container.offsetLeft;
+                const scrollLeft = container.scrollLeft;
+                container.style.cursor = 'grabbing';
+                
+                const moveHandler = (moveEvent: MouseEvent) => {
+                  if (e.buttons !== 1) return; // Only if left mouse button is still pressed
+                  const x = moveEvent.pageX - container.offsetLeft;
+                  const walk = (x - startX) * 2;
+                  container.scrollLeft = scrollLeft - walk;
+                };
+                
+                const endHandler = () => {
+                  container.style.cursor = 'grab';
+                  document.removeEventListener('mousemove', moveHandler);
+                  document.removeEventListener('mouseup', endHandler);
+                };
+                
+                document.addEventListener('mousemove', moveHandler);
+                document.addEventListener('mouseup', endHandler);
+              }}
+            >
+              {[gallery1, gallery2, gallery3, gallery4, gallery5].map((img, index) => (
+                <div 
+                  key={index}
+                  className="flex-shrink-0 w-[280px] h-[280px] rounded-xl overflow-hidden relative group select-none"
+                  style={{ scrollSnapAlign: 'start' }}
+                >
+                  <img 
+                    src={img} 
+                    alt={`Gallery ${index + 1}`} 
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 pointer-events-none"
+                    draggable="false"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       <Footer />
     </div>
   );

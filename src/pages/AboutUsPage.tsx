@@ -309,7 +309,7 @@ const AboutUsPage = () => {
 
                   {/* Trusted By Section */}
                   <div className="w-full relative overflow-hidden bg-transparent py-8">
-                    <div className="container mx-auto px-4">
+                    <div className="w-full mx-auto px-4">
                       <div className="text-left mb-8 pl-4 md:pl-0">
                         <h2 className="text-lg md:text-xl font-inter font-medium text-white leading-tight">
                           OUR <br />
@@ -473,9 +473,9 @@ const AboutUsPage = () => {
       </section>
 
       {/* Our Journey Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 -mt-16 md:-mt-16">
-          <div className="bg-[#F53900] rounded-3xl overflow-hidden py-12">
+      <section className="py-12 bg-white">
+        <div className="w-full mx-auto px-4 md:px-20 -mt-16 md:-mt-16">
+          <div className="bg-[#F53900] rounded-3xl overflow-hidden py-8">
             <div className="flex flex-col lg:flex-row">
               {/* Left Side - Content */}
               <div className="w-full lg:w-[55%] p-12 pt-20 text-white -mt-12 md:mt-0">

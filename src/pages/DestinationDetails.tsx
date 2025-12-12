@@ -4,13 +4,40 @@ import {
   Star, ChevronDown, ChevronRight, MapPin, Clock, Users, Calendar, Globe, 
   ChevronLeft, Mail, Heart, Share2, Images, CalendarDays, CircleDollarSign, 
   CheckCircle, BadgeCheck, UsersRound, ArrowBigDownDash, Image, UserCheck, 
-  GlobeLock, PersonStanding, ParkingCircle, ChevronUp, MapPin as MapPinIcon, Maximize2, Minimize2
+  GlobeLock, PersonStanding, ParkingCircle, ChevronUp, MapPin as MapPinIcon, Maximize2, Minimize2,
+  Home, Utensils, User, Bus, Wifi, PlusCircle
 } from 'lucide-react';
 import { MapContainer, TileLayer, Marker, Popup, useMap, ZoomControl } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+
+// Custom styles for date picker
+const datePickerStyles = `
+  .date-picker-popper {
+    z-index: 50 !important;
+    margin-top: 8px !important;
+  }
+  .react-datepicker {
+    font-family: 'Inter', sans-serif;
+    border: 1px solid #E5E7EB;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+  .react-datepicker__header {
+    background-color: white;
+    border-bottom: 1px solid #E5E7EB;
+  }
+  .react-datepicker__day--selected, .react-datepicker__day--keyboard-selected {
+    background-color: #EB662B;
+  }
+`;
+
+// Add styles to the head
+const styleElement = document.createElement('style');
+styleElement.textContent = datePickerStyles;
+document.head.appendChild(styleElement);
 import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -46,6 +73,45 @@ const galleryImages = [
   { id: 3, src: japan3, alt: "Japan tour preview 3" },
   { id: 4, src: japan4, alt: "Japan tour preview 4" },
   { id: 5, src: japan5, alt: "Japan tour preview 5" },
+];
+
+const datesAvailability = [
+  {
+    id: 1,
+    fromDate: 'Friday 27 Feb, 2026',
+    toDate: 'Saturday 7 Mar, 2026',
+    roomType: 'Multiple Room Type',
+    language: 'English',
+    isGuaranteed: true,
+    originalPrice: 350,
+    discountedPrice: 290,
+    nights: 5,
+    discountPercentage: 10
+  },
+  {
+    id: 2,
+    fromDate: 'Friday 6 Mar, 2026',
+    toDate: 'Saturday 14 Mar, 2026',
+    roomType: 'Single Room',
+    language: 'English',
+    isGuaranteed: true,
+    originalPrice: 400,
+    discountedPrice: 320,
+    nights: 5,
+    discountPercentage: 20
+  },
+  {
+    id: 3,
+    fromDate: 'Friday 13 Mar, 2026',
+    toDate: 'Saturday 21 Mar, 2026',
+    roomType: 'Double Room',
+    language: 'English',
+    isGuaranteed: false,
+    originalPrice: 380,
+    discountedPrice: 350,
+    nights: 5,
+    discountPercentage: 8
+  }
 ];
 
 // Places data for the "Places You'll See" section
@@ -355,6 +421,13 @@ const DestinationDetails = () => {
     };
   }, []);
 
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [guests, setGuests] = useState({
+    adults: 2,
+    children: 0,
+    rooms: 1
+  });
+
   if (isLoading) {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center">
@@ -400,9 +473,9 @@ const DestinationDetails = () => {
       
       {/* Main Content */}
       <section className="flex-1 overflow-x-hidden">
-        <div className="container mx-auto px-4 py-8">
+        <div className="w-full mx-auto px-4 py-8">
         {/* Back Button */}
-        <div className="w-full px-0 py-8">
+        <div className="w-full px-0 md:px-6 py-8">
           <button 
             onClick={() => navigate('/destination-search')}
             className="group relative inline-flex items-center gap-2 px-6 py-3 text-sm font-medium rounded-lg text-gray-700 bg-transparent overflow-hidden"
@@ -414,7 +487,7 @@ const DestinationDetails = () => {
         </div>
 
           {/* Tour Header */}
-          <div className="container mx-auto px-4 mb-8">
+          <div className="w-full mx-auto px-4 md:px-12 mb-8">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
             <div className="flex flex-col">
               <div className="flex flex-wrap items-center gap-3">
@@ -457,7 +530,7 @@ const DestinationDetails = () => {
         </div>
         
         {/* Image Gallery */}
-        <div className="container mx-auto px-4 mt-8">
+        <div className="w-full mx-auto px-4 md:px-12 mt-8">
           {/* Left soft pink half-circle - more transparent and blurred */}
           <div className="absolute left-0 top-3/4 -translate-y-1/2 w-[600px] h-[800px] -translate-x-1/3 z-0">
             <div className="w-full h-full bg-gradient-to-r from-pink-300/40 via-pink-500/20 to-transparent rounded-full blur-3xl"></div>
@@ -514,7 +587,7 @@ const DestinationDetails = () => {
 
       {/* Description & Reservation */}
       <section className="relative z-10">
-        <div className="container max-w-8xl mx-auto px-8 py-8">
+        <div className="w-full mx-auto px-8 md:px-16 py-8">
           {/* Tabs */}
           <div className="flex flex-wrap gap-y-2 gap-x-6 pb-2 mb-6">
             {[
@@ -794,7 +867,7 @@ const DestinationDetails = () => {
 
       {/* Places You’ll See */}
       <section className="flex-1 relative overflow-hidden bg-[#F1F2F3]">
-        <div className="container mx-auto px-8 mt-12 relative">
+        <div className="w-full mx-auto px-8 md:px-16 mt-12 relative">
           <h2 className="text-2xl font-inter font-semibold text-[#121316] mb-6">Places You'll See</h2>
           <div className="relative">
             <div 
@@ -864,12 +937,12 @@ const DestinationDetails = () => {
 
       {/* Location */}
       <section className="py-12 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="w-full mx-auto px-4 md:px-16">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-inter font-semibold text-[#121316]">Location</h2>
           </div>
           
-          <div className="relative h-[400px] rounded-xl overflow-hidden border border-gray-200">
+          <div className="relative w-full h-[400px] rounded-xl overflow-hidden border border-gray-200">
             <MapContainer
               center={[41.3874, 2.1686]} // Barcelona coordinates
               zoom={13}
@@ -922,7 +995,7 @@ const DestinationDetails = () => {
 
       {/* Itinerary Flow */}
       <section className="py-12 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="w-full mx-auto px-4 md:px-16">
           <h2 className="text-2xl font-inter font-semibold text-[#121316] mb-8">Itinerary</h2>
           
           <div className="relative pl-8">
@@ -959,7 +1032,7 @@ const DestinationDetails = () => {
 
       {/* Where You’ll Stay */}
       <section className="py-12 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="w-full mx-auto px-4 md:px-16">
           <h2 className="text-2xl font-inter font-semibold text-[#121316] mb-8">Where You'll Stay</h2>
     
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -1014,7 +1087,7 @@ const DestinationDetails = () => {
 
       {/* Traveler's Gallery */}
       <section className="py-12 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="w-full mx-auto px-4 md:px-16">
           <h2 className="text-2xl font-inter font-semibold text-[#121316] mb-8">Traveler's Gallery</h2>
           
           <div className="relative">
@@ -1094,6 +1167,296 @@ const DestinationDetails = () => {
               ))}
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* What's Include */}
+      <section className="py-12 bg-white">
+        <div className="w-full mx-auto px-4 md:px-16">
+          <h2 className="text-2xl font-inter font-semibold text-[#121316] mb-6">What's Include</h2>
+          
+          {/* Filter Buttons */}
+          <div className="mb-2">
+            <div className="flex flex-wrap gap-2 pb-2">
+              {[
+                { name: 'Accommodation', icon: <Home size={16} className="mr-2" /> },
+                { name: 'Meals', icon: <Utensils size={16} className="mr-2" /> },
+                { name: 'Guide', icon: <User size={16} className="mr-2" /> },
+                { name: 'Transport', icon: <Bus size={16} className="mr-2" /> },
+                { name: 'Additional Services', icon: <PlusCircle size={16} className="mr-2" /> },
+                { name: 'Free eSIM', icon: <Wifi size={16} className="mr-2" /> }
+              ].map((category, index) => (
+                <button
+                  key={index}
+                  className={`flex items-center flex-shrink-0 px-4 py-2 rounded-full text-sm font-inter font-regular whitespace-nowrap
+                    ${index === 0 
+                      ? 'bg-white text-[#2B3037] border border-[#B5BAC2]' 
+                      : 'bg-white text-[#2B3037] border border-white'}`}
+                >
+                  {category.icon}
+                  {category.name}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Accommodation List */}
+          <div className="space-y-4">
+            {[
+              {
+                id: 1,
+                name: 'Star Gate Hotel Kansai Airport or similar',
+                address: '1-1 Rinkuorai-Kita, Izumisano-shi, 598-0048, Japan',
+              },
+              {
+                id: 2,
+                name: 'Hotel Nikko Kansai Airport',
+                address: '1, Senshu-kuko Kita, Izumisano-shi, 549-0001, Japan',
+              },
+              {
+                id: 3,
+                name: 'Kansai Airport Washington Hotel',
+                address: '1-7 Rinkuoraikita, Izumisano, Osaka 598-0048, Japan',
+              },
+              {
+                id: 4,
+                name: 'Kansai Airport Washington Hotel',
+                address: '1-7 Rinkuoraikita, Izumisano, Osaka 598-0048, Japan',
+              },
+              {
+                id: 5,
+                name: 'Kansai Airport Washington Hotel',
+                address: '1-7 Rinkuoraikita, Izumisano, Osaka 598-0048, Japan',
+              }
+            ].map((hotel) => (
+              <div key={hotel.id} className="flex items-start p-0">
+                <div className="flex-shrink-0 w-5 h-5 mt-2 rounded-full bg-[#EB662B] mr-3"></div>
+                <div className="flex-1">
+                  <h3 className="text-[#05073C] font-inter font-regular text-sm">{hotel.name}</h3>
+                  <p className="text-[#05073C] font-inter font-regular text-sm mt-1">{hotel.address}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Dates & availability */}
+      <section className="py-12 bg-white">
+        <div className="w-full mx-auto px-4 md:px-16">
+          <h2 className="text-2xl font-inter font-semibold text-[#1F2226] mb-6">Dates & availability</h2>
+          
+          {/* Filter/Search Bar */}
+          <div className="bg-white border border-[#E5E7EB] rounded-xl shadow-sm overflow-visible mb-8 relative z-10">
+            <div className="flex flex-col md:flex-row">
+              {/* Destination */}
+              <div className="flex-1 p-5 relative">
+                <div className="relative h-full flex items-center">
+                  <MapPin className="flex-shrink-0 text-gray-400 h-4 w-4 mr-2" />
+                  <div className="relative flex-grow flex flex-col justify-center h-full">
+                    <span className="text-sm text-[#424242] font-inter font-medium pointer-events-none mb-1">Destination</span>
+                    <select className="w-full text-sm bg-transparent border-0 focus:ring-0 focus:outline-none cursor-pointer text-black font-inter font-medium">
+                      <option value="nara">Nara, Japan</option>
+                    </select>
+                  </div>
+                </div>
+                <div className="absolute right-0 top-1/2 transform -translate-y-1/2 h-12 w-px bg-[#E5E7EB] hidden md:block"></div>
+              </div>
+              
+              {/* Date */}
+              <div className="flex-1 p-5 relative">
+                <div className="relative h-full flex items-center">
+                  <Calendar className="flex-shrink-0 text-gray-400 h-4 w-4 mr-2" />
+                  <div className="relative flex-grow flex flex-col justify-center h-full">
+                    <span className="text-sm text-[#424242] font-inter font-medium pointer-events-none mb-1">Date</span>
+                    <DatePicker
+                      selected={selectedDate}
+                      onChange={(date) => setSelectedDate(date)}
+                      placeholderText="Select date"
+                      className="w-full text-sm bg-transparent border-0 focus:ring-0 focus:outline-none cursor-pointer text-black font-inter font-medium"
+                      dateFormat="dd MMM, yyyy"
+                      minDate={new Date()}
+                      showPopperArrow={false}
+                      popperClassName="date-picker-popper"
+                    />
+                  </div>
+                </div>
+                <div className="absolute right-0 top-1/2 transform -translate-y-1/2 h-12 w-px bg-[#E5E7EB] hidden md:block"></div>
+              </div>
+              
+              {/* Guest */}
+              <div className="flex-1 p-5 relative group">
+                <div className="relative h-full flex items-center">
+                  <Users className="flex-shrink-0 text-gray-400 h-4 w-4 mr-2" />
+                  <div className="relative flex-grow">
+                    <div className="flex items-center justify-between cursor-pointer">
+                      <div>
+                        <div className="text-sm text-[#424242] font-inter font-medium">Guest</div>
+                        <div className="text-sm text-black font-inter font-medium">
+                          {guests.adults} {guests.adults === 1 ? 'Adult' : 'Adults'}, {guests.children} {guests.children === 1 ? 'Child' : 'Children'}, {guests.rooms} {guests.rooms === 1 ? 'Room' : 'Rooms'}
+                        </div>
+                      </div>
+                      <ChevronDown className="text-gray-400 h-4 w-4 transition-transform group-has-[.guest-dropdown:focus]:rotate-180" />
+                    </div>
+                    
+                    {/* Guest Selection Dropdown */}
+                    <div className="guest-dropdown absolute left-0 right-0 mt-2 p-4 bg-white rounded-lg shadow-lg border border-gray-200 z-50 hidden group-hover:block focus-within:block">
+                      <div className="space-y-4">
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <div className="font-medium">Adults</div>
+                            <div className="text-xs text-gray-500">Ages 13 or above</div>
+                          </div>
+                          <div className="flex items-center space-x-3">
+                            <button 
+                              type="button" 
+                              onClick={() => setGuests(prev => ({
+                                ...prev,
+                                adults: Math.max(1, prev.adults - 1)
+                              }))}
+                              className="w-8 h-8 flex items-center justify-center rounded-full border border-gray-300 text-gray-600 hover:bg-gray-100"
+                            >
+                              -
+                            </button>
+                            <span className="w-6 text-center">{guests.adults}</span>
+                            <button 
+                              type="button"
+                              onClick={() => setGuests(prev => ({
+                                ...prev,
+                                adults: prev.adults + 1
+                              }))}
+                              className="w-8 h-8 flex items-center justify-center rounded-full border border-gray-300 text-gray-600 hover:bg-gray-100"
+                            >
+                              +
+                            </button>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                          <div>
+                            <div className="font-medium">Children</div>
+                            <div className="text-xs text-gray-500">Ages 2-12</div>
+                          </div>
+                          <div className="flex items-center space-x-3">
+                            <button 
+                              type="button"
+                              onClick={() => setGuests(prev => ({
+                                ...prev,
+                                children: Math.max(0, prev.children - 1)
+                              }))}
+                              className="w-8 h-8 flex items-center justify-center rounded-full border border-gray-300 text-gray-600 hover:bg-gray-100"
+                            >
+                              -
+                            </button>
+                            <span className="w-6 text-center">{guests.children}</span>
+                            <button 
+                              type="button"
+                              onClick={() => setGuests(prev => ({
+                                ...prev,
+                                children: prev.children + 1
+                              }))}
+                              className="w-8 h-8 flex items-center justify-center rounded-full border border-gray-300 text-gray-600 hover:bg-gray-100"
+                            >
+                              +
+                            </button>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                          <div>
+                            <div className="font-medium">Rooms</div>
+                          </div>
+                          <div className="flex items-center space-x-3">
+                            <button 
+                              type="button"
+                              onClick={() => setGuests(prev => ({
+                                ...prev,
+                                rooms: Math.max(1, prev.rooms - 1)
+                              }))}
+                              className="w-8 h-8 flex items-center justify-center rounded-full border border-gray-300 text-gray-600 hover:bg-gray-100"
+                            >
+                              -
+                            </button>
+                            <span className="w-6 text-center">{guests.rooms}</span>
+                            <button 
+                              type="button"
+                              onClick={() => setGuests(prev => ({
+                                ...prev,
+                                rooms: prev.rooms + 1
+                              }))}
+                              className="w-8 h-8 flex items-center justify-center rounded-full border border-gray-300 text-gray-600 hover:bg-gray-100"
+                            >
+                              +
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="absolute right-0 top-1/2 transform -translate-y-1/2 h-12 w-px bg-[#E5E7EB] hidden md:block"></div>
+              </div>
+              
+              {/* Search Button */}
+              <div className="p-5 flex items-center">
+                <button className="w-full md:w-auto bg-[#F53900] hover:bg-[#D45A26] text-white font-inter font-semibold py-3 px-6 rounded-sm transition-colors">
+                  Check Availability
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Availability Cards */}
+          {datesAvailability.map((availability) => (
+            <div key={availability.id} className="border border-[#E5E7EB] rounded-lg overflow-hidden mb-4">
+              {/* Header */}
+              <div className="bg-[#F9FAFB] p-4 border-b border-[#E5E7EB]">
+                <div className="text-sm text-[#4B5563]">From {availability.fromDate} to {availability.toDate}</div>
+              </div>
+              
+              {/* Content */}
+              <div className="p-4">
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                  <div>
+                    <div className="flex flex-wrap items-center gap-x-2 text-sm text-[#4B5563] mb-2">
+                      <span>{availability.roomType}</span>
+                      <span>•</span>
+                      <span>{availability.language}</span>
+                      {availability.isGuaranteed && (
+                        <>
+                          <span>•</span>
+                          <span className="text-[#10B981] font-medium">Guaranteed departure</span>
+                        </>
+                      )}
+                    </div>
+                    <a href="#" className="text-[#EB662B] text-sm font-medium hover:underline">
+                      See Similar Tours For These Dates
+                    </a>
+                  </div>
+                  
+                  <div className="flex-shrink-0">
+                    <div className="flex items-center justify-end gap-2 mb-1">
+                      <span className="bg-[#FEE2E2] text-[#DC2626] text-xs font-medium px-2 py-0.5 rounded">
+                        {availability.discountPercentage}% off
+                      </span>
+                      <span className="text-[#6B7280] text-xs line-through">${availability.originalPrice}</span>
+                      <span className="text-[#111827] font-semibold">${availability.discountedPrice}</span>
+                      <span className="text-[#6B7280] text-xs">per person</span>
+                    </div>
+                    <div className="text-right text-[#6B7280] text-sm mb-3">x {availability.nights} night{availability.nights > 1 ? 's' : ''}</div>
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                      <span className="text-[#111827] font-semibold">
+                        Total Price: ${availability.discountedPrice * availability.nights}
+                      </span>
+                      <button className="bg-[#EB662B] hover:bg-[#D45A26] text-white font-medium py-2 px-4 rounded-lg text-sm transition-colors">
+                        Confirm Dates
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 

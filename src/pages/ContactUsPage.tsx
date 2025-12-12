@@ -141,7 +141,7 @@ const ContactUsPage = () => {
 
       {/* Get in Touch */}
       <section className="bg-white py-12">
-        <div className="w-full mx-auto px-0 max-w-7xl">
+        <div className="w-full mx-auto px-0 md:px-16">
           <div className="text-start mb-4 ml-4 md:ml-0">
             <h2 className="text-4xl md:text-5xl font-inter font-bold text-black mb-4">Get in Touch</h2>
             <p className="text-lg text-[#747474] font-inter font-regular max-w-8xl mb-8">
@@ -315,7 +315,7 @@ const ContactUsPage = () => {
           }}
         ></div>
         
-        <div className="w-full mx-auto px-4 w-full max-w-[80rem] relative z-10">
+        <div className="w-full mx-auto px-4 md:px-16 w-full relative z-10">
           <div className="text-left mb-12 px-4 sm:px-8">
             <h2 className="text-3xl md:text-5xl font-inter font-bold mb-4">
               <div className="mb-2">FREQUENTLY</div>

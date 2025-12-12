@@ -326,13 +326,13 @@ const DestinationList = () => {
       {/* List Section */}
       <section className="mt-2">
       {/* Add padding to push content below the overlapping search bar */}
-      <div className="pt-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <div className="w-full pt-8">
+        <div className="mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex justify-between items-center">
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-10 md:px-0 py-8">
+        <div className="mx-auto px-10 md:px-16 py-8">
           <div className="flex flex-col md:flex-row gap-8">
             {/* Filters Sidebar */}
             <div className="w-full md:w-[320px] lg:pl-0 md:-ml-4">
@@ -1005,7 +1005,7 @@ const DestinationList = () => {
             </div>
 
             {/* Destinations List */}
-            <div className="w-full md:w-[80%]">
+            <div className="w-full">
               <h2 className="text-xl font-roboto font-semibold text-black mb-2">
                 Explore {destinations.length}+ Places in {selectedLocation.name}
               </h2>

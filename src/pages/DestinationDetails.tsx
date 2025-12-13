@@ -2,10 +2,10 @@ import { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { 
   Star, ChevronDown, ChevronRight, MapPin, Clock, Users, Calendar, Globe, 
-  ChevronLeft, Mail, Heart, Share2, Images, CalendarDays, CircleDollarSign, 
+  ChevronLeft, Mail, Heart, Share2, Images, CalendarDays, CircleDollarSign, Bed, 
   CheckCircle, BadgeCheck, UsersRound, ArrowBigDownDash, Image, UserCheck, 
   GlobeLock, PersonStanding, ParkingCircle, ChevronUp, MapPin as MapPinIcon, Maximize2, Minimize2,
-  Home, Utensils, User, Bus, Wifi, PlusCircle
+  Home, Utensils, User, Bus, Wifi, PlusCircle, Languages, ShieldCheck
 } from 'lucide-react';
 import { MapContainer, TileLayer, Marker, Popup, useMap, ZoomControl } from 'react-leaflet';
 import L from 'leaflet';
@@ -425,8 +425,9 @@ const DestinationDetails = () => {
   const [guests, setGuests] = useState({
     adults: 2,
     children: 0,
-    rooms: 1
+    rooms: 1,
   });
+  const [isGuestDropdownOpen, setIsGuestDropdownOpen] = useState(false);
 
   if (isLoading) {
     return (
@@ -1250,7 +1251,7 @@ const DestinationDetails = () => {
           <div className="bg-white border border-[#E5E7EB] rounded-xl shadow-sm overflow-visible mb-8 relative z-10">
             <div className="flex flex-col md:flex-row">
               {/* Destination */}
-              <div className="flex-1 p-5 relative">
+              <div className="flex-1 pl-5 pr-20 relative">
                 <div className="relative h-full flex items-center">
                   <MapPin className="flex-shrink-0 text-gray-400 h-4 w-4 mr-2" />
                   <div className="relative flex-grow flex flex-col justify-center h-full">
@@ -1260,11 +1261,11 @@ const DestinationDetails = () => {
                     </select>
                   </div>
                 </div>
-                <div className="absolute right-0 top-1/2 transform -translate-y-1/2 h-12 w-px bg-[#E5E7EB] hidden md:block"></div>
+                <div className="absolute right-3 top-1/2 transform -translate-y-1/2 h-12 w-px bg-[#E5E7EB] hidden md:block"></div>
               </div>
               
               {/* Date */}
-              <div className="flex-1 p-5 relative">
+              <div className="flex-1 pl-5 pr-20 relative">
                 <div className="relative h-full flex items-center">
                   <Calendar className="flex-shrink-0 text-gray-400 h-4 w-4 mr-2" />
                   <div className="relative flex-grow flex flex-col justify-center h-full">
@@ -1281,26 +1282,33 @@ const DestinationDetails = () => {
                     />
                   </div>
                 </div>
-                <div className="absolute right-0 top-1/2 transform -translate-y-1/2 h-12 w-px bg-[#E5E7EB] hidden md:block"></div>
+                <div className="absolute right-3 top-1/2 transform -translate-y-1/2 h-12 w-px bg-[#E5E7EB] hidden md:block"></div>
               </div>
               
               {/* Guest */}
-              <div className="flex-1 p-5 relative group">
+              <div className="flex-1 pl-5 pr-20 relative group">
                 <div className="relative h-full flex items-center">
                   <Users className="flex-shrink-0 text-gray-400 h-4 w-4 mr-2" />
                   <div className="relative flex-grow">
-                    <div className="flex items-center justify-between cursor-pointer">
+                    <div 
+                      className="flex items-center justify-between cursor-pointer"
+                      onClick={() => setIsGuestDropdownOpen(!isGuestDropdownOpen)}
+                    >
                       <div>
                         <div className="text-sm text-[#424242] font-inter font-medium">Guest</div>
                         <div className="text-sm text-black font-inter font-medium">
                           {guests.adults} {guests.adults === 1 ? 'Adult' : 'Adults'}, {guests.children} {guests.children === 1 ? 'Child' : 'Children'}, {guests.rooms} {guests.rooms === 1 ? 'Room' : 'Rooms'}
                         </div>
                       </div>
-                      <ChevronDown className="text-gray-400 h-4 w-4 transition-transform group-has-[.guest-dropdown:focus]:rotate-180" />
+                      <ChevronDown 
+                        className={`text-gray-400 h-4 w-4 transition-transform ${isGuestDropdownOpen ? 'rotate-180' : ''}`}
+                      />
                     </div>
                     
                     {/* Guest Selection Dropdown */}
-                    <div className="guest-dropdown absolute left-0 right-0 mt-2 p-4 bg-white rounded-lg shadow-lg border border-gray-200 z-50 hidden group-hover:block focus-within:block">
+                    <div 
+                      className={`guest-dropdown absolute left-0 right-0 mt-2 p-4 bg-white rounded-lg shadow-lg border border-gray-200 z-50 ${isGuestDropdownOpen ? 'block' : 'hidden'}`}
+                    >
                       <div className="space-y-4">
                         <div className="flex items-center justify-between">
                           <div>
@@ -1394,11 +1402,11 @@ const DestinationDetails = () => {
                     </div>
                   </div>
                 </div>
-                <div className="absolute right-0 top-1/2 transform -translate-y-1/2 h-12 w-px bg-[#E5E7EB] hidden md:block"></div>
+                <div className="absolute right-3 top-1/2 transform -translate-y-1/2 h-12 w-px bg-[#E5E7EB] hidden md:block"></div>
               </div>
               
               {/* Search Button */}
-              <div className="p-5 flex items-center">
+              <div className="p-5 flex pr-12 items-center">
                 <button className="w-full md:w-auto bg-[#F53900] hover:bg-[#D45A26] text-white font-inter font-semibold py-3 px-6 rounded-sm transition-colors">
                   Check Availability
                 </button>
@@ -1407,56 +1415,84 @@ const DestinationDetails = () => {
           </div>
 
           {/* Availability Cards */}
-          {datesAvailability.map((availability) => (
-            <div key={availability.id} className="border border-[#E5E7EB] rounded-lg overflow-hidden mb-4">
-              {/* Header */}
-              <div className="bg-[#F9FAFB] p-4 border-b border-[#E5E7EB]">
-                <div className="text-sm text-[#4B5563]">From {availability.fromDate} to {availability.toDate}</div>
-              </div>
-              
-              {/* Content */}
-              <div className="p-4">
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                  <div>
-                    <div className="flex flex-wrap items-center gap-x-2 text-sm text-[#4B5563] mb-2">
-                      <span>{availability.roomType}</span>
-                      <span>•</span>
-                      <span>{availability.language}</span>
+          {datesAvailability.map((availability) => {
+            // Parse the dates to extract day and date parts
+            const fromParts = availability.fromDate.split(' ');
+            const toParts = availability.toDate.split(' ');
+            const fromDay = fromParts[0];
+            const toDay = toParts[0];
+            const fromDate = fromParts.slice(1).join(' ');
+            const toDate = toParts.slice(1).join(' ');
+            
+            return (
+              <div key={availability.id} className="border border-[#E5E7EB] rounded-lg overflow-hidden mb-4">
+                {/* Content */}
+                <div className="p-4">
+                  {/* Date Row */}
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="text-center">
+                      <div className="text-sm text-[#747474] font-inter font-regular">From {fromDay}</div>
+                      <div className="text-md text-black font-inter font-medium">{fromDate}</div>
+                    </div>
+                    <ChevronRight className="w-5 h-5 text-gray-400" />
+                    <div className="text-center">
+                      <div className="text-sm text-[#747474] font-inter font-regular">To {toDay}</div>
+                      <div className="text-md text-black font-inter font-medium">{toDate}</div>
+                    </div>
+                  </div>
+                  {/* Details Section */}
+                  <div className="mb-4">
+                    <div className="text-sm text-[#454C58] font-inter font-medium mb-2">Details</div>
+                    <div className="flex flex-wrap items-center gap-4">
+                      <div className="flex items-center text-sm text-[#1F2226] font-inter font-regular">
+                      <Bed className="w-4 h-4 mr-2 text-gray-500" />
+                      {availability.roomType}
+                      </div>
+                      <div className="flex items-center text-sm text-[#1F2226] font-inter font-regular">
+                        <Languages className="w-4 h-4 mr-2 text-gray-500" />
+                        {availability.language}
+                      </div>
                       {availability.isGuaranteed && (
-                        <>
-                          <span>•</span>
-                          <span className="text-[#10B981] font-medium">Guaranteed departure</span>
-                        </>
+                        <div className="flex items-center text-sm text-[#1F2226] font-inter font-regular">
+                          <ShieldCheck className="w-4 h-4 mr-2 text-gray-500" />
+                          Guaranteed departure
+                        </div>
                       )}
                     </div>
-                    <a href="#" className="text-[#EB662B] text-sm font-medium hover:underline">
-                      See Similar Tours For These Dates
-                    </a>
                   </div>
-                  
-                  <div className="flex-shrink-0">
-                    <div className="flex items-center justify-end gap-2 mb-1">
-                      <span className="bg-[#FEE2E2] text-[#DC2626] text-xs font-medium px-2 py-0.5 rounded">
-                        {availability.discountPercentage}% off
-                      </span>
-                      <span className="text-[#6B7280] text-xs line-through">${availability.originalPrice}</span>
-                      <span className="text-[#111827] font-semibold">${availability.discountedPrice}</span>
-                      <span className="text-[#6B7280] text-xs">per person</span>
+
+                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 w-full -my-2">
+                    <div className="py-0.5">
+                      <a href="#" className="text-[#EB662B] text-sm font-inter font-medium underline hover:no-underline">
+                        See Similar Tours For These Dates
+                      </a>
                     </div>
-                    <div className="text-right text-[#6B7280] text-sm mb-3">x {availability.nights} night{availability.nights > 1 ? 's' : ''}</div>
-                    <div className="flex flex-wrap items-center justify-between gap-2">
-                      <span className="text-[#111827] font-semibold">
-                        Total Price: ${availability.discountedPrice * availability.nights}
-                      </span>
-                      <button className="bg-[#EB662B] hover:bg-[#D45A26] text-white font-medium py-2 px-4 rounded-lg text-sm transition-colors">
-                        Confirm Dates
-                      </button>
+                    <div className="flex-shrink-0 -mt-28">
+                      <div className="flex flex-col items-end mb-1">
+                        <span className="bg-[#FFE4D8] text-[#EB662B] text-xs font-roboto font-medium px-2 py-0.5 rounded-full mb-1">
+                          {availability.discountPercentage}% off
+                        </span>
+                        <div className="flex items-center gap-2 mb-3">
+                          <span className="text-[#8B94A4] text-xs font-inter font-medium line-through">${availability.originalPrice}</span>
+                          <span className="text-black font-inter font-semibold">${availability.discountedPrice}</span>
+                          <span className="text-[#747474] text-xs font-roboto font-regular">per person</span>
+                        </div>
+                      </div>
+                      <div className="text-right text-[#383E48] text-sm font-inter font-medium mb-0">x {availability.nights} night{availability.nights > 1 ? 's' : ''}</div>
+                      <div className="flex flex-col items-end gap-2">
+                        <span className="text-[#383E48] font-inter font-medium mb-2">
+                          Total Price: <span className="text-black font-inter font-semibold">${availability.discountedPrice * availability.nights}</span>
+                        </span>
+                        <button className="bg-gradient-to-r from-[#F9AC7D] to-[#F53900] hover:opacity-90 transition-opacity duration-200 text-white font-inter font-medium py-2 px-6 rounded-sm text-sm mb-3">
+                          Confirm Dates
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
 

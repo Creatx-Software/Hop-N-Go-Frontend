@@ -1,12 +1,25 @@
 import { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
+
+interface Review {
+  id: number;
+  name: string;
+  avatar: string;
+  date: string;
+  rating: number;
+  review: string;
+  showMore: boolean;
+  isExpanded?: boolean;
+}
+
 import { 
   Star, ChevronDown, ChevronRight, MapPin, Clock, Users, Calendar, Globe, 
   ChevronLeft, Mail, Heart, Share2, Images, CalendarDays, CircleDollarSign, Bed, 
   CheckCircle, BadgeCheck, UsersRound, ArrowBigDownDash, Image, UserCheck, 
   GlobeLock, PersonStanding, ParkingCircle, ChevronUp, MapPin as MapPinIcon, Maximize2, Minimize2,
-  Home, Utensils, User, Bus, Wifi, PlusCircle, Languages, ShieldCheck
+  Home, Utensils, User, Bus, Wifi, PlusCircle, Languages, ShieldCheck, Headset, CreditCard
 } from 'lucide-react';
+import { FaRoute, FaUserTie, FaBus, FaHotel, FaUtensils, FaPlane } from 'react-icons/fa';
 import { MapContainer, TileLayer, Marker, Popup, useMap, ZoomControl } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -65,6 +78,8 @@ import gallery2 from "@/assets/gallery2.png";
 import gallery3 from "@/assets/gallery3.png";
 import gallery4 from "@/assets/gallery4.png";
 import gallery5 from "@/assets/gallery5.png";
+import review1 from "@/assets/Ellipse 1.png";
+import review2 from "@/assets/Ellipse 2.png";
 
 // Array of all images for easy mapping
 const galleryImages = [
@@ -267,6 +282,16 @@ const stays = [
 ]
 
 const DestinationDetails = () => {
+  const [activeFaq, setActiveFaq] = useState<number | null>(0);
+  const [activeCategory, setActiveCategory] = useState<string>('All questions');
+  const [expandedReviews, setExpandedReviews] = useState<{[key: number]: boolean}>({});
+
+  const toggleReview = (id: number) => {
+    setExpandedReviews(prev => ({
+      ...prev,
+      [id]: !prev[id]
+    }));
+  };
   const { id } = useParams();
   const navigate = useNavigate();
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -588,6 +613,10 @@ const DestinationDetails = () => {
 
       {/* Description & Reservation */}
       <section className="relative z-10">
+        {/* Extended pink gradient for right */}
+        <div className="absolute top-1/2 -right-80 w-[700px] h-[350px] z-0 -translate-y-1/5">
+          <div className="w-full h-full bg-gradient-to-br from-pink-400/50 via-pink-300/20 to-transparent rounded-full blur-3xl"></div>
+        </div>
         <div className="w-full mx-auto px-8 md:px-16 py-8">
           {/* Tabs */}
           <div className="flex flex-wrap gap-y-2 gap-x-6 pb-2 mb-6">
@@ -867,7 +896,7 @@ const DestinationDetails = () => {
       </section>
 
       {/* Places You’ll See */}
-      <section className="flex-1 relative overflow-hidden bg-[#F1F2F3]">
+      <section className="flex-1 relative z-10 overflow-hidden bg-[#F1F2F3]">
         <div className="w-full mx-auto px-8 md:px-16 mt-12 relative">
           <h2 className="text-2xl font-inter font-semibold text-[#121316] mb-6">Places You'll See</h2>
           <div className="relative">
@@ -937,8 +966,16 @@ const DestinationDetails = () => {
       </section>
 
       {/* Location */}
-      <section className="py-12 bg-white">
-        <div className="w-full mx-auto px-4 md:px-16">
+      <section className="py-12 bg-white relative z-10">
+        {/* Extended pink gradient for left */}
+        <div className="absolute top-2/3 left-0 w-[800px] h-[700px] -translate-y-1/2 -translate-x-1/2 z-0">
+          <div className="w-full h-full bg-gradient-to-br from-pink-400/50 via-pink-300/20 to-transparent rounded-full blur-3xl"></div>
+        </div>
+        {/* Extended pink gradient for right */}
+        <div className="absolute top-1/2 -right-80 w-[700px] h-[350px] z-0 -translate-y-1/5">
+          <div className="w-full h-full bg-gradient-to-br from-pink-400/50 via-pink-300/20 to-transparent rounded-full blur-3xl"></div>
+        </div>
+        <div className="w-full mx-auto px-4 md:px-16 relative z-10">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-inter font-semibold text-[#121316]">Location</h2>
           </div>
@@ -1032,11 +1069,15 @@ const DestinationDetails = () => {
       </section>
 
       {/* Where You’ll Stay */}
-      <section className="py-12 bg-white">
+      <section className="py-12 bg-white relative z-10">
+        {/* Extended pink gradient for left */}
+        <div className="absolute top-1/2 left-0 w-[800px] h-[700px] -translate-y-1/2 -translate-x-1/2 z-0">
+          <div className="w-full h-full bg-gradient-to-br from-pink-400/50 via-pink-300/20 to-transparent rounded-full blur-3xl"></div>
+        </div>
         <div className="w-full mx-auto px-4 md:px-16">
           <h2 className="text-2xl font-inter font-semibold text-[#121316] mb-8">Where You'll Stay</h2>
     
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
             {stays.map((stay) => (
               <div key={stay.id} className="bg-white rounded-xl overflow-hidden border border-[#DDDFE3] hover:shadow-lg transition-shadow duration-300">
                 <div className="relative h-48">
@@ -1172,7 +1213,7 @@ const DestinationDetails = () => {
       </section>
 
       {/* What's Include */}
-      <section className="py-12 bg-white">
+      <section className="py-12 bg-gradient-to-r from-[#F74A1F]/10 to-white">
         <div className="w-full mx-auto px-4 md:px-16">
           <h2 className="text-2xl font-inter font-semibold text-[#121316] mb-6">What's Include</h2>
           
@@ -1243,7 +1284,12 @@ const DestinationDetails = () => {
       </section>
 
       {/* Dates & availability */}
-      <section className="py-12 bg-white">
+      <section 
+        className="py-12" 
+        style={{
+          backgroundImage:
+            'linear-gradient(to bottom, #FEFEFE 0%, #FEFEFE 6%, transparent 20%, transparent 80%, #FEFEFE 100%), radial-gradient(circle at center, #FEFEFE 0%, #FEFEFE 35%, #FFF0E9 65%, #FFECEE 85%, #FEFEFE 100%)',
+        }}>
         <div className="w-full mx-auto px-4 md:px-16">
           <h2 className="text-2xl font-inter font-semibold text-[#1F2226] mb-6">Dates & availability</h2>
           
@@ -1415,17 +1461,18 @@ const DestinationDetails = () => {
           </div>
 
           {/* Availability Cards */}
-          {datesAvailability.map((availability) => {
-            // Parse the dates to extract day and date parts
-            const fromParts = availability.fromDate.split(' ');
-            const toParts = availability.toDate.split(' ');
-            const fromDay = fromParts[0];
-            const toDay = toParts[0];
-            const fromDate = fromParts.slice(1).join(' ');
-            const toDate = toParts.slice(1).join(' ');
-            
-            return (
-              <div key={availability.id} className="border border-[#E5E7EB] rounded-lg overflow-hidden mb-4">
+          <div className="relative z-10">
+            {datesAvailability.map((availability) => {
+              // Parse the dates to extract day and date parts
+              const fromParts = availability.fromDate.split(' ');
+              const toParts = availability.toDate.split(' ');
+              const fromDay = fromParts[0];
+              const toDay = toParts[0];
+              const fromDate = fromParts.slice(1).join(' ');
+              const toDate = toParts.slice(1).join(' ');
+              
+              return (
+                <div key={availability.id} className="border border-[#E5E7EB] rounded-lg overflow-hidden mb-4 bg-white">
                 {/* Content */}
                 <div className="p-4">
                   {/* Date Row */}
@@ -1461,13 +1508,13 @@ const DestinationDetails = () => {
                     </div>
                   </div>
 
-                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 w-full -my-2">
-                    <div className="py-0.5">
+                  <div className="flex flex-col w-full -my-2">
+                    <div className="py-0.5 order-1 md:order-none">
                       <a href="#" className="text-[#EB662B] text-sm font-inter font-medium underline hover:no-underline">
                         See Similar Tours For These Dates
                       </a>
                     </div>
-                    <div className="flex-shrink-0 -mt-28">
+                    <div className="flex-shrink-0 md:-mt-36 order-2 md:order-none">
                       <div className="flex flex-col items-end mb-1">
                         <span className="bg-[#FFE4D8] text-[#EB662B] text-xs font-roboto font-medium px-2 py-0.5 rounded-full mb-1">
                           {availability.discountPercentage}% off
@@ -1493,6 +1540,387 @@ const DestinationDetails = () => {
               </div>
             );
           })}
+          </div>
+        </div>
+      </section>
+
+      {/* Reviews */}
+      <section className="py-12 bg-white">
+        <div className="w-full mx-auto px-4 md:px-16">
+          <div className="mb-0">
+            <h2 className="text-2xl font-inter font-semibold text-[#1F2226]">Reviews</h2>
+            <div className="flex items-center mt-2">
+              <span className="h-8 bg-[#FFECE3] flex items-center justify-center mr-2 px-2 rounded-l-full rounded-br-full">
+                <span className="text-sm font-roboto font-medium text-[#EB662B]">5.0</span>
+              </span>
+              <span className="text-sm font-roboto font-medium text-[#EB662B] ml-1">Excellent</span>
+              <div className="flex items-center">
+                <span className="text-[#8B94A4] font-roboto font-medium text-sm ml-2">1,260 reviews</span>
+              </div>
+            </div>
+          </div>
+          
+          {/* Rating Details and Categories */}
+          <div className="bg-white rounded-lg p-6 mb-8">
+            <div className="flex flex-col lg:flex-row gap-0">
+              {/* Left side - Star Distribution */}
+              <div className="w-full lg:w-[20%] lg:pr-6">
+                <h3 className="text-sm font-roboto font-medium text-black mb-3">Overall Rating</h3>
+                <div className="space-y-0">
+                  <div className="flex items-center">
+                    <span className="w-4 text-sm font-roboto font-medium text-[#121316]">5</span>
+                    <div className="flex-1 bg-[#DDDFE3] rounded-full h-1 mx-2">
+                      <div className="bg-[#EB662B] h-1 rounded-full" style={{ width: '90%' }}></div>
+                    </div>
+                  </div>
+                  <div className="flex items-center mb-1">
+                    <span className="w-4 text-sm font-roboto font-medium text-[#121316]">4</span>
+                    <div className="flex-1 bg-[#DDDFE3] rounded-full h-1 mx-2">
+                      <div className="bg-[#EB662B] h-1 rounded-full" style={{ width: '95%' }}></div>
+                    </div>
+                  </div>
+                  <div className="flex items-center mb-1">
+                    <span className="w-4 text-sm font-roboto font-medium text-[#121316]">3</span>
+                    <div className="flex-1 bg-[#DDDFE3] rounded-full h-1 mx-2">
+                      <div className="bg-[#EB662B] h-1 rounded-full" style={{ width: '10%' }}></div>
+                    </div>
+                  </div>
+                  <div className="flex items-center mb-1">
+                    <span className="w-4 text-sm font-roboto font-medium text-[#121316]">2</span>
+                    <div className="flex-1 bg-[#DDDFE3] rounded-full h-1 mx-2">
+                      <div className="bg-[#EB662B] h-1 rounded-full" style={{ width: '5%' }}></div>
+                    </div>
+                  </div>
+                  <div className="flex items-center">
+                    <span className="w-4 text-sm font-roboto font-medium text-[#121316]">1</span>
+                    <div className="flex-1 bg-[#DDDFE3] rounded-full h-1 mx-2">
+                      <div className="bg-[#EB662B] h-1 rounded-full" style={{ width: '0%' }}></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Right side - Rating Categories */}
+              <div className="w-full lg:w-[80%] lg:pl-6 mt-6 lg:mt-8 border-l border-[#DDDFE3] relative">
+                <div className="flex flex-wrap justify-center lg:flex-nowrap lg:items-center min-h-[100px]">
+                  {[
+                    { name: "Itinerary", rating: 4.9 },
+                    { name: "Guide", rating: 5.0 },
+                    { name: "Transport", rating: 4.8 },
+                    { name: "Accommodation", rating: 4.7 },
+                    { name: "Food", rating: 4.6 }
+                  ].map(({ name, rating }, index) => (
+                      <div key={name} className="relative flex-1 min-w-[33%] md:min-w-0 mb-4 lg:mb-0">
+                        <div className="flex flex-col items-center w-full px-2">
+                          <div className="flex items-center justify-center gap-3 mb-2">
+                            {name === 'Itinerary' && <FaRoute className="w-3 h-3 text-black" />}
+                            {name === 'Guide' && <FaUserTie className="w-3 h-3 text-black" />}
+                            {name === 'Transport' && <FaBus className="w-3 h-3 text-black" />}
+                            {name === 'Accommodation' && <FaHotel className="w-3 h-3 text-black" />}
+                            {name === 'Food' && <FaUtensils className="w-3 h-3 text-black" />}
+                            <span className="text-sm text-[#2B3037] font-roboto font-medium">{name}</span>
+                          </div>
+                          <span className="text-sm text-[#1F2226] font-roboto font-medium">{rating}</span>
+                        </div>
+                        {index < 4 && <div className="absolute top-1/2 right-0 h-10 lg:h-24 w-px bg-[#DDDFE3] transform -translate-y-1/2"></div>}
+                      </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Review Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            {[
+              {
+                id: 1,
+                name: "July Kaly",
+                avatar: review1,
+                date: "12 Mar 2025",
+                rating: 5.0,
+                review: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                showMore: true,
+                isExpanded: false
+              },
+              {
+                id: 2,
+                name: "John Wick",
+                avatar: "",
+                date: "10 Mar 2025",
+                rating: 5.0,
+                review: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                showMore: true,
+                isExpanded: false
+              },
+              {
+                id: 3,
+                name: "Sarah Smith",
+                avatar: review2,
+                date: "08 Mar 2025",
+                rating: 5.0,
+                review: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
+                showMore: true,
+                isExpanded: false
+              }
+            ].map((review) => (
+              <div key={review.id} className="bg-white rounded-lg border border-gray-200 p-6">
+                <div className="w-full" key={review.id}>
+                  <div className="flex items-start">
+                    {/* Card Profile */}
+                    <div className="w-10 h-10 rounded-full bg-[#2B3037] flex-shrink-0 flex items-center justify-center text-white font-roboto font-medium text-sm mr-3 overflow-hidden">
+                      {review.avatar ? (
+                        <img 
+                          src={review.avatar} 
+                          alt={review.name} 
+                          className="w-full h-full object-cover"
+                          onError={(e) => {
+                            const target = e.target as HTMLImageElement;
+                            target.style.display = 'none';
+                            const fallback = document.createElement('div');
+                            fallback.className = 'w-full h-full flex items-center justify-center';
+                            fallback.textContent = review.name.charAt(0);
+                            target.parentNode?.insertBefore(fallback, target.nextSibling);
+                          }}
+                        />
+                      ) : (
+                        <span>{review.name.charAt(0)}</span>
+                      )}
+                    </div>
+                    {/* Card Header */}
+                    <div className="flex-1">
+                      <div className="flex justify-between items-start">
+                        <div className="flex-1">
+                          <div className="font-roboto font-medium text-[#1F2226]">{review.name}</div>
+                          <div className="text-sm text-[#454C58] font-roboto font-regular">{review.date}</div>
+                        </div>
+                        <div className="h-8 bg-[#FFECE3] flex items-center justify-center px-3 rounded-r-full rounded-bl-full">
+                          <span className="text-sm text-[#EB662B] font-roboto font-medium">{review.rating}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Review Text */}
+                  <div className="mt-3 pl-13">
+                    <p 
+                      className={`text-[#2B3037] text-sm font-roboto font-regular leading-relaxed text-left ${
+                        !expandedReviews[review.id] ? 'line-clamp-3' : ''
+                      }`}
+                    >
+                      {review.review}
+                    </p>
+                    {review.showMore && (
+                      <div className="text-right">
+                        <button 
+                          onClick={() => toggleReview(review.id)}
+                          className="mt-2 text-[#656F81] text-sm font-inter font-medium hover:underline"
+                        >
+                          {expandedReviews[review.id] ? 'Show less' : 'Show more'}
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          
+          {/* Show All Reviews Button */}
+          <div className="text-start relative z-10">
+            <button className="px-6 py-2 border border-[#EB662B] bg-white text-[#EB662B] font-medium rounded-md hover:bg-[#FFF5F1] transition-colors">
+              Show All 100 Reviews
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="py-12 bg-white relative">
+        {/* Extended pink gradient for left */}
+        <div className="absolute top-1/4 left-0 w-[800px] h-[700px] -translate-y-1/2 -translate-x-1/2 z-0">
+          <div className="w-full h-full bg-gradient-to-br from-pink-400/50 via-pink-300/20 to-transparent rounded-full blur-3xl"></div>
+        </div>
+        <div className="w-full mx-auto px-4 md:px-16 relative z-10">
+          <h2 className="text-2xl font-inter font-semibold text-[#121316] mb-6">FAQ</h2>
+          
+          {/* Filter Buttons */}
+          <div className="mb-2">
+            <div className="flex flex-wrap gap-2 pb-2">
+              {[
+                { name: 'All questions', icon: <Globe size={16} className="mr-2" /> },
+                { name: 'Accommodation', icon: <Bed size={16} className="mr-2" /> },
+                { name: 'Price / Availability', icon: <CircleDollarSign size={16} className="mr-2" /> },
+                { name: 'Age Range', icon: <UsersRound size={16} className="mr-2" /> },
+                { name: 'Flights / Transfers', icon: <FaPlane size={16} className="mr-2" /> },
+                { name: 'Single supplement', icon: <UserCheck size={16} className="mr-2" /> },
+                { name: 'Group size', icon: <Users size={16} className="mr-2" /> },
+                { name: 'Transport', icon: <FaBus size={16} className="mr-2" /> },
+                { name: 'Visa', icon: <ShieldCheck size={16} className="mr-2" /> },
+                { name: 'Tour Details', icon: <MapPin size={16} className="mr-2" /> },
+                { name: 'Meals', icon: <Utensils size={16} className="mr-2" /> },
+                { name: 'Stunning Tours', icon: <Star size={16} className="mr-2" /> },
+                { name: 'Travel Support', icon: <Headset size={16} className="mr-2" /> },
+                { name: 'Payments', icon: <CreditCard size={16} className="mr-2" /> }
+              ].map((category, index) => (
+                <button
+                  key={index}
+                  onClick={() => setActiveCategory(category.name)}
+                  className={`flex items-center flex-shrink-0 px-4 py-2 rounded-full text-sm font-inter font-regular whitespace-nowrap
+                    border ${activeCategory === category.name 
+                      ? 'bg-white text-[#2B3037] border-black' 
+                      : 'bg-white text-[#2B3037] border-[#B5BAC2] hover:border-gray-400'}`}
+                >
+                  {category.icon}
+                  {category.name}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* FAQ List */}
+          <div className="mt-8 space-y-4">
+            {[
+              // All questions
+              {
+                question: 'Can I get the refund?',
+                answer: 'Refund is not available for this tour. However, you can reschedule your tour date 48 hours before the scheduled departure time.',
+                category: 'Payments'
+              },
+              {
+                question: 'Can I change the travel date?',
+                answer: 'Yes, you can change your travel date up to 48 hours before the scheduled departure. Please contact our customer support for assistance.',
+                category: 'Price / Availability'
+              },
+              {
+                question: 'When and where does the tour end?',
+                answer: 'The tour typically ends at the same location where it started. The exact end time will be provided in your tour confirmation email.',
+                category: 'Tour Details'
+              },
+              {
+                question: 'Do you arrange airport transfers?',
+                answer: 'Yes, we can arrange airport transfers for an additional fee. Please let us know your flight details when booking.',
+                category: 'Transport'
+              },
+              {
+                question: 'How do I book a tour?',
+                answer: 'You can book a tour directly through our website by selecting your preferred tour and following the booking process. For group bookings or special requests, please contact our customer support.',
+                category: 'Tour Details'
+              },
+              {
+                question: 'What should I bring for the tour?',
+                answer: 'We recommend bringing comfortable walking shoes, weather-appropriate clothing, sunscreen, a hat, a camera, and any personal medications you may need. Specific items will be listed in your tour confirmation email.',
+                category: 'Tour Details'
+              },
+              {
+                question: 'Is the tour suitable for children?',
+                answer: 'Most of our tours are family-friendly, but some may have age restrictions. Please check the tour details or contact us for specific age recommendations.',
+                category: 'Age Range'
+              },
+              {
+                question: 'What is your cancellation policy?',
+                answer: 'You can cancel your booking up to 48 hours before the tour for a full refund. Cancellations made within 48 hours are non-refundable.',
+                category: 'Payments'
+              },
+              {
+                question: 'Are meals included in the tour?',
+                answer: 'Meal inclusions vary by tour. Please check the specific tour details for information about included meals. We can accommodate dietary restrictions with advance notice.',
+                category: 'Meals'
+              },
+              {
+                question: 'What happens if the weather is bad?',
+                answer: 'Tours operate rain or shine. In case of severe weather conditions that may affect safety, we will contact you to reschedule or provide a full refund.',
+                category: 'Tour Details'
+              },
+              {
+                question: 'What type of accommodation is included?',
+                answer: 'Accommodation varies by tour package. Most tours include 3-4 star hotels with private facilities. Please check the specific tour details for accommodation information.',
+                category: 'Accommodation'
+              },
+              {
+                question: 'Can I get a single room?',
+                answer: 'Yes, single rooms are available for an additional supplement. Please select this option during the booking process or contact our customer support.',
+                category: 'Single supplement'
+              },
+              {
+                question: 'What is the group size for the tours?',
+                answer: 'Our group sizes vary but are typically between 12-16 people for a more personalized experience. Some specialty tours may have different group sizes.',
+                category: 'Group size'
+              },
+              {
+                question: 'Do I need a visa for this tour?',
+                answer: 'Visa requirements depend on your nationality and the destination. Please check with the relevant embassy or consulate for the most up-to-date visa requirements.',
+                category: 'Visa'
+              },
+              {
+                question: 'What kind of transportation is used during the tour?',
+                answer: 'We use a variety of transportation methods including private coaches, trains, and domestic flights where necessary. Specific details are provided in the tour itinerary.',
+                category: 'Transport'
+              },
+              {
+                question: 'Is there a guide on the tour?',
+                answer: 'Yes, all our tours include the services of an experienced, English-speaking tour guide who will accompany you throughout the tour.',
+                category: 'Tour Details'
+              },
+              {
+                question: 'What is not included in the tour price?',
+                answer: 'Typically not included are international flights, travel insurance, visas, some meals (as specified in the itinerary), personal expenses, and optional activities.',
+                category: 'Price / Availability'
+              },
+              {
+                question: 'How far in advance should I book?',
+                answer: 'We recommend booking as early as possible, especially for peak travel seasons. Some tours sell out months in advance.',
+                category: 'Price / Availability'
+              },
+              {
+                question: 'What is the minimum age for this tour?',
+                answer: 'The minimum age varies by tour, but generally, participants should be at least 8 years old. Some adventure tours may have higher age requirements.',
+                category: 'Age Range'
+              },
+              {
+                question: 'Is travel insurance required?',
+                answer: 'Travel insurance is mandatory for all our tours. You can purchase it through us or provide proof of comparable coverage from another provider.',
+                category: 'Travel Support'
+              },
+              {
+                question: 'What payment methods do you accept?',
+                answer: 'We accept all major credit cards, bank transfers, and in some cases, PayPal. A deposit is required to secure your booking.',
+                category: 'Payments'
+              },
+              {
+                question: 'Can I customize my tour?',
+                answer: 'Yes, we offer customized tour options. Please contact our travel specialists to discuss your specific requirements.',
+                category: 'Stunning Tours'
+              }
+            ]
+            .filter(faq => activeCategory === 'All questions' || faq.category === activeCategory)
+            .map((faq, index) => (
+              <div 
+                key={index} 
+                className={`border rounded-lg overflow-hidden transition-all duration-200 ${
+                  activeFaq === index 
+                    ? 'border-[#E5E7EB] shadow-md' 
+                    : 'border-[#E5E7EB] hover:shadow-sm'
+                }`}
+              >
+                <button
+                  className="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none"
+                  onClick={() => {
+                    setActiveFaq(activeFaq === index ? null : index);
+                  }}
+                >
+                  <span className="font-medium text-[#111827]">{faq.question}</span>
+                  <div className={`w-6 h-6 rounded-full transition-colors ${activeFaq === index ? 'bg-[#EB662B]' : 'bg-[#EB662B]/5'}`}>
+                  </div>
+                </button>
+                {activeFaq === index && (
+                  <div className="px-6 pb-4 pt-0 text-[#4B5563]">
+                    {faq.answer}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

@@ -215,7 +215,10 @@ const DestinationPage = () => {
                       Search
                       <Search className="w-5 h-5 ml-2" />
                     </Button>
-                    <Button className="w-full lg:w-auto bg-gradient-to-r from-[#F9AC7D] to-[#F53900] hover:opacity-90 text-white px-6 py-2.5 h-full rounded-[7px] font-inter font-normal flex items-center justify-center border-0">
+                    <Button 
+                      className="w-full lg:w-auto bg-gradient-to-r from-[#F9AC7D] to-[#F53900] hover:opacity-90 text-white px-6 py-2.5 h-full rounded-[7px] font-inter font-normal flex items-center justify-center border-0"
+                      onClick={() => navigate('/itinerary')}
+                    >
                       <div className="flex flex-row items-center">
                         <span className="text-sm sm:text-base">Create Itineraries</span>
                       </div>
@@ -489,7 +492,7 @@ const DestinationPage = () => {
           </div>
           
           {/* Fixed height container to prevent layout shift */}
-          <div className="h-[593px] w-full relative flex items-center -mt-28 md:-mt-16">
+          <div className="h-[593px] w-full relative flex items-center -mt-28 md:mt-0">
             <div 
               style={{ cursor: 'default' }}
               className="w-full flex flex-nowrap items-center justify-start md:justify-center gap-3 md:gap-6 overflow-x-auto pb-4 px-3 md:px-0 select-none [&_*]:cursor-default [&>div:first-child]:ml-3 md:[&>div:first-child]:ml-0 [&>div:last-child]:mr-3 md:[&>div:last-child]:mr-0 absolute top-1/2 left-0 md:left-1/2 -translate-y-1/2 md:-translate-x-1/2"

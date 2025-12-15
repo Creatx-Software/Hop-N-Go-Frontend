@@ -310,7 +310,10 @@ const DestinationList = () => {
                 Search
                 <Search className="w-5 h-5 ml-2 sm:ml-4" />
               </Button>
-              <Button className="w-[45%] sm:w-auto bg-gradient-to-r from-[#F9AC7D] to-[#F53900] hover:opacity-90 text-white px-3 sm:px-6 py-3 sm:py-6 rounded-[7px] font-inter font-normal h-auto sm:h-[28px] flex items-center justify-center border-0">
+              <Button 
+                className="w-[45%] sm:w-auto bg-gradient-to-r from-[#F9AC7D] to-[#F53900] hover:opacity-90 text-white px-3 sm:px-6 py-3 sm:py-6 rounded-[7px] font-inter font-normal h-auto sm:h-[28px] flex items-center justify-center border-0"
+                onClick={() => navigate('/itinerary')}
+              >
                 <div className="flex flex-col sm:flex-row items-center">
                   <span className="text-sm sm:text-base">Create</span>
                   <span className="text-sm sm:text-base sm:ml-1">Itineraries</span>

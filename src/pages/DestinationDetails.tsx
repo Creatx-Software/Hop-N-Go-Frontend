@@ -1095,7 +1095,7 @@ const DestinationDetails = () => {
                     {stay.location}
                   </div>
             
-                  <div className="bg-[#F3F3F3] p-3 rounded-lg mt-2 mb-1">
+                  <div className="bg-[#F3F3F3] p-3 rounded-lg mt-2 mb-2">
                     <p className="text-sm text-[#626364] font-roboto font-regular">
                       {stay.description}
                     </p>
@@ -1103,7 +1103,7 @@ const DestinationDetails = () => {
                   
 
                   <div className="flex items-center text-sm text-[#EB662B]">
-                    <div className="bg-[#F3F3F3] px-2 py-1 rounded-md mt-2 mb-3 flex items-center text-sm">
+                    <div className="h-7 bg-[#F3F3F3] flex items-center justify-center mr-2 px-2 rounded-l-full rounded-br-full">
                       <span className="font-roboto font-medium">{stay.rating}</span>
                     </div>
                     <span className="ml-1 text-[#EB662B] text-xs font-roboto font-medium">

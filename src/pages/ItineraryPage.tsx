@@ -1,10 +1,11 @@
 import { useNavigate } from 'react-router-dom';
-import { ChevronLeft, MapPin, Images, Car, Train, Bus, Plane } from 'lucide-react';
+import { ChevronLeft, MapPin, Images, Car, Train, Bus, Plane, MapPinIcon, Maximize2 } from 'lucide-react';
 import { useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
-import Navigation from '@/components/Navigation';
-import Footer from '@/components/Footer';
+import { MapContainer, TileLayer, Marker, Popup, useMap, ZoomControl } from 'react-leaflet';
+import { CheckCircle2, Phone, Mail, Star } from 'lucide-react';
 import JapanImage from '@/assets/Japan.png';
+import OperatorImage from '@/assets/operator.png';
 import days1 from '@/assets/days1.png';
 import days2 from '@/assets/days2.png';
 import days3 from '@/assets/days3.png';
@@ -15,9 +16,53 @@ import osaka3 from '@/assets/japan3.png';
 import osaka4 from '@/assets/japan4.png';
 import osaka5 from '@/assets/japan5.png';
 import accommodation from '@/assets/accommodation.png';
+import d2accommodation from '@/assets/d2Accommodation.png';
 import experience1 from '@/assets/experience1.png';
 import experience2 from '@/assets/experience2.png';
 import experience3 from '@/assets/experience3.png';
+import d2experience1 from '@/assets/d2Experience1.png';
+import d2experience2 from '@/assets/d2Experience2.png';
+import d2experience3 from '@/assets/d2Experience3.png';
+import Nara1 from '@/assets/d2Gallery1.png';
+import Nara2 from '@/assets/d2Gallery2.png';
+import Nara3 from '@/assets/d2Gallery3.png';
+import Nara4 from '@/assets/d2Gallery4.png';
+import Nara5 from '@/assets/d2Gallery5.png';
+
+const inclusions = [
+  'Guided walking tour of Florence (2.5-3 hours)',
+  'Entry to the Duomo complex (cathedral +dome access)',
+  'Visit to Ponte Vecchio and artisan shopping areas',
+  'Free time at Mercato Centrale',
+  'Professional English-speaking local guide',
+  'City map and welcome bottle of water'
+];
+
+const exclusions = [
+  'Meals and personal shopping expenses',
+  'Museum entrance fees (e.g., Uffizi, Accademia) unless added as an extra',
+  'Hotel pickup/drop-off (available at extra cost)',
+  'Travel insurance',
+  'Tips/gratuities'
+];
+
+// Cost per person data
+const costPerPerson = {
+  amount: 1500,
+  currency: 'USD',
+  includesTaxes: true
+};
+
+const tourOperator = {
+  name: 'John Smith',
+  rating: 4.8,
+  reviews: 127,
+  phone: '+1 (555) 123-4567',
+  email: 'john.smith@travelagency.com',
+  companyDescription: 'Hop N Go is a premier travel agency, dedicated to crafting personalized and unforgettable travel experiences. Specializing in authentic cultural journeys, luxury getaways, and custom-made itineraries, we connect travelers with the heart of UK and beyond. With expert local knowledge and a passion for excellence, Hop N Go turns every trip into a unique and seamless adventure. Add a summary about your company',
+  companyLogo: '/Logo 23917.svg',
+  companyName: 'TravelEase Tours'
+};
 
 const tourInfo = [
   { label: 'Name:', value: 'Hansika Hettiarachchige' },
@@ -79,29 +124,29 @@ const dayDetails = [{
   ],
   overview: "Embark on a captivating Italian adventure that begins in the Eternal City, Rome. On Day 1, dive into the rich tapestry of history amidst ancient ruins and iconic landmarks. Wander through the Colosseum's storied arches, stand in awe before the majestic Vatican City, and toss a coin into the enchanting Trevi Fountain. As night falls, savor Roman cuisine in a cozy trattoria, immersing yourself in the vibrant local culture. On Day 2, journey north to the Renaissance heart of Italy, Florence. This city is a living museum, adorned with breathtaking art and architecture. Marvel at Michelangelo's David, explore the Uffizi Gallery's masterpieces, and meander through the charming streets, lined with quaint cafes and artisan shops. Immerse yourself in the Tuscan charm as you dine al fresco, indulging in exquisite regional delicacies. Your adventure culminates on Day 3 in the cosmopolitan allure of Milan, Italy's fashion and design capital. Discover the stunning Duomo di Milano's intricate beauty, indulge in world-class shopping in the Galleria Vittorio Emanuele II, and take in modern art at the city's acclaimed galleries. As your journey concludes, relish in the culinary delights of Northern Italy, celebrating a whirlwind tour of Italy's most iconic cities.",
   accommodation: {
-    name: "Hotel Bella Vista",
-    address: "Via Roma 123, 00184 Rome, Italy",
+    name: "Casa Hotel",
+    address: "Barcelona , Osaka",
     rating: 4.5,
     reviewCount: 25,
-    description: "Experience luxury and comfort at Hotel Bella Vista, located in the heart of Rome. Our hotel offers stunning views of the city and is just a short walk from major attractions. Enjoy our rooftop terrace, gourmet restaurant, and exceptional service.",
+    description: "Experience luxury and comfort at Casa Hotel, located in the heart of Rome. Our hotel offers stunning views of the city and is just a short walk from major attractions. Enjoy our rooftop terrace, gourmet restaurant, and exceptional service.",
     image: accommodation
   },
   experiences: [
     {
       id: 1,
-      title: "Colosseum Tour",
+      title: "Colosseum",
       description: "Skip the line and explore the iconic Colosseum with an expert guide. Discover the history of ancient Rome's most famous amphitheater. Majestic, the Colosseum stands as a timeless testament to ancient Roman engineering and culture. Its grandeur echoes with the roars of history-gladiatorial battles, roaring crowd.",
       image: experience1
     },
     {
       id: 2,
-      title: "Vatican City & Sistine Chapel",
+      title: "Pantheon",
       description: "Experience the Vatican Museums, Sistine Chapel, and St. Peter's Basilica with priority access and an art historian guide. Majestic, the Colosseum stands as a timeless testament to ancient Roman engineering and culture. Its grandeur echoes with the roars of history-gladiatorial battles, roaring crowd.",
       image: experience2
     },
     {
       id: 3,
-      title: "Trevi Fountain & Pantheon",
+      title: "Trevi Fountain",
       description: "Walk through Rome's historic center, visit the Pantheon, Trevi Fountain, and other iconic landmarks with a local guide. Majestic, the Colosseum stands as a timeless testament to ancient Roman engineering and culture. Its grandeur echoes with the roars of history-gladiatorial battles, roaring crowd.",
       image: experience3
     }
@@ -123,12 +168,12 @@ const dayDetails = [{
   dayNumber: "02",
   title: "Florence",
   date: "15 Aug 2024",
-  mainImage: osaka2,
+  mainImage: Nara1,
   images: [
-    { src: osaka3, alt: "Florence Cathedral" },
-    { src: osaka4, alt: "Ponte Vecchio" },
-    { src: osaka5, alt: "Uffizi Gallery" },
-    { src: osaka1, alt: "Tuscan Countryside" },
+    { src: Nara2, alt: "Florence Cathedral" },
+    { src: Nara3, alt: "Ponte Vecchio" },
+    { src: Nara4, alt: "Uffizi Gallery" },
+    { src: Nara5, alt: "Tuscan Countryside" },
   ],
   overview: "Experience the heart of the Renaissance in Florence. Visit the iconic Duomo, marvel at Michelangelo's David, and stroll across the historic Ponte Vecchio. Indulge in authentic Tuscan cuisine and explore the Uffizi Gallery's masterpieces.",
   accommodation: {
@@ -137,26 +182,26 @@ const dayDetails = [{
     rating: 4.7,
     reviewCount: 42,
     description: "Luxury accommodation with stunning views of the Arno River. Enjoy our rooftop terrace, spa services, and gourmet restaurant featuring Tuscan specialties.",
-    image: accommodation
+    image: d2accommodation
   },
   experiences: [
     {
       id: 1,
-      title: "Uffizi Gallery Tour",
-      description: "Skip the line and explore one of the world's greatest art museums with an expert guide. See masterpieces by Botticelli, Michelangelo, and da Vinci. Majestic, the Colosseum stands as a timeless testament to ancient Roman engineering and culture. Its grandeur echoes with the roars of history-gladiatorial battles, roaring crowd.",
-      image: experience1
+      title: "Todai-ji Temple",
+      description: "Skip the line and explore one of the world's greatest art museums with an expert guide. See masterpieces by Botticelli, Michelangelo, and da Vinci. Majestic, the Colosseum stands as a timeless testament to ancient Roman engineering and culture. Its grandeur echoes with the roars of history-gladiatorial battles, roaring crowd. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamc",
+      image: d2experience1
     },
     {
       id: 2,
-      title: "Tuscan Wine Tasting",
-      description: "Visit a local winery in the Chianti region for a tasting of world-renowned Tuscan wines and traditional Italian appetizers. Majestic, the Colosseum stands as a timeless testament to ancient Roman engineering and culture. Its grandeur echoes with the roars of history-gladiatorial battles, roaring crowd.",
-      image: experience2
+      title: "Isuien Garden",
+      description: "Visit a local winery in the Chianti region for a tasting of world-renowned Tuscan wines and traditional Italian appetizers. Majestic, the Colosseum stands as a timeless testament to ancient Roman engineering and culture. Its grandeur echoes with the roars of history-gladiatorial battles, roaring crowd. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamc",
+      image: d2experience2
     },
     {
       id: 3,
-      title: "Florence Walking Tour",
-      description: "Discover Florence's hidden gems and major landmarks on a guided walking tour through the historic city center. Majestic, the Colosseum stands as a timeless testament to ancient Roman engineering and culture. Its grandeur echoes with the roars of history-gladiatorial battles, roaring crowd.",
-      image: experience3
+      title: "Nara National Museum",
+      description: "Discover Florence's hidden gems and major landmarks on a guided walking tour through the historic city center. Majestic, the Colosseum stands as a timeless testament to ancient Roman engineering and culture. Its grandeur echoes with the roars of history-gladiatorial battles, roaring crowd. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamc",
+      image: d2experience3
     }
   ],
   transportation: [
@@ -181,7 +226,7 @@ const VEHICLES = {
   plane: { name: 'Plane', icon: Plane, speed: 800 }
 };
 
-// Distance between cities in km (example data)
+// Distance between cities in km
 const DISTANCES = {
   'Rome-Florence': 275,
   'Florence-Venice': 260,
@@ -266,11 +311,10 @@ const ItineraryPage = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Navigation />
       
       {/* Hero Section */}
-      <div className="relative h-[300px] md:h-[700px] overflow-hidden bg-[#EEEEEE]">
-        <div className="absolute inset-0 p-6 pb-0 md:mt-20">
+      <div className="relative h-[270px] md:h-[700px] overflow-hidden bg-[#EEEEEE]">
+        <div className="absolute inset-0 p-6 pb-0 md:mt-16">
           <div className="w-full h-full overflow-hidden rounded-t-lg">
             <img 
               src={JapanImage} 
@@ -279,7 +323,7 @@ const ItineraryPage = () => {
             />
           </div>
         </div>
-        <div className="absolute top-32 left-10 z-20">
+        <div className="absolute top-6 left-10 z-20">
           <Button 
             variant="ghost" 
             className="bg-white/80 hover:bg-white p-3 rounded-full shadow-lg transition-all duration-200"
@@ -597,7 +641,7 @@ const ItineraryPage = () => {
                     </div>
                     
                     {/* Route with Dotted Line */}
-                    <div className="w-full px-60">
+                    <div className="w-full md:px-60">
                       <div className="flex items-center justify-between mb-1">
                         <p className="font-inter font-bold text-[#393939] text-sm">{day.title}</p>
                         <div className="flex-1 border-t-2 border-dashed border-[#393939] mx-4"></div>
@@ -639,8 +683,181 @@ const ItineraryPage = () => {
           </div>
         </div>
       ))}
+
+      {/* Location */}
+      <div className="w-full mx-auto px-6 py-8 bg-[#EEEEEE]">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+          <div className="p-6">
+            <h2 className="text-2xl font-inter font-semibold text-[#1F1F1F] mb-6">Location</h2>
+                
+          <div className="relative w-full h-[400px] rounded-xl overflow-hidden border border-gray-200">
+            <MapContainer
+              center={[41.3874, 2.1686]} // Barcelona coordinates
+              zoom={13}
+              style={{ height: '100%', width: '100%' }}
+              zoomControl={false}
+            >
+              <TileLayer
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              />
+              <Marker position={[41.3874, 2.1686]}>
+                <Popup>
+                  <div className="flex items-center">
+                    <MapPinIcon size={16} className="text-red-500 mr-1" />
+                    <span>Barcelona, Spain</span>
+                  </div>
+                </Popup>
+              </Marker>
+              <div className="leaflet-top leaflet-right">
+                <div className="leaflet-control-container">
+                  <div className="leaflet-top leaflet-right">
+                    <div className="leaflet-control-zoom leaflet-bar leaflet-control bg-white">
+                      <button 
+                        className="leaflet-control-zoom-in" 
+                        title="Maximize map"
+                        onClick={() => {
+                          const mapContainer = document.querySelector('.leaflet-container')?.parentElement;
+                          if (mapContainer) {
+                            if (!document.fullscreenElement) {
+                              mapContainer.requestFullscreen().catch(err => {
+                                console.error(`Error attempting to enable fullscreen: ${err.message}`);
+                              });
+                            } else {
+                              document.exitFullscreen();
+                            }
+                          }
+                        }}
+                      >
+                        <Maximize2 size={16} className="w-6 h-5 m-auto" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <ZoomControl position="bottomright" />
+            </MapContainer>
+          </div>
+        </div>
+        </div>
+      </div>
+
+      {/* Inclusion & Exclusion */}
+      <div className="w-full mx-auto px-6 py-8 bg-[#EEEEEE]">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+          <div className="p-8">
+            
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* Included Section */}
+              <div>
+                <div className="flex items-center mb-4">
+                  <h3 className="text-xl font-inter font-semibold text-[#454545]">Inclusion</h3>
+                </div>
+                <ul className="space-y-3">
+                  {inclusions.map((item, index) => (
+                    <li key={`included-${index}`} className="flex items-start">
+                      <CheckCircle2 className="w-6 h-6 text-white fill-[#423939] mt-0.5 mr-2 flex-shrink-0" />
+                      <span className="text-[#5A5A5A] font-inter font-medium">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              
+              {/* Excluded Section */}
+              <div>
+                <div className="flex items-center mb-4">
+                  <h3 className="text-xl font-inter font-semibold text-[#454545]">Exclusion</h3>
+                </div>
+                <ul className="space-y-3">
+                  {exclusions.map((item, index) => (
+                    <li key={`excluded-${index}`} className="flex items-start">
+                      <CheckCircle2 className="w-6 h-6 text-white fill-[#423939] mt-0.5 mr-2 flex-shrink-0" />
+                      <span className="text-[#5A5A5A] font-inter font-medium">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
       
-      <Footer />
+          </div>
+        </div>
+      </div>
+
+      {/* Cost Per Person */}
+      <div className="w-full mx-auto px-6 py-8 bg-[#EEEEEE]">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+          <div className="p-6">
+            <div className="flex justify-between items-center">
+              <h2 className="text-2xl font-inter font-semibold text-[#1F1F1F]">Cost Per Person</h2>
+              <div className="text-right">
+                <div className="text-3xl font-inter font-bold text-[#393939]">
+                  ${costPerPerson.amount.toLocaleString()}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Tour Operator */}
+      <div className="w-full mx-auto px-6 py-8 bg-[#EEEEEE]">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+          <div className="p-8">
+            <h2 className="text-2xl font-inter font-semibold text-[#1F1F1F] mb-6">Tour Operator</h2>
+            
+            <div className="flex flex-col gap-8">
+              {/* Operator Info */}
+              <div className="w-full">
+                <div className="flex flex-col sm:flex-row items-start gap-4">
+                  <img 
+                    src={OperatorImage} 
+                    alt={tourOperator.name}
+                    className="w-full max-w-[160px] h-40 rounded-sm object-cover"
+                  />
+                  <div className="w-full">
+                    <h3 className="text-3xl font-inter font-semibold text-black mb-2">Operated by {tourOperator.name}</h3>
+                    <p className="text-black text-sm font-inter font-regular">Company review score {tourOperator.rating} Based on {tourOperator.reviews} reviews from property</p>
+                    <div className="mt-3 space-y-2">
+                      <div className="flex items-center text-black text-sm font-inter font-medium">
+                        <div className="w-8 h-8 rounded-full bg-[#EB662B]/10 flex items-center justify-center mr-2">
+                          <Phone className="w-4 h-4 text-[#EB662B] fill-[#EB662B]" />
+                        </div>
+                        <span>{tourOperator.phone}</span>
+                      </div>
+                      <div className="flex items-center text-black text-sm font-inter font-medium">
+                        <div className="w-8 h-8 rounded-full bg-[#EB662B]/10 flex items-center justify-center mr-2">
+                          <Mail className="w-5 h-5 text-white fill-[#EB662B]" />
+                        </div>
+                        <span>{tourOperator.email}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Company Info */}
+              <div className="w-full">
+                <div className="p-6 w-full">
+                  <div className="flex flex-col items-center gap-4">
+                    <img 
+                      src={tourOperator.companyLogo} 
+                      alt={tourOperator.companyName}
+                      className="w-32 h-auto"
+                    />
+                    <p className="text-[#393939] text-center font-inter font-medium">
+                      {tourOperator.companyDescription}
+                    </p>
+                    <button className="px-6 py-2 rounded-sm bg-gradient-to-r from-[#F9AC7D] to-[#F53900] hover:opacity-90 transition-opacity duration-200 text-white font-inter font-medium mt-2">
+                      Visit Website
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
     </div>
   );
 };

@@ -55,6 +55,27 @@ import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import LanguageDropdown from '@/components/LanguageDropdown';
+
+// Tour description data
+const tourDescription = {
+  title: "Discover Japan's highlights with comfort and ease",
+  paragraphs: [
+    "The Best of Japan: Tokyo to Osaka – 9 Days tour takes you on a memorable journey through Japan's most iconic destinations. Starting in Tokyo, you'll explore a perfect mix of modern attractions, cultural landmarks, and beautiful scenery before travelling through Kyoto's historic temples and traditional streets. The trip ends in Osaka, known for its vibrant city life and amazing food.",
+    "Throughout the 9 days, you'll enjoy comfortable stays, seamless travel arrangements, authentic Japanese cuisine, and a well-planned itinerary that balances sightseeing, relaxation, and cultural experiences. This tour is ideal for anyone looking to discover the true essence of Japan in one smooth and unforgettable adventure."
+  ]
+};
+
+// Amenities data
+const amenities = [
+  { id: 1, icon: BadgeCheck, label: 'Gold Operators' },
+  { id: 2, icon: UsersRound, label: 'Group Tour' },
+  { id: 3, icon: ArrowBigDownDash, label: 'Low Intensity' },
+  { id: 4, icon: Users, label: 'Group Size 10 - 30' },
+  { id: 5, icon: Image, label: 'In-depth Cultural' },
+  { id: 6, icon: UserCheck, label: 'Fully Guided' },
+  { id: 7, icon: GlobeLock, label: 'Guided in English' },
+  { id: 8, icon: PersonStanding, label: 'All Ages Welcome' }
+];
 // Import actual images
 import japan1 from "@/assets/japan1.png";
 import japan2 from "@/assets/japan2.png";
@@ -650,48 +671,21 @@ const DestinationDetails = () => {
             <div className="lg:w-2/3">
               <div className="bg-transparent rounded-2xl p-0 -mt-2">
                 <h2 className="text-2xl font-inter font-semibold text-[#1F2226] mb-4">Description</h2>
-                <h3 className="text-lg font-inter font-bold text-[#1F2226] mb-4">Discover Japan’s highlights with comfort and ease</h3>
-                <p className="text-[#1F2226] text-base font-inter font-regular mb-6">
-                  The Best of Japan: Tokyo to Osaka – 9 Days tour takes you on a memorable journey through Japan’s most iconic destinations. Starting in Tokyo, you’ll explore a perfect mix of modern attractions, cultural landmarks, and beautiful scenery before travelling through Kyoto’s historic temples and traditional streets. The trip ends in Osaka, known for its vibrant city life and amazing food.
-                </p>
-                <p className="text-[#1F2226] text-base font-inter font-regular mb-6">
-                  Throughout the 9 days, you’ll enjoy comfortable stays, seamless travel arrangements, authentic Japanese cuisine, and a well-planned itinerary that balances sightseeing, relaxation, and cultural experiences. This tour is ideal for anyone looking to discover the true essence of Japan in one smooth and unforgettable adventure.
-                </p>
+                <h3 className="text-lg font-inter font-bold text-[#1F2226] mb-4">{tourDescription.title}</h3>
+                {tourDescription.paragraphs.map((paragraph, index) => (
+                  <p key={index} className="text-[#1F2226] text-base font-inter font-regular mb-6">
+                    {paragraph}
+                  </p>
+                ))}
                 
                 <h2 className="text-2xl font-inter font-semibold text-[#1F2226] mb-4">Amenities</h2>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-0 mb-0 -ml-3">
-                  <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
-                    <BadgeCheck className="w-5 h-5 text-gray-600" />
-                    <span className="text-[#010101] font-inter font-medium">Gold Operators</span>
-                  </div>
-                  <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
-                    <UsersRound className="w-5 h-5 text-gray-600" />
-                    <span className="text-[#010101] font-inter font-medium">Group Tour</span>
-                  </div>
-                  <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
-                    <ArrowBigDownDash className="w-5 h-5 text-gray-600" />
-                    <span className="text-[#010101] font-inter font-medium">Low Intensity</span>
-                  </div>
-                  <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
-                    <Users className="w-5 h-5 text-gray-600" />
-                    <span className="text-[#010101] font-inter font-medium">Group Size 10 - 30</span>
-                  </div>
-                  <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
-                    <Image className="w-5 h-5 text-gray-600" />
-                    <span className="text-[#010101] font-inter font-medium">In-depth Cultural</span>
-                  </div>
-                  <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
-                    <UserCheck className="w-5 h-5 text-gray-600" />
-                    <span className="text-[#010101] font-inter font-medium">Fully Guided</span>
-                  </div>
-                  <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
-                    <GlobeLock className="w-5 h-5 text-gray-600" />
-                    <span className="text-[#010101] font-inter font-medium">Guided in English</span>
-                  </div>
-                  <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
-                    <PersonStanding className="w-5 h-5 text-gray-600" />
-                    <span className="text-[#010101] font-inter font-medium">All Ages Welcome</span>
-                  </div>
+                  {amenities.map(({ id, icon: Icon, label }) => (
+                    <div key={id} className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
+                      <Icon className="w-5 h-5 text-gray-600" />
+                      <span className="text-[#010101] font-inter font-medium">{label}</span>
+                    </div>
+                  ))}
                 
                 </div>
                 
@@ -866,7 +860,7 @@ const DestinationDetails = () => {
                     <span className="font-inter font-regular text-[#1F2226] text-sm">Details:</span>
                     <div className="flex justify-between text-sm">
                       <span className="font-inter font-regular text-[#1F2226]">Capacity:</span>
-                      <span className="font-inter font-regular text-[#1F2226]">10 Persons</span>
+                      <span className="font-inter font-regular text-[#1F2226]">{destination.capacity || 10} Persons</span>
                     </div>
                     <div className="flex justify-between text-sm">
                       <span className="font-inter font-regular text-[#1F2226]">For 5 persons (per night):</span>
@@ -874,14 +868,14 @@ const DestinationDetails = () => {
                     </div>
                     <div className="flex justify-between text-sm">
                       <span className="font-inter font-regular text-[#1F2226]">For each additional person:</span>
-                      <span className="font-inter font-regular text-[#1F2226]">$59</span>
+                      <span className="font-inter font-regular text-[#1F2226]">${destination.additionalPersonPrice || 59}</span>
                     </div>
                     <div className="relative px-4 py-2">
                       <div className="absolute left-16 right-16 top-0 h-px bg-gray-200 mt-4"></div>
                     </div>
                     <div className="flex justify-between text-sm font-inter font-regular text-[#1F2226] pt-2">
                       <span>Total</span>
-                      <span>${(destination.price + (totalGuests > 5 ? (totalGuests - 5) * 59 : 0)).toLocaleString()}</span>
+                      <span>${(destination.price + (totalGuests > 5 ? (totalGuests - 5) * (destination.additionalPersonPrice || 59) : 0)).toLocaleString()}</span>
                     </div>
                   </div>
 
@@ -1551,11 +1545,18 @@ const DestinationDetails = () => {
             <h2 className="text-2xl font-inter font-semibold text-[#1F2226]">Reviews</h2>
             <div className="flex items-center mt-2">
               <span className="h-8 bg-[#FFECE3] flex items-center justify-center mr-2 px-2 rounded-l-full rounded-br-full">
-                <span className="text-sm font-roboto font-medium text-[#EB662B]">5.0</span>
+                <span className="text-sm font-roboto font-medium text-[#EB662B]">{destination.rating?.toFixed(1) || '5.0'}</span>
               </span>
-              <span className="text-sm font-roboto font-medium text-[#EB662B] ml-1">Excellent</span>
+              <span className="text-sm font-roboto font-medium text-[#EB662B] ml-1">
+                {destination.rating >= 4.5 ? 'Excellent' : 
+                 destination.rating >= 3.5 ? 'Very Good' : 
+                 destination.rating >= 2.5 ? 'Good' : 
+                 destination.rating >= 1.5 ? 'Fair' : 'Poor'}
+              </span>
               <div className="flex items-center">
-                <span className="text-[#8B94A4] font-roboto font-medium text-sm ml-2">1,260 reviews</span>
+                <span className="text-[#8B94A4] font-roboto font-medium text-sm ml-2">
+                  {destination.reviews?.toLocaleString() || '1,260'} reviews
+                </span>
               </div>
             </div>
           </div>

@@ -46,6 +46,10 @@ const DestinationList = () => {
   const [isSortOpen, setIsSortOpen] = useState(false);
   const [sortOption, setSortOption] = useState('Recommended');
   const [isGridView, setIsGridView] = useState(false);
+  const [daysRange, setDaysRange] = useState({
+    min: 2,
+    max: 21
+  });
 
   const sortOptions = [
     { value: 'recommended', label: 'Recommended' },
@@ -388,8 +392,8 @@ const DestinationList = () => {
                     <div className="space-y-3">
                       <div className="relative pt-1">
                         <div className="flex justify-between text-xs text-gray-500 mb-1">
-                          <span>- 2 Day</span>
-                          <span>21+ Day</span>
+                          <span>{daysRange.min} Day{daysRange.min > 1 ? 's' : ''}</span>
+                          <span>{daysRange.max}+ Day{daysRange.max > 1 ? 's' : ''}</span>
                         </div>
                         <div className="relative h-1 bg-gray-200 rounded-full mt-3">
                           {/* Black line from start to first dot */}

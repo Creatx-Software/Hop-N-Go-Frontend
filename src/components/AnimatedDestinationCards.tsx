@@ -25,7 +25,7 @@ const AnimatedDestinationCards = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [scrollPosition, setScrollPosition] = useState(0);
   const scrollSpeed = 1;
-  const scrollRef = useRef<number>();
+  const scrollRef = useRef<number | null>(null);
 
   const scroll = () => {
     if (!containerRef.current) return;

@@ -64,7 +64,7 @@ const ContactUsPage = () => {
       </div>
 
       {/* Header Section */}
-      <section className="bg-white">
+      <section className="conatiner bg-white">
       <header className="bg-gradient-to-t from-[#F53900] to-[#F9AC7D] text-[#170F49] pt-16 pb-24 md:pt-20 md:pb-12 mt-20">
         <div className="w-full mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -141,7 +141,7 @@ const ContactUsPage = () => {
 
       {/* Get in Touch */}
       <section className="bg-white py-12">
-        <div className="w-full mx-auto px-0 md:px-16">
+        <div className="conatiner w-full mx-auto px-4 md:px-24">
           <div className="text-start mb-4 ml-4 md:ml-0">
             <h2 className="text-4xl md:text-5xl font-inter font-bold text-black mb-4">Get in Touch</h2>
             <p className="text-lg text-[#747474] font-inter font-regular max-w-8xl mb-8">
@@ -182,7 +182,7 @@ const ContactUsPage = () => {
 
       {/* Contact Us Form */}
       <section className="py-0 bg-gradient-to-r from-[#F74A1F]/10 to-white">
-        <div className="w-full mx-auto px-4 max-w-10xl">
+        <div className="conatiner w-full mx-auto px-4 md:px-12">
           <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Side - Form */}
             <div className="bg-transparent p-4 sm:p-6 md:p-12">
@@ -315,7 +315,7 @@ const ContactUsPage = () => {
           }}
         ></div>
         
-        <div className="w-full mx-auto px-4 md:px-16 w-full relative z-10">
+        <div className="conatiner w-full mx-auto px-4 md:px-16 w-full relative z-10">
           <div className="text-left mb-12 px-4 sm:px-8">
             <h2 className="text-3xl md:text-5xl font-inter font-bold mb-4">
               <div className="mb-2">FREQUENTLY</div>

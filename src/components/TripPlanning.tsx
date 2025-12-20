@@ -31,11 +31,11 @@ const TripPlanning = () => {
   return (
     <>
       <style>{styles}</style>
-    <section className="py-16 md:py-[5vw] lg:py-[6vw] overflow-hidden md:-mt-20 lg:-mt-32 bg-white">
+    <section className="bg-white py-16 md:py-[5vw] lg:py-[6vw] overflow-hidden md:-mt-20 lg:-mt-32">
       {/* Decorative background elements */}
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-[#F8F0FF] to-transparent -z-10"></div>
+      <div className="container absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-[#F8F0FF] to-transparent -z-10"></div>
       
-      <div className="w-full px-[5%] md:px-[4%] lg:px-[5%] xl:px-[6%] mx-auto">
+      <div className="w-full px-10 md:px-40 mx-auto">
         <div className="grid md:grid-cols-2 gap-[3vw] items-center">
           <div className="relative z-10">
             {/* Happy Travellers Button with Travel Image */}

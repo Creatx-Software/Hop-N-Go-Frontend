@@ -76,8 +76,8 @@ const Hero = () => {
       {/* Hero Content */}
       <div className="w-full pl-[5%] md:pl-[4%] lg:pl-[5%] xl:pl-[6%] relative z-20">
         <div className="flex flex-col lg:grid lg:grid-cols-[55%_45%] gap-8 items-center min-h-[95vh] sm:min-h-[95vh] lg:min-h-[calc(100vh-5rem)] pt-6 sm:pt-12 lg:pt-0">
-          <div className="pt-12 sm:pt-16 pb-8 lg:py-24 w-[100%] lg:w-[95%] xl:w-[90%] max-w-[600px] 2xl:max-w-[700px]">
-            <h1 className="font-inter font-bold text-4xl sm:text-5xl md:text-[3.5vw] lg:text-[3.2vw] xl:text-[4vw] text-white mb-6 sm:mb-8 leading-tight">
+          <div className="pt-12 sm:pt-16 pb-8 lg:py-24 w-[100%]">
+            <h1 className="font-inter font-bold text-4xl sm:text-5xl md:text-6xl text-white mb-6 sm:mb-8 leading-tight">
               <div className="mb-2 sm:mb-4">Enjoy Your</div>
               <div className="mb-2 sm:mb-4">Vacation With</div>
               <div>
@@ -92,11 +92,11 @@ const Hero = () => {
             <div className="flex flex-row items-center gap-4 sm:gap-[0.5vw] w-full max-w-[90%] flex-nowrap">
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-[#FF5A2D] to-[#FF7A3D] hover:opacity-90 text-[#0C111F] font-semibold pr-[2.5vw] sm:pr-[2.5vw] pl-[1.2vw] py-[0.8vw] rounded-full shadow-[0_20px_40px_rgba(255,90,45,0.18)] flex items-center relative w-auto min-w-[140px] sm:min-w-[160px] lg:min-w-[12vw] text-xs sm:text-sm lg:text-[0.9vw] xl:text-[0.9vw] min-h-[40px] sm:min-h-[44px]"
+                className="bg-[#F74A1F] hover:opacity-90 text-[#0C111F] font-semibold pr-[2.5vw] sm:pr-[2.5vw] pl-[1.2vw] py-[0.8vw] rounded-full shadow-[0_20px_40px_rgba(255,90,45,0.18)] flex items-center relative w-auto min-w-[140px] sm:min-w-[160px] lg:min-w-[12vw] text-xs sm:text-sm lg:text-[0.9vw] xl:text-[0.9vw] min-h-[40px] sm:min-h-[44px]"
               >
                 <span className="mr-[1.5vw] ml-0.5 flex-shrink-0">Create Itineraries</span>
-                <span className="w-[1.2vw] h-[1.2vw] min-w-[16px] min-h-[16px] sm:min-w-[20px] sm:min-h-[20px] rounded-full bg-[#0C111F] flex items-center justify-center absolute right-[1vw] top-1/2 -translate-y-1/2">
-                  <ChevronRight className="w-[0.8vw] h-[0.8vw] min-w-[12px] min-h-[12px] text-white" />
+                <span className="w-[1.2vw] h-[1.2vw] min-w-[16px] min-h-[16px] sm:min-w-[20px] sm:min-h-[20px] rounded-full bg-white flex items-center justify-center absolute right-[1vw] top-1/2 -translate-y-1/2">
+                  <ChevronRight className="w-[0.8vw] h-[0.8vw] min-w-[12px] min-h-[12px] text-[#F74A1F]" />
                 </span>
               </Button>
 

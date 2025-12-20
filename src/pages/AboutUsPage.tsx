@@ -233,7 +233,7 @@ const AboutUsPage = () => {
 
       {/* Vision Section */}
       <section className="relative w-full bg-white py-16 md:py-16">
-        <div className="w-full px-6 md:px-20 mx-auto">
+        <div className="conatiner w-full px-6 md:px-20 mx-auto">
           <div className="flex flex-col lg:flex-row gap-12 items-center">
             {/* Left Side - Image with overlap */}
             <div className="lg:w-1/2 -mt-24 md:-mt-72 relative z-10">
@@ -266,7 +266,7 @@ const AboutUsPage = () => {
 
       {/* Mission Section */}
       <section className="relative w-full bg-white pt-0 pb-8 md:pt-0 md:pb-24">
-        <div className="w-full px-6 md:px-20 mx-auto">
+        <div className="conatiner w-full px-6 md:px-20 mx-auto">
           <div className="flex flex-col lg:flex-row-reverse gap-12 items-center">
             {/* Right Side - Image */}
             <div className="lg:w-1/2 relative z-10">
@@ -299,7 +299,7 @@ const AboutUsPage = () => {
 
       {/* Our Journey Section */}
     <section className="relative w-full bg-white pt-12">
-      <div className="w-full mx-auto px-4 md:px-16 -mt-4 md:-mt-16">
+      <div className="conatiner w-full mx-auto px-4 md:px-16 -mt-4 md:-mt-16">
         <div className="relative">
           <div className="bg-black rounded-3xl overflow-hidden lg:max-w-[70%] min-h-[400px] flex items-center">
             <div className="w-full p-8 md:p-12 lg:pr-48 text-white">
@@ -342,7 +342,7 @@ const AboutUsPage = () => {
 
     {/* Expert Services */}
     <section className="relative w-full bg-white pt-20 md:pt-48 md:pb-12 md:py-12 lg:py-12">
-      <div className="w-full px-6 md:px-16 mx-auto">
+      <div className="conatiner w-full px-6 md:px-16 mx-auto">
         <div className="flex flex-col lg:flex-row gap-8 items-start">
           {/* Images Section - Left Side */}
           <div className="w-full lg:w-7/12">
@@ -438,7 +438,7 @@ const AboutUsPage = () => {
     </section>
 
     {/* Ready for Adventure Section */}
-      <section className="relative py-16 bg-white">
+      <section className="conatiner relative py-16 bg-white px-8">
         <div className="w-[95%] mx-auto px-6 md:px-12 lg:px-20 py-8 bg-[#EEEEEE] rounded-sm">
         <div className="relative z-10">
           <div className="max-w-[1800px] mx-auto">

@@ -231,7 +231,7 @@ const EVisaPage = () => {
 
       {/* Before You Apply Section */}
       <section className="pt-16 pb-20 md:pt-24 md:pb-28 bg-white">
-        <div className="w-full mx-auto px-4 md:px-20">
+        <div className="container w-full mx-auto px-8 md:px-20">
           {/* Section Header */}
           <div className="text-left mb-6 md:mb-8">
             <h2 className="text-3xl md:text-5xl max-w-3xl font-inter font-bold text-black mb-6">
@@ -310,7 +310,7 @@ const EVisaPage = () => {
 
       {/* Why EVisa Section */}
       <section className="py-16 md:py-24 bg-gradient-to-t from-[#F53900] to-[#F9AC7D]">
-        <div className="w-full mx-auto px-4">
+        <div className="container w-full mx-auto px-10">
           <div className="flex flex-col lg:flex-row items-center gap-12">
             {/* Left Side - Mobile Image */}
             <div className="lg:w-1/2 -mt-40 md:-mt-52">
@@ -353,7 +353,7 @@ const EVisaPage = () => {
 
       {/* Opinion Section */}
       <section className="py-16 md:py-16 bg-white overflow-hidden">
-        <div className="w-full mx-auto px-4">
+        <div className="container w-full mx-auto px-4 md:px-10">
           <div className="flex justify-between items-center mb-12">
             <h2 className="text-3xl md:text-5xl font-inter font-bold text-black ml-8">Opinions</h2>
             <div className="flex space-x-4 mr-0 md:mr-8">
@@ -446,7 +446,7 @@ const EVisaPage = () => {
 
       {/* Evisa Express Today Section */}
       <section className="bg-white pt-0 pb-6 md:pt-0 md:pb-0">
-        <div className="w-full mx-auto px-0 md:px-12">
+        <div className="container w-full mx-auto px-8 md:px-12">
           <div className="flex flex-col lg:flex-row rounded-none overflow-hidden">
             <div className="bg-[#F53900] text-white w-full lg:w-1/2 px-8 md:px-16 pt-0 pb-3 md:pt-0 md:pb-0 flex items-center">
               <div className="space-y-8 max-w-sm">
@@ -494,7 +494,7 @@ const EVisaPage = () => {
             'linear-gradient(to bottom, #FEFEFE 0%, #FEFEFE 6%, transparent 20%, transparent 80%, #FEFEFE 100%), radial-gradient(circle at center, #FEFEFE 0%, #FEFEFE 35%, #FFF0E9 65%, #FFECEE 85%, #FEFEFE 100%)',
         }}
       >
-        <div className="w-full mx-auto px-4 md:px-12">
+        <div className="container w-full mx-auto px-8 md:px-12">
           <h2 className="text-3xl md:text-5xl font-inter font-bold text-black mb-8 md:mb-10">
             FAQ
           </h2>
@@ -602,7 +602,7 @@ const EVisaPage = () => {
 
       {/* Contact Us Section */}
       <section className="bg-[#FEFEFE] py-16 md:py-20">
-        <div className="w-full mx-auto px-4 md:px-12 -mt-16">
+        <div className="conatiner w-full mx-auto px-6 md:px-24 -mt-16">
           <h2 className="text-3xl md:text-5xl font-inter font-bold text-black mb-8 md:mb-10">
             Contact Us
           </h2>

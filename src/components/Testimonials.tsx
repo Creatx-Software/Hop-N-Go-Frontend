@@ -63,8 +63,8 @@ const Testimonials = () => {
     setTimeout(() => setIsTransitioning(false), 500);
   };
   return (
-    <section className="relative py-[5vw] bg-background -mt-20 md:-mt-10">
-      <div className="w-full px-[5%] md:px-[4%] lg:px-[5%] xl:px-[6%] mx-auto">
+    <section className="container relative py-[5vw] bg-background -mt-20 md:-mt-10">
+      <div className="w-full md:px-12 mx-auto">
         <div className="flex flex-col lg:grid lg:grid-cols-2 gap-[3vw] items-start">
           {/* Right side - Title and Image - Moved to top on mobile */}
           <div className="relative w-full flex flex-row-reverse lg:block order-1 lg:order-2">

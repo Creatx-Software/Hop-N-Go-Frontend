@@ -2,9 +2,9 @@ import evisaImage from "@/assets/evisa.png";
 
 const EVisa = () => {
   return (
-    <section className="relative z-20 bg-white">
-      <div className="relative z-30 pt-10 pb-0 md:pt-0 md:pb-0 md:-mt-10 lg:-mt-16">
-      <div className="w-full px-[5%] md:px-[4%] lg:px-[5%] xl:px-[6%] mx-auto">
+    <section className="bg-white relative z-20">
+      <div className="container relative z-30 pt-10 pb-0 md:pt-0 md:pb-0">
+      <div className="w-full md:px-12 mx-auto">
         <div className="flex flex-col md:flex-row-reverse items-center gap-[3vw]">
           {/* Content - Right side on desktop, top on mobile */}
           <div className="md:w-[45%] lg:w-[50%] text-left md:-mt-32 lg:-mt-44">

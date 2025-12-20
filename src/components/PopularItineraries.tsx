@@ -34,8 +34,8 @@ const PopularItineraries = () => {
   ];
 
   return (
-    <section className="py-16 bg-white -mt-10 md:mt-0">
-      <div className="w-full px-[5%] md:px-[4%] lg:px-[5%] xl:px-[6%] mx-auto">
+    <section className="bg-white py-16 -mt-10 md:mt-0">
+      <div className="container w-full md:px-16 mx-auto">
         <div className="flex flex-col mb-8 md:mb-12 lg:mb-10">
           <div className="w-full max-w-4xl">
             <h2 className="font-display font-bold text-4xl md:text-[3.5vw] lg:text-[3.2vw] xl:text-[3vw] leading-tight text-foreground mb-2 md:mb-4 text-left">

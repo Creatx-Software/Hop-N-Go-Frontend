@@ -310,11 +310,11 @@ const ItineraryPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="conatiner min-h-screen flex flex-col">
       
       {/* Hero Section */}
-      <div className="relative h-[270px] md:h-[700px] overflow-hidden bg-[#EEEEEE]">
-        <div className="absolute inset-0 p-6 pb-0 md:mt-16">
+      <div className="conatiner relative h-[270px] md:h-[700px] overflow-hidden bg-[#EEEEEE] md:px-20">
+        <div className="absolute inset-0 p-6 md:p-20 pb-0 md:mt-0">
           <div className="w-full h-full overflow-hidden rounded-t-lg">
             <img 
               src={JapanImage} 
@@ -332,7 +332,7 @@ const ItineraryPage = () => {
             <ChevronLeft className="w-6 h-6 text-gray-800" />
           </Button>
         </div>
-        <div className="absolute inset-0 flex items-end justify-center z-10 pb-16">
+        <div className="absolute inset-0 flex items-end justify-center z-10 pb-6 md:pb-28">
           <div className="text-center">
             <h1 className="text-5xl font-['Philosopher'] font-bold text-white mb-4">Japan</h1>
             <div className="text-[#F5F5F5] text-base font-semibold inline-block">
@@ -343,7 +343,7 @@ const ItineraryPage = () => {
       </div>
 
       {/* Tour Information Section */}
-      <div className="w-full mx-auto px-6 py-8 bg-[#EEEEEE]">
+      <div className="conatiner w-full mx-auto px-6 py-8 bg-[#EEEEEE] md:px-20">
         <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
           <div className="p-6">
             <h2 className="text-2xl font-inter font-semibold text-[#1F1F1F] mb-6">Tour Information</h2>
@@ -363,7 +363,7 @@ const ItineraryPage = () => {
       </div>
 
       {/* Overview Section */}
-      <div className="w-full mx-auto px-6 py-8 bg-[#EEEEEE]">
+      <div className="conatiner w-full mx-auto px-6 py-8 bg-[#EEEEEE] md:px-20">
         <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
           <div className="p-6">
             <h2 className="text-2xl font-inter font-semibold text-[#1F1F1F] mb-6">Overview</h2>
@@ -375,7 +375,7 @@ const ItineraryPage = () => {
       </div>
 
       {/* Summary Section */}
-      <div className="w-full mx-auto px-6 py-8 bg-[#EEEEEE]">
+      <div className="conatiner w-full mx-auto px-6 py-8 bg-[#EEEEEE] md:px-20">
         <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
           <div className="p-6">
             <h2 className="text-2xl font-inter font-semibold text-[#1F1F1F] mb-6">Summary</h2>
@@ -439,7 +439,7 @@ const ItineraryPage = () => {
       </div>
 
       {/* Tour Days Section */}
-      <div className="w-full mx-auto px-6 py-8 bg-[#EEEEEE]">
+      <div className="conatiner w-full mx-auto px-6 py-8 bg-[#EEEEEE] md:px-20">
         <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
           <div className="p-6">
             <h2 className="text-2xl font-inter font-semibold text-[#1F1F1F] mb-6">Tour Days</h2>
@@ -474,7 +474,7 @@ const ItineraryPage = () => {
 
       {/* Day Details Section */}
       {dayDetails.map((day) => (
-        <div key={day.id} className="w-full mx-auto px-6 py-8 bg-[#EEEEEE]">
+        <div key={day.id} className="conatiner w-full mx-auto px-6 py-8 bg-[#EEEEEE] md:px-20">
           <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
             <div className="p-6">
               <div className="mb-6">
@@ -685,7 +685,7 @@ const ItineraryPage = () => {
       ))}
 
       {/* Location */}
-      <div className="w-full mx-auto px-6 py-8 bg-[#EEEEEE]">
+      <div className="conatiner w-full mx-auto px-6 py-8 bg-[#EEEEEE] md:px-20">
         <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
           <div className="p-6">
             <h2 className="text-2xl font-inter font-semibold text-[#1F1F1F] mb-6">Location</h2>
@@ -743,7 +743,7 @@ const ItineraryPage = () => {
       </div>
 
       {/* Inclusion & Exclusion */}
-      <div className="w-full mx-auto px-6 py-8 bg-[#EEEEEE]">
+      <div className="conatiner w-full mx-auto px-6 py-8 bg-[#EEEEEE] md:px-20">
         <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
           <div className="p-8">
             
@@ -784,7 +784,7 @@ const ItineraryPage = () => {
       </div>
 
       {/* Cost Per Person */}
-      <div className="w-full mx-auto px-6 py-8 bg-[#EEEEEE]">
+      <div className="conatiner w-full mx-auto px-6 py-8 bg-[#EEEEEE] md:px-20">
         <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
           <div className="p-6">
             <div className="flex justify-between items-center">
@@ -800,7 +800,7 @@ const ItineraryPage = () => {
       </div>
 
       {/* Tour Operator */}
-      <div className="w-full mx-auto px-6 py-8 bg-[#EEEEEE]">
+      <div className="conatiner w-full mx-auto px-6 py-8 bg-[#EEEEEE] md:px-20">
         <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
           <div className="p-8">
             <h2 className="text-2xl font-inter font-semibold text-[#1F1F1F] mb-6">Tour Operator</h2>

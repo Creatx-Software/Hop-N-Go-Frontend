@@ -146,7 +146,7 @@ const DestinationPage = () => {
         <div className="container relative w-full mx-auto">
           <div className="relative w-full mx-auto">
             {/* Hero Image Wrapper */}
-            <div className="relative w-full md:h-[90vh] min-h-[600px] max-h-[1000px] flex items-center justify-center overflow-visible -mt-16 md:mt-0">
+            <div className="relative w-full md:h-[70vh] min-h-[600px] max-h-[1000px] flex items-center justify-center overflow-visible -mt-16 md:mt-0">
               <div className="w-full h-full mx-auto flex items-center justify-center">
                 <img 
                   src={destiHero} 
@@ -231,14 +231,14 @@ const DestinationPage = () => {
           </div>
           
           {/* Stats */}
-          <div className="relative z-10 w-full py-8 mt-0 md:-mt-28">
-            <div className="relative w-full mx-auto">
-              <div className="relative w-full max-w-[1920px] mx-auto px-2">
-                <div className="flex flex-col items-center md:items-start md:flex-row gap-6 md:gap-10 w-full">
+          <div className="relative z-10 py-4 lg:py-10 mt-0 lg:absolute lg:bottom-4 lg:left-96 lg:-translate-x-1/2">
+            <div className="mx-auto px-4">
+              <div className="p-4 lg:p-0">
+                <div className="grid md:grid-cols-3 gap-3 w-full">
                   {stats.map((stat, index) => (
-                    <div key={index} className="flex flex-row items-center justify-center md:justify-start gap-2 w-full md:w-auto">
-                      <div className="text-[6vw] lg:text-2xl font-bold text-[#0C111F]">{stat.value}</div>
-                      <div className="text-[3.5vw] sm:text-[1.2vw] md:text-[1vw] lg:text-sm text-gray-600">{stat.label}</div>
+                    <div key={index} className="flex flex-row items-center justify-center gap-3">
+                      <div className="text-2xl font-bold text-[#0C111F]">{stat.value}</div>
+                      <div className="text-sm text-gray-600">{stat.label}</div>
                     </div>
                   ))}
                 </div>
@@ -474,8 +474,8 @@ const DestinationPage = () => {
         <div className="absolute -top-20 -left-64 w-[800px] h-[700px] z-0">
           <div className="w-full h-full bg-gradient-to-br from-pink-400/40 via-pink-300/10 to-transparent rounded-full blur-3xl"></div>
         </div>
-        <div className="container relative z-10 w-full mx-auto md:px-12">
-          <div className="mb-12 md:mb-16">
+        <div className="relative z-10 w-full mx-auto md:px-12">
+          <div className="container md:px-12 mb-12 md:mb-16">
             <div className="flex flex-col md:flex-row justify-between items-start gap-4 mb-8">
               <div className="w-full md:w-1/2">
                 <h2 className="font-inter text-md text-[#0C111F] font-normal mb-4">[Packages]</h2>

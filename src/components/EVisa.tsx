@@ -4,11 +4,11 @@ const EVisa = () => {
   return (
     <section className="bg-white relative z-20">
       <div className="container relative z-30 pt-10 pb-0 md:pt-0 md:pb-0">
-      <div className="w-full md:px-12 mx-auto">
+      <div className="w-full mx-auto">
         <div className="flex flex-col md:flex-row-reverse items-center gap-[3vw]">
           {/* Content - Right side on desktop, top on mobile */}
           <div className="md:w-[45%] lg:w-[50%] text-left md:-mt-32 lg:-mt-44">
-            <h2 className="font-display font-bold text-4xl md:text-[3.5vw] lg:text-[3.2vw] xl:text-[3vw] leading-tight text-foreground">
+            <h2 className="font-display font-bold text-4xl md:text-5xl leading-tight text-foreground">
               Your eVisa, made easy
             </h2>
             <div className="space-y-2 mt-4">

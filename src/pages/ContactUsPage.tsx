@@ -40,7 +40,7 @@ const ContactUsPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white overflow-x-hidden">
+    <div className="conatiner min-h-screen bg-white overflow-x-hidden">
       <Navigation />
       <div className="w-full h-9 bg-[#FFC8BB]/30 relative z-10 overflow-hidden">
         <div className="w-full max-w-[1440px] mx-auto h-full flex items-center justify-between px-4 md:px-6 text-xs md:text-sm text-[#170F49] font-normal">
@@ -66,7 +66,7 @@ const ContactUsPage = () => {
       {/* Header Section */}
       <section className="conatiner bg-white">
       <header className="bg-gradient-to-t from-[#F53900] to-[#F9AC7D] text-[#170F49] pt-16 pb-24 md:pt-20 md:pb-12 mt-20">
-        <div className="w-full mx-auto px-6">
+        <div className="mx-auto px-6 md:px-28">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             {/* Left Side */}
             <div className="text-left -mt-8 md:-mt-42">
@@ -87,7 +87,7 @@ const ContactUsPage = () => {
             </div>
             
             {/* Right Side */}
-            <div className="bg-transparent backdrop-blur-sm rounded-2xl p-8 max-w-md -mt-16 md:-mt-10 -ml-10 md:ml-0 -mr-12 md:mr-0">
+            <div className="bg-transparent backdrop-blur-sm rounded-2xl p-8 max-w-md -mt-16 md:-mt-10 -ml-10 md:ml-12 -mr-12 md:mr-0">
               <h3 className="text-2xl text-white font-inter font-bold mb-6">Let's talk!</h3>
               
               <div className="grid grid-cols-2 gap-4">
@@ -140,14 +140,14 @@ const ContactUsPage = () => {
       </section>
 
       {/* Get in Touch */}
-      <section className="bg-white py-12">
-        <div className="conatiner w-full mx-auto px-4 md:px-24">
+      <section className="conatiner bg-white py-12 px-4 md:px-36">
+        <div className="w-full mx-auto">
           <div className="text-start mb-4 ml-4 md:ml-0">
             <h2 className="text-4xl md:text-5xl font-inter font-bold text-black mb-4">Get in Touch</h2>
             <p className="text-lg text-[#747474] font-inter font-regular max-w-8xl mb-8">
               We are here to support your travel needs with quick, friendly, and reliable assistance. Whether you need itinerary suggestions, booking guidance, or destination information — just reach out! <a href="#" className="text-[#F53900] hover:underline">Read More</a>
             </p>
-            <div className="flex flex-wrap gap-4 md:gap-60 mt-6">
+            <div className="flex flex-wrap gap-4 md:gap-56 mt-6">
               <div className="flex items-start space-x-3">
                 <div className="bg-transparent p-3 rounded-full">
                   <Phone className="w-5 h-5 text-[#8D8D8D]" />
@@ -181,8 +181,8 @@ const ContactUsPage = () => {
       </section>
 
       {/* Contact Us Form */}
-      <section className="py-0 bg-gradient-to-r from-[#F74A1F]/10 to-white">
-        <div className="conatiner w-full mx-auto px-4 md:px-12">
+      <section className="conatiner py-0 bg-gradient-to-r from-[#F74A1F]/10 to-white px-4 md:px-24">
+        <div className="mx-auto">
           <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Side - Form */}
             <div className="bg-transparent p-4 sm:p-6 md:p-12">
@@ -305,7 +305,7 @@ const ContactUsPage = () => {
       </section>
 
       {/* FAQ Section */}
-      <section className="pt-24 pb-8 bg-[#040F15] text-white w-full relative overflow-hidden">
+      <section className="conatiner pt-24 pb-8 bg-[#040F15] text-white relative overflow-hidden md:px-12">
         {/* Gradient circle background */}
         <div 
           className="absolute left-[150px] top-[70px] w-[500px] h-[500px] rounded-full -z-0"

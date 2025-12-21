@@ -166,7 +166,7 @@ const EVisaPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col overflow-x-hidden">
+    <div className="min-h-screen flex flex-col overflow-x-hidden bg-white">
       <Navigation />
       <div className="w-full h-9 bg-[#FFC8BB]/30 relative z-10 overflow-hidden">
         <div className="w-full max-w-[1440px] mx-auto h-full flex items-center justify-between px-4 md:px-6 text-xs md:text-sm text-[#170F49] font-normal">
@@ -601,8 +601,8 @@ const EVisaPage = () => {
       </section>
 
       {/* Contact Us Section */}
-      <section className="bg-[#FEFEFE] py-16 md:py-20">
-        <div className="conatiner w-full mx-auto px-6 md:px-24 -mt-16">
+      <section className="container bg-[#FEFEFE] py-16 md:py-20">
+        <div className="w-full mx-auto px-6 md:px-0-mt-16">
           <h2 className="text-3xl md:text-5xl font-inter font-bold text-black mb-8 md:mb-10">
             Contact Us
           </h2>

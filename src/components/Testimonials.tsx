@@ -63,8 +63,8 @@ const Testimonials = () => {
     setTimeout(() => setIsTransitioning(false), 500);
   };
   return (
-    <section className="container relative py-[5vw] bg-background -mt-20 md:-mt-10">
-      <div className="w-full md:px-12 mx-auto">
+    <section className="relative py-[5vw] bg-background -mt-20 md:-mt-10">
+      <div className="container w-full md:px-0 mx-auto">
         <div className="flex flex-col lg:grid lg:grid-cols-2 gap-[3vw] items-start">
           {/* Right side - Title and Image - Moved to top on mobile */}
           <div className="relative w-full flex flex-row-reverse lg:block order-1 lg:order-2">
@@ -146,7 +146,7 @@ const Testimonials = () => {
                 What others think
               </h4>
 
-              <h2 className="font-inter font-bold text-4xl md:text-[3.5vw] lg:text-[3.2vw] xl:text-[3vw] text-black mb-6 leading-[1] md:leading-[1.2] lg:leading-[1]">
+              <h2 className="font-inter font-bold text-4xl md:text-5xl text-black mb-6 leading-[1] md:leading-[1.2] lg:leading-[1]">
                 What our clients are saying about us?
               </h2>
               

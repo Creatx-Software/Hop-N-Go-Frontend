@@ -115,7 +115,7 @@ const AboutUsPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col overflow-x-hidden">
+    <div className="min-h-screen flex flex-col overflow-x-hidden bg-white">
       <Navigation />
       <div className="w-screen h-9 bg-[#FFC8BB]/30 relative z-10 overflow-x-hidden">
         <div className="w-full max-w-[1440px] mx-auto h-full flex items-center justify-between px-4 md:px-6 text-xs md:text-sm text-[#170F49] font-normal">
@@ -139,7 +139,7 @@ const AboutUsPage = () => {
       </div>
       
       {/* Hero Section */}
-      <section className="relative w-full min-h-screen overflow-hidden mt-16">
+      <section className="conatiner relative w-full min-h-screen overflow-hidden mt-16">
         {/* Background Image with Overlay */}
         <div className="absolute inset-0 z-0">
           <img 
@@ -157,7 +157,7 @@ const AboutUsPage = () => {
         </div>
 
         {/* Content Overlay */}
-        <div className="relative z-10 h-full flex flex-col justify-center items-center text-center px-6 md:px-0 mt-32">
+        <div className="container relative z-10 h-full flex flex-col justify-center items-center text-center px-6 md:px-0 mt-32">
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-['Philosopher'] font-bold text-white mb-10">
             Hop N Go
           </h1>
@@ -190,18 +190,18 @@ const AboutUsPage = () => {
         </div>
 
         {/* Know About Us */}
-        <div className="relative z-10 w-full py-16 md:py-24">
-          <div className="w-full px-6 md:px-20 mx-auto">
+        <div className="conatiner relative z-10 w-full py-16 md:py-24 px-6 md:px-32">
+          <div className="w-full mx-auto">
             <div className="flex flex-col lg:flex-row gap-12">
               {/* Left Side - Title */}
-              <div className="lg:w-1/2">
+              <div className="flex flex-col justify-center">
                 <div className="mb-6">
                   <div className="flex items-center gap-2">
                     <div className="w-14 h-[2px] bg-white"></div>
                     <span className="text-white text-sm font-inter font-bold tracking-widest">KNOW ABOUT US</span>
                   </div>
                 </div>
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-inter font-bold text-white mb-8 leading-tight">
+                <h1 className="text-4xl md:text-5xl font-inter font-bold text-white mb-8 leading-tight">
                   We are your trusted travel companion
                 </h1>
                 <div className="relative group">
@@ -232,8 +232,8 @@ const AboutUsPage = () => {
       </section>
 
       {/* Vision Section */}
-      <section className="relative w-full bg-white py-16 md:py-16">
-        <div className="conatiner w-full px-6 md:px-20 mx-auto">
+      <section className="container relative w-full bg-white py-16 md:py-16">
+        <div className="w-full px-6 md:px-0 mx-auto">
           <div className="flex flex-col lg:flex-row gap-12 items-center">
             {/* Left Side - Image with overlap */}
             <div className="lg:w-1/2 -mt-24 md:-mt-72 relative z-10">
@@ -265,8 +265,8 @@ const AboutUsPage = () => {
       </section>
 
       {/* Mission Section */}
-      <section className="relative w-full bg-white pt-0 pb-8 md:pt-0 md:pb-24">
-        <div className="conatiner w-full px-6 md:px-20 mx-auto">
+      <section className="container relative w-full bg-white pt-0 pb-8 md:pt-0 md:pb-24">
+        <div className="w-full px-6 md:px-0 mx-auto">
           <div className="flex flex-col lg:flex-row-reverse gap-12 items-center">
             {/* Right Side - Image */}
             <div className="lg:w-1/2 relative z-10">
@@ -298,11 +298,11 @@ const AboutUsPage = () => {
       </section>
 
       {/* Our Journey Section */}
-    <section className="relative w-full bg-white pt-12">
-      <div className="conatiner w-full mx-auto px-4 md:px-16 -mt-4 md:-mt-16">
+    <section className="conatiner relative bg-white pt-12">
+      <div className="w-full mx-auto px-4 md:px-24 -mt-4 md:-mt-16">
         <div className="relative">
           <div className="bg-black rounded-3xl overflow-hidden lg:max-w-[70%] min-h-[400px] flex items-center">
-            <div className="w-full p-8 md:p-12 lg:pr-48 text-white">
+            <div className="w-full p-8 md:p-12 lg:pr-60 text-white">
               <div className="flex items-center gap-4 mb-6">
                 <span className="text-sm font-inter font-bold tracking-widest">OUR JOURNEY</span>
               </div>
@@ -329,7 +329,7 @@ const AboutUsPage = () => {
           </div>
           
           {/* Journey Image - Overlapping with Expert Services */}
-          <div className="relative z-10 lg:absolute right-0 top-8 md:top-40 w-full lg:w-[48%] h-80 lg:h-[600px]">
+          <div className="conatiner relative z-10 lg:absolute right-0 top-8 md:top-40 w-full lg:w-[48%] h-80 lg:h-[600px]">
             <img 
               src={journey} 
               alt="Travel Journey"
@@ -341,8 +341,8 @@ const AboutUsPage = () => {
     </section>
 
     {/* Expert Services */}
-    <section className="relative w-full bg-white pt-20 md:pt-48 md:pb-12 md:py-12 lg:py-12">
-      <div className="conatiner w-full px-6 md:px-16 mx-auto">
+    <section className="conatiner relative w-full bg-white pt-20 md:pt-48 md:pb-12 md:py-12 lg:py-12">
+      <div className="w-full px-6 md:px-24 mx-auto">
         <div className="flex flex-col lg:flex-row gap-8 items-start">
           {/* Images Section - Left Side */}
           <div className="w-full lg:w-7/12">
@@ -438,10 +438,10 @@ const AboutUsPage = () => {
     </section>
 
     {/* Ready for Adventure Section */}
-      <section className="conatiner relative py-16 bg-white px-8">
-        <div className="w-[95%] mx-auto px-6 md:px-12 lg:px-20 py-8 bg-[#EEEEEE] rounded-sm">
+      <section className="conatiner relative py-16 bg-white px-8 md:px-24">
+        <div className="w-full mx-auto px-6 md:px-0 lg:px-20 py-8 bg-[#EEEEEE] rounded-sm">
         <div className="relative z-10">
-          <div className="max-w-[1800px] mx-auto">
+          <div className="mx-auto">
             <div className="flex flex-col lg:flex-row">
               {/* Left Side - Title */}
               <div className="w-full lg:w-2/5 mb-10 lg:mb-0 lg:pr-0">

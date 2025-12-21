@@ -232,14 +232,14 @@ const Hero = () => {
                     {/* Floating next arrow - Only show if not the last card */}
                     {selectedIndex === idx && selectedIndex < destinations.length - 1 && (
                       <div className="absolute right-[-28px] top-1/2 -translate-y-1/2 rounded-full w-16 h-16 flex items-center justify-center">
-                      {/* Glass white border layer */}
-                      <div className="absolute inset-0 rounded-full bg-white/50 backdrop-blur-sm pointer-events-none"></div>
-                      <button
-                        onClick={() => carouselApi?.scrollNext()}
-                        className="absolute right-[-0x] top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-[#FF7A3D] to-[#FF5A2D] flex items-center justify-center shadow-2xl z-40"
-                      >
-                        <ArrowRight className="w-5 h-5 text-white" />
-                      </button>
+                        {/* Glass white border layer */}
+                        <div className="absolute inset-0 rounded-full bg-white/50 backdrop-blur-sm pointer-events-none"></div>
+                        <button
+                          onClick={() => carouselApi?.scrollNext()}
+                          className="relative w-10 h-10 rounded-full bg-gradient-to-br from-[#FF7A3D] to-[#FF5A2D] flex items-center justify-center shadow-2xl z-40"
+                        >
+                          <ArrowRight className="w-5 h-5 text-white" />
+                        </button>
                       </div>
                     )}
                   </div>
@@ -247,14 +247,36 @@ const Hero = () => {
               ))}
             </CarouselContent>
 
+            {/* Horizontal Menu Bar */}
+            <div className="flex justify-center items-center gap-4 mt-6 mb-4">
+              {destinations.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => {
+                    carouselApi?.scrollTo(index);
+                    setSelectedIndex(index);
+                  }}
+                  className={`w-3 h-2 rounded-full transition-all duration-300 ${
+                    selectedIndex === index ? 'w-8 bg-white' : 'bg-white/30 hover:bg-white/50'
+                  }`}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              ))}
+            </div>
+
+            {/* Floating previous arrow */}
             {selectedIndex !== 0 && (
-              <div className="absolute left-[-28px] top-1/2 -translate-y-1/2 w-16 h-16 flex items-center justify-center">
-    
+              <div className="absolute left-[-28px] top-52 md:top-60 -translate-y-1/2 w-16 h-16 flex items-center justify-center">
                 {/* Glass border layer */}
                 <div className="absolute inset-0 rounded-full bg-white/50 backdrop-blur-sm pointer-events-none"></div>
 
                 {/* Previous Button */}
-                <CarouselPrevious className="relative w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-2xl z-40 text-black translate-x-12 -mt-6 hover:bg-white hover:text-black focus:bg-white focus:text-black active:bg-white active:text-black"/>
+                <button
+                  onClick={() => carouselApi?.scrollPrev()}
+                  className="relative w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-2xl z-40 text-black hover:bg-white hover:text-black focus:bg-white focus:text-black active:bg-white active:text-black"
+                >
+                  <ArrowRight className="w-5 h-5 text-black rotate-180" />
+                </button>
               </div>
             )}
 

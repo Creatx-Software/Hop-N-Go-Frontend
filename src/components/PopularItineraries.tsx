@@ -35,10 +35,10 @@ const PopularItineraries = () => {
 
   return (
     <section className="bg-white py-16 -mt-10 md:mt-0">
-      <div className="container w-full md:px-16 mx-auto">
+      <div className="container w-full mx-auto">
         <div className="flex flex-col mb-8 md:mb-12 lg:mb-10">
           <div className="w-full max-w-4xl">
-            <h2 className="font-display font-bold text-4xl md:text-[3.5vw] lg:text-[3.2vw] xl:text-[3vw] leading-tight text-foreground mb-2 md:mb-4 text-left">
+            <h2 className="font-display font-bold text-4xl md:text-5xl leading-tight text-foreground mb-2 md:mb-4 text-left">
               Popular Itineraries
             </h2>
             <p className="text-muted-foreground text-lg md:text-[1.1vw] lg:text-[1vw] xl:text-[1.1vw] leading-relaxed text-left">
@@ -48,7 +48,7 @@ const PopularItineraries = () => {
         </div>
         
         <div className="w-full">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10 xl:gap-12 w-full justify-items-center">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full justify-items-center">
             {itineraries.map((itinerary, index) => (
               <div key={index} className="w-full flex justify-center">
                 <div className="w-full max-w-[320px] sm:max-w-none sm:w-full">

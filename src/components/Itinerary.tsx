@@ -44,10 +44,10 @@ const Itinerary = () => {
   }, [placeholderIndex, charIndex, isDeleting, placeholder, typingSpeed]);
   return (
     <section className="bg-white pt-0 py-6 -mt-2 md:-mt-16">
-      <div className="container w-full px-[5%] md:px-[4%] lg:px-[5%] xl:px-[6%] mx-auto">
+      <div className="container w-full px-8 md:px-12 mx-auto">
         <div className="grid md:grid-cols-2 gap-[3vw] items-center">
           <div>
-            <h2 className="font-display font-bold text-4xl md:text-[3.5vw] lg:text-[3.2vw] xl:text-[3vw] text-foreground mb-8 leading-[1] md:leading-[1.2] lg:leading-[1]">
+            <h2 className="font-display font-bold text-4xl md:text-5xl text-foreground mb-8 leading-[1] md:leading-[1.2] lg:leading-[1]">
               Your smart itinerary is ready in seconds
             </h2>
             <p className="text-muted-foreground text-lg md:text-[1.1vw] lg:text-[1vw] xl:text-[1.1vw] leading-relaxed mb-8">

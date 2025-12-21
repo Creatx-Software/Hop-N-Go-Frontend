@@ -8,7 +8,7 @@ const TravelerQuiz = () => {
       <div className="absolute inset-0 z-0">
         <div className="w-full h-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#FFE4E1] via-[#FFF5F3] to-transparent opacity-80"></div>
       </div>
-      <div className="w-full md:px-12 mx-auto relative z-10">
+      <div className="w-full md:px-0 mx-auto relative z-10">
         <div className="grid md:grid-cols-2 gap-[3vw] items-center">
           <div className="relative">
             <div className="rounded-[1.5vw] overflow-hidden shadow-2xl">
@@ -20,7 +20,7 @@ const TravelerQuiz = () => {
             </div>
           </div>
           <div>
-            <h2 className="font-display font-bold text-4xl md:text-[3.5vw] lg:text-[3.2vw] xl:text-[3vw] text-foreground mb-8 leading-[1] md:leading-[1.2] lg:leading-[1] mt-6 md:mt-0">
+            <h2 className="font-display font-bold text-4xl md:text-5xl text-foreground mb-8 leading-[1] md:leading-[1.2] lg:leading-[1] mt-6 md:mt-0">
               What Kind of traveler are you?
             </h2>
             <p className="text-muted-foreground text-lg md:text-[1.1vw] lg:text-[1vw] xl:text-[1.1vw] leading-relaxed mb-8">

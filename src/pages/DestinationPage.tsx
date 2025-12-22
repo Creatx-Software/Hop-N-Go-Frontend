@@ -64,6 +64,8 @@ const DestinationPage = () => {
   const bestDestinations = [
     {
       image: dubai,
+      days: 3,
+      nights: 4,
       title: "Dubai",
       rating: 4.8,
       location: "Australia",
@@ -72,6 +74,8 @@ const DestinationPage = () => {
     },
     {
       image: bangkok,
+      days: 3,
+      nights: 4,
       title: "Bangkok",
       rating: 4.9,
       location: "Vietnam",
@@ -80,6 +84,8 @@ const DestinationPage = () => {
     },
     {
       image: tokyo,
+      days: 3,
+      nights: 4,
       title: "Tokyo",
       rating: 4.7,
       location: "Japan",

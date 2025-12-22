@@ -27,7 +27,11 @@ const styles = `
   }
 `;
 
-const TripPlanning = () => {
+interface TripPlanningProps {
+  reviewsCount?: string | number;
+}
+
+const TripPlanning = ({ reviewsCount = '1.5k' }: TripPlanningProps) => {
   return (
     <>
       <style>{styles}</style>
@@ -59,7 +63,7 @@ const TripPlanning = () => {
                         <Star key={i} className="w-3 h-3 fill-yellow-400 text-yellow-400" />
                       ))}
                     </div>
-                    <span className="text-sm sm:text-[0.9vw] font-medium text-foreground ml-1">(1.5k Reviews)</span>
+                    <span className="text-sm sm:text-[0.9vw] font-medium text-foreground ml-1">({reviewsCount} {typeof reviewsCount === 'number' && reviewsCount === 1 ? 'Review' : 'Reviews'})</span>
                   </div>
                 </div>
               </div>

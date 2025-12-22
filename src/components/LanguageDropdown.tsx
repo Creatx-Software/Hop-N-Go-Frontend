@@ -54,7 +54,6 @@ export default function LanguageDropdown() {
               onClick={() => {
                 setSelectedLang(lang);
                 setIsOpen(false);
-                // 👉 Add your language change handler here
                 console.log("Language switched to:", lang.code);
               }}
             >

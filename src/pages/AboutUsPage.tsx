@@ -43,6 +43,41 @@ const PrevArrow = (props: any) => {
   );
 };
 
+interface JourneyStatsProps {
+  destinationsSearched: string | number;
+  successfulTrips: number;
+  travelExperts: number;
+}
+
+const JourneyStats: React.FC<JourneyStatsProps> = ({
+  destinationsSearched = '34K',
+  successfulTrips = 400,
+  travelExperts = 20
+}) => {
+  return (
+    <div className="grid grid-cols-3 gap-4">
+      <div>
+        <h3 className="text-2xl md:text-3xl font-inter font-bold mb-2">
+          {typeof destinationsSearched === 'number' 
+            ? `${destinationsSearched.toLocaleString()}+` 
+            : destinationsSearched.endsWith('+') 
+              ? destinationsSearched 
+              : `${destinationsSearched}+`}
+        </h3>
+        <p className="text-white/60 text-xs md:text-sm font-inter font-medium">Destinations Searched</p>
+      </div>
+      <div>
+        <h3 className="text-2xl md:text-3xl font-inter font-bold mb-2">{successfulTrips.toLocaleString()}+</h3>
+        <p className="text-white/60 text-xs md:text-sm font-inter font-medium">Successful Trips</p>
+      </div>
+      <div>
+        <h3 className="text-2xl md:text-3xl font-inter font-bold mb-2">{travelExperts.toLocaleString()}+</h3>
+        <p className="text-white/60 text-xs md:text-sm font-inter font-medium">Travel Experts</p>
+      </div>
+    </div>
+  );
+};
+
 const AboutUsPage = () => {
   const [activeTab, setActiveTab] = useState('mission');
   
@@ -233,7 +268,7 @@ const AboutUsPage = () => {
 
       {/* Vision Section */}
       <section className="container relative w-full bg-white py-16 md:py-16">
-        <div className="w-full px-6 md:px-0 mx-auto">
+        <div className="w-full px-0 md:px-0 mx-auto">
           <div className="flex flex-col lg:flex-row gap-12 items-center">
             {/* Left Side - Image with overlap */}
             <div className="lg:w-1/2 -mt-24 md:-mt-72 relative z-10">
@@ -266,7 +301,7 @@ const AboutUsPage = () => {
 
       {/* Mission Section */}
       <section className="container relative w-full bg-white pt-0 pb-8 md:pt-0 md:pb-24">
-        <div className="w-full px-6 md:px-0 mx-auto">
+        <div className="w-full px-0 md:px-0 mx-auto">
           <div className="flex flex-col lg:flex-row-reverse gap-12 items-center">
             {/* Right Side - Image */}
             <div className="lg:w-1/2 relative z-10">
@@ -311,20 +346,11 @@ const AboutUsPage = () => {
                 Since our beginning, we have helped thousands of travelers plan meaningful adventures with confidence.
               </p>
               
-              <div className="grid grid-cols-3 gap-4">
-                <div>
-                  <h3 className="text-2xl md:text-3xl font-inter font-bold mb-2">34K+</h3>
-                  <p className="text-white/60 text-xs md:text-sm font-inter font-medium">Destinations Searched</p>
-                </div>
-                <div>
-                  <h3 className="text-2xl md:text-3xl font-inter font-bold mb-2">400+</h3>
-                  <p className="text-white/60 text-xs md:text-sm font-inter font-medium">Successful Trips</p>
-                </div>
-                <div>
-                  <h3 className="text-2xl md:text-3xl font-inter font-bold mb-2">20+</h3>
-                  <p className="text-white/60 text-xs md:text-sm font-inter font-medium">Travel Experts</p>
-                </div>
-              </div>
+              <JourneyStats 
+                destinationsSearched="34K"
+                successfulTrips={400}
+                travelExperts={20}
+              />
             </div>
           </div>
           

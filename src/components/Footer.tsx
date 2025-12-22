@@ -12,9 +12,31 @@ import cards from "@/assets/cards.png";
 
 interface FooterProps {
   className?: string;
+  phoneNumbers?: string[];
+  email?: string;
+  address?: string;
+  socialLinks?: {
+    facebook?: string;
+    twitter?: string;
+    linkedin?: string;
+    phone?: string;
+    instagram?: string;
+  };
 }
 
-const Footer = ({ className = '' }: FooterProps) => {
+const Footer = ({ 
+  className = '',
+  phoneNumbers = ['+01 234 567 890', '+09 999 999 999'],
+  email = 'hopngoinfo@gmail.com',
+  address = '789 Inner Lane, Holy park, California, USA',
+  socialLinks = {
+    facebook: '#',
+    twitter: '#',
+    linkedin: '#',
+    phone: '#',
+    instagram: '#'
+  }
+}: FooterProps) => {
   return (
     <footer className={`relative bg-secondary text-secondary-foreground pt-[5vw] pb-0 overflow-hidden ${className}`}>
       {/* White Gradient Overlay */}
@@ -41,23 +63,23 @@ const Footer = ({ className = '' }: FooterProps) => {
               Experience a whole new journey with Hop N Go — your smart travel companion that helps you explore beautiful destinations with ease and comfort. Discover the world, create memories, and enjoy every moment of your adventure.
             </p>
             <div className="flex gap-3">
-              <a href="#" className="w-[2.25vw] h-[2.25vw] min-w-[36px] min-h-[36px] bg-[#F74A1F]/20 hover:bg-[#a6533f] rounded-full flex items-center justify-center transition-colors duration-200 cursor-pointer group">
-                <Facebook className="w-[1vw] h-[1vw] min-w-[16px] min-h-[16px] text-[#F74A1F] group-hover:text-white transition-colors duration-200" />
+              <a href={socialLinks.facebook} className="w-[2.25vw] h-[2.25vw] min-w-[36px] min-h-[36px] bg-[#F74A1F]/20 hover:bg-[#a6533f] rounded-full flex items-center justify-center transition-colors duration-200 cursor-pointer group">
+                <Facebook className="w-[1vw] h-[1vw] min-w-[16px] min-h-[16px] text-[#F74A1F] fill-[#F74A1F] group-hover:text-white transition-colors duration-200" />
               </a>
 
-              <a href="#" className="w-[2.25vw] h-[2.25vw] min-w-[36px] min-h-[36px] bg-[#F74A1F]/20 hover:bg-[#a6533f] rounded-full flex items-center justify-center transition-colors duration-200 cursor-pointer group">
-                <Twitter className="w-[1vw] h-[1vw] min-w-[16px] min-h-[16px] text-[#F74A1F] group-hover:text-white transition-colors duration-200" />
+              <a href={socialLinks.twitter} className="w-[2.25vw] h-[2.25vw] min-w-[36px] min-h-[36px] bg-[#F74A1F]/20 hover:bg-[#a6533f] rounded-full flex items-center justify-center transition-colors duration-200 cursor-pointer group">
+                <Twitter className="w-[1vw] h-[1vw] min-w-[16px] min-h-[16px] text-[#F74A1F] fill-[#F74A1F] group-hover:text-white transition-colors duration-200" />
               </a>
 
-              <a href="#" className="w-[2.25vw] h-[2.25vw] min-w-[36px] min-h-[36px] bg-[#F74A1F]/20 hover:bg-[#a6533f] rounded-full flex items-center justify-center transition-colors duration-200 cursor-pointer group">
-                <Linkedin className="w-[1vw] h-[1vw] min-w-[16px] min-h-[16px] text-[#F74A1F] group-hover:text-white transition-colors duration-200" />
+              <a href={socialLinks.linkedin} className="w-[2.25vw] h-[2.25vw] min-w-[36px] min-h-[36px] bg-[#F74A1F]/20 hover:bg-[#a6533f] rounded-full flex items-center justify-center transition-colors duration-200 cursor-pointer group">
+                <Linkedin className="w-[1vw] h-[1vw] min-w-[16px] min-h-[16px] text-[#F74A1F] fill-[#F74A1F] group-hover:text-white transition-colors duration-200" />
               </a>
 
-              <a href="#" className="w-[2.25vw] h-[2.25vw] min-w-[36px] min-h-[36px] bg-[#F74A1F]/20 hover:bg-[#a6533f] rounded-full flex items-center justify-center transition-colors duration-200 cursor-pointer group">
+              <a href={socialLinks.phone} className="w-[2.25vw] h-[2.25vw] min-w-[36px] min-h-[36px] bg-[#F74A1F]/20 hover:bg-[#a6533f] rounded-full flex items-center justify-center transition-colors duration-200 cursor-pointer group">
                 <Phone className="w-[1vw] h-[1vw] min-w-[16px] min-h-[16px] text-[#F74A1F] group-hover:text-white transition-colors duration-200" />
               </a>
 
-              <a href="#" className="w-[2.25vw] h-[2.25vw] min-w-[36px] min-h-[36px] bg-[#F74A1F]/20 hover:bg-[#a6533f] rounded-full flex items-center justify-center transition-colors duration-200 cursor-pointer group">
+              <a href={socialLinks.instagram} className="w-[2.25vw] h-[2.25vw] min-w-[36px] min-h-[36px] bg-[#F74A1F]/20 hover:bg-[#a6533f] rounded-full flex items-center justify-center transition-colors duration-200 cursor-pointer group">
                 <Instagram className="w-[1vw] h-[1vw] min-w-[16px] min-h-[16px] text-[#F74A1F] group-hover:text-white transition-colors duration-200" />
               </a>
             </div>
@@ -98,26 +120,27 @@ const Footer = ({ className = '' }: FooterProps) => {
           <div>
             <h4 className="font-Manrope font-semibold text-lg md:text-[1.1vw] lg:text-[1vw] xl:text-[1.1vw] mb-6">Get In Touch</h4>
             <ul className="space-y-4 font-[400]">
-              <li className="flex items-start gap-3">
+              <li className="flex items-center gap-3">
                 <div className="w-[2.25vw] h-[2.25vw] min-w-[36px] min-h-[36px] bg-[#F74A1F]/20 rounded-full flex-shrink-0 flex items-center justify-center">
                   <Phone className="w-[1vw] h-[1vw] min-w-[16px] min-h-[16px] text-[#F74A1F]" />
                 </div>
                 <div className="text-sm md:text-[0.9vw] lg:text-[0.8vw] xl:text-[0.9vw]">
-                  <p className="text-secondary-foreground/60">+01 234 567 890</p>
-                  <p className="text-secondary-foreground/60">+09 999 999 999</p>
+                  {phoneNumbers.map((number, index) => (
+                    <p key={index} className="text-secondary-foreground/60">{number}</p>
+                  ))}
                 </div>
               </li>
-              <li className="flex items-start gap-3">
+              <li className="flex items-center gap-3">
                 <div className="w-[2.25vw] h-[2.25vw] min-w-[36px] min-h-[36px] bg-[#F74A1F]/20 rounded-full flex-shrink-0 flex items-center justify-center">
                   <Mail className="w-[1vw] h-[1vw] min-w-[16px] min-h-[16px] text-[#F74A1F]" />
                 </div>
-                <p className="text-secondary-foreground/60 text-sm md:text-[0.9vw] lg:text-[0.8vw] xl:text-[0.9vw]">hopngoinfo@gmail.com</p>
+                <p className="text-secondary-foreground/60 text-sm md:text-[0.9vw] lg:text-[0.8vw] xl:text-[0.9vw]">{email}</p>
               </li>
-              <li className="flex items-start gap-3">
+              <li className="flex items-center gap-3">
                 <div className="w-[2.25vw] h-[2.25vw] min-w-[36px] min-h-[36px] bg-[#F74A1F]/20 rounded-full flex-shrink-0 flex items-center justify-center">
                   <MapPin className="w-[1vw] h-[1vw] min-w-[16px] min-h-[16px] text-[#F74A1F]" />
                 </div>
-                <p className="text-secondary-foreground/60 text-sm md:text-[0.9vw] lg:text-[0.8vw] xl:text-[0.9vw]">789 Inner Lane, Holy park, California, USA</p>
+                <p className="text-secondary-foreground/60 text-sm md:text-[0.9vw] lg:text-[0.8vw] xl:text-[0.9vw]">{address}</p>
               </li>
             </ul>
           </div>

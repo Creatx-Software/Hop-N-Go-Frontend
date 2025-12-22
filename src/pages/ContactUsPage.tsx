@@ -9,7 +9,45 @@ import LanguageDropdown from '@/components/LanguageDropdown';
 import contact from '@/assets/contact.png';
 import question from '@/assets/question.png';
 
-const ContactUsPage = () => {
+interface ContactUsPageProps {
+  phoneNumber?: string;
+  email?: string;
+  address?: string;
+  headOffice?: {
+    addressLine1: string;
+    addressLine2: string;
+  };
+  branchOffice?: {
+    addressLine1: string;
+    addressLine2: string;
+  };
+  socialLinks?: {
+    facebook?: string;
+    twitter?: string;
+    linkedin?: string;
+    instagram?: string;
+  };
+}
+
+const ContactUsPage = ({
+  phoneNumber = "+01 234 567 890",
+  email = "hopngoinfo@gmail.com",
+  address = "706 Campfire Ave. Meriden, CT 06450",
+  headOffice = {
+    addressLine1: "8 Brewery Drive, Lagos,",
+    addressLine2: "Nigeria."
+  },
+  branchOffice = {
+    addressLine1: "Opp Opolo round about, Yenagoa, Bayelsa,",
+    addressLine2: "Nigeria"
+  },
+  socialLinks = {
+    facebook: "#",
+    twitter: "#",
+    linkedin: "#",
+    instagram: "#"
+  }
+}: ContactUsPageProps) => {
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
 
   const faqs = [
@@ -92,44 +130,48 @@ const ContactUsPage = () => {
               
               <div className="grid grid-cols-2 gap-4">
                 <div className="flex flex-col">
-                  <p className="text-white/80 text-md font-inter font-regular">+01 234 567 890</p>
+                  <p className="text-white/80 text-md font-inter font-regular">{phoneNumber}</p>
                 </div>
                 
                 <div className="flex flex-col">
-                  <p className="text-white/80 text-md font-inter font-regular">hopngoinfo@gmail.com</p>
+                  <p className="text-white/80 text-md font-inter font-regular">{email}</p>
                 </div>
                 
                 <div className="pt-4">
                   <div className="w-96 h-[2px] bg-white/60 mb-4 -mt-5"></div>
                   <div className="w-96 border-t border-transparent pt-2">
                     <p className="text-md text-white font-inter font-bold mb-3">Headoffice</p>
-                    <p className="text-white/80 font-inter font-regular mb-6">8 Brewery Drive, Lagos,<br/>Nigeria.</p>
+                    <p className="text-white/80 font-inter font-regular mb-6">
+                      {headOffice.addressLine1}<br/>{headOffice.addressLine2}
+                    </p>
                     
                     <p className="text-md text-white font-inter font-bold mb-3">Branch Office</p>
-                    <p className="text-white/80 font-inter font-regular mb-6">Opp Opolo round about, Yenagoa, Bayelsa,<br/>Nigeria</p>
+                    <p className="text-white/80 font-inter font-regular mb-6">
+                      {branchOffice.addressLine1}<br/>{branchOffice.addressLine2}
+                    </p>
                     
                     <div className="flex space-x-4 mt-8">
-                      <a href="#" className="w-6 h-6 rounded-full bg-white/90 flex items-center justify-center hover:bg-[#F53900]/70 transition-colors duration-200">
+                      <a href={socialLinks.facebook} className="w-6 h-6 rounded-full bg-white/90 flex items-center justify-center hover:bg-[#F53900]/70 transition-colors duration-200">
                         <Facebook className="w-5 h-5 text-[#F53900]/90 fill-[#F53900]/90 hover:text-white hover:fill-white transition-colors duration-200" />
                       </a>
-                      <a href="#" className="w-6 h-6 rounded-full bg-transparent flex items-center justify-center hover:bg-white/90 transition-colors duration-200">
+                      <a href={socialLinks.twitter} className="w-6 h-6 rounded-full bg-transparent flex items-center justify-center hover:bg-white/90 transition-colors duration-200">
                         <Twitter className="w-5 h-5 text-white/90 fill-white/90 hover:text-[#F53900] hover:fill-[#F53900] transition-colors duration-200" />
                       </a>
-                      <a href="#" className="w-6 h-6 bg-white/90 flex items-center justify-center hover:bg-[#F53900]/70 transition-colors duration-200">
+                      <a href={socialLinks.linkedin} className="w-6 h-6 bg-white/90 flex items-center justify-center hover:bg-[#F53900]/70 transition-colors duration-200">
                         <Linkedin className="w-5 h-5 text-[#F53900]/90 fill-[#F53900]/90 hover:text-white hover:fill-white transition-colors duration-200" />
                       </a>
                     </div>
                     <div className="absolute right-4 md:-right-48 top-1/2 transform -translate-y-1/2 flex flex-col space-y-4 pr-4 mt-52 md:mt-0">
-                  <a href="#" className="w-10 h-10 rounded-full bg-transparent border border-white flex items-center justify-center hover:bg-[#F53900]/50 transition-colors duration-200">
-                    <Facebook className="w-5 h-5 text-white/90 fill-white/90 hover:text-white hover:fill-white transition-colors duration-200" />
-                  </a>
-                  <a href="#" className="w-10 h-10 rounded-full bg-transparent border border-white flex items-center justify-center hover:bg-[#F53900]/50 transition-colors duration-200">
-                    <Instagram className="w-5 h-5 text-white/90 fill-transparent hover:text-white hover:fill-transparent transition-colors duration-200" />
-                  </a>
-                  <a href="#" className="w-10 h-10 rounded-full bg-transparent border border-white flex items-center justify-center hover:bg-[#F53900]/50 transition-colors duration-200">
-                    <Twitter className="w-5 h-5 text-white/90 fill-white/90 hover:text-white hover:fill-white transition-colors duration-200" />
-                  </a>
-                </div>
+                      <a href={socialLinks.facebook} className="w-10 h-10 rounded-full bg-transparent border border-white flex items-center justify-center hover:bg-[#F53900]/50 transition-colors duration-200">
+                        <Facebook className="w-5 h-5 text-white/90 fill-white/90 hover:text-white hover:fill-white transition-colors duration-200" />
+                      </a>
+                      <a href={socialLinks.instagram} className="w-10 h-10 rounded-full bg-transparent border border-white flex items-center justify-center hover:bg-[#F53900]/50 transition-colors duration-200">
+                        <Instagram className="w-5 h-5 text-white/90 fill-transparent hover:text-white hover:fill-transparent transition-colors duration-200" />
+                      </a>
+                      <a href={socialLinks.twitter} className="w-10 h-10 rounded-full bg-transparent border border-white flex items-center justify-center hover:bg-[#F53900]/50 transition-colors duration-200">
+                        <Twitter className="w-5 h-5 text-white/90 fill-white/90 hover:text-white hover:fill-white transition-colors duration-200" />
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -154,7 +196,7 @@ const ContactUsPage = () => {
                 </div>
                 <div>
                   <p className="text-sm text-[#747474]">Tel</p>
-                  <p className="font-inter font-medium text-black">+01 234 567 890</p>
+                  <p className="font-inter font-medium text-black">{phoneNumber}</p>
                 </div>
               </div>
               <div className="flex items-start space-x-3">
@@ -163,7 +205,7 @@ const ContactUsPage = () => {
                 </div>
                 <div>
                   <p className="text-sm text-[#747474]">Mail</p>
-                  <p className="font-inter font-medium text-black">hopngoinfo@gmail.com</p>
+                  <p className="font-inter font-medium text-black">{email}</p>
                 </div>
               </div>
               <div className="flex items-start space-x-3">
@@ -172,7 +214,7 @@ const ContactUsPage = () => {
                 </div>
                 <div>
                   <p className="text-sm text-[#747474]">Address</p>
-                  <p className="font-inter font-medium text-black">706 Campfire Ave. Meriden, CT 06450</p>
+                  <p className="font-inter font-medium text-black">{address}</p>
                 </div>
               </div>
             </div>

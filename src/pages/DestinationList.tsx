@@ -50,6 +50,32 @@ const DestinationList = () => {
     min: 2,
     max: 21
   });
+  
+  // State to track which filter sections are open
+  const [openSections, setOpenSections] = useState({
+    length: true,
+    price: true,
+    departureDate: true,
+    startEndCity: true,
+    mustSeeCities: true,
+    regions: true,
+    travelType: true,
+    ageRange: true,
+    guideType: true,
+    groupSize: true,
+    accommodation: true,
+    adventureStyle: true,
+    operators: true,
+    physicalRating: true
+  });
+  
+  // Toggle section visibility
+  const toggleSection = (section: keyof typeof openSections) => {
+    setOpenSections(prev => ({
+      ...prev,
+      [section]: !prev[section]
+    }));
+  };
 
   const sortOptions = [
     { value: 'recommended', label: 'Recommended' },
@@ -263,7 +289,7 @@ const DestinationList = () => {
       {/* Hero Section */}
       <section className="relative w-full h-[340px] md:h-[220px] overflow-visible px-4 mt-4 md:mt-4">
         {/* Background Image */}
-        <div className="absolute inset-0 px-4">
+        <div className="absolute inset-0 px-4 md:px-16">
           <img 
             src={listHero} 
             alt="" 
@@ -273,7 +299,7 @@ const DestinationList = () => {
         </div>
 
         {/* Search Bar - Positioned to overlap the hero and section below */}
-        <div className="absolute left-1/2 transform -translate-x-1/2 -bottom-16 md:-bottom-6 w-[95vw] z-10 sm:px-0 px-6">
+        <div className="conatiner absolute left-1/2 transform -translate-x-1/2 -bottom-16 md:-bottom-6 w-[95vw] z-10 sm:px-12 px-6">
           <div className="bg-white rounded-2xl flex flex-col lg:flex-row items-start lg:items-center justify-between overflow-hidden pt-20 pb-8 px-6 md:pt-14 md:pb-4 md:px-8 lg:pt-20 lg:pb-10 lg:px-24 border border-gray-200 shadow-2xl w-full mx-auto">
             <div className="w-full bg-white/0 border border-gray-300 rounded-xl p-4 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
             {/* Destinations */}
@@ -331,7 +357,7 @@ const DestinationList = () => {
       </section>
       
       {/* List Section */}
-      <section className="mt-2">
+      <section className="mt-2 px-0 md:px-16">
       {/* Add padding to push content below the overlapping search bar */}
       <div className="w-full pt-8">
         <div className="mx-auto px-4 sm:px-6 lg:px-8 py-4">
@@ -355,13 +381,8 @@ const DestinationList = () => {
                     <div className="absolute inset-0 flex items-center justify-center">
                       <Button 
                         onClick={() => {
-                          setSelectedLocation({
-                            lat: -8.4095, // Bali, Indonesia coordinates
-                            lng: 115.1889,
-                            name: 'Bali, Indonesia',
-                            reviews: 1248
-                          });
-                          setIsMapOpen(true);
+                          const mapsUrl = `https://www.google.com/maps?q=${-8.4095},${115.1889}`;
+                          window.open(mapsUrl, '_blank');
                         }}
                         className="bg-white text-[#EB662B] border-2 border-[#EB662B] rounded-sm hover:bg-white/90 font-inter font-medium flex items-center gap-2"
                       >
@@ -385,24 +406,61 @@ const DestinationList = () => {
                 <div className="divide-y divide-gray-200">
                   {/* Length Filter */}
                   <div className="p-4">
-                    <div className="flex justify-between items-center mb-3">
+                    <div 
+                      className="flex justify-between items-center mb-3 cursor-pointer"
+                      onClick={() => toggleSection('length')}
+                    >
                       <h3 className="text-sm text-[#383E48] font-roboto font-medium">Length</h3>
-                      <ChevronUp className="h-4 w-4 text-[#383E48]" />
+                      {openSections.length ? (
+                        <ChevronUp className="h-4 w-4 text-[#383E48]" />
+                      ) : (
+                        <ChevronDown className="h-4 w-4 text-[#383E48]" />
+                      )}
                     </div>
-                    <div className="space-y-3">
+                    <div className={`space-y-3 transition-all duration-300 ${openSections.length ? 'block' : 'hidden'}`}>
                       <div className="relative pt-1">
                         <div className="flex justify-between text-xs text-gray-500 mb-1">
                           <span>{daysRange.min} Day{daysRange.min > 1 ? 's' : ''}</span>
                           <span>{daysRange.max}+ Day{daysRange.max > 1 ? 's' : ''}</span>
                         </div>
                         <div className="relative h-1 bg-gray-200 rounded-full mt-3">
-                          {/* Black line from start to first dot */}
-                          <div className="absolute left-0 w-1/6 h-1/3 bg-black rounded-full">
-                            {/* First dot (at the end of black line) */}
-                            <div className="absolute right-0 w-5 h-5 -translate-y-1/2 translate-x-1/2 bg-black rounded-full border-4 border-white"></div>
-                          </div>
-                          {/* Second dot (on the gray line) */}
-                          <div className="absolute top-1/2 right-0 w-5 h-5 -translate-y-1/2 translate-x-1/2 bg-black rounded-full border-4 border-white"></div>
+                          <input
+                            type="range"
+                            min="1"
+                            max="30"
+                            value={daysRange.min}
+                            onChange={(e) => {
+                              const value = Math.min(parseInt(e.target.value), daysRange.max - 1);
+                              setDaysRange({...daysRange, min: value});
+                            }}
+                            className="absolute w-full h-1 opacity-0 cursor-pointer z-10"
+                          />
+                          <input
+                            type="range"
+                            min="1"
+                            max="30"
+                            value={daysRange.max}
+                            onChange={(e) => {
+                              const value = Math.max(parseInt(e.target.value), daysRange.min + 1);
+                              setDaysRange({...daysRange, max: value});
+                            }}
+                            className="absolute w-full h-1 opacity-0 cursor-pointer z-10"
+                          />
+                          <div 
+                            className="absolute h-1/2 bg-black/50 rounded-full"
+                            style={{
+                              left: `${(daysRange.min - 1) * (100 / 29)}%`,
+                              right: `${100 - (daysRange.max - 1) * (100 / 29)}%`
+                            }}
+                          ></div>
+                          <div 
+                            className="absolute w-3 h-3 -translate-y-1/2 bg-black border-2 border-white rounded-full cursor-pointer"
+                            style={{ left: `calc(${(daysRange.min - 1) * (100 / 29)}% - 10px)` }}
+                          ></div>
+                          <div 
+                            className="absolute w-3 h-3 -translate-y-1/2 bg-black border-2 border-white rounded-full cursor-pointer"
+                            style={{ left: `calc(${(daysRange.max - 1) * (100 / 29)}% - 10px)` }}
+                          ></div>
                         </div>
                       </div>
                     </div>
@@ -410,28 +468,38 @@ const DestinationList = () => {
 
                   {/* Price Filter */}
                   <div className="p-4">
-                    <div className="flex justify-between items-center mb-3">
+                    <div 
+                      className="flex justify-between items-center mb-3 cursor-pointer"
+                      onClick={() => toggleSection('price')}
+                    >
                       <h3 className="text-sm text-[#383E48] font-roboto font-medium">Price</h3>
-                      <ChevronUp className="h-4 w-4 text-[#383E48]" />
+                      {openSections.price ? (
+                        <ChevronUp className="h-4 w-4 text-[#383E48]" />
+                      ) : (
+                        <ChevronDown className="h-4 w-4 text-[#383E48]" />
+                      )}
                     </div>
-                    <div className="flex border border-gray-300 rounded-md overflow-hidden">
-                      <button 
-                        onClick={() => setPriceFilter('person')}
-                        className={`flex-1 py-2 px-3 text-sm font-roboto font-medium hover:bg-gray-50 text-center ${
-                          priceFilter === 'person' ? 'text-[#1F2226]' : 'text-[#8B94A4]'
-                        }`}
-                      >
-                        Per Person
-                      </button>
-                      <div className="w-px bg-gray-300 my-2"></div>
-                      <button 
-                        onClick={() => setPriceFilter('day')}
-                        className={`flex-1 py-2 px-3 text-sm font-roboto font-medium hover:bg-gray-50 text-center ${
-                          priceFilter === 'day' ? 'text-[#1F2226]' : 'text-[#8B94A4]'
-                        }`}
-                      >
-                        Per Day
-                      </button>
+                    <div className={`space-y-3 transition-all duration-300 ${openSections.price ? 'block' : 'hidden'}`}>
+                      <div className="flex border border-gray-300 rounded-md overflow-hidden">
+                        <button 
+                          onClick={() => setPriceFilter('person')}
+                          className={`flex-1 py-2 px-3 text-sm font-roboto font-medium hover:bg-gray-50 text-center ${
+                            priceFilter === 'person' ? 'text-[#1F2226]' : 'text-[#8B94A4]'
+                          }`}
+                        >
+                          Per Person
+                        </button>
+                        <div className="w-px bg-gray-300 my-2"></div>
+                        <button 
+                          onClick={() => setPriceFilter('day')}
+                          className={`flex-1 py-2 px-3 text-sm font-roboto font-medium hover:bg-gray-50 text-center ${
+                            priceFilter === 'day' ? 'text-[#1F2226]' : 'text-[#8B94A4]'
+                          }`}
+                        >
+                          Per Day
+                        </button>
+                      </div>
+                    </div>
                     </div>
                   </div>
 
@@ -501,11 +569,19 @@ const DestinationList = () => {
 
                   {/* Departure Date Filter */}
                   <div className="p-4">
-                    <div className="flex justify-between items-center mb-4">
+                    <div 
+                      className="flex justify-between items-center mb-4 cursor-pointer"
+                      onClick={() => toggleSection('departureDate')}
+                    >
                       <h3 className="text-sm text-[#383E48] font-roboto font-medium">Departure Date</h3>
-                      <ChevronUp className="h-4 w-4 text-[#383E48]" />
+                      {openSections.departureDate ? (
+                        <ChevronUp className="h-4 w-4 text-[#383E48]" />
+                      ) : (
+                        <ChevronDown className="h-4 w-4 text-[#383E48]" />
+                      )}
                     </div>
-                    <div className="relative mb-4">
+                    <div className={`space-y-3 transition-all duration-300 ${openSections.departureDate ? 'block' : 'hidden'}`}>
+                      <div className="relative mb-4">
                       <div className="relative">
                         <input 
                           type="text" 
@@ -548,15 +624,24 @@ const DestinationList = () => {
                         See More
                       </button>
                     </div>
+                    </div>
                   </div>
 
                   {/* Start & Ending City Filter */}
                   <div className="p-4 border-t border-gray-200">
-                    <div className="flex justify-between items-center mb-6">
+                    <div 
+                      className="flex justify-between items-center mb-6 cursor-pointer"
+                      onClick={() => toggleSection('startEndCity')}
+                    >
                       <h3 className="text-sm text-[#383E48] font-roboto font-medium">Start & Ending City</h3>
-                      <ChevronUp className="h-4 w-4 text-[#383E48]" />
+                      {openSections.startEndCity ? (
+                        <ChevronUp className="h-4 w-4 text-[#383E48]" />
+                      ) : (
+                        <ChevronDown className="h-4 w-4 text-[#383E48]" />
+                      )}
                     </div>
-                    <div className="relative mb-4">
+                    <div className={`space-y-3 transition-all duration-300 ${openSections.startEndCity ? 'block' : 'hidden'}`}>
+                      <div className="relative mb-4">
                       <div className="relative">
                         <input 
                           type="text" 
@@ -586,15 +671,24 @@ const DestinationList = () => {
                         <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-black" />
                       </div>
                     </div>
+                    </div>
                   </div>
 
                   {/* Must See Cities Filter */}
                   <div className="p-4 border-t border-gray-200">
-                    <div className="flex justify-between items-center mb-6">
+                    <div 
+                      className="flex justify-between items-center mb-6 cursor-pointer"
+                      onClick={() => toggleSection('mustSeeCities')}
+                    >
                       <h3 className="text-sm text-[#383E48] font-roboto font-medium">Must See Cities</h3>
-                      <ChevronUp className="h-4 w-4 text-[#383E48]" />
+                      {openSections.mustSeeCities ? (
+                        <ChevronUp className="h-4 w-4 text-[#383E48]" />
+                      ) : (
+                        <ChevronDown className="h-4 w-4 text-[#383E48]" />
+                      )}
                     </div>
-                    <div className="relative mb-4">
+                    <div className={`space-y-3 transition-all duration-300 ${openSections.mustSeeCities ? 'block' : 'hidden'}`}>
+                      <div className="relative mb-4">
                       <div className="relative">
                         <input 
                           type="text"
@@ -610,15 +704,23 @@ const DestinationList = () => {
                         <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-black" />
                       </div>
                     </div>
+                    </div>
                   </div>
 
                   {/* Regions Filter */}
                   <div className="p-4 border-t border-gray-200">
-                    <div className="flex justify-between items-center mb-4">
+                    <div 
+                      className="flex justify-between items-center mb-4 cursor-pointer"
+                      onClick={() => toggleSection('regions')}
+                    >
                       <h3 className="text-sm text-[#383E48] font-roboto font-medium">Regions</h3>
-                      <ChevronUp className="h-4 w-4 text-[#383E48]" />
+                      {openSections.regions ? (
+                        <ChevronUp className="h-4 w-4 text-[#383E48]" />
+                      ) : (
+                        <ChevronDown className="h-4 w-4 text-[#383E48]" />
+                      )}
                     </div>
-                    <div className="space-y-2">
+                    <div className={`space-y-2 transition-all duration-300 ${openSections.regions ? 'block' : 'hidden'}`}>
                       {[
                         { name: 'Honshu', count: 12 },
                         { name: 'Southern Japan', count: 200 },
@@ -649,13 +751,20 @@ const DestinationList = () => {
 
                   {/* Travel Type Filter */}
                   <div className="p-4 border-t border-gray-200">
-                    <div className="flex justify-between items-center mb-4">
+                    <div 
+                      className="flex justify-between items-center mb-4 cursor-pointer"
+                      onClick={() => toggleSection('travelType')}
+                    >
                       <h3 className="text-sm text-[#383E48] font-roboto font-medium">Travel Type</h3>
-                      <ChevronUp className="h-4 w-4 text-[#383E48]" />
+                      {openSections.travelType ? (
+                        <ChevronUp className="h-4 w-4 text-[#383E48]" />
+                      ) : (
+                        <ChevronDown className="h-4 w-4 text-[#383E48]" />
+                      )}
                     </div>
-                      
-                    {/* Solo/Group Toggle - Updated to match Price Filter style */}
-                    <div className="flex border border-gray-300 rounded-md overflow-hidden mb-4">
+                    <div className={`space-y-3 transition-all duration-300 ${openSections.travelType ? 'block' : 'hidden'}`}>
+                      {/* Solo/Group Toggle - Updated to match Price Filter style */}
+                      <div className="flex border border-gray-300 rounded-md overflow-hidden mb-4">
                       <button 
                         onClick={() => setTravelType('solo')}
                         className={`flex-1 py-2 text-sm font-roboto font-medium text-center ${
@@ -792,15 +901,23 @@ const DestinationList = () => {
                         </div>
                       </div>
                     </div>
+                    </div>
                   </div>
 
                   {/* Age Range */}
                   <div className="p-4 border-t border-gray-200">
-                    <div className="flex justify-between items-center mb-4">
+                    <div 
+                      className="flex justify-between items-center mb-4 cursor-pointer"
+                      onClick={() => toggleSection('ageRange')}
+                    >
                       <h3 className="text-sm text-[#383E48] font-roboto font-medium">Age Range</h3>
-                      <ChevronUp className="h-4 w-4 text-[#383E48]" />
+                      {openSections.ageRange ? (
+                        <ChevronUp className="h-4 w-4 text-[#383E48]" />
+                      ) : (
+                        <ChevronDown className="h-4 w-4 text-[#383E48]" />
+                      )}
                     </div>
-                    <div className="space-y-3">
+                    <div className={`space-y-3 transition-all duration-300 ${openSections.ageRange ? 'block' : 'hidden'}`}>
                       {[
                         { label: '18-29', count: 12 },
                         { label: '30-39', count: 200 },
@@ -846,11 +963,18 @@ const DestinationList = () => {
 
                   {/* Guide Type */}
                   <div className="p-4 border-t border-gray-200">
-                    <div className="flex justify-between items-center mb-4">
+                    <div 
+                      className="flex justify-between items-center mb-4 cursor-pointer"
+                      onClick={() => toggleSection('guideType')}
+                    >
                       <h3 className="text-sm text-[#383E48] font-roboto font-medium">Guide Type</h3>
-                      <ChevronUp className="h-4 w-4 text-[#383E48]" />
+                      {openSections.guideType ? (
+                        <ChevronUp className="h-4 w-4 text-[#383E48]" />
+                      ) : (
+                        <ChevronDown className="h-4 w-4 text-[#383E48]" />
+                      )}
                     </div>
-                    <div className="space-y-3">
+                    <div className={`space-y-3 transition-all duration-300 ${openSections.guideType ? 'block' : 'hidden'}`}>
                       {[
                         { label: 'Fully Guided', count: 12 },
                         { label: 'Partially Guided', count: 200 },
@@ -875,11 +999,18 @@ const DestinationList = () => {
 
                   {/* Maximum Group Size  */}
                   <div className="p-4 border-t border-gray-200">
-                    <div className="flex justify-between items-center mb-4">
+                    <div 
+                      className="flex justify-between items-center mb-4 cursor-pointer"
+                      onClick={() => toggleSection('groupSize')}
+                    >
                       <h3 className="text-sm text-[#383E48] font-roboto font-medium">Maximum Group Size</h3>
-                      <ChevronUp className="h-4 w-4 text-[#383E48]" />
+                      {openSections.groupSize ? (
+                        <ChevronUp className="h-4 w-4 text-[#383E48]" />
+                      ) : (
+                        <ChevronDown className="h-4 w-4 text-[#383E48]" />
+                      )}
                     </div>
-                    <div className="space-y-3">
+                    <div className={`space-y-3 transition-all duration-300 ${openSections.groupSize ? 'block' : 'hidden'}`}>
                       {[
                         { label: '+50 People', count: 12 },
                         { label: '50 People', count: 200 },
@@ -905,11 +1036,19 @@ const DestinationList = () => {
 
                   {/* Accommodation */}
                   <div className="p-4 border-t border-gray-200">
-                    <div className="flex justify-between items-center mb-4">
+                    <div 
+                      className="flex justify-between items-center mb-4 cursor-pointer"
+                      onClick={() => toggleSection('accommodation')}
+                    >
                       <h3 className="text-sm text-[#383E48] font-roboto font-medium">Accommodation</h3>
-                      <ChevronUp className="h-4 w-4 text-[#383E48]" />
+                      {openSections.accommodation ? (
+                        <ChevronUp className="h-4 w-4 text-[#383E48]" />
+                      ) : (
+                        <ChevronDown className="h-4 w-4 text-[#383E48]" />
+                      )}
                     </div>
-                    <div className="grid grid-cols-2 gap-3 mb-4">
+                    <div className={`space-y-3 transition-all duration-300 ${openSections.accommodation ? 'block' : 'hidden'}`}>
+                      <div className="grid grid-cols-2 gap-3 mb-4">
                       <button 
                         onClick={() => handleAccommodationClick('house')}
                         className={`flex items-center gap-2 px-3 py-2 border rounded-full h-10 transition-colors ${
@@ -986,27 +1125,57 @@ const DestinationList = () => {
 
                   {/* Adventure Style */}
                   <div className="p-4 border-t border-gray-200">
-                    <div className="flex justify-between items-center mb-4">
+                    <div 
+                      className="flex justify-between items-center mb-4 cursor-pointer"
+                      onClick={() => toggleSection('adventureStyle')}
+                    >
                       <h3 className="text-sm text-[#383E48] font-roboto font-medium">Adventure Style</h3>
-                      <ChevronUp className="h-4 w-4 text-[#383E48]" />
+                      {openSections.adventureStyle ? (
+                        <ChevronUp className="h-4 w-4 text-[#383E48]" />
+                      ) : (
+                        <ChevronDown className="h-4 w-4 text-[#383E48]" />
+                      )}
+                    </div>
+                    <div className={`space-y-3 transition-all duration-300 ${openSections.adventureStyle ? 'block' : 'hidden'}`}>
+                      {/* Adventure style content will go here */}
                     </div>
                   </div>
 
                   {/* Operators */}
                   <div className="p-4 border-t border-gray-200">
-                    <div className="flex justify-between items-center mb-4">
+                    <div 
+                      className="flex justify-between items-center mb-4 cursor-pointer"
+                      onClick={() => toggleSection('operators')}
+                    >
                       <h3 className="text-sm text-[#383E48] font-roboto font-medium">Operators</h3>
-                      <ChevronUp className="h-4 w-4 text-[#383E48]" />
+                      {openSections.operators ? (
+                        <ChevronUp className="h-4 w-4 text-[#383E48]" />
+                      ) : (
+                        <ChevronDown className="h-4 w-4 text-[#383E48]" />
+                      )}
+                    </div>
+                    <div className={`space-y-3 transition-all duration-300 ${openSections.operators ? 'block' : 'hidden'}`}>
+                      {/* Operators content will go here */}
                     </div>
                   </div>
 
                    {/* Physical Rating */}
                   <div className="p-4 border-t border-gray-200">
-                    <div className="flex justify-between items-center mb-4">
+                    <div 
+                      className="flex justify-between items-center mb-4 cursor-pointer"
+                      onClick={() => toggleSection('physicalRating')}
+                    >
                       <h3 className="text-sm text-[#383E48] font-roboto font-medium">Physical Rating</h3>
-                      <ChevronUp className="h-4 w-4 text-[#383E48]" />
+                      {openSections.physicalRating ? (
+                        <ChevronUp className="h-4 w-4 text-[#383E48]" />
+                      ) : (
+                        <ChevronDown className="h-4 w-4 text-[#383E48]" />
+                      )}
                     </div>
-                  </div> 
+                    <div className={`space-y-3 transition-all duration-300 ${openSections.physicalRating ? 'block' : 'hidden'}`}>
+                      {/* Physical rating content will go here */}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

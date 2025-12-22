@@ -76,10 +76,10 @@ const Hero = () => {
       {/* Hero Content */}
       <div className="w-full pl-[5%] md:pl-[4%] lg:pl-[5%] xl:pl-[6%] relative z-20">
         <div className="flex flex-col lg:grid lg:grid-cols-[55%_45%] gap-8 items-center min-h-[95vh] sm:min-h-[95vh] lg:min-h-[calc(100vh-5rem)] pt-6 sm:pt-12 lg:pt-0">
-          <div className="pt-12 sm:pt-16 pb-8 lg:py-24 w-[100%]">
-            <h1 className="font-inter font-bold text-4xl sm:text-5xl md:text-6xl text-white mb-6 sm:mb-8 leading-tight">
-              <div className="mb-2 sm:mb-4">Enjoy Your</div>
-              <div className="mb-2 sm:mb-4">Vacation With</div>
+          <div className="container pt-12 sm:pt-16 pb-8 lg:py-24 w-[100%]">
+            <h1 className="font-inter font-bold text-[8vw] sm:text-[6vw] md:text-[5.5vw] lg:text-[4.5vw] xl:text-[4vw] text-white mb-6 sm:mb-8 leading-tight">
+              <div className="mb-2 sm:mb-2">Enjoy Your</div>
+              <div className="mb-2 sm:mb-2">Vacation With</div>
               <div>
                 <span className="text-[#FF5A2D]">Hop N Go</span> Travel
               </div>

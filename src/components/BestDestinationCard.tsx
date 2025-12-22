@@ -8,6 +8,8 @@ interface DestinationCardProps {
   location: string;
   price: string;
   description: string;
+  days?: number;
+  nights?: number;
 }
 
 const BestDestinationCard = ({
@@ -16,7 +18,9 @@ const BestDestinationCard = ({
   rating,
   location,
   price,
-  description
+  description,
+  days,
+  nights
 }: DestinationCardProps) => {
   return (
     <div className="relative bg-[#F7F7F7] backdrop-blur-xl rounded-3xl overflow-hidden shadow-sm hover-lift w-full h-[400px] sm:h-[450px] md:h-[500px] lg:h-[500px]">
@@ -67,7 +71,7 @@ const BestDestinationCard = ({
             <h3 className="font-Montserrat font-bold text-xl sm:text-2xl text-gray-900">
               {title}
             </h3>
-            <span className="text-xs sm:text-sm font-normal text-gray-500">3 Days 4 Nights</span>
+            <span className="text-xs sm:text-sm font-normal text-gray-500">{days} {days === 1 ? 'Day' : 'Days'} {nights} {nights === 1 ? 'Night' : 'Nights'}</span>
           </div>
 
           <p className="text-gray-600 text-sm leading-relaxed flex-1 line-clamp-2 font-inter font-normal">

@@ -167,30 +167,10 @@ const EVisaPage = () => {
 
   return (
     <div className="min-h-screen flex flex-col overflow-x-hidden bg-white">
-      <Navigation />
-      <div className="w-full h-9 bg-[#FFC8BB]/30 relative z-10 overflow-hidden">
-        <div className="w-full max-w-[1440px] mx-auto h-full flex items-center justify-between px-4 md:px-6 text-xs md:text-sm text-[#170F49] font-normal">
-          <div className="flex-1 flex items-center justify-center space-x-4 md:space-x-20">
-            <span className="text-[#6F6C8F]">🚀 Black Friday Sale</span>
-            <a href="#" className="flex items-center hover:underline">
-              Learn more
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 ml-1" viewBox="0 0 20 20" fill="#170F49">
-                <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-              </svg>
-            </a>
-          </div>
-          <div className="ml-auto flex items-center space-x-6">
-            <a href="mailto:hopngoinfo@gmail.com" className="hover:underline flex items-center text-[#6E7070]">
-              <Mail className="w-3.5 h-3.5 mr-1.5 text-[#6E7070]" />
-              hopngoinfo@gmail.com
-            </a>
-            <LanguageDropdown />
-          </div>
-        </div>
-      </div>
+      <Navigation/>
 
       {/* Hero Section */}
-      <section className="relative w-full h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden mt-16">
+      <section className="relative w-full h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden mt-24">
         {/* Background Image */}
         <div className="absolute inset-0">
           <img 

@@ -284,12 +284,12 @@ const DestinationList = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col overflow-x-hidden bg-white">
+    <div className="conatiner md:px-4 min-h-screen flex flex-col overflow-x-hidden bg-white">
       <Navigation />
       {/* Hero Section */}
-      <section className="relative w-full h-[340px] md:h-[220px] overflow-visible px-4 mt-4 md:mt-4">
+      <section className="conatainer relative w-full h-[340px] md:h-[220px] overflow-visible px-4 mt-2 md:mt-2">
         {/* Background Image */}
-        <div className="absolute inset-0 px-4 md:px-16">
+        <div className="conatiner absolute inset-0 px-4 md:px-16">
           <img 
             src={listHero} 
             alt="" 
@@ -357,7 +357,7 @@ const DestinationList = () => {
       </section>
       
       {/* List Section */}
-      <section className="mt-2 px-0 md:px-16">
+      <section className="mt-2 px-0 md:px-28">
       {/* Add padding to push content below the overlapping search bar */}
       <div className="w-full pt-8">
         <div className="mx-auto px-4 sm:px-6 lg:px-8 py-4">
@@ -483,19 +483,19 @@ const DestinationList = () => {
                       <div className="flex border border-gray-300 rounded-md overflow-hidden">
                         <button 
                           onClick={() => setPriceFilter('person')}
-                          className={`flex-1 py-2 px-3 text-sm font-roboto font-medium hover:bg-gray-50 text-center ${
-                            priceFilter === 'person' ? 'text-[#1F2226]' : 'text-[#8B94A4]'
-                          }`}
-                        >
+                            className={`flex-1 py-2 px-3 text-sm font-roboto font-medium hover:bg-gray-50 text-center ${
+                              priceFilter === 'person' ? 'text-[#1F2226]' : 'text-[#8B94A4]'
+                            }`}
+                          >
                           Per Person
                         </button>
                         <div className="w-px bg-gray-300 my-2"></div>
                         <button 
                           onClick={() => setPriceFilter('day')}
-                          className={`flex-1 py-2 px-3 text-sm font-roboto font-medium hover:bg-gray-50 text-center ${
-                            priceFilter === 'day' ? 'text-[#1F2226]' : 'text-[#8B94A4]'
-                          }`}
-                        >
+                            className={`flex-1 py-2 px-3 text-sm font-roboto font-medium hover:bg-gray-50 text-center ${
+                              priceFilter === 'day' ? 'text-[#1F2226]' : 'text-[#8B94A4]'
+                            }`}
+                          >
                           Per Day
                         </button>
                       </div>
@@ -901,8 +901,8 @@ const DestinationList = () => {
                         </div>
                       </div>
                     </div>
-                    </div>
                   </div>
+                </div>
 
                   {/* Age Range */}
                   <div className="p-4 border-t border-gray-200">

@@ -497,29 +497,9 @@ const DestinationDetails = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Navigation />
-      <div className="w-full h-9 bg-[#FFC8BB]/30 relative z-10 overflow-hidden">
-        <div className="w-full max-w-[1440px] mx-auto h-full flex items-center justify-between px-4 md:px-6 text-xs md:text-sm text-[#170F49] font-normal">
-          <div className="flex-1 flex items-center justify-center space-x-4 md:space-x-20">
-            <span className="text-[#6F6C8F]">🚀 Black Friday Sale</span>
-            <a href="#" className="flex items-center hover:underline">
-              Learn more
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 ml-1" viewBox="0 0 20 20" fill="#170F49">
-                <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-              </svg>
-            </a>
-          </div>
-          <div className="ml-auto flex items-center space-x-6">
-            <a href="mailto:hopngoinfo@gmail.com" className="hover:underline flex items-center text-[#6E7070]">
-              <Mail className="w-3.5 h-3.5 mr-1.5 text-[#6E7070]" />
-              hopngoinfo@gmail.com
-            </a>
-            <LanguageDropdown />
-          </div>
-        </div>
-      </div>
       
       {/* Main Content */}
-      <section className="flex-1 overflow-x-hidden">
+      <section className="conatiner flex-1 overflow-x-hidden mt-8 md:px-24">
         <div className="w-full mx-auto px-4 py-8">
         {/* Back Button */}
         <div className="w-full px-0 md:px-6 py-8">
@@ -621,7 +601,7 @@ const DestinationDetails = () => {
                 {index === 4 && (
                   <div className="absolute bottom-4 right-4 bg-black/60 rounded-sm px-3 py-1.5 flex items-center space-x-1 shadow-md">
                     <Images className="w-3.5 h-3.5 text-white" />
-                    <span className="text-sm font-medium text-white">10+</span>
+                    <span className="text-sm font-medium text-white">{galleryImages.length - 5}+</span>
                   </div>
                 )}
               </div>
@@ -633,7 +613,7 @@ const DestinationDetails = () => {
       </section>
 
       {/* Description & Reservation */}
-      <section className="relative z-10">
+      <section className="conatiner relative z-10 md:px-24">
         {/* Extended pink gradient for right */}
         <div className="absolute top-1/2 -right-80 w-[700px] h-[350px] z-0 -translate-y-1/5">
           <div className="w-full h-full bg-gradient-to-br from-pink-400/50 via-pink-300/20 to-transparent rounded-full blur-3xl"></div>
@@ -890,7 +870,7 @@ const DestinationDetails = () => {
       </section>
 
       {/* Places You’ll See */}
-      <section className="flex-1 relative z-10 overflow-hidden bg-[#F1F2F3]">
+      <section className="conatiner md:px-24 flex-1 relative z-10 overflow-hidden bg-[#F1F2F3]">
         <div className="w-full mx-auto px-8 md:px-16 mt-12 relative">
           <h2 className="text-2xl font-inter font-semibold text-[#121316] mb-6">Places You'll See</h2>
           <div className="relative">
@@ -960,7 +940,7 @@ const DestinationDetails = () => {
       </section>
 
       {/* Location */}
-      <section className="py-12 bg-white relative z-10">
+      <section className="conatiner md:px-24 py-12 bg-white relative z-10">
         {/* Extended pink gradient for left */}
         <div className="absolute top-2/3 left-0 w-[800px] h-[700px] -translate-y-1/2 -translate-x-1/2 z-0">
           <div className="w-full h-full bg-gradient-to-br from-pink-400/50 via-pink-300/20 to-transparent rounded-full blur-3xl"></div>
@@ -1026,7 +1006,7 @@ const DestinationDetails = () => {
       </section>
 
       {/* Itinerary Flow */}
-      <section className="py-12 bg-white">
+      <section className="conatiner md:px-24 py-12 bg-white">
         <div className="w-full mx-auto px-4 md:px-16">
           <h2 className="text-2xl font-inter font-semibold text-[#121316] mb-8">Itinerary</h2>
           
@@ -1063,7 +1043,7 @@ const DestinationDetails = () => {
       </section>
 
       {/* Where You’ll Stay */}
-      <section className="py-12 bg-white relative z-10">
+      <section className="conatiner md:px-24 py-12 bg-white relative z-10">
         {/* Extended pink gradient for left */}
         <div className="absolute top-1/2 left-0 w-[800px] h-[700px] -translate-y-1/2 -translate-x-1/2 z-0">
           <div className="w-full h-full bg-gradient-to-br from-pink-400/50 via-pink-300/20 to-transparent rounded-full blur-3xl"></div>
@@ -1122,7 +1102,7 @@ const DestinationDetails = () => {
       </section>
 
       {/* Traveler's Gallery */}
-      <section className="py-12 bg-white">
+      <section className="conatiner md:px-24 py-12 bg-white">
         <div className="w-full mx-auto px-4 md:px-16">
           <h2 className="text-2xl font-inter font-semibold text-[#121316] mb-8">Traveler's Gallery</h2>
           
@@ -1207,7 +1187,7 @@ const DestinationDetails = () => {
       </section>
 
       {/* What's Include */}
-      <section className="py-12 bg-gradient-to-r from-[#F74A1F]/10 to-white">
+      <section className="conatiner md:px-24 py-12 bg-gradient-to-r from-[#F74A1F]/10 to-white">
         <div className="w-full mx-auto px-4 md:px-16">
           <h2 className="text-2xl font-inter font-semibold text-[#121316] mb-6">What's Include</h2>
           
@@ -1279,7 +1259,7 @@ const DestinationDetails = () => {
 
       {/* Dates & availability */}
       <section 
-        className="py-12" 
+        className="conatiner md:px-24 py-12" 
         style={{
           backgroundImage:
             'linear-gradient(to bottom, #FEFEFE 0%, #FEFEFE 6%, transparent 20%, transparent 80%, #FEFEFE 100%), radial-gradient(circle at center, #FEFEFE 0%, #FEFEFE 35%, #FFF0E9 65%, #FFECEE 85%, #FEFEFE 100%)',
@@ -1296,8 +1276,12 @@ const DestinationDetails = () => {
                   <MapPin className="flex-shrink-0 text-gray-400 h-4 w-4 mr-2" />
                   <div className="relative flex-grow flex flex-col justify-center h-full">
                     <span className="text-sm text-[#424242] font-inter font-medium pointer-events-none mb-1">Destination</span>
-                    <select className="w-full text-sm bg-transparent border-0 focus:ring-0 focus:outline-none cursor-pointer text-black font-inter font-medium">
-                      <option value="nara">Nara, Japan</option>
+                    <select 
+                      className="w-full text-sm bg-transparent border-0 focus:ring-0 focus:outline-none cursor-pointer text-black font-inter font-medium"
+                      value={selectedLocation.name}
+                      onChange={(e) => setSelectedLocation(prev => ({ ...prev, name: e.target.value }))}
+                    >
+                      <option value={selectedLocation.name}>{selectedLocation.name}</option>
                     </select>
                   </div>
                 </div>
@@ -1539,7 +1523,7 @@ const DestinationDetails = () => {
       </section>
 
       {/* Reviews */}
-      <section className="py-12 bg-white">
+      <section className="conatiner md:px-24 py-12 bg-white">
         <div className="w-full mx-auto px-4 md:px-16">
           <div className="mb-0">
             <h2 className="text-2xl font-inter font-semibold text-[#1F2226]">Reviews</h2>
@@ -1730,14 +1714,14 @@ const DestinationDetails = () => {
           {/* Show All Reviews Button */}
           <div className="text-start relative z-10">
             <button className="px-6 py-2 border border-[#EB662B] bg-white text-[#EB662B] font-medium rounded-md hover:bg-[#FFF5F1] transition-colors">
-              Show All 100 Reviews
+              Show All {destination.reviews?.toLocaleString()} Reviews
             </button>
           </div>
         </div>
       </section>
 
       {/* FAQ */}
-      <section className="py-12 bg-white relative">
+      <section className="conatiner md:px-24 py-12 bg-white relative">
         {/* Extended pink gradient for left */}
         <div className="absolute top-1/4 left-0 w-[800px] h-[700px] -translate-y-1/2 -translate-x-1/2 z-0">
           <div className="w-full h-full bg-gradient-to-br from-pink-400/50 via-pink-300/20 to-transparent rounded-full blur-3xl"></div>

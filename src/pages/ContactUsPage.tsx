@@ -80,31 +80,11 @@ const ContactUsPage = ({
   return (
     <div className="conatiner min-h-screen bg-white overflow-x-hidden">
       <Navigation />
-      <div className="w-full h-9 bg-[#FFC8BB]/30 relative z-10 overflow-hidden">
-        <div className="w-full max-w-[1440px] mx-auto h-full flex items-center justify-between px-4 md:px-6 text-xs md:text-sm text-[#170F49] font-normal">
-          <div className="flex-1 flex items-center justify-center space-x-4 md:space-x-20">
-            <span className="text-[#6F6C8F]">🚀 Black Friday Sale</span>
-            <a href="#" className="flex items-center hover:underline">
-              Learn more
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 ml-1" viewBox="0 0 20 20" fill="#170F49">
-                <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-              </svg>
-            </a>
-          </div>
-          <div className="ml-auto flex items-center space-x-6">
-            <a href="mailto:hopngoinfo@gmail.com" className="hover:underline flex items-center text-[#6E7070]">
-              <Mail className="w-3.5 h-3.5 mr-1.5 text-[#6E7070]" />
-              hopngoinfo@gmail.com
-            </a>
-            <LanguageDropdown />
-          </div>
-        </div>
-      </div>
 
       {/* Header Section */}
       <section className="conatiner bg-white">
-      <header className="bg-gradient-to-t from-[#F53900] to-[#F9AC7D] text-[#170F49] pt-16 pb-24 md:pt-20 md:pb-12 mt-20">
-        <div className="mx-auto px-6 md:px-28">
+      <header className="bg-gradient-to-t from-[#F53900] to-[#F9AC7D] text-[#170F49] pt-16 pb-24 md:pt-20 md:pb-12 mt-20 md:mt-24">
+        <div className="mx-auto px-6 md:px-40">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             {/* Left Side */}
             <div className="text-left -mt-8 md:-mt-42">
@@ -182,14 +162,14 @@ const ContactUsPage = ({
       </section>
 
       {/* Get in Touch */}
-      <section className="conatiner bg-white py-12 px-4 md:px-36">
+      <section className="conatiner bg-white py-12 px-4 md:px-56">
         <div className="w-full mx-auto">
           <div className="text-start mb-4 ml-4 md:ml-0">
             <h2 className="text-4xl md:text-5xl font-inter font-bold text-black mb-4">Get in Touch</h2>
             <p className="text-lg text-[#747474] font-inter font-regular max-w-8xl mb-8">
               We are here to support your travel needs with quick, friendly, and reliable assistance. Whether you need itinerary suggestions, booking guidance, or destination information — just reach out! <a href="#" className="text-[#F53900] hover:underline">Read More</a>
             </p>
-            <div className="flex flex-wrap gap-4 md:gap-56 mt-6">
+            <div className="flex flex-wrap gap-4 md:gap-32 mt-6">
               <div className="flex items-start space-x-3">
                 <div className="bg-transparent p-3 rounded-full">
                   <Phone className="w-5 h-5 text-[#8D8D8D]" />
@@ -223,7 +203,7 @@ const ContactUsPage = ({
       </section>
 
       {/* Contact Us Form */}
-      <section className="conatiner py-0 bg-gradient-to-r from-[#F74A1F]/10 to-white px-4 md:px-24">
+      <section className="conatiner py-0 bg-gradient-to-r from-[#F74A1F]/10 to-white px-4 md:px-44">
         <div className="mx-auto">
           <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Side - Form */}
@@ -347,7 +327,7 @@ const ContactUsPage = ({
       </section>
 
       {/* FAQ Section */}
-      <section className="conatiner pt-24 pb-8 bg-[#040F15] text-white relative overflow-hidden md:px-12">
+      <section className="conatiner pt-24 pb-8 bg-[#040F15] text-white relative overflow-hidden md:px-32">
         {/* Gradient circle background */}
         <div 
           className="absolute left-[150px] top-[70px] w-[500px] h-[500px] rounded-full -z-0"

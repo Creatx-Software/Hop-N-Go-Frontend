@@ -55,8 +55,8 @@ const Navigation = () => {
   };
 
   return (
-    <header className={`fixed w-full z-50 pointer-events-auto transition-all duration-300 ${scrolled ? 'bg-white/50 backdrop-blur-md shadow-sm' : 'bg-transparent'}`}>
-      <div className={`w-full px-[5%] md:px-[4%] lg:px-[5%] xl:px-[6%] ${scrolled ? 'pt-4 pb-4' : 'pt-10 pb-4'}`}>
+    <header className={`fixed w-full z-50 pointer-events-auto transition-all duration-300 ${scrolled ? 'bg-white backdrop-blur-md' : 'bg-transparent'}`}>
+      <div className={`w-full px-[5%] md:px-[4%] lg:px-[5%] xl:px-[6%] ${scrolled ? 'pt-4 pb-4' : 'pt-6 pb-3'}`}>
         <div className="flex items-center justify-between w-full">
           {/* Logo aligned with hero content */}
           <div className="flex items-center w-[20%] min-w-[120px] max-w-[180px]">
@@ -139,7 +139,7 @@ const Navigation = () => {
         <div 
           className={`mobile-menu-container md:hidden fixed top-24 right-4 transition-all duration-300 ease-in-out transform ${
             mobileMenuOpen ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0 pointer-events-none'
-          } z-40 bg-white/40 backdrop-blur-md rounded-lg shadow-lg border border-white/20 pt-4`}
+          } z-40 bg-white backdrop-blur-md rounded-lg shadow-lg border border-white/20 pt-4`}
           style={{
             width: 'auto',
             minWidth: '200px',

@@ -152,29 +152,9 @@ const AboutUsPage = () => {
   return (
     <div className="min-h-screen flex flex-col overflow-x-hidden bg-white">
       <Navigation />
-      <div className="w-screen h-9 bg-[#FFC8BB]/30 relative z-10 overflow-x-hidden">
-        <div className="w-full max-w-[1440px] mx-auto h-full flex items-center justify-between px-4 md:px-6 text-xs md:text-sm text-[#170F49] font-normal">
-          <div className="flex-1 flex items-center justify-center space-x-4 md:space-x-20">
-            <span className="text-[#6F6C8F]">🚀 Black Friday Sale</span>
-            <a href="#" className="flex items-center hover:underline">
-              Learn more
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 ml-1" viewBox="0 0 20 20" fill="#170F49">
-                <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-              </svg>
-            </a>
-          </div>
-          <div className="ml-auto flex items-center space-x-6">
-            <a href="mailto:hopngoinfo@gmail.com" className="hover:underline flex items-center text-[#6E7070]">
-              <Mail className="w-3.5 h-3.5 mr-1.5 text-[#6E7070]" />
-              hopngoinfo@gmail.com
-            </a>
-            <LanguageDropdown />
-          </div>
-        </div>
-      </div>
       
       {/* Hero Section */}
-      <section className="conatiner relative w-full min-h-screen overflow-hidden mt-16">
+      <section className="relative w-full min-h-screen overflow-hidden mt-20 md:mt-24 lg:pt-20">
         {/* Background Image with Overlay */}
         <div className="absolute inset-0 z-0">
           <img 
@@ -225,8 +205,8 @@ const AboutUsPage = () => {
         </div>
 
         {/* Know About Us */}
-        <div className="conatiner relative z-10 w-full py-16 md:py-24 px-6 md:px-32">
-          <div className="w-full mx-auto">
+        <div className="container relative z-10 w-full py-16 md:py-24">
+          <div className="w-full mx-auto px-6 md:px-8 lg:px-10 xl:px-10">
             <div className="flex flex-col lg:flex-row gap-12">
               {/* Left Side - Title */}
               <div className="flex flex-col justify-center">
@@ -333,8 +313,8 @@ const AboutUsPage = () => {
       </section>
 
       {/* Our Journey Section */}
-    <section className="conatiner relative bg-white pt-12">
-      <div className="w-full mx-auto px-4 md:px-24 -mt-4 md:-mt-16">
+    <section className="relative bg-white pt-12">
+      <div className="w-full max-w-[1440px] mx-auto px-6 md:px-8 lg:px-10 xl:px-10 -mt-4 md:-mt-16">
         <div className="relative">
           <div className="bg-black rounded-3xl overflow-hidden lg:max-w-[70%] min-h-[400px] flex items-center">
             <div className="w-full p-8 md:p-12 lg:pr-60 text-white">
@@ -355,7 +335,7 @@ const AboutUsPage = () => {
           </div>
           
           {/* Journey Image - Overlapping with Expert Services */}
-          <div className="conatiner relative z-10 lg:absolute right-0 top-8 md:top-40 w-full lg:w-[48%] h-80 lg:h-[600px]">
+          <div className="relative z-10 lg:absolute right-0 top-8 md:top-40 w-full lg:w-[48%] h-80 lg:h-[600px]">
             <img 
               src={journey} 
               alt="Travel Journey"
@@ -367,8 +347,8 @@ const AboutUsPage = () => {
     </section>
 
     {/* Expert Services */}
-    <section className="conatiner relative w-full bg-white pt-20 md:pt-48 md:pb-12 md:py-12 lg:py-12">
-      <div className="w-full px-6 md:px-24 mx-auto">
+    <section className="relative w-full bg-white pt-20 md:pt-12 pb-12">
+      <div className="w-full max-w-[1440px] mx-auto px-6 md:px-8 lg:px-10 xl:px-10">
         <div className="flex flex-col lg:flex-row gap-8 items-start">
           {/* Images Section - Left Side */}
           <div className="w-full lg:w-7/12">
@@ -464,11 +444,12 @@ const AboutUsPage = () => {
     </section>
 
     {/* Ready for Adventure Section */}
-      <section className="conatiner relative py-16 bg-white px-8 md:px-24">
-        <div className="w-full mx-auto px-6 md:px-0 lg:px-20 py-8 bg-[#EEEEEE] rounded-sm">
+      <section className="relative w-full bg-white py-16">
+        <div className="w-full max-w-[1440px] mx-auto px-6 md:px-8 lg:px-10 xl:px-10">
+          <div className="w-full py-8 bg-[#EEEEEE] rounded-sm">
         <div className="relative z-10">
           <div className="mx-auto">
-            <div className="flex flex-col lg:flex-row">
+            <div className="flex flex-col lg:flex-row px-8">
               {/* Left Side - Title */}
               <div className="w-full lg:w-2/5 mb-10 lg:mb-0 lg:pr-0">
                 <h2 className="text-3xl md:text-5xl font-inter font-semibold text-black">
@@ -498,6 +479,7 @@ const AboutUsPage = () => {
               </div>
             </div>
           </div>
+        </div>
         </div>
         </div>
       </section>

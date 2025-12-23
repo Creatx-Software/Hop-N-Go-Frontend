@@ -310,7 +310,7 @@ const ItineraryPage = () => {
   };
 
   return (
-    <div className="conatiner min-h-screen flex flex-col">
+    <div className="conatiner min-h-screen flex flex-col bg-[#EEEEEE] md:px-20">
       
       {/* Hero Section */}
       <div className="conatiner relative h-[270px] md:h-[700px] overflow-hidden bg-[#EEEEEE] md:px-20">

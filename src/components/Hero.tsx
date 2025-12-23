@@ -92,7 +92,7 @@ const Hero = () => {
             <div className="flex flex-row items-center gap-4 sm:gap-[0.5vw] w-full max-w-[90%] flex-nowrap">
               <Button
                 size="lg"
-                className="bg-[#F74A1F] hover:opacity-90 text-[#0C111F] font-semibold pr-[2.5vw] sm:pr-[2.5vw] pl-[1.2vw] py-[0.8vw] rounded-full shadow-[0_20px_40px_rgba(255,90,45,0.18)] flex items-center relative w-auto min-w-[140px] sm:min-w-[160px] lg:min-w-[12vw] text-xs sm:text-sm lg:text-[0.9vw] xl:text-[0.9vw] min-h-[40px] sm:min-h-[44px]"
+                className="bg-[#F74A1F] hover:opacity-90 text-white font-semibold pr-[2.5vw] sm:pr-[2.5vw] pl-[1.2vw] py-[0.8vw] rounded-full shadow-[0_20px_40px_rgba(255,90,45,0.18)] flex items-center relative w-auto min-w-[140px] sm:min-w-[160px] lg:min-w-[12vw] text-xs sm:text-sm lg:text-[0.9vw] xl:text-[0.9vw] min-h-[40px] sm:min-h-[44px]"
               >
                 <span className="mr-[1.5vw] ml-0.5 flex-shrink-0">Create Itineraries</span>
                 <span className="w-[1.2vw] h-[1.2vw] min-w-[16px] min-h-[16px] sm:min-w-[20px] sm:min-h-[20px] rounded-full bg-white flex items-center justify-center absolute right-[1vw] top-1/2 -translate-y-1/2">

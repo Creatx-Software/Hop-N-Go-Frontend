@@ -10,6 +10,7 @@ import ContactUsPage from "./pages/ContactUsPage";
 import EVisaPage from "./pages/EVisaPage";
 import DestinationList from "./pages/DestinationList";
 import DestinationDetails from "./pages/DestinationDetails";
+import ItineraryPageOld from "./pages/ItineraryPageOld";
 import ItineraryPage from "./pages/ItineraryPage";
 
 const queryClient = new QueryClient();
@@ -29,6 +30,7 @@ const App = () => (
           <Route path="/contact" element={<ContactUsPage />} />
           <Route path="/tours/:id" element={<DestinationDetails />} />
           <Route path="/itinerary" element={<ItineraryPage />} />
+          <Route path="/itinerary/old" element={<ItineraryPageOld />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>

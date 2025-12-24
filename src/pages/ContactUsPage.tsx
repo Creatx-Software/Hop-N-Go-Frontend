@@ -78,34 +78,34 @@ const ContactUsPage = ({
   };
 
   return (
-    <div className="conatiner min-h-screen bg-white overflow-x-hidden">
+    <div className="min-h-screen bg-white overflow-x-hidden">
       <Navigation />
 
       {/* Header Section */}
       <section className="conatiner bg-white">
-      <header className="px-6 lg:px-40 bg-gradient-to-t from-[#F53900] to-[#F9AC7D] text-[#170F49] pt-16 pb-24 md:pt-20 md:pb-12 mt-20 md:mt-24">
+      <header className="px-4 2xl:px-40 bg-gradient-to-t from-[#F53900] to-[#F9AC7D] text-[#170F49] pt-16 pb-24 2xl:pt-20 2xl:pb-12 mt-20 2xl:mt-24">
         <div className="mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid 2xl:grid-cols-2 gap-12 items-center">
             {/* Left Side */}
             <div className="text-left -mt-8 md:-mt-42">
               <div className="mb-4">
-                <div className="flex items-center gap-2 md:ml-16">
+                <div className="flex items-center gap-2 2xl:ml-16">
                   <div className="w-14 h-[2px] bg-white"></div>
                   <span className="text-white text-sm font-roboto font-bold tracking-widest">CONTACT US</span>
                 </div>
               </div>
               <div className="relative -ml-16 md:ml-0">
-                <h1 className="text-4xl text-white md:text-7xl font-inter font-bold mb-6 ml-16 leading-tight">
+                <h1 className="text-4xl text-white 2xl:text-7xl font-inter font-bold mb-6 ml-16 leading-tight">
                   We'd love to hear from you
                 </h1>
-                <p className="text-white/60 font-inter font-regular text-md md:text-lg mb-8 ml-16 max-w-lg">
+                <p className="text-white/60 font-inter font-regular text-md 2xl:text-lg mb-8 ml-16 max-w-lg">
                   Have a question, planning a trip, or need assistance with your booking? Our team is always ready to help. Reach out through the form or contact details below.
                 </p>
               </div>
             </div>
             
             {/* Right Side */}
-            <div className="bg-transparent backdrop-blur-sm rounded-2xl p-8 max-w-md -mt-16 md:-mt-10 -ml-10 md:ml-12 -mr-12 md:mr-0">
+            <div className="bg-transparent backdrop-blur-sm rounded-2xl p-6 2xl:p-8 max-w-md w-full mx-auto -mt-16 2xl:-mt-10 2xl:ml-24">
               <h3 className="text-2xl text-white font-inter font-bold mb-6">Let's talk!</h3>
               
               <div className="grid grid-cols-2 gap-4">
@@ -141,7 +141,9 @@ const ContactUsPage = ({
                         <Linkedin className="w-5 h-5 text-[#F53900]/90 fill-[#F53900]/90 hover:text-white hover:fill-white transition-colors duration-200" />
                       </a>
                     </div>
-                    <div className="absolute right-4 md:-right-48 top-1/2 transform -translate-y-1/2 flex flex-col space-y-4 pr-4 mt-52 md:mt-0">
+
+                    {/* Verical Social Icons */}
+                    <div className="absolute right-4 md:-right-16 2xl:-right-28 top-1/2 transform -translate-y-1/2 flex flex-col space-y-4 pr-4 mt-52 md:mt-0">
                       <a href={socialLinks.facebook} className="w-10 h-10 rounded-full bg-transparent border border-white flex items-center justify-center hover:bg-[#F53900]/50 transition-colors duration-200">
                         <Facebook className="w-5 h-5 text-white/90 fill-white/90 hover:text-white hover:fill-white transition-colors duration-200" />
                       </a>
@@ -162,14 +164,14 @@ const ContactUsPage = ({
       </section>
 
       {/* Get in Touch */}
-      <section className="conatiner bg-white py-12 px-4 lg:px-56">
+      <section className="conatiner bg-white py-12 px-4 md:px-12 2xl:px-56">
         <div className="w-full mx-auto">
           <div className="text-start mb-4 ml-4 md:ml-0">
             <h2 className="text-4xl md:text-5xl font-inter font-bold text-black mb-4">Get in Touch</h2>
             <p className="text-lg text-[#747474] font-inter font-regular max-w-8xl mb-8">
               We are here to support your travel needs with quick, friendly, and reliable assistance. Whether you need itinerary suggestions, booking guidance, or destination information — just reach out! <a href="#" className="text-[#F53900] hover:underline">Read More</a>
             </p>
-            <div className="flex flex-wrap gap-4 md:gap-32 mt-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
               <div className="flex items-start space-x-3">
                 <div className="bg-transparent p-3 rounded-full">
                   <Phone className="w-5 h-5 text-[#8D8D8D]" />
@@ -203,24 +205,24 @@ const ContactUsPage = ({
       </section>
 
       {/* Contact Us Form */}
-      <section className="conatiner py-0 bg-gradient-to-r from-[#F74A1F]/10 to-white px-4 md:px-44">
+      <section className="py-8 2xl:py-12 bg-gradient-to-r from-[#F74A1F]/10 to-white px-4 2xl:px-44">
         <div className="mx-auto">
           <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Side - Form */}
             <div className="bg-transparent p-4 sm:p-6 md:p-12">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-inter font-bold text-black mb-3 sm:mb-4">Contact Us</h2>
-            <p className="text-base sm:text-lg text-[#747474] font-inter font-regular max-w-8xl mb-6 sm:mb-8">
+              <h2 className="text-3xl 2xl:text-5xl font-inter font-bold text-black mb-3 2xl:mb-4">Contact Us</h2>
+            <p className="text-base 2xl:text-lg text-[#747474] font-inter font-regular max-w-8xl mb-6 2xl:mb-8">
               Your journey matters to us. Connect with our travel experts for personalized assistance and smooth travel planning.
             </p>
-              <form className="space-y-4 sm:space-y-6">
-                <div className="grid grid-cols-1 gap-4 sm:gap-6">
+              <form className="space-y-4 2xl:space-y-6">
+                <div className="grid grid-cols-1 gap-4 2xl:gap-6">
                   <div className="space-y-2">
                     <div className="relative">
                       <Input 
                         id="first-name" 
                         type="text" 
                         placeholder="First Name" 
-                        className="w-full h-10 sm:h-12 px-4 bg-white rounded-[10px] text-[#5D5D5D] text-inter text-regular border-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none focus:ring-0 focus:ring-offset-0 focus:outline-none text-sm sm:text-base"
+                        className="w-full h-10 2xl:h-12 px-4 bg-white rounded-[10px] text-[#5D5D5D] text-inter text-regular border-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none focus:ring-0 focus:ring-offset-0 focus:outline-none text-sm 2xl:text-base"
                         required
                       />
                       <span className="absolute left-24 top-1/2 transform -translate-y-1/2 text-red-500">*</span>
@@ -233,7 +235,7 @@ const ContactUsPage = ({
                         id="last-name" 
                         type="text" 
                         placeholder="Last Name" 
-                        className="w-full h-10 sm:h-12 px-4 bg-white rounded-[10px] text-[#5D5D5D] text-inter text-regular border-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none focus:ring-0 focus:ring-offset-0 focus:outline-none text-sm sm:text-base"
+                        className="w-full h-10 2xl:h-12 px-4 bg-white rounded-[10px] text-[#5D5D5D] text-inter text-regular border-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none focus:ring-0 focus:ring-offset-0 focus:outline-none text-sm 2xl:text-base"
                         required
                       />
                       <span className="absolute left-24 top-1/2 transform -translate-y-1/2 text-red-500">*</span>
@@ -246,7 +248,7 @@ const ContactUsPage = ({
                         id="email" 
                         type="email" 
                         placeholder="Email Id" 
-                        className="w-full h-10 sm:h-12 px-4 bg-white rounded-[10px] text-[#5D5D5D] text-inter text-regular border-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none focus:ring-0 focus:ring-offset-0 focus:outline-none text-sm sm:text-base"
+                        className="w-full h-10 2xl:h-12 px-4 bg-white rounded-[10px] text-[#5D5D5D] text-inter text-regular border-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none focus:ring-0 focus:ring-offset-0 focus:outline-none text-sm 2xl:text-base"
                         required
                       />
                       <span className="absolute left-20 top-1/2 transform -translate-y-1/2 text-red-500">*</span>
@@ -259,7 +261,7 @@ const ContactUsPage = ({
                         id="phone" 
                         type="tel" 
                         placeholder="Phone Number" 
-                        className="w-full h-10 sm:h-12 px-4 bg-white rounded-[10px] text-[#5D5D5D] text-inter text-regular border-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none focus:ring-0 focus:ring-offset-0 focus:outline-none text-sm sm:text-base"
+                        className="w-full h-10 2xl:h-12 px-4 bg-white rounded-[10px] text-[#5D5D5D] text-inter text-regular border-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none focus:ring-0 focus:ring-offset-0 focus:outline-none text-sm 2xl:text-base"
                         required
                       />
                       <span className="absolute left-32 top-1/2 transform -translate-y-1/2 text-red-500">*</span>
@@ -273,7 +275,7 @@ const ContactUsPage = ({
                       id="message" 
                       rows={5} 
                       placeholder="Message" 
-                      className="w-full px-4 py-3 bg-white rounded-[10px] text-[#5D5D5D] text-inter text-regular border-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none focus:ring-0 focus:ring-offset-0 focus:outline-none resize-none text-sm sm:text-base"
+                      className="w-full px-4 py-3 bg-white rounded-[10px] text-[#5D5D5D] text-inter text-regular border-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none focus:ring-0 focus:ring-offset-0 focus:outline-none resize-none text-sm 2xl:text-base"
                     />
                   </div>
                 </div>
@@ -281,7 +283,7 @@ const ContactUsPage = ({
                 <div className="pt-2">
                   <Button 
                     type="submit" 
-                    className="w-full px-4 py-4 sm:py-6 text-sm sm:text-base font-medium text-white bg-gradient-to-r from-[#F9AC7D] to-[#F53900] hover:opacity-90 transition-opacity duration-200 rounded-[10px] shadow-md"
+                    className="w-full px-4 py-4 2xl:py-6 text-sm 2xl:text-base font-medium text-white bg-gradient-to-r from-[#F9AC7D] to-[#F53900] hover:opacity-90 transition-opacity duration-200 rounded-[10px] shadow-md"
                   >
                     SEND
                   </Button>
@@ -290,15 +292,15 @@ const ContactUsPage = ({
             </div>
 
             {/* Right Side - Image */}
-            <div className="lg:ml-24 w-full lg:w-[120%] max-w-[660px] order-2 lg:order-none -mt-10 md:mt-0 ml-20 md:ml-0 pb-6 md:pb-0">
+            <div className="w-full max-w-[660px] mx-auto 2xl:mx-0 2xl:ml-32 2xl:w-[120%] order-2 2xl:order-none -mt-10 2xl:-mt-0 pb-6 2xl:pb-0">
               <img 
                 src={contact} 
                 alt="Contact Us" 
                 className="w-full h-auto rounded-2xl object-cover"
               />
               {/* Rating Card */}
-              <div className="bg-white p-2 sm:p-3 md:p-4 rounded-xl sm:rounded-2xl shadow-lg -mt-12 sm:-mt-16 md:-mt-20 ml-2 sm:ml-10 md:ml-12 max-w-[150px] sm:max-w-[180px] md:max-w-[200px]">
-                <div className="flex items-center justify-center mb-1 sm:mb-2">
+              <div className="bg-white p-2 2xl:p-4 rounded-xl 2xl:rounded-2xl shadow-lg -mt-12 2xl:-mt-20 ml-2 2xl:ml-12 max-w-[150px] 2xl:max-w-[200px]">
+                <div className="flex items-center justify-center mb-1 2xl:mb-2">
                   <div className="flex items-center">
                     {[1, 2, 3, 4, 5].map((star) => (
                       <svg key={star} className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
@@ -306,9 +308,9 @@ const ContactUsPage = ({
                       </svg>
                     ))}
                   </div>
-                  <span className="ml-1 text-[10px] sm:text-xs font-medium text-gray-700">5.0 (1.2k)</span>
+                  <span className="ml-1 text-[10px] 2xl:text-xs font-medium text-gray-700">5.0 (1.2k)</span>
                 </div>
-                <p className="text-[11px] sm:text-xs md:text-sm text-gray-700 text-center mb-1 sm:mb-2">"Outstanding service!"</p>
+                <p className="text-[11px] 2xl:text-sm text-gray-700 text-center mb-1 2xl:mb-2">"Outstanding service!"</p>
                 <div className="flex justify-center space-x-0.5 sm:space-x-1">
                   {['😊', '😍', '😎', '😢', '😡'].map((emoji, index) => (
                     <button 
@@ -327,7 +329,7 @@ const ContactUsPage = ({
       </section>
 
       {/* FAQ Section */}
-      <section className="conatiner pt-24 pb-8 bg-[#040F15] text-white relative overflow-hidden md:px-32">
+      <section className="pt-16 2xl:pt-24 pb-8 2xl:pb-12 bg-[#040F15] text-white relative overflow-hidden px-4 2xl:px-32">
         {/* Gradient circle background */}
         <div 
           className="absolute left-[150px] top-[70px] w-[500px] h-[500px] rounded-full -z-0"
@@ -337,7 +339,7 @@ const ContactUsPage = ({
           }}
         ></div>
         
-        <div className="conatiner w-full mx-auto px-4 md:px-16 w-full relative z-10">
+        <div className="w-full max-w-7xl mx-auto relative z-10">
           <div className="text-left mb-12 px-4 sm:px-8">
             <h2 className="text-3xl md:text-5xl font-inter font-bold mb-4">
               <div className="mb-2">FREQUENTLY</div>
@@ -345,9 +347,9 @@ const ContactUsPage = ({
             </h2>
           </div>
           
-          <div className="flex flex-col lg:grid lg:grid-cols-[1fr_auto] gap-8 items-start w-full">
+          <div className="flex flex-col 2xl:grid 2xl:grid-cols-[1fr_auto] gap-8 2xl:gap-16 items-start w-full">
             {/* FAQ List */}
-            <div className="space-y-6 w-full px-4 sm:px-8">
+            <div className="space-y-4 sm:space-y-6 w-full">
               {faqs.map((faq, index) => (
                 <div 
                   key={index} 
@@ -383,12 +385,12 @@ const ContactUsPage = ({
             </div>
             
             {/* Image Section - Shown below FAQ on mobile, to the right on desktop */}
-            <div className="relative w-full lg:w-auto -mt-0 lg:-mt-24 order-2 lg:order-none px-4 sm:px-8 lg:px-0">
+            <div className="relative w-full lg:w-auto mt-8 lg:mt-0 lg:-mt-24 order-2 lg:order-none">
               <div className="w-full lg:w-[140%] max-w-[500px] mx-auto lg:mx-0">
                 <img 
                   src={question}
                   alt="Frequently asked questions" 
-                  className="w-full h-auto object-contain max-h-[400px] lg:max-h-[700px]"
+                  className="w-full h-auto object-contain max-h-[300px] sm:max-h-[400px] lg:max-h-[500px] xl:max-h-[700px] mx-auto"
                 />
               </div>
             </div>

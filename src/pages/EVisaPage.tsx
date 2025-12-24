@@ -211,7 +211,7 @@ const EVisaPage = () => {
 
       {/* Before You Apply Section */}
       <section className="pt-16 pb-20 md:pt-24 md:pb-28 bg-white">
-        <div className="container w-full mx-auto px-8 md:px-20">
+        <div className="container w-full mx-auto px-6 md:px-20">
           {/* Section Header */}
           <div className="text-left mb-6 md:mb-8">
             <h2 className="text-3xl md:text-5xl max-w-3xl font-inter font-bold text-black mb-6">
@@ -582,7 +582,7 @@ const EVisaPage = () => {
 
       {/* Contact Us Section */}
       <section className="container bg-[#FEFEFE] py-16 md:py-20">
-        <div className="w-full mx-auto px-6 md:px-0-mt-16">
+        <div className="w-full mx-auto px-0 md:px-0-mt-16">
           <h2 className="text-3xl md:text-5xl font-inter font-bold text-black mb-8 md:mb-10">
             Contact Us
           </h2>
@@ -630,7 +630,7 @@ const EVisaPage = () => {
               />
             </div>
 
-            <div className="w-full lg:w-3/5 bg-white px-8 md:px-12 py-8 md:py-10">
+            <div className="w-full lg:w-3/5 bg-white px-4 md:px-12 py-8 md:py-10">
               <div className="mb-8">
                 <p className="text-xs md:text-sm font-inter font-semibold tracking-[0.25em] text-[#EB662B] uppercase mb-4 flex items-center gap-2">
                   Contact Information
@@ -641,7 +641,7 @@ const EVisaPage = () => {
                 </h3>
               </div>
 
-              <div className="bg-[#FFF4EE] rounded-3xl px-6 md:px-12 py-5 md:py-6 shadow-[0_16px_40px_rgba(0,0,0,0.03)] lg:-ml-12">
+              <div className="bg-[#FFF4EE] rounded-3xl px-4 md:px-12 py-5 md:py-6 shadow-[0_16px_40px_rgba(0,0,0,0.03)] lg:-ml-12">
                 <form className="space-y-4 md:space-y-5">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
                   <div className="space-y-2">

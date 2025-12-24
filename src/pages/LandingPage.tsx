@@ -8,7 +8,8 @@ import PopularItineraries from '../components/PopularItineraries';
 import Testimonials from '../components/Testimonials';
 import Footer from '../components/Footer';
 export default function Landing() {
-  return <div className="min-h-screen bg-transparent overflow-x-hidden">
+  return (
+    <div className="min-h-screen bg-transparent overflow-x-hidden">
       <Navigation />
       <main>
         <HeroSection />
@@ -20,5 +21,6 @@ export default function Landing() {
         <Testimonials />
       </main>
       <Footer />
-    </div>;
+    </div>
+  );
 }

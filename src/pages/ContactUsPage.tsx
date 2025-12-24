@@ -83,8 +83,8 @@ const ContactUsPage = ({
 
       {/* Header Section */}
       <section className="conatiner bg-white">
-      <header className="bg-gradient-to-t from-[#F53900] to-[#F9AC7D] text-[#170F49] pt-16 pb-24 md:pt-20 md:pb-12 mt-20 md:mt-24">
-        <div className="mx-auto px-6 md:px-40">
+      <header className="px-6 lg:px-40 bg-gradient-to-t from-[#F53900] to-[#F9AC7D] text-[#170F49] pt-16 pb-24 md:pt-20 md:pb-12 mt-20 md:mt-24">
+        <div className="mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             {/* Left Side */}
             <div className="text-left -mt-8 md:-mt-42">
@@ -162,7 +162,7 @@ const ContactUsPage = ({
       </section>
 
       {/* Get in Touch */}
-      <section className="conatiner bg-white py-12 px-4 md:px-56">
+      <section className="conatiner bg-white py-12 px-4 lg:px-56">
         <div className="w-full mx-auto">
           <div className="text-start mb-4 ml-4 md:ml-0">
             <h2 className="text-4xl md:text-5xl font-inter font-bold text-black mb-4">Get in Touch</h2>

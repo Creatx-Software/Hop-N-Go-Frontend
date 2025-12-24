@@ -147,8 +147,8 @@ const Hero = () => {
       </div>
 
       {/* Carousel */}
-      <div className="lg:absolute inset-y-0 right-0 lg:mr-[-100px] flex items-start sm:items-center justify-center z-20 pointer-events-auto w-full lg:w-auto h-[40vh] sm:h-[45vh] lg:h-full -mt-36 sm:-mt-0 lg:mt-0 pl-5 sm:pl-10 lg:pl-0">
-        <div className="w-full h-auto max-w-full lg:w-[68vw] lg:max-w-[560px] overflow-visible relative">
+      <div className="conatiner lg:absolute inset-y-0 right-0 lg:mr-[-100px] flex items-start sm:items-center justify-center z-20 pointer-events-auto w-full lg:w-auto h-[40vh] sm:h-[45vh] lg:h-full -mt-36 sm:-mt-0 lg:mt-0 pl-5 sm:pl-10 lg:pl-0">
+        <div className="conatiner w-full h-auto max-w-full lg:w-[68vw] lg:max-w-[560px] overflow-visible relative">
           <Carousel
             setApi={(api) => setCarouselApi(api)}
             className="w-full"

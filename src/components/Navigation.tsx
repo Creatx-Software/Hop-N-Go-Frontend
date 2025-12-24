@@ -3,7 +3,6 @@ import { Menu, User } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import LanguageDropdown from "@/components/LanguageDropdown";
 
 const scrollToSection = (id: string) => {
   const element = document.getElementById(id);
@@ -70,7 +69,7 @@ const Navigation = () => {
           </div>
           
           {/* Desktop Navigation - Left Aligned */}
-          <div className="hidden md:flex items-center flex-1 pl-[10%]">
+          <div className="hidden lg:flex items-center flex-1 pl-[10%]">
             <div className="flex items-center gap-[1.5vw] lg:gap-[2vw] xl:gap-[2.5vw]">
               <Link 
                 to="/destinations"
@@ -103,7 +102,7 @@ const Navigation = () => {
           <div className="flex items-center justify-end w-[20%] min-w-[120px] max-w-[180px] gap-4">
             <a 
               href="#login" 
-              className={`hidden md:flex items-center justify-center gap-2 ${scrolled ? 'text-foreground' : isHeroPage ? 'text-white' : 'text-foreground'} px-6 py-2 rounded-full font-inter font-medium transition-all duration-300`}
+              className={`hidden lg:flex items-center justify-center gap-2 ${scrolled ? 'text-foreground' : isHeroPage ? 'text-white' : 'text-foreground'} px-6 py-2 rounded-full font-inter font-medium transition-all duration-300`}
               style={{
                 width: '7.5vw',
                 minWidth: '104px',
@@ -125,19 +124,19 @@ const Navigation = () => {
             
             {/* Mobile Menu Button */}
             <button 
-              className="md:hidden p-3 rounded-sm focus:outline-none focus:ring-0 text-foreground bg-white/10 backdrop-blur-sm"
+              className={`lg:hidden p-3 rounded-sm focus:outline-none focus:ring-0 ${isHeroPage && !scrolled ? 'text-white' : 'text-foreground'} bg-white/10 backdrop-blur-sm`}
               onClick={handleMenuButtonClick}
               aria-label="Toggle menu"
               aria-expanded={mobileMenuOpen}
             >
-              <Menu className={`w-5 h-5 transition-transform ${mobileMenuOpen ? 'rotate-90' : ''} ${isHeroPage ? 'text-white' : 'text-black'}`} />
+              <Menu className={`w-5 h-5 transition-transform ${mobileMenuOpen ? 'rotate-90' : ''} ${isHeroPage && !scrolled ? 'text-white' : 'text-black'}`} />
             </button>
           </div>
         </div>
 
         {/* Mobile Menu */}
         <div 
-          className={`mobile-menu-container md:hidden fixed top-24 right-4 transition-all duration-300 ease-in-out transform ${
+          className={`mobile-menu-container lg:hidden fixed top-24 right-4 transition-all duration-300 ease-in-out transform ${
             mobileMenuOpen ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0 pointer-events-none'
           } z-40 bg-white backdrop-blur-md rounded-lg shadow-lg border border-white/20 pt-4`}
           style={{

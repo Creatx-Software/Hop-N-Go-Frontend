@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, Star, Plus, Minus, RefreshCw, MoreVertical, Edit, Trash2, Share2, ChevronLeft, Home, Utensils, User, Bus, Wifi, PlusCircle, Languages, ShieldCheck, Headset, CreditCard, MapPin, Clock, Users, Globe, Heart, Image as ImageIcon, ChevronDown, X, CalendarDays, Users as UsersIcon, MapPin as MapPinIcon, Check } from 'lucide-react';
+import { Search, MapPin as MapPinIcon, Users as UsersIcon, ChevronDown, ChevronLeft, RefreshCw, Star, Plus, Minus, Check, MapPin, MoreVertical, Edit, Trash2, Share2, Home, Utensils, User, Bus, Wifi, PlusCircle, Languages, ShieldCheck, Headset, CreditCard, Clock, Users, Globe, Heart, Image as ImageIcon, X, CalendarDays } from 'lucide-react';
+import ItineraryMap from '@/components/ItineraryMap';
 import { Calendar } from '@/components/ui/calendar';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import Navigation from "@/components/Navigation";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 
@@ -121,6 +121,91 @@ const ItineraryPage = () => {
   const [showGuestPicker, setShowGuestPicker] = useState(false);
   const [showLocationPicker, setShowLocationPicker] = useState(false);
   
+  // Map and Itinerary state
+  const [selectedDay, setSelectedDay] = useState(1);
+  const [selectedActivity, setSelectedActivity] = useState<number | null>(null);
+
+  // Reset selected activity when day changes
+  const handleDaySelect = (dayId: number) => {
+    setSelectedDay(dayId);
+    setSelectedActivity(null);
+  };
+  
+  // Mock data for itinerary
+  const itineraryData = {
+    location: 'New York',
+    days: [
+      {
+        id: 1,
+        title: 'Arrival in New York',
+        activities: [
+          {
+            id: 1,
+            name: 'Central Park',
+            time: '10:00 AM',
+            duration: '1-2 hours',
+            price: 'Free',
+            address: 'Manhattan, New York',
+            coordinates: { lat: 40.7829, lng: -73.9654 },
+            description: 'Iconic urban park with walking paths, lakes, and the Central Park Zoo.'
+          },
+          {
+            id: 2,
+            name: 'The Metropolitan Museum of Art',
+            time: '12:30 PM',
+            duration: '2-3 hours',
+            price: '$25',
+            address: '1000 5th Ave, New York, NY',
+            coordinates: { lat: 40.7794, lng: -73.9632 },
+            description: 'World-famous art museum with an extensive collection spanning 5,000 years.'
+          },
+          {
+            id: 3,
+            name: 'Times Square',
+            time: '4:00 PM',
+            duration: '1 hour',
+            price: 'Free',
+            address: 'Manhattan, NY 10036',
+            coordinates: { lat: 40.7580, lng: -73.9855 },
+            description: 'Bustling square known for its bright lights, Broadway shows, and vibrant atmosphere.'
+          }
+        ]
+      },
+      {
+        id: 2,
+        title: 'Exploring Manhattan',
+        activities: [
+          {
+            id: 4,
+            name: 'Statue of Liberty',
+            time: '9:00 AM',
+            duration: '2-3 hours',
+            price: '$24',
+            address: 'Liberty Island, New York, NY',
+            coordinates: { lat: 40.6892, lng: -74.0445 },
+            description: 'Iconic symbol of freedom and one of the most recognized landmarks in the world.'
+          }
+        ]
+      },
+      {
+        id: 3,
+        title: 'City Highlights',
+        activities: [
+          {
+            id: 5,
+            name: 'Empire State Building',
+            time: '10:30 AM',
+            duration: '1-2 hours',
+            price: '$44',
+            address: '20 W 34th St, New York, NY',
+            coordinates: { lat: 40.7484, lng: -73.9857 },
+            description: 'Iconic 102-story Art Deco skyscraper with observatories on the 86th and 102nd floors.'
+          }
+        ]
+      }
+    ]
+  };
+  
   const locations = [
     { id: 1, name: 'New York', code: 'NYC' },
     { id: 2, name: 'Paris', code: 'PAR' },
@@ -221,7 +306,7 @@ const ItineraryPage = () => {
                     <span className="text-[#1F2226]  font-roboto font-regular">{mockItinerary.duration} Days</span>
                   </div>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 -mt-2 md:-mt-4">
                   <div className="flex items-center">
                     {[...Array(Math.floor(mockItinerary.rating))].map((_, i) => (
                       <Star
@@ -243,21 +328,21 @@ const ItineraryPage = () => {
         </div>
       </div>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-4 py-2 -mt-16 relative z-10">
+      {/* Filter & Generate */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 relative z-10 -mt-16">
         {/* Search and Filter */}
-        <div className="bg-white rounded-2xl shadow-lg p-0 mb-2 border-2 border-gray-200">
-          {/* Search Bar */}
-          <div className="flex flex-col md:flex-row items-center gap-0 p-0">
-
-            {/* Location Picker */}
-            <div className="relative w-full md:w-auto ml-2">
-              <button 
-                onClick={() => setShowLocationPicker(!showLocationPicker)}
-                className="flex items-center justify-between w-full md:w-48 px-4 py-3 bg-white border-2 border-gray-200 border-t-transparent border-b-transparent border-r-transparent border-l-transparent text-left focus:outline-none focus:ring-2 focus:ring-[#F53900] focus:border-transparent"
-              >
-                <span className="text-gray-600">{selectedLocation?.name || 'Select Location'}</span>
-                <MapPinIcon className="h-5 w-5 text-gray-400" />
-              </button>
+        <div className="flex flex-col 2xl:flex-row items-stretch 2xl:items-center gap-2 w-full">
+          <div className="bg-white rounded-2xl border-2 border-[#B5BAC2] w-full 2xl:w-auto">
+            {/* Search Bar */}
+            <div className="flex flex-row items-stretch divide-x divide-gray-200">
+              {/* Location Picker */}
+              <div className="relative w-48 border-r border-gray-200 last:border-r-0 ml-2">
+                <button 
+                  onClick={() => setShowLocationPicker(!showLocationPicker)}
+                  className="flex items-center justify-between w-full px-3 py-3 bg-white text-left focus:outline-none"
+                >
+                  <span className="text-gray-600">{selectedLocation?.name || 'Select Location'}</span>
+                </button>
               
               {showLocationPicker && (
                 <div className="absolute z-10 mt-1 w-full bg-white border border-gray-200 rounded-lg shadow-lg p-2 max-h-60 overflow-y-auto">
@@ -279,14 +364,13 @@ const ItineraryPage = () => {
               )}
             </div>
             
-            {/* Date Picker */}
-            <div className="relative w-full md:w-auto">
-              <button 
-                onClick={() => setShowDatePicker(!showDatePicker)}
-                className="flex items-center justify-between w-full md:w-48 px-4 py-3 bg-white border-2 border-gray-200 border-t-transparent border-b-transparent border-r-transparent text-left focus:outline-none focus:ring-2 focus:ring-[#F53900] focus:border-transparent"
-              >
+              {/* Date Picker */}
+              <div className="relative w-48 flex-1 border-r border-gray-200 last:border-r-0">
+                <button 
+                  onClick={() => setShowDatePicker(!showDatePicker)}
+                  className="flex items-center justify-between w-full px-3 py-3 bg-white text-left focus:outline-none"
+                >
                 <span className="text-gray-600">{formatDate(selectedDate)}</span>
-                <CalendarDays className="h-5 w-5 text-gray-400" />
               </button>
               
               {showDatePicker && (
@@ -302,14 +386,13 @@ const ItineraryPage = () => {
               )}
             </div>
 
-            {/* Guest Picker */}
-            <div className="relative w-full md:w-auto">
-              <button 
-                onClick={() => setShowGuestPicker(!showGuestPicker)}
-                className="flex items-center justify-between w-full md:w-48 px-4 py-3 bg-white border-2 border-gray-200 border-t-transparent border-b-transparent border-r-transparent text-left focus:outline-none focus:ring-2 focus:ring-[#F53900] focus:border-transparent"
-              >
+              {/* Guest Picker */}
+              <div className="relative w-48 flex-1 border-r border-gray-200 last:border-r-0">
+                <button 
+                  onClick={() => setShowGuestPicker(!showGuestPicker)}
+                  className="flex items-center justify-between w-full px-3 py-3 bg-white text-left focus:outline-none"
+                >
                 <span className="text-gray-600">{guests} {guests === 1 ? 'Guest' : 'Guests'}</span>
-                <UsersIcon className="h-5 w-5 text-gray-400" />
               </button>
               
               {showGuestPicker && (
@@ -346,17 +429,17 @@ const ItineraryPage = () => {
               )}
             </div>
 
-            {/* Filter Dropdown */}
-            <div className="relative w-full md:w-auto">
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <button 
-                    className="flex items-center justify-between w-full md:w-48 px-4 py-3 bg-white border-2 border-gray-200 border-t-transparent border-b-transparent border-r-transparent text-left focus:outline-none focus:ring-2 focus:ring-[#F53900] focus:border-transparent"
-                  >
-                    <span className="text-gray-600">Filters</span>
-                    <ChevronDown className="h-5 w-5 text-gray-400" />
-                  </button>
-                </DropdownMenuTrigger>
+              {/* Filter Dropdown */}
+              <div className="relative w-48 flex-1 border-r border-gray-200 last:border-r-0">
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <button 
+                      className="flex items-center justify-between w-full px-3 py-3 bg-white text-left focus:outline-none"
+                    >
+                      <span className="text-gray-600">Filters</span>
+                      <ChevronDown className="h-5 w-5 text-gray-400" />
+                    </button>
+                  </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-56 p-2" align="start">
                   <div className="space-y-2">
                     {filters.map((filter) => (
@@ -380,26 +463,130 @@ const ItineraryPage = () => {
               </DropdownMenu>
             </div>
 
-            {/* Search icon button */}
-            <button 
-              onClick={() => {
-                // Add search functionality here
-                console.log('Search clicked with term:', searchTerm);
-              }}
-              className="w-12 h-12 flex items-center justify-center bg-white border-2 border-gray-200 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#F53900] focus:border-transparent flex-shrink-0"
-              aria-label="Search"
-            >
-              <Search className="h-5 w-5 text-gray-600" />
-            </button>
+              {/* Search icon button */}
+              <button 
+                onClick={() => {
+                  console.log('Search clicked with term:', searchTerm);
+                }}
+                className="ml-2 mr-3 h-10 w-10 flex items-center justify-center bg-[#EB662B] text-white rounded-md hover:bg-[#E53300] focus:outline-none focus:ring-2 focus:ring-[#F53900] focus:ring-offset-2 flex-shrink-0 self-center"
+                aria-label="Search"
+              >
+                <Search className="h-5 w-5" />
+              </button>
+            </div>
+          </div>
+          
+          {/* Re-Generate Button */}
+          <button className="w-full 2xl:w-auto px-6 py-3 bg-[#F74A1F] text-white rounded-lg hover:bg-[#E53300] transition-colors flex items-center justify-center gap-2 flex-shrink-0">
+            <span>Re-Generate</span>
+          </button>
+        </div>
+      </main>
+
+      {/* Itinerary & Map */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-4 lg:px-4 py-4 border border-[#F1F2F3] rounded-2xl bg-white">
+        <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
+          {/* Itinerary Flow */}
+          <div className="xl:col-span-1 bg-white rounded-2xl shadow-sm overflow-hidden">
+            <div className="p-4">
+              <h2 className="text-lg font-semibold text-gray-800">Itinerary</h2>
+            </div>
+            
+            {/* Vertical Timeline */}
+            <div className="relative px-4 py-4">
+              {/* Vertical line */}
+              <div className="absolute left-7 top-0 bottom-0 w-0.5 bg-gray-200"></div>
+              
+              {itineraryData.days.map((day, dayIndex) => {
+                const isDaySelected = selectedDay === day.id;
+                return (
+                  <div key={day.id} className="relative mb-4">
+                    {/* Day header */}
+                    <div 
+                      className="flex items-center cursor-pointer"
+                      onClick={() => handleDaySelect(isDaySelected ? 0 : day.id)}
+                    >
+                      <div className={`z-10 flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center ${isDaySelected ? 'bg-[#F53900]' : 'bg-white border-2 border-[#EB662B]'}`}>
+                      </div>
+                      <div className="ml-3">
+                        <h3 className="font-medium text-gray-900">Day {day.id}: {day.title}</h3>
+                      </div>
+                    </div>
+                    
+                    {/* Activities for the day */}
+                    {isDaySelected && (
+                      <div className="mt-2 ml-9 pl-4">
+                        {day.activities.map((activity, activityIndex) => (
+                          <div 
+                            key={activity.id}
+                            className={`relative mb-10 p-3 bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow transition-shadow cursor-pointer ${
+                              selectedActivity === activity.id ? 'ring-2 ring-[#F53900]' : ''
+                            }`}
+                            onClick={() => setSelectedActivity(activity.id)}
+                          >
+                            <div className="flex items-start">
+                              {/* Time and Duration */}
+                              <div className="text-center mr-4">
+                                <div className="text-sm font-medium text-gray-900">
+                                  {activity.time.split(' ')[0]}
+                                </div>
+                                <div className="text-xs text-gray-500">
+                                  {activity.time.split(' ')[1]}
+                                </div>
+                              </div>
+                              
+                              {/* Activity Details */}
+                              <div className="flex-1">
+                                <div className="flex justify-between items-start">
+                                  <h4 className="text-sm font-medium text-gray-900">{activity.name}</h4>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Map */}
+          <div className="xl:col-span-2 h-[600px] bg-gray-100 rounded-2xl overflow-hidden">
+            <div className="h-full flex flex-col">
+              <div className="flex-1">
+                <ItineraryMap
+                  activities={itineraryData.days
+                    .find(day => day.id === selectedDay)?.activities || []
+                    .map(activity => ({
+                      id: activity.id,
+                      name: activity.name,
+                      coordinates: activity.coordinates
+                    }))
+                  }
+                  selectedActivity={selectedActivity}
+                  onActivitySelect={setSelectedActivity}
+                />
+              </div>
+              {selectedActivity && (
+                <div className="p-4 border-t border-gray-200 bg-white">
+                  <h3 className="font-medium text-gray-900">
+                    {itineraryData.days
+                      .flatMap(day => day.activities)
+                      .find(a => a.id === selectedActivity)?.name}
+                  </h3>
+                  <p className="text-sm text-gray-500 mt-1">
+                    {itineraryData.days
+                      .flatMap(day => day.activities)
+                      .find(a => a.id === selectedActivity)?.description}
+                  </p>
+                </div>
+              )}
+            </div>
           </div>
         </div>
-        
-        {/* Re-Generate Button */}
-        <button className="w-full md:w-auto px-6 py-3 bg-[#F53900] text-white rounded-lg hover:bg-[#E53300] transition-colors flex items-center justify-center gap-2 flex-shrink-0">
-          <RefreshCw className="h-5 w-5" />
-          <span>Re-Generate</span>
-        </button>
-      </main>
+      </section>
     </div>
   );
 };

@@ -202,7 +202,7 @@ const DestinationPage = () => {
                       <Search className="w-5 h-5 ml-2" />
                     </Button>
                     <Button 
-                      className="w-full lg:w-auto bg-gradient-to-r from-[#F9AC7D] to-[#F53900] hover:opacity-90 text-white px-6 py-2.5 h-full rounded-[7px] font-inter font-normal flex items-center justify-center border-0"
+                      className="w-full lg:w-auto bg-[#F74A1F] hover:opacity-90 text-white px-6 py-2.5 h-full rounded-[7px] font-inter font-normal flex items-center justify-center border-0"
                       onClick={() => navigate('/itinerary')}
                     >
                       <div className="flex flex-row items-center">

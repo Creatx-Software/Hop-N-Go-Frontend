@@ -859,7 +859,7 @@ const DestinationDetails = () => {
                     </div>
                   </div>
 
-                  <button className="w-full bg-gradient-to-b from-[#F9AC7D] to-[#F53900] hover:opacity-90 text-white font-medium py-3 px-4 rounded-sm transition-all duration-300 shadow-md hover:shadow-lg">
+                  <button className="w-full bg-[#F74A1F] hover:opacity-90 text-white font-medium py-3 px-4 rounded-sm transition-all duration-300 shadow-md hover:shadow-lg">
                     Reserve
                   </button>
                 </div>
@@ -1508,7 +1508,7 @@ const DestinationDetails = () => {
                         <span className="text-[#383E48] font-inter font-medium mb-2">
                           Total Price: <span className="text-black font-inter font-semibold">${availability.discountedPrice * availability.nights}</span>
                         </span>
-                        <button className="bg-gradient-to-r from-[#F9AC7D] to-[#F53900] hover:opacity-90 transition-opacity duration-200 text-white font-inter font-medium py-2 px-6 rounded-sm text-sm mb-3">
+                        <button className="bg-[#F74A1F] hover:opacity-90 transition-opacity duration-200 text-white font-inter font-medium py-2 px-6 rounded-sm text-sm mb-3">
                           Confirm Dates
                         </button>
                       </div>

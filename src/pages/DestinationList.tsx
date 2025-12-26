@@ -341,7 +341,7 @@ const DestinationList = () => {
                 <Search className="w-5 h-5 ml-2 sm:ml-4" />
               </Button>
               <Button 
-                className="w-[45%] sm:w-auto bg-gradient-to-r from-[#F9AC7D] to-[#F53900] hover:opacity-90 text-white px-3 sm:px-6 py-3 sm:py-6 rounded-[7px] font-inter font-normal h-auto sm:h-[28px] flex items-center justify-center border-0"
+                className="w-[45%] sm:w-auto bg-[#F74A1F] hover:opacity-90 text-white px-3 sm:px-6 py-3 sm:py-6 rounded-[7px] font-inter font-normal h-auto sm:h-[28px] flex items-center justify-center border-0"
                 onClick={() => navigate('/itinerary')}
               >
                 <div className="flex flex-col sm:flex-row items-center">
@@ -1325,7 +1325,7 @@ const DestinationList = () => {
                             <div className="mt-2 md:mt-0">
                               <Button 
                                 onClick={() => navigate(`/tours/${destination.id}`, { state: { destination } })}
-                                className="w-full md:w-auto bg-gradient-to-r from-[#F9AC7D] to-[#F53900] hover:opacity-90 text-white px-6 py-2.5 rounded-full font-inter font-medium text-sm"
+                                className="w-full md:w-auto bg-[#F74A1F] hover:opacity-90 text-white px-6 py-2.5 rounded-full font-inter font-medium text-sm"
                               >
                                 View Tour Details 
                               </Button>

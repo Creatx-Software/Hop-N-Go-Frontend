@@ -424,7 +424,7 @@ const contactInfo: ContactUsPageProps = {
     <div className="min-h-screen bg-white overflow-x-hidden">
       <Navigation />
       
-      <div className="w-full max-w-full px-2 2xl:px-28 overflow-hidden">
+      <div className="conatiner max-w-full px-2 2xl:px-32 overflow-hidden">
       {/* Hero Section with Background Image */}
       <div className="relative bg-white">
         
@@ -480,11 +480,11 @@ const contactInfo: ContactUsPageProps = {
       <main className="mx-auto px-4 2xl:px-8 py-2 relative z-10 -mt-16 overflow-x-visible">
         {/* Search and Filter */}
           <div className="flex flex-col 2xl:flex-row items-stretch 2xl:items-center gap-4 2xl:gap-10 w-full overflow-x-visible">
-          <div className="bg-white rounded-2xl border-2 border-[#B5BAC2] w-full 2xl:w-auto overflow-x-visible">
+          <div className="bg-white rounded-2xl border-2 border-[#B5BAC2] w-full 2xl:w-auto overflow-visible">
             {/* Search Bar */}
-            <div className="flex flex-row items-stretch divide-x divide-gray-200 overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+            <div className="flex flex-col sm:flex-row items-stretch h-full divide-x-0 sm:divide-x divide-gray-200 overflow-visible [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] relative">
               {/* Location Picker */}
-              <div className="relative w-48 border-r border-gray-200 last:border-r-0 ml-2">
+              <div className="relative w-full sm:w-48 border-b sm:border-b-0 sm:border-r border-gray-200 last:border-r-0 sm:ml-2">
                 <button 
                   onClick={() => setShowLocationPicker(!showLocationPicker)}
                   className="flex items-center justify-center w-full px-3 py-3 bg-white focus:outline-none"
@@ -513,7 +513,7 @@ const contactInfo: ContactUsPageProps = {
             </div>
             
               {/* Date Picker */}
-              <div className="relative w-48 flex-1 border-r border-gray-200 last:border-r-0">
+              <div className="relative w-full sm:w-48 flex-1 border-b sm:border-b-0 sm:border-r border-gray-200 last:border-r-0">
                 <div className="relative">
                   <div className="relative z-10">
                     <button 
@@ -608,7 +608,7 @@ const contactInfo: ContactUsPageProps = {
             </div>
 
               {/* Guest Picker */}
-              <div className="relative w-48 flex-1 border-r border-gray-200 last:border-r-0">
+              <div className="relative w-full sm:w-48 flex-1 border-b sm:border-b-0 sm:border-r border-gray-200 last:border-r-0">
                 <button 
                   onClick={() => setShowGuestPicker(!showGuestPicker)}
                   className="flex items-center justify-center w-full px-3 py-3 bg-white focus:outline-none"
@@ -642,7 +642,7 @@ const contactInfo: ContactUsPageProps = {
             </div>
 
               {/* Filter Dropdown */}
-              <div className="relative w-48 flex-1 border-r border-gray-200 last:border-r-0">
+              <div className="relative w-full sm:w-48 flex-1 border-b sm:border-b-0 sm:border-r border-gray-200 last:border-r-0">
                 <button 
                   onClick={() => setShowFilterDropdown(!showFilterDropdown)}
                   className="flex items-center justify-center gap-3 w-full px-3 py-3 bg-white focus:outline-none"
@@ -674,12 +674,12 @@ const contactInfo: ContactUsPageProps = {
               </div>
 
               {/* Search icon button */}
-              <div className="flex items-center justify-beween flex-shrink-0 h-full">
+              <div className="flex items-center justify-center sm:px-2 px-12">
                 <button 
                   onClick={() => {
                     console.log('Search clicked with term:', searchTerm);
                   }}
-                  className="mt-1 h-10 w-10 flex items-center justify-center bg-[#EB662B] text-white rounded-md hover:bg-[#E53300] focus:outline-none focus:ring-2 focus:ring-[#F53900] focus:ring-offset-2 mx-2"
+                  className="h-10 sm:w-10 w-full flex items-center justify-center bg-[#EB662B] text-white rounded-md hover:bg-[#E53300] focus:outline-none focus:ring-2 focus:ring-[#F53900] focus:ring-offset-2"
                   aria-label="Search"
                 >
                   <Search className="h-5 w-5" />
@@ -737,7 +737,7 @@ const contactInfo: ContactUsPageProps = {
                       </div>
                       <div className="ml-3">
                         <h3 
-                          className="font-medium text-gray-900 hover:text-[#F53900] transition-colors"
+                          className="font-inter font-medium text-[#05073C] hover:text-[#F53900] transition-colors"
                           onClick={() => handleDaySelect(day.id)}
                         >
                           Day {day.id}: {day.title}
@@ -770,11 +770,11 @@ const contactInfo: ContactUsPageProps = {
                                   
                                   {/* Activity Content */}
                                   <div className="flex-1">
-                                    <h4 className="text-sm font-medium text-gray-900 flex items-center">
+                                    <h4 className="text-sm font-inter font-medium text-black flex items-center">
                                       <MapPin className="h-3.5 w-3.5 text-black mr-1.5 flex-shrink-0" />
                                       <span className="truncate">{activity.name}</span>
                                     </h4>
-                                    <div className="flex items-center text-xs text-gray-500 mt-1">
+                                    <div className="flex items-center text-xs text-[#454C58] font-inter font-medium mt-1">
                                       <Clock className="h-3.5 w-3.5 mr-1 flex-shrink-0" />
                                       <span>{activity.time}</span>
                                       <span className="mx-1">•</span>
@@ -786,7 +786,7 @@ const contactInfo: ContactUsPageProps = {
                                   <Button 
                                     variant="outline" 
                                     size="sm" 
-                                    className="text-sm w-28 h-9 px-2.5 bg-[#F3F3F3] text-black ml-2 border-[#F3F3F3] hover:bg-gray-200 hover:text-black transition-colors"
+                                    className="text-sm w-28 h-9 px-2.5 bg-[#F3F3F3] text-black font-inter font-medium ml-2 border-[#F3F3F3] hover:bg-gray-200 hover:text-black transition-colors"
                                     onClick={(e) => {
                                       e.stopPropagation();
                                       handleActivitySelect(activity);
@@ -932,34 +932,34 @@ const contactInfo: ContactUsPageProps = {
         <div className="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-6">
           {/* Left side - Love This Itinerary */}
           <div className="bg-white rounded-2xl p-6">
-            <h3 className="text-2xl font-semibold text-gray-900 mb-2">Love This Itinerary? Let’s Make It Happen</h3>
-            <p className="text-gray-600 mb-4">Get personalized assistance from our travel experts</p>
-            <p className="text-gray-600 mb-6">If this AI-generated itinerary matches your travel plans, submit your details below. Our travel agent will contact you shortly to customize, confirm, and assist you with bookings.</p>
+            <h3 className="text-2xl font-inter font-semibold text-black mb-4">Love This Itinerary? Let’s Make It Happen</h3>
+            <p className="text-[#8A8888] font-inter font-regular mb-4">Get personalized assistance from our travel experts</p>
+            <p className="text-[#5D5C5C] font-inter font-regular mb-6">If this AI-generated itinerary matches your travel plans, submit your details below. Our travel agent will contact you shortly to customize, confirm, and assist you with bookings.</p>
 
             <form className="space-y-4">
               <div>
                 <Input
                   type="text"
                   id="name"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                  placeholder="Your name"
+                  className="w-full px-3 py-2 text-[#111113]/60 font-inter font-regular border border-[#111113]/20 focus:outline-none rounded-none"
+                  placeholder="Full name"
                 />
               </div>
               
               <div>
                 <Input
-                  type="email"
-                  id="email"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                  placeholder="Your email address"
+                  type="phone"
+                  id="contact"
+                  className="w-full px-3 py-2 text-[#111113]/60 font-inter font-regular border border-[#111113]/20 focus:outline-none rounded-none"
+                  placeholder="Contact Number "
                 />
               </div>
 
-              <p className="text-gray-600 mb-4">Get personalized assistance from our travel experts</p>
+              <p className="text-[#737272] font-inter font-regular text-sm mb-4">We’ll use this only to contact you regarding your itinerary.</p>
               
               <Button 
                 type="submit" 
-                className="w-40 bg-[#F74A1F] hover:bg-[#F74A1F]/80 text-white py-2 px-4 rounded-md text-sm font-medium transition-colors"
+                className="w-40 bg-[#F74A1F] hover:bg-[#F74A1F]/90 text-white py-2 px-4 rounded-sm text-sm font-inter font-medium transition-colors"
               >
                 Submit
               </Button>

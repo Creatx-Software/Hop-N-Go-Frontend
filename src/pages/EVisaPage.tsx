@@ -170,7 +170,7 @@ const EVisaPage = () => {
       <Navigation/>
 
       {/* Hero Section */}
-      <section className="relative w-full h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden mt-24">
+      <section className="relative w-full h-[500px] md:h-[700px] lg:h-[760px] overflow-hidden mt-24">
         {/* Background Image */}
         <div className="absolute inset-0">
           <img 
@@ -182,7 +182,7 @@ const EVisaPage = () => {
         </div>
         
         {/* Hero Content */}
-        <div className="relative z-10 flex flex-col items-center justify-center text-center text-white max-w-6xl mx-auto mt-16 md:mt-32">
+        <div className="relative z-10 flex flex-col items-center justify-center text-center text-white mx-auto mt-16 md:mt-32">
           <div className="bg-transparent border border-white text-white/90 text-xs md:text-xs font-inter font-semibold px-4 py-2 rounded-full mb-6 inline-flex items-center">
             Easy way , Apply Your Evisa Support
             <ArrowRight className="w-5 h-5 ml-4" />
@@ -196,7 +196,7 @@ const EVisaPage = () => {
             </p>
             <div className="flex flex-col sm:flex-row justify-center items-center sm:items-start gap-4 mt-10">
               <Button 
-                className="bg-gradient-to-r from-[#F9AC7D] to-[#F53900] hover:opacity-90 transition-opacity duration-200 text-white px-6 sm:px-8 py-6 text-md md:text-lg font-roboto font-semibold rounded-full w-44 sm:w-auto"
+                className="bg-[#F74A1F] hover:opacity-90 transition-opacity duration-200 text-white px-6 sm:px-8 py-6 text-md md:text-lg font-roboto font-semibold rounded-full w-44 sm:w-auto"
                 onClick={() => {
                   const formSection = document.getElementById('visa-form');
                   formSection?.scrollIntoView({ behavior: 'smooth' });
@@ -210,11 +210,11 @@ const EVisaPage = () => {
       </section>
 
       {/* Before You Apply Section */}
-      <section className="pt-16 pb-20 md:pt-24 md:pb-28 bg-white">
+      <section className="pt-16 pb-20 md:pt-24 md:pb-20 bg-white">
         <div className="container w-full mx-auto px-6 md:px-20">
           {/* Section Header */}
           <div className="text-left mb-6 md:mb-8">
-            <h2 className="text-3xl md:text-5xl max-w-3xl font-inter font-bold text-black mb-6">
+            <h2 className="text-3xl md:text-5xl max-w-2xl font-inter font-bold text-black mb-6">
               Before Applying Electronic Visa service :
             </h2>
             <p className="text-md md:text-lg max-w-5xl font-inter font-medium text-[#454545]">
@@ -222,7 +222,7 @@ const EVisaPage = () => {
             </p>
           </div>
 
-          <div className="flex flex-col lg:flex-row items-start gap-8 mt-4">
+          <div className="flex flex-col 2xl:flex-row items-start gap-8 mt-4">
             {/* Left Side - Text Content */}
             <div className="lg:w-1/2 space-y-4">
               <div className="flex items-start gap-4">
@@ -275,7 +275,7 @@ const EVisaPage = () => {
             </div>
 
             {/* Right Side - Image */}
-            <div className="lg:w-1/2 md:-mt-32 flex justify-center md:justify-end">
+            <div className="lg:w-2/3 mt-2 2xl:-mt-20 flex justify-center sm:justify-end">
               <div className="w-4/5">
                 <img 
                   src= {apply}
@@ -288,174 +288,39 @@ const EVisaPage = () => {
         </div>
       </section>
 
-      {/* Why EVisa Section */}
-      <section className="py-16 md:py-24 bg-gradient-to-t from-[#F53900] to-[#F9AC7D]">
-        <div className="container w-full mx-auto px-10">
-          <div className="flex flex-col lg:flex-row items-center gap-12">
-            {/* Left Side - Mobile Image */}
-            <div className="lg:w-1/2 -mt-40 md:-mt-52">
-              <img 
-                src={mobile} 
-                alt="EVisa Mobile App" 
-                className="w-full h-auto max-w-xs mx-auto"
-              />
-            </div>
-
-            {/* Right Side - Text Content */}
-            <div className="lg:w-1/2">
-              <div className="mb-4">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-14 h-[2px] bg-white"></div>
-                  <span className="text-white text-sm font-inter font-bold tracking-widest">WHY EVISA</span>
-                </div>
-                <h2 className="text-3xl md:text-4xl font-inter font-bold text-white">
-                  Why Evisa Express ?
-                </h2>
-              </div>
-              <div className="space-y-4 mt-8 ml-0">
-                <p className="text-white/80 text-base md:text-lg font-inter font-regular max-w-3xl">
-                  Our service provides assistance with electronic visas to numerous countries worldwide.
-                </p>
-                <p className="text-white/80 text-base md:text-lg font-inter font-regular max-w-3xl">
-                  15 min. - the application process can be completed.
-                </p>
-                <p className="text-white/80 text-base md:text-lg font-inter font-regular max-w-3xl">
-                  The processing time takes a few days; however, most eVisas are usually approved as soon as it is possible. Processed eVisas arrive directly to applicants via email.
-                </p>
-                <p className="text-white/80 text-base md:text-lg font-inter font-regular max-w-3xl">
-                  There is no need to wait in long lines at the Embassy to handle your visa anymore!
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Opinion Section */}
-      <section className="py-16 md:py-16 bg-white overflow-hidden">
-        <div className="container w-full mx-auto px-4 md:px-10">
-          <div className="flex justify-between items-center mb-12">
-            <h2 className="text-3xl md:text-5xl font-inter font-bold text-black ml-8">Opinions</h2>
-            <div className="flex space-x-4 mr-0 md:mr-8">
-              <button 
-                onClick={prevSlide}
-                className="p-3 rounded-full bg-[#EDEDED] hover:bg-gray-200 transition-colors"
-                aria-label="Previous testimonial"
-              >
-                <ArrowLeft className="w-5 h-5 text-black" />
-              </button>
-              <button 
-                onClick={nextSlide}
-                className="p-3 rounded-full bg-[#EDEDED] hover:bg-gray-200 transition-colors"
-                aria-label="Next testimonial"
-              >
-                <ArrowRight className="w-5 h-5 text-black" />
-              </button>
-            </div>
-          </div>
-          <div className="relative overflow-hidden">
-            <div className="w-full overflow-hidden">
-              <div 
-                className="relative transition-transform duration-300 ease-in-out"
-                style={{
-                  transform: isMobile 
-                    ? `translateX(calc(-${currentSlide} * 100%))`
-                    : `translateX(calc(-${currentSlide} * (${cardWidth}% + ${gapWidth}%)))`,
-                  width: isMobile ? '100%' : '100%',
-                  padding: isMobile ? '0 16px' : '0 1%',
-                  boxSizing: 'border-box'
-                }}
-              >
-                <div 
-                  className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full"
-                  style={{
-                    display: 'grid',
-                    gridTemplateColumns: isMobile 
-                      ? `repeat(${testimonials.length}, 1fr)` 
-                      : `repeat(${testimonials.length}, ${cardWidth}%)`,
-                    gap: isMobile ? '0' : `${gapWidth}%`,
-                    width: isMobile ? '100%' : '100%',
-                    boxSizing: 'border-box',
-                    padding: isMobile ? '0 0' : '0 1px'
-                  }}
-                >
-                      {testimonials.map((testimonial) => (
-                    <div key={testimonial.id} className="bg-white p-5 rounded-xl shadow-sm border border-[#9E9E9E] w-[calc(100%-32px)] mx-4 h-full">
-                      <div className="flex items-start mb-4">
-                        <img 
-                          src={testimonial.avatar} 
-                          alt={testimonial.name} 
-                          className="w-12 h-12 rounded-full mr-4 flex-shrink-0" 
-                        />
-                        <div className="flex-1">
-                          <div className="flex items-center gap-2">
-                            <h4 className="font-inter font-medium text-black whitespace-nowrap">
-                              {testimonial.name}
-                            </h4>
-                            <div className="flex items-center">
-                              <div className="flex text-[#EB662B] space-x-0.5">
-                                {[...Array(5)].map((_, i) => (
-                                  <svg 
-                                    key={i} 
-                                    xmlns="http://www.w3.org/2000/svg" 
-                                    className="h-4 w-4" 
-                                    viewBox="0 0 20 20" 
-                                    fill="currentColor"
-                                  >
-                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                  </svg>
-                                ))}
-                              </div>
-                            </div>
-                          </div>
-                          <span className="text-sm text-black font-inter font-regular">{testimonial.country}</span>
-                        </div>
-                      </div>
-                      <p className="text-black text-sm text-justify font-inter font-regular leading-relaxed mb-4">
-                        {testimonial.text}
-                      </p>
-                      <p className="text-black text-xs font-inter font-regular">Date of experience: {testimonial.date}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Evisa Express Today Section */}
-      <section className="bg-white pt-0 pb-6 md:pt-0 md:pb-0">
-        <div className="container w-full mx-auto px-8 md:px-12">
-          <div className="flex flex-col lg:flex-row rounded-none overflow-hidden">
-            <div className="bg-[#F53900] text-white w-full lg:w-1/2 px-8 md:px-16 pt-0 pb-3 md:pt-0 md:pb-0 flex items-center">
-              <div className="space-y-8 max-w-sm">
-                <h2 className="text-3xl md:text-4xl text-[#F4F7F2] font-inter font-medium mt-10 md:-mt-20 md:mb-16">
+      <section className="bg-white py-8 md:py-12 lg:py-16 mb-12">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 max-w-7xl">
+          <div className="flex flex-col lg:flex-row rounded-none overflow-hidden shadow-lg">
+            {/* Left Side - Stats */}
+            <div className="bg-[#F53900] text-white w-full lg:w-1/2 p-6 md:p-8 lg:p-12">
+              <div className="space-y-6 md:space-y-8 max-w-md mx-auto lg:mx-16">
+                <h2 className="text-3xl md:text-4xl font-inter font-medium text-[#F4F7F2]">
                   Evisa Express Today
                 </h2>
-                <div className="space-y-6 text-left">
+                <div className="space-y-6 md:space-y-8">
                   <div>
-                    <p className="text-2xl md:text-4xl font-inter font-semibold mb-1">99%</p>
-                    <p className="text-sm md:text-base text-white/80 font-inter font-medium leading-relaxed">
+                    <p className="text-3xl md:text-4xl font-inter font-semibold mb-2">99%</p>
+                    <p className="text-sm md:text-base text-white/90 font-inter font-medium">
                       Effectiveness in positively processed applications
                     </p>
                   </div>
                   <div>
-                    <p className="text-2xl md:text-4xl font-inter font-bold mb-1">85%</p>
-                    <p className="text-sm md:text-base text-white/80 font-inter font-medium leading-relaxed">
-                      Time saved by using our service, we’ll just do it for you
+                    <p className="text-3xl md:text-4xl font-inter font-semibold mb-2">85%</p>
+                    <p className="text-sm md:text-base text-white/90 font-inter font-medium">
+                      Time saved by using our service, we'll just do it for you
                     </p>
                   </div>
                   <div>
-                    <p className="text-2xl md:text-4xl font-inter font-bold mb-1">100%</p>
-                    <p className="text-sm md:text-base text-white/80 font-inter font-regular leading-relaxed">
-                      evisa.express utilizes top-tier data security standards, leveraging SSL certificate protection to guarantee a high level of data security. This ensures that all personal data provided by users is appropriately safeguarded
+                    <p className="text-3xl md:text-4xl font-inter font-semibold mb-2">100%</p>
+                    <p className="text-sm md:text-base text-white/90 font-inter font-medium">
+                      evisa.express utilizes top-tier data security standards, leveraging SSL certificate protection to guarantee a high level of data security.
                     </p>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="w-full lg:w-1/2 h-[300px] md:h-[160px] lg:h-auto">
+            <div className="w-full lg:w-1/2 lg:h-auto">
               <img
                 src={expressImg}
                 alt="Evisa Express team"
@@ -466,246 +331,33 @@ const EVisaPage = () => {
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section
-        className="py-12 md:py-16"
-        style={{
-          backgroundImage:
-            'linear-gradient(to bottom, #FEFEFE 0%, #FEFEFE 6%, transparent 20%, transparent 80%, #FEFEFE 100%), radial-gradient(circle at center, #FEFEFE 0%, #FEFEFE 35%, #FFF0E9 65%, #FFECEE 85%, #FEFEFE 100%)',
-        }}
-      >
-        <div className="container w-full mx-auto px-8 md:px-12">
-          <h2 className="text-3xl md:text-5xl font-inter font-bold text-black mb-8 md:mb-10">
-            FAQ
-          </h2>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10">
-            <div className="space-y-4">
-              {leftFaqs.map((item) => {
-                const isActive = activeFaqId === item.id;
-                return (
-                  <button
-                    key={item.id}
-                    type="button"
-                    onClick={() => setActiveFaqId(isActive ? null : item.id)}
-                    className={`w-full text-left rounded-2xl transition-all duration-200 shadow-sm border border-[#FFF0E9] ${
-                      isActive ? 'bg-[#FFF0E9]' : 'bg-white'
-                    }`}
-                  >
-                    <div className="flex items-start justify-between px-5 md:px-6 py-4 md:py-5">
-                      <div className="flex-1">
-                        <p className="text-sm md:text-base font-inter font-semibold text-black mb-0">
-                          {item.question}
-                        </p>
-                        <div 
-                          className="overflow-hidden transition-all duration-300 ease-in-out"
-                          style={{
-                            maxHeight: isActive ? '200px' : '0',
-                            opacity: isActive ? 1 : 0,
-                            marginTop: isActive ? '0.5rem' : '0'
-                          }}
-                        >
-                          {item.answer && (
-                            <p className="text-xs md:text-sm font-inter font-regular text-[#9D9D9D] leading-relaxed">
-                              {item.answer}
-                            </p>
-                          )}
-                        </div>
-                      </div>
-                      <span
-                        className={`ml-4 flex h-7 w-7 min-h-[28px] min-w-[28px] flex-shrink-0 items-center justify-center rounded-full text-white ${
-                          isActive ? 'bg-[#EB662B]' : 'bg-[#FFF0E9]'
-                        }`}
-                      >
-                        {isActive ? (
-                          <ChevronUp className="h-4 w-4" />
-                        ) : (
-                          <ChevronRight className="h-4 w-4 text-[#EB662B]" />
-                        )}
-                      </span>
-                    </div>
-                  </button>
-                );
-              })}
+      {/* Why Evisa Section */}
+      <section className="container w-full mx-auto px-8 mb-12 2xl:px-28 bg-white">
+        <div className="mb-4">
+          <div className="flex items-center gap-4 mb-6">
+            <div className="w-14 h-[2px] bg-black"></div>
+            <span className="text-black text-sm font-inter font-bold tracking-widest">WHY EVISA</span>
             </div>
-
-            <div className="space-y-4">
-              {rightFaqs.map((item) => {
-                const isActive = activeFaqId === item.id;
-                return (
-                  <button
-                    key={item.id}
-                    type="button"
-                    onClick={() => setActiveFaqId(isActive ? null : item.id)}
-                    className={`w-full text-left rounded-2xl transition-all duration-200 shadow-sm border border-transparent ${
-                      isActive ? 'bg-[#FFF0E9]' : 'bg-white'
-                    }`}
-                  >
-                    <div className="flex items-start justify-between px-5 md:px-6 py-4 md:py-5">
-                      <div className="flex-1">
-                        <p className="text-sm md:text-base font-inter font-semibold text-black mb-0">
-                          {item.question}
-                        </p>
-                        <div 
-                          className="overflow-hidden transition-all duration-300 ease-in-out"
-                          style={{
-                            maxHeight: isActive ? '200px' : '0',
-                            opacity: isActive ? 1 : 0,
-                            marginTop: isActive ? '0.5rem' : '0'
-                          }}
-                        >
-                          {item.answer && (
-                            <p className="text-xs md:text-sm font-inter font-regular text-[#9D9D9D] leading-relaxed">
-                              {item.answer}
-                            </p>
-                          )}
-                        </div>
-                      </div>
-                      <span
-                        className={`ml-4 flex h-7 w-7 min-h-[28px] min-w-[28px] flex-shrink-0 items-center justify-center rounded-full text-white ${
-                          isActive ? 'bg-[#EB662B]' : 'bg-[#FFF0E9]'
-                        }`}
-                      >
-                        {isActive ? (
-                          <ChevronUp className="h-4 w-4" />
-                        ) : (
-                          <ChevronRight className="h-4 w-4 text-[#EB662B]" />
-                        )}
-                      </span>
-                    </div>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
+                <h2 className="text-3xl md:text-4xl font-inter font-bold text-black">
+                  Why Apply for Your eVisa with Hop N Go?
+                </h2>
+              </div>
+              <div className="space-y-4 mt-8 ml-0">
+                <p className="text-black text-base md:text-lg font-inter font-regular max-w-3xl">
+                  Our service provides assistance with electronic visas to numerous countries worldwide.
+                </p>
+                <p className="text-black text-base md:text-lg font-inter font-regular max-w-3xl">
+                  15 min. - the application process can be completed.
+                </p>
+                <p className="text-black text-base md:text-lg font-inter font-regular max-w-3xl">
+                  The processing time takes a few days; however, most eVisas are usually approved as soon as it is possible. Processed eVisas arrive directly to applicants via email.
+                </p>
+          <p className="text-black text-base md:text-lg font-inter font-regular max-w-3xl">
+            There is no need to wait in long lines at the Embassy to handle your visa anymore!
+          </p>
         </div>
       </section>
 
-      {/* Contact Us Section */}
-      <section className="container bg-[#FEFEFE] py-16 md:py-20">
-        <div className="w-full mx-auto px-0 md:px-0-mt-16">
-          <h2 className="text-3xl md:text-5xl font-inter font-bold text-black mb-8 md:mb-10">
-            Contact Us
-          </h2>
-
-          <div className="w-full max-w-7xl mx-auto bg-white rounded-3xl overflow-hidden flex flex-col lg:flex-row">
-            <div className="w-full lg:w-2/5 bg-[#EB662B] text-white px-8 md:px-12 py-8 md:py-10 relative">
-              <div className="mb-8">
-                <h3 className="text-2xl md:text-3xl font-inter font-bold mb-4">Contact Information</h3>
-                <p className="text-sm md:text-base font-inter font-medium text-white/70 max-w-xs">
-                  Fill up the form and our Team will get back to you within 24 hours.
-                </p>
-              </div>
-
-              <div className="space-y-6 text-sm md:text-base font-inter font-medium">
-                <div className="flex items-center gap-4">
-                  <div className="w-9 h-9 rounded-full bg-white flex items-center justify-center">
-                    <Phone className="w-4 h-4 text-[#EB662B] fill-[#EB662B]" />
-                  </div>
-                  <span>+91 98765 43210</span>
-                </div>
-                <div className="flex items-center gap-4">
-                  <div className="w-9 h-9 rounded-full bg-white flex items-center justify-center">
-                    <Mail className="w-5 h-5 text-white fill-[#EB662B]" />
-                  </div>
-                  <span>domain@paypal.com</span>
-                </div>
-                <div className="flex items-center gap-4">
-                  <div className="w-9 h-9 rounded-full bg-white flex items-center justify-center">
-                    <Globe2 className="w-4 h-4 text-[#EB662B]" />
-                  </div>
-                  <span>https://paypal.com</span>
-                </div>
-                <div className="flex items-center gap-4">
-                  <div className="w-9 h-9 rounded-full bg-white flex items-center justify-center">
-                    <MapPin className="w-5 h-5 text-white fill-[#EB662B]" />
-                  </div>
-                  <span>Location</span>
-                </div>
-              </div>
-
-              <img
-                src={evisaCircle}
-                alt="Decorative circle"
-                className="pointer-events-none select-none absolute -bottom-11 -right-0 w-72 h-72 object-contain opacity-90"
-              />
-            </div>
-
-            <div className="w-full lg:w-3/5 bg-white px-4 md:px-12 py-8 md:py-10">
-              <div className="mb-8">
-                <p className="text-xs md:text-sm font-inter font-semibold tracking-[0.25em] text-[#EB662B] uppercase mb-4 flex items-center gap-2">
-                  Contact Information
-                  <Send className="w-4 h-4 text-[#EB662B] fill-[#EB662B]" />
-                </p>
-                <h3 className="text-2xl md:text-3xl lg:text-5xl font-inter font-bold text-[#EB662B] max-w-lg">
-                  Let Your Wanderlust Guide You
-                </h3>
-              </div>
-
-              <div className="bg-[#FFF4EE] rounded-3xl px-4 md:px-12 py-5 md:py-6 shadow-[0_16px_40px_rgba(0,0,0,0.03)] lg:-ml-12">
-                <form className="space-y-4 md:space-y-5">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
-                  <div className="space-y-2">
-                    <label className="text-xs md:text-sm font-inter font-regular text-[#EB662B]">Your Email</label>
-                    <div className="flex items-center rounded-full bg-white border border-[#FFE0D1] px-4 py-3 md:py-3.5">
-                      <input
-                        type="email"
-                        placeholder="Your Email"
-                        className="flex-1 bg-transparent outline-none text-sm md:text-base font-inter font-regular text-black placeholder:text-[#FFE0D1]"
-                      />
-                      <Send className="w-6 h-6 text-white fill-[#EB662B]" />
-                    </div>
-                  </div>
-
-                  <div className="space-y-2">
-                    <label className="text-xs md:text-sm font-inter font-regular text-[#EB662B]">Your Phone</label>
-                    <div className="flex items-center rounded-full bg-white border border-[#FFE0D1] px-4 py-3 md:py-3.5">
-                      <input
-                        type="tel"
-                        placeholder="Your Phone"
-                        className="flex-1 bg-transparent outline-none text-sm md:text-base font-inter font-regular text-black placeholder:text-[#FFE0D1]"
-                      />
-                      <Phone className="w-4 h-4 text-[#EB662B] fill-[#EB662B]" />
-                    </div>
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <label className="text-xs md:text-sm font-inter font-regular text-[#EB662B]">Your Address</label>
-                  <div className="flex items-center rounded-full bg-white border border-[#FFE0D1] px-4 py-3 md:py-3.5">
-                    <input
-                      type="text"
-                      placeholder="Your Address"
-                      className="flex-1 bg-transparent outline-none text-sm md:text-base font-inter font-regular text-black placeholder:text-[#FFE0D1]"
-                    />
-                    <MapPin className="w-5 h-5 text-white fill-[#EB662B]" />
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <label className="text-xs md:text-sm font-inter font-regular text-[#EB662B]">Message</label>
-                  <div className="rounded-2xl bg-white border border-[#FFE0D1] px-4 pt-3 pb-10 flex items-start">
-                    <textarea
-                      placeholder="Write Message.."
-                      className="flex-1 bg-transparent outline-none text-sm md:text-base font-inter font-regular text-black placeholder:text-[#FFE0D1] resize-none min-h-[80px]"
-                    />
-                    <Mail className="w-4 h-4 text-white fill-[#EB662B] mt-1 ml-3" />
-                  </div>
-                </div>
-
-                <div className="pt-2">
-                  <button
-                    type="button"
-                    className="w-full rounded-full bg-gradient-to-r from-[#F9AC7D] to-[#F53900] text-white text-sm md:text-base font-roboto font-semibold py-3.5 md:py-4"
-                  >
-                    Send Message
-                  </button>
-                </div>
-              </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       <Footer />
     </div>

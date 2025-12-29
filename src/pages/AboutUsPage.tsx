@@ -201,7 +201,7 @@ const AboutUsPage = () => {
             <img 
               src={hero} 
               alt="About Us Hero"
-              className="w-full h-auto object-cover rounded-lg shadow-lg"
+              className="w-full h-auto object-cover"
             />
           </div>
         </div>
